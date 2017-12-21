@@ -4,9 +4,7 @@ line=f.readline()
 line=line.rstrip()
 
 while line:
-
     print "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"+line[0:6]+"/00"+line[9:]+"/"+line+"/"+line+"_1.fastq.gz"
-
     line=f.readline()
 
 
