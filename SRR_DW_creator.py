@@ -1,6 +1,7 @@
 f=open("/Users/wone/Downloads/SRR_Acc_List.txt")
 
 line=f.readline()
+line=line.rstrip()
 
 while line:
 
