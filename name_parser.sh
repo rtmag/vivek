@@ -1,0 +1,1 @@
+more SraRunTable.txt |cut -f1,12,15,16,17|perl -pe 's/OTHER/ATAC-Seq/g'|perl -pe 's/\s\(.+\)\s/\t/g'|perl -pe 's/foreskin, //g'|awk -F"\t" {'print $2"\t"$1"_"$3"_"$4$5'}|grep -v "Assay_Type"|perl -pe 's/ChIP-Seq__/ChIP-Seq_input_/g'|perl -pe 's/__/_/g' > Sra_parsed_table.txt
