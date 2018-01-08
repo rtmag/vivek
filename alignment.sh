@@ -1,13 +1,4 @@
 
-
-/root/myPrograms/STAR/bin/STAR --genomeDir /root/resources/star_hg38_overhang100 \
---readFilesCommand zcat --runThreadN 35 --alignIntronMax 1 --alignEndsType EndToEnd \
---readFilesIn /root/vivek/data/ \
-/root/vivek/data/ \
---outSAMtype BAM SortedByCoordinate \
---outFileNamePrefix /root/vivek/bam/
-
-
 ls | perl -pe 's/(.+)/ \/root\/myPrograms\/STAR\/bin\/STAR --genomeDir \/root\/resources\/star_hg38_overhang100 \\\n--readFilesCommand zcat --runThreadN 35 --alignIntronMax 1 --alignEndsType EndToEnd \\\n--readFilesIn \/root\/vivek\/data\/$1 \\\n --outSAMtype BAM SortedByCoordinate --outFileNamePrefix \/root\/vivek\/bam\/$1 \n/g' | perl -pe 's/(\/root\/vivek\/bam\/.+)\.fastq\.gz/$1_/g'  
 
  /root/myPrograms/STAR/bin/STAR --genomeDir /root/resources/star_hg38_overhang100 \
