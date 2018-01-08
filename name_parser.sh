@@ -6,13 +6,17 @@ import os
 import re
 from subprocess import call
 
-dir.path=
-dir = os.listdir("data/")
+dir = os.listdir("./")
 
-with open('Sra_parsed_table.txt') as f:
-    line = f.readline()
-    line = line.strip()
-    line = line.split('\t')
-    ind = [i for i, s in enumerate(dir) if line[0] in s]
-    for ix in ind:
-        new_name = re.sub(line[0], line[1], dir[ix])
+with open('../Sra_parsed_table.txt') as f:
+    for line in f:
+        line = line.strip()
+        line = line.split('\t')
+        ind = [i for i, s in enumerate(dir) if line[0] in s]
+        print(line)
+        for ix in ind:
+            new_name = re.sub(line[0], line[1], dir[ix])
+            print(new_name)
+            call(['mv', dir[ix], new_name])
+
+
