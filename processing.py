@@ -1,15 +1,15 @@
-samtools view -b -F 4 ChIP-Seq_H3K4me1_501MEL_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_501MEL.bam
-samtools view -b -F 4 ChIP-Seq_H3K4me1_NHM1_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_NHM1.bam
-samtools view -b -F 4 ChIP-Seq_H3K4me1_NHM2_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_NHM2.bam
-samtools view -b -F 4 ChIP-Seq_H3K4me1_SKmel147_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_SKmel147.bam
-samtools view -b -F 4 ChIP-Seq_H3K4me1_SKmel239_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_SKmel239.bam
-samtools view -b -F 4 ChIP-Seq_H3K4me1_SKmel2_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_SKmel2.bam
+samtools view -b -F 4 ChIP-Seq_H3K4me1_501MEL_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_501MEL.bam &
+samtools view -b -F 4 ChIP-Seq_H3K4me1_NHM1_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_NHM1.bam &
+samtools view -b -F 4 ChIP-Seq_H3K4me1_NHM2_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_NHM2.bam &
+samtools view -b -F 4 ChIP-Seq_H3K4me1_SKmel147_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_SKmel147.bam &
+samtools view -b -F 4 ChIP-Seq_H3K4me1_SKmel239_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_SKmel239.bam &
+samtools view -b -F 4 ChIP-Seq_H3K4me1_SKmel2_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K4me1_SKmel2.bam &
 
-samtools view -b -F 4 ChIP-Seq_H3K27ac_501MEL_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_501MEL.bam
-samtools view -b -F 4 ChIP-Seq_H3K27ac_NHM1_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_NHM1.bam
-samtools view -b -F 4 ChIP-Seq_H3K27ac_NHM2_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_NHM2.bam
-samtools view -b -F 4 ChIP-Seq_H3K27ac_SKmel147_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_SKmel147.bam
-samtools view -b -F 4 ChIP-Seq_H3K27ac_SKmel239_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_SKmel239.bam
+samtools view -b -F 4 ChIP-Seq_H3K27ac_501MEL_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_501MEL.bam &
+samtools view -b -F 4 ChIP-Seq_H3K27ac_NHM1_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_NHM1.bam &
+samtools view -b -F 4 ChIP-Seq_H3K27ac_NHM2_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_NHM2.bam &
+samtools view -b -F 4 ChIP-Seq_H3K27ac_SKmel147_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_SKmel147.bam &
+samtools view -b -F 4 ChIP-Seq_H3K27ac_SKmel239_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_SKmel239.bam &
 samtools view -b -F 4 ChIP-Seq_H3K27ac_SKmel2_Aligned.sortedByCoord.out.bam > ChIP-Seq_H3K27ac_SKmel2.bam
 
 samtools view -b -F 4  ChIP-Seq_BRD4_NHM1_Aligned.sortedByCoord.out.bam > ChIP-Seq_BRD4_NHM1.bam
