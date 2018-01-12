@@ -45,7 +45,10 @@ ex=assay(dLRT_vsd)[dLRT_res$padj<0.01,]
 rownames(ex)=NULL
 colnames(ex)=NULL
 
-track=c( rep(1,dim(bap1)[2]),rep(2,dim(eif1ax)[2]),rep(3,dim(sf3b1)[2]) )
+track=as.character(dLRT_vsd@colData$group)
+track[track=="bap1"]=1
+track[track=="eif1ax"]=2
+track[track=="sf3b1"]=3
                                
 colores=c("#bae1ff","#ffb3ba","#baffc9")
 clab=cbind(colores[track])
@@ -59,7 +62,7 @@ colors <- colorRampPalette(c("green","black","red"))(30)
 hclustfunc <- function(x) hclust(x, method="complete")
 distfunc <- function(x) dist(x, method="euclidean")
 
-jpeg("vivek_heatmap.jpeg")
+png("vivek_heatmap.png")
 x=heatmap.3(ex,col=colors, hclustfun=hclustfunc, distfun=distfunc, 
             scale="row", trace="none",cexCol=1,KeyValueName="Expression", ColSideColors=clab,dendrogram="both")
 
