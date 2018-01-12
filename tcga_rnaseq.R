@@ -32,6 +32,12 @@ plotPCA(dLRT_vsd,ntop=30000,intgroup=c('group'))
 dev.off()
                                
 # Heatmap
+saveRDS(dLRT_res,"dLRT_res.rds")
+saveRDS(dLRT_vsd,"dLRT_vsd.rds")
+
+dLRT_res=readRDS("dLRT_res.rds")
+dLRT_vsd=readRDS("dLRT_vsd.rds")
+
 source('https://raw.githubusercontent.com/rtmag/tumor-meth-pipe/master/heatmap3.R')
 dLRT_res$padj[is.na(dLRT_res$padj)]=1
                                
