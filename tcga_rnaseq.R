@@ -31,27 +31,31 @@ pdf("Diagnostic_bygene_pca.pdf")
 plotPCA(dLRT_vsd,ntop=30000,intgroup=c('group'))
 dev.off()
                                
-#
+# Heatmap
+source('https://raw.githubusercontent.com/rtmag/tumor-meth-pipe/master/heatmap3.R')
+dLRT_res$padj[is.na(dLRT_res$padj)]=1
+                               
+ex=assay(dLRT_vsd)[dLRT_res$padj<0.01,]
+rownames(ex)=NULL
+colnames(ex)=NULL
 
-
-
+track=c( rep(1,dim(bap1)[2]),rep(2,dim(eif1ax)[2]),rep(3,dim(sf3b1)[2]) )
+                               
 colores=c("#bae1ff","#ffb3ba","#baffc9")
 clab=cbind(colores[track])
-
+colnames(clab)="Mutation"
+                               
  library(RColorBrewer)
-colors <- colorRampPalette( (brewer.pal(9, "GrRd")) )(20)
+colors <- colorRampPalette(c("green","black","red"))(30)
 
 
 # set the custom distance and clustering functions
 hclustfunc <- function(x) hclust(x, method="complete")
 distfunc <- function(x) dist(x, method="euclidean")
 
-ex1.clust=hclustfunc(distfunc(ex1))
-ex2.clust=hclustfunc(distfunc(ex2))
+jpeg("vivek_heatmap.jpeg")
+x=heatmap.3(ex,col=colors, hclustfun=hclustfunc, distfun=distfunc, 
+            scale="row", trace="none",cexCol=1,KeyValueName="Expression", ColSideColors=clab,dendrogram="both")
 
-pdf("CD41-_treated_VS_CD41+_treated.pdf")
-x=heatmap.3(rbind(ex1,ex2[ex2.clust$order,]),col=colors, hclustfun=hclustfunc, distfun=distfunc, 
-            scale="row", trace="none",cexCol=1,KeyValueName="Expression",Rowv=FALSE, RowSideColors=rlab,dendrogram="none")
-
-legend('topright',legend=c("Open Chromatin in CD41- treated","Open Chromatin in CD41+ treated"),fill=c("#bae1ff","#ffb3ba"),border=NA,bty = "n")
+legend('topright',legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#bae1ff","#ffb3ba","#baffc9"),border=NA,bty = "n")
 dev.off()
