@@ -41,7 +41,7 @@ dLRT_vsd=readRDS("dLRT_vsd.rds")
 source('https://raw.githubusercontent.com/rtmag/tumor-meth-pipe/master/heatmap3.R')
 dLRT_res$padj[is.na(dLRT_res$padj)]=1
                                
-ex=assay(dLRT_vsd)[dLRT_res$padj<0.01,]
+ex=assay(dLRT_vsd)[dLRT_res$padj<0.001,]
 rownames(ex)=NULL
 colnames(ex)=NULL
 
@@ -49,6 +49,7 @@ track=as.character(dLRT_vsd@colData$group)
 track[track=="bap1"]=1
 track[track=="eif1ax"]=2
 track[track=="sf3b1"]=3
+track=as.numeric(track)
                                
 colores=c("#bae1ff","#ffb3ba","#baffc9")
 clab=cbind(colores[track])
@@ -62,9 +63,11 @@ colors <- colorRampPalette(c("green","black","red"))(30)
 hclustfunc <- function(x) hclust(x, method="complete")
 distfunc <- function(x) dist(x, method="euclidean")
 
-png("vivek_heatmap.png")
-x=heatmap.3(ex,col=colors, hclustfun=hclustfunc, distfun=distfunc, 
-            scale="row", trace="none",cexCol=1,KeyValueName="Expression", ColSideColors=clab,dendrogram="both")
+par(mar=c(7,4,4,2)+0.1) 
+png(filename='test.png', width=800, height=750)  
+heatmap.3(ex,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="genes",
+            scale="row", trace="none",KeyValueName="Expression", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
+           cexRow=.6, cexCol=.6,keysize=0.4, key.par = list(cex=0.5))
 
-legend('topright',legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#bae1ff","#ffb3ba","#baffc9"),border=NA,bty = "n")
+legend("topleft",legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#bae1ff","#ffb3ba","#baffc9"),border=NA,bty = "n",cex=.1)
 dev.off()
