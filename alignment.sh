@@ -166,3 +166,26 @@ ls | perl -pe 's/(.+)/ \/root\/myPrograms\/STAR\/bin\/STAR --genomeDir \/root\/r
 --readFilesIn /root/vivek/data/ChIP-Seq_macroH2A2_SKmel147.fastq.gz \
  --outSAMtype BAM SortedByCoordinate --outFileNamePrefix /root/vivek/bam/ChIP-Seq_macroH2A2_SKmel147_ 
 
+##
+ /root/myPrograms/STAR/bin/STAR --genomeDir /root/resources/star_hg38_overhang100 \
+--readFilesCommand zcat --runThreadN 35 --alignIntronMax 1 --alignEndsType EndToEnd \
+--readFilesIn /root/vivek/data/ChIP-Seq_BRD2_SKmel147_2.fastq.gz \
+ --outSAMtype BAM SortedByCoordinate --outFileNamePrefix /root/vivek/bam/ChIP-Seq_BRD2_SKmel147_2_ 
+
+ /root/myPrograms/STAR/bin/STAR --genomeDir /root/resources/star_hg38_overhang100 \
+--readFilesCommand zcat --runThreadN 35 --alignIntronMax 1 --alignEndsType EndToEnd \
+--readFilesIn /root/vivek/data/ChIP-Seq_BRD4_SKmel147_2.fastq.gz \
+ --outSAMtype BAM SortedByCoordinate --outFileNamePrefix /root/vivek/bam/ChIP-Seq_BRD4_SKmel147_2_ 
+
+ /root/myPrograms/STAR/bin/STAR --genomeDir /root/resources/star_hg38_overhang100 \
+--readFilesCommand zcat --runThreadN 35 --alignIntronMax 1 --alignEndsType EndToEnd \
+--readFilesIn /root/vivek/data/ChIP-Seq_input_SKmel147_2.fastq.gz \
+ --outSAMtype BAM SortedByCoordinate --outFileNamePrefix /root/vivek/bam/ChIP-Seq_input_SKmel147_2_ 
+
+ /root/myPrograms/STAR/bin/STAR --genomeDir /root/resources/star_hg38_overhang100 \
+--readFilesCommand zcat --runThreadN 35 --alignIntronMax 1 --alignEndsType EndToEnd \
+--readFilesIn /root/vivek/data/ChIP-Seq_input_NHM1_2.fastq.gz \
+ --outSAMtype BAM SortedByCoordinate --outFileNamePrefix /root/vivek/bam/ChIP-Seq_input_NHM1_2_ 
+
+###
+
