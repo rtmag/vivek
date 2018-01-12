@@ -69,5 +69,5 @@ heatmap.3(ex,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE,
             scale="row", trace="none",KeyValueName="Expression", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
            cexRow=.6, cexCol=.6,keysize=0.9)
 
-legend(0.0001,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#bae1ff","#ffb3ba","#baffc9"),border=NA,bty = "n",cex=.7)
+legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#bae1ff","#ffb3ba","#baffc9"),border=NA,bty = "n",cex=.9)
 dev.off()
