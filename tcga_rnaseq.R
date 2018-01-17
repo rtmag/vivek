@@ -131,3 +131,25 @@ par(mar = mar.default + c(0, 27, 0, 0))
 barplot(rev(-log10(x[,2])), border=F, horiz=T , las=1,names.arg=x[,1],col="#ffb3ba",xlab="-Log10 FDR",main="")
 abline(v=2,lty='dashed')
 dev.off()
+
+#
+
+temp = cbind(tx_ex$gene_name[tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange>0],perl=T)],res$log2FoldChange[res$log2FoldChange>0])
+write.table(temp,"genes_names_log2fc_high_bap1.txt",sep="\t",row.names=F,col.names=F,quote=F)
+
+temp = cbind(tx_ex$gene_name[tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange<0],perl=T)],res$log2FoldChange[res$log2FoldChange<0])
+write.table(temp,"genes_names_log2fc_high_NOTbap1.txt",sep="\t",row.names=F,col.names=F,quote=F)
+
+
+
+temp = tx_ex$gene_name[ (tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange<0],perl=T) ) & (tx_ex$gene_id %in% tx_xx[,1][tx_xx[,2]=="6"] )]
+write.table(temp,"genes_names_high_NOTbap1_chr6.txt",sep="\t",row.names=F,col.names=F,quote=F)
+
+temp = tx_ex$gene_name[ (tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange>0],perl=T) ) & (tx_ex$gene_id %in% tx_xx[,1][tx_xx[,2]=="6"] )]
+write.table(temp,"genes_names_high_NOTbap1_chr6.txt",sep="\t",row.names=F,col.names=F,quote=F)
+
+
+
+
+
+
