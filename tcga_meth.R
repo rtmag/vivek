@@ -176,7 +176,7 @@ legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1f
 dev.off()
 
 par(mar=c(7,4,4,2)+0.1) 
-png(filename='450k_heatmap_mvalues_FDR1e-3_noneScale.png', width=800, height=750) 
+png(filename='450k_heatmap_bvalues_FDR1e-3_noneScale.png', width=800, height=750) 
 beta_sig=beta[rownames(beta) %in% wtnames,]
 heatmap.3(beta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="CpG",
             scale="none", trace="none",KeyValueName="Methylation", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
@@ -185,3 +185,13 @@ legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1f
 dev.off()
                                
 #
+anno=read.table("BAP1/jhu-usc.edu_UVM.HumanMethylation450.1.lvl-3.TCGA-V4-A9F1-01A-11D-A39X-05.gdc_hg38.txt",sep="\t", row.names=1, header=T)
+anno_sig=anno[rownames(anno) %in% wtnames,2:dim(anno)[2]]
+anno_sig=anno_sig[order(rownames(anno_sig)),]
+                               
+table_sig=wt_table[wt_table$adj.P.Val<0.001,]
+table_sig=table_sig[order(rownames(table_sig)),]
+                               
+comb=cbind(anno_sig,table_sig[,1],table_sig[,5])
+write.csv(comb,"differentially_meth_cpg_bap1_VS_eif1ax-SF3B1_FDR1e-3.csv")
+                               
