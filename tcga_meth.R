@@ -136,7 +136,7 @@ cont.wt <- makeContrasts(
  wt_table=topTableF(fit_wt,number=485577, adjust="BH")
  table(wt_table$adj.P.Val<0.05)
 wt_table$adj.P.Val[is.na(wt_table$adj.P.Val)]=1
-wtnames=rownames(wt_table[wt_table$adj.P.Val<0.01,])
+wtnames=rownames(wt_table[wt_table$adj.P.Val<0.001,])
 
 source('https://raw.githubusercontent.com/rtmag/tumor-meth-pipe/master/heatmap3.R')
 
@@ -154,10 +154,34 @@ colnames(clab)="Mutation"
 
  library(RColorBrewer)
 colors <- colorRampPalette( (brewer.pal(9, "RdBu")) )(20)
+colors = rev(colors)
 # set the custom distance and clustering functions
 hclustfunc <- function(x) hclust(x, method="complete")
 distfunc <- function(x) dist(x, method="euclidean")
-                               
-heatmap.3(meta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="genes",
-            scale="row", trace="none",KeyValueName="Expression", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
+
+par(mar=c(7,4,4,2)+0.1) 
+png(filename='450k_heatmap_mvalues_FDR1e-3_rowScale.png', width=800, height=750) 
+heatmap.3(meta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="CpG",
+            scale="row", trace="none",KeyValueName="Methylation", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
 cexRow=.6, cexCol=.6,keysize=0.9)
+legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1ff"),border=NA,bty = "n",cex=.9)
+dev.off()
+                               
+par(mar=c(7,4,4,2)+0.1) 
+png(filename='450k_heatmap_mvalues_FDR1e-3_noneScale.png', width=800, height=750) 
+heatmap.3(meta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="CpG",
+            scale="none", trace="none",KeyValueName="Methylation", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
+cexRow=.6, cexCol=.6,keysize=0.9)
+legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1ff"),border=NA,bty = "n",cex=.9)
+dev.off()
+
+par(mar=c(7,4,4,2)+0.1) 
+png(filename='450k_heatmap_mvalues_FDR1e-3_noneScale.png', width=800, height=750) 
+beta_sig=beta[rownames(beta) %in% wtnames,]
+heatmap.3(beta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="CpG",
+            scale="none", trace="none",KeyValueName="Methylation", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
+cexRow=.6, cexCol=.6,keysize=0.9)
+legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1ff"),border=NA,bty = "n",cex=.9)
+dev.off()
+                               
+#
