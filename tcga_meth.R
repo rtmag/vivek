@@ -109,3 +109,55 @@ pdf("450K_methylation_adj.P.Val<10e-40_mvalues_pca.pdf")
 plot(ir.pca$x[,1],ir.pca$x[,2],col=clab,xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
 legend("topright",legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
+                               
+########################
+samples = colnames(beta)
+samples[samples=="eif1ax"]="eif1ax_sf3b1"
+samples[samples=="sf3b1"]="eif1ax_sf3b1"
+
+
+f <- factor (samples, levels=unique(samples))
+design <- model.matrix(~0+f)
+colnames(design) <- unique(samples)
+
+# ESET transformation
+colnames(meta) = make.names(colnames(meta),unique=T)
+eset<-new("ExpressionSet", exprs=data.matrix(meta))
+
+# linear model FIT
+fit <- lmFit(eset, design)
+
+# genes respond at either the 24 hour or 48 hour or 72 hour times in the wild-type? 
+cont.wt <- makeContrasts(
+      "bap1-eif1ax_sf3b1",
+  levels=design)
+ fit_wt <- contrasts.fit(fit, cont.wt)
+ fit_wt <- eBayes(fit_wt)
+ wt_table=topTableF(fit_wt,number=485577, adjust="BH")
+ table(wt_table$adj.P.Val<0.05)
+wt_table$adj.P.Val[is.na(wt_table$adj.P.Val)]=1
+wtnames=rownames(wt_table[wt_table$adj.P.Val<0.01,])
+
+source('https://raw.githubusercontent.com/rtmag/tumor-meth-pipe/master/heatmap3.R')
+
+meta_sig=meta[rownames(meta) %in% wtnames,]
+                               
+track=as.character(colnames(beta))
+track[track=="bap1"]=1
+track[track=="eif1ax"]=2
+track[track=="sf3b1"]=3
+track=as.numeric(track)
+                               
+colores=c("#ffb3ba","#baffc9","#bae1ff")
+clab=cbind(colores[track])
+colnames(clab)="Mutation"
+
+ library(RColorBrewer)
+colors <- colorRampPalette( (brewer.pal(9, "RdBu")) )(20)
+# set the custom distance and clustering functions
+hclustfunc <- function(x) hclust(x, method="complete")
+distfunc <- function(x) dist(x, method="euclidean")
+                               
+heatmap.3(meta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="genes",
+            scale="row", trace="none",KeyValueName="Expression", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
+cexRow=.6, cexCol=.6,keysize=0.9)
