@@ -194,4 +194,15 @@ table_sig=table_sig[order(rownames(table_sig)),]
                                
 comb=cbind(anno_sig,table_sig[,1],table_sig[,5])
 write.csv(comb,"differentially_meth_cpg_bap1_VS_eif1ax-SF3B1_FDR1e-3.csv")
-                               
+                               #
+#saturating colors
+colors <- colorRampPalette( (brewer.pal(9, "RdBu")) )(10)
+colors = rev(colors)
+par(mar=c(7,4,4,2)+0.1) 
+png(filename='450k_heatmap_mvalues_FDR1e-3_rowScale_colorSaturated.png', width=800, height=750) 
+heatmap.3(meta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="CpG",
+            scale="row", trace="none",KeyValueName="Methylation", ColSideColors=clab,dendrogram="both",margins = c(2, 2),
+cexRow=.6, cexCol=.6,keysize=0.9,breaks=seq(-2,2,length.out=11))
+dev.off()
+legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1ff"),border=NA,bty = "n",cex=.9)
+dev.off()
