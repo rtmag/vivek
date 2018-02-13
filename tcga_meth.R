@@ -205,4 +205,6 @@ heatmap.3(meta_sig,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = 
 cexRow=.6, cexCol=.6,keysize=0.9,breaks=seq(-2,2,length.out=11))
 dev.off()
 legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1ff"),border=NA,bty = "n",cex=.9)
+                               
+                               
 dev.off()
