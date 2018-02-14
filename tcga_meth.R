@@ -208,3 +208,52 @@ legend(0,.9,legend=c("BAP1","EIF1AX","SF3B1"),fill=c("#ffb3ba","#baffc9","#bae1f
                                
                                
 dev.off()
+                               
+####
+dmc=read.csv("differentially_meth_cpg_bap1_VS_eif1ax-SF3B1_FDR1e-3.csv",row.names=1)
+names=as.character(dmc$Gene_Symbol)
+name_gene=lapply(names,function(x) unique(unlist(strsplit(x,";"))) )
+       
+mat = c(0,0)
+for ( i in 1:length(name_gene) ){
+    mat = rbind( mat, cbind(name_gene[[i]], dmc[i,10]) )
+  }
+
+mat=mat[2:dim(mat)[1],]
+
+meth=mat
+meth[as.numeric(mat[,2])>0,2]="Meth_bap1"
+meth[as.numeric(mat[,2])<0,2]="Meth_eif1ax_sf3b1"
+#
+meth_counts=matrix(0,nrow=length(unique(meth[,1])),ncol=2)
+rownames(meth_counts)=unique(meth[,1])
+colnames(meth_counts)=c("MethCpG_bap1","MethCpG_eif1ax_sf3b1")
+                 
+for(i in 1:dim(meth)[1]){
+    ix = rownames(meth_counts)==meth[i,1]
+    if(meth[i,2]=="Meth_bap1"){ jx = 1 }
+    if(meth[i,2]=="Meth_eif1ax_sf3b1"){ jx = 2 }
+    meth_counts[ ix, jx] = meth_counts[ ix, jx]+1
+  }
+
+meth_gene=data.frame(meth_counts,CpGs=rowSums(meth_counts))
+meth_gene = meth_gene[order(meth_gene$CpGs,decreasing=T),]
+meth_gene = meth_gene[2:dim(meth_gene)[1],]
+
+meth_gene = data.frame(meth_gene, ratio=(meth_gene[,1]/meth_gene[,3]) )
+
+meth_gene = data.frame(meth_gene, High_meth_on="0" )
+meth_gene[,5]=as.character(meth_gene[,5])
+                 
+meth_gene[meth_gene$ratio>.7,5]="BAP1"
+meth_gene[meth_gene$ratio<.3,5]="EIF1AX_SF3B1"
+
+write.csv(meth_gene,"HyperMeth_CpG_bap1_VS_eif1ax_sf3b1_byGene.csv")
+write.csv(meth_gene[meth_gene[,5]=="BAP1" & meth_gene[,3]>9,],"HyperMeth_CpG_bap1_byGene.csv")
+write.csv(meth_gene[meth_gene[,5]=="EIF1AX_SF3B1" & meth_gene[,3]>9,],"HyperMeth_CpG_EIF1AX_SF3B1_byGene.csv")
+                 
+write.csv(meth_gene[meth_gene[,5]=="BAP1" & meth_gene[,3]>9,],"NAMES_HyperMeth_CpG_bap1_byGene.csv")
+write.csv(meth_gene[meth_gene[,5]=="EIF1AX_SF3B1" & meth_gene[,3]>9,],"NAMES_HyperMeth_CpG_EIF1AX_SF3B1_byGene.csv")
+                 
+write.table(dmc[dmc[,10]>0,c(1,2,3)],"BAP1_coord.bed",sep="\t",col.names=F,quote=F,row.names=F)
+write.table(dmc[dmc[,10]<0,c(1,2,3)],"EIF1AX_SF3B1_coord.bed",sep="\t",col.names=F,quote=F,row.names=F)
