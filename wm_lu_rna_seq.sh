@@ -1,8 +1,47 @@
+STAR --runThreadN 50 --runMode genomeGenerate \
+--genomeDir star_hg38_gencode27_overhang50/ --genomeFastaFiles hg38_allchr.fasta \
+--sjdbGTFfile gencode.v27.annotation.gtf --sjdbOverhang 50
 
-/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /home/roberto/references/star_hg38_gencode26_overhang149 \
+/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /root/resources/star_hg38_gencode27_overhang50/ \
 --readFilesCommand zcat \
---runThreadN 35 \
---readFilesIn /home/roberto/deepa/novogene/HCT116_siC_1.fq.gz \
-/home/roberto/deepa/novogene/HCT116_siC_2.fq.gz \
+--runThreadN 40 \
+--readFilesIn /root/vivek/RNAseq_Vivek_UCSF/VKM-2393_A-a2_S26_L004_R1_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
---outFileNamePrefix /home/roberto/deepa/novogene/STAR/HCT116_siC_
+--outFileNamePrefix /root/vivek/RNAseq_Vivek_UCSF/bam/wm_1_
+
+/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /root/resources/star_hg38_gencode27_overhang50/ \
+--readFilesCommand zcat \
+--runThreadN 40 \
+--readFilesIn /root/vivek/RNAseq_Vivek_UCSF/VKM-2393_B-b2_S27_L004_R1_001.fastq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /root/vivek/RNAseq_Vivek_UCSF/bam/wm_2_
+
+/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /root/resources/star_hg38_gencode27_overhang50/ \
+--readFilesCommand zcat \
+--runThreadN 40 \
+--readFilesIn /root/vivek/RNAseq_Vivek_UCSF/VKM-2393_C-c2_S28_L004_R1_001.fastq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /root/vivek/RNAseq_Vivek_UCSF/bam/wm_3_
+
+/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /root/resources/star_hg38_gencode27_overhang50/ \
+--readFilesCommand zcat \
+--runThreadN 40 \
+--readFilesIn /root/vivek/RNAseq_Vivek_UCSF/VKM-2393_D-d2_S29_L004_R1_001.fastq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /root/vivek/RNAseq_Vivek_UCSF/bam/lu_1_
+
+/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /root/resources/star_hg38_gencode27_overhang50/ \
+--readFilesCommand zcat \
+--runThreadN 40 \
+--readFilesIn /root/vivek/RNAseq_Vivek_UCSF/VKM-2393_E-e2_S30_L004_R1_001.fastq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /root/vivek/RNAseq_Vivek_UCSF/bam/lu_2_
+
+/home/sb/programfiles/STAR/bin/Linux_x86_64/STAR --genomeDir /root/resources/star_hg38_gencode27_overhang50/ \
+--readFilesCommand zcat \
+--runThreadN 40 \
+--readFilesIn /root/vivek/RNAseq_Vivek_UCSF/VKM-2393_F-f2_S31_L004_R1_001.fastq.gz \
+--outSAMtype BAM SortedByCoordinate  \
+--outFileNamePrefix /root/vivek/RNAseq_Vivek_UCSF/bam/lu_3_
+
+#
