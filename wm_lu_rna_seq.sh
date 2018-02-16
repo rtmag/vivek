@@ -1,3 +1,5 @@
+#i#
+
 STAR --runThreadN 50 --runMode genomeGenerate \
 --genomeDir star_hg38_gencode27_overhang50/ --genomeFastaFiles hg38_allchr.fasta \
 --sjdbGTFfile gencode.v27.annotation.gtf --sjdbOverhang 50
