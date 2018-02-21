@@ -90,7 +90,7 @@ distfunc <- function(x) dist(x, method="euclidean")
 
 pdf('lu_wm_heatmap.pdf')  
 heatmap.3(assay(dds_vsd)[which(dds_res$padj<0.05 & abs(dds_res$log2FoldChange)>1),],col=colors, hclustfun=hclustfunc, 
-          distfun=distfunc, labRow = FALSE,xlab="Tumor Sample", ylab="genes",
+          distfun=distfunc, labRow = FALSE,xlab="", ylab="genes",
             scale="row", trace="none",KeyValueName="Expression",dendrogram="both",margins = c(2, 2),
            cexRow=.6, cexCol=.6,keysize=0.9)
 
@@ -100,3 +100,5 @@ lu_gene=rownames(dds_res[which(dds_res$padj<0.05 & dds_res$log2FoldChange>1),])
 write.table(lu_gene,"lu_genes.txt",sep="\t",quote=F,row.names=F,col.names=F)
 wm_gene=rownames(dds_res[which(dds_res$padj<0.05 & dds_res$log2FoldChange<(-1)),])
 write.table(wm_gene,"wm_genes.txt",sep="\t",quote=F,row.names=F,col.names=F)
+
+write.csv(assay(dds_vsd)[which(dds_res$padj<0.05 & abs(dds_res$log2FoldChange)>1),],"dds_vsd.csv")
