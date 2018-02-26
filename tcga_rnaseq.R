@@ -160,7 +160,7 @@ tx <- genes(edb, columns=c("gene_id", "gene_name"))
 ex = readRDS("dLRT_vsd.rds")
 ex = assay(ex)
 
-name_gene="TWIST1"
+                               
 boxploter=function(name_gene){
 id=tx_ex$gene_id[which(tx_ex$gene_name==name_gene)]
                                
@@ -172,10 +172,10 @@ eif1ax = dnames == "eif1ax"
 sf3b1 = dnames == "sf3b1"
 
 boxplot(bdata[bap1],bdata[eif1ax],bdata[sf3b1],names=c("BAP1","EIF1AX","SF3B1"), 
-        main = name_gene, col=c("#ffb3ba","#baffc9","#bae1ff"))
+        main = name_gene, col=c("#ffb3ba","#baffc9","#bae1ff"),outline=F)
                               } 
 
-pdf("boxplot_genes_of_interest.pdf")
+pdf("boxplot_genes_of_interest_noOutline.pdf")
 par(mfrow=c(3,3))
 boxploter("TWIST1")
 boxploter("RNF2")
