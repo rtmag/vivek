@@ -148,6 +148,46 @@ write.table(temp,"genes_names_high_NOTbap1_chr6.txt",sep="\t",row.names=F,col.na
 temp = tx_ex$gene_name[ (tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange>0],perl=T) ) & (tx_ex$gene_id %in% tx_xx[,1][tx_xx[,2]=="6"] )]
 write.table(temp,"genes_names_high_NOTbap1_chr6.txt",sep="\t",row.names=F,col.names=F,quote=F)
 
+#
+                               
+
+                    
+library(ensembldb)
+library("EnsDb.Hsapiens.v86")   
+edb <- EnsDb.Hsapiens.v86
+tx <- genes(edb, columns=c("gene_id", "gene_name"))
+
+ex = readRDS("dLRT_vsd.rds")
+ex = assay(ex)
+
+name_gene="TWIST1"
+boxploter=function(name_gene){
+id=tx_ex$gene_id[which(tx_ex$gene_name==name_gene)]
+                               
+bdata = ex[grep(id,rownames(ex)),]
+                               
+dnames = gsub("\\..+","",names(bdata),perl = T)
+bap1 = dnames == "bap1"
+eif1ax = dnames == "eif1ax"
+sf3b1 = dnames == "sf3b1"
+
+boxplot(bdata[bap1],bdata[eif1ax],bdata[sf3b1],names=c("BAP1","EIF1AX","SF3B1"), 
+        main = name_gene, col=c("#ffb3ba","#baffc9","#bae1ff"))
+                              } 
+
+pdf("boxplot_genes_of_interest.pdf")
+par(mfrow=c(3,3))
+boxploter("TWIST1")
+boxploter("RNF2")
+boxploter("RING1")
+boxploter("JARID2")
+boxploter("BMI1")
+boxploter("KIT")
+boxploter("MYCN")
+boxploter("PHF1")
+dev.off()
+                               
+
 
 
 
