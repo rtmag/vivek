@@ -162,7 +162,7 @@ ex = assay(ex)
 
                                
 boxploter=function(name_gene){
-id=tx_ex$gene_id[which(tx_ex$gene_name==name_gene)]
+id=tx$gene_id[which(tx$gene_name==name_gene)]
                                
 bdata = ex[grep(id,rownames(ex)),]
                                
@@ -188,15 +188,43 @@ boxploter("PHF1")
 dev.off()
                                
 
-name_gene = "TWIST1"
+pvalues=function(name_gene){
 
-id=tx_ex$gene_id[which(tx_ex$gene_name==name_gene)]
-                               
+id=tx$gene_id[which(tx$gene_name==name_gene)]
+id = id[grep("ENS",id)]
 bdata = ex[grep(id,rownames(ex)),]
                                
 dnames = gsub("\\..+","",names(bdata),perl = T)
-bap1 = dnames == "bap1"
-eif1ax = dnames == "eif1ax"
-sf3b1 = dnames == "sf3b1"
+bap1 = bdata[dnames == "bap1"]
+eif1ax = bdata[dnames == "eif1ax"]
+sf3b1 = bdata[dnames == "sf3b1"]
+                               
+cor.mat = matrix(1,nrow=3,ncol=3)
 
+cor.mat[1,2] = wilcox.test(bap1,eif1ax)$p.value
+cor.mat[2,1] = wilcox.test(bap1,eif1ax)$p.value
 
+cor.mat[1,3] = wilcox.test(bap1,sf3b1)$p.value
+cor.mat[3,1] = wilcox.test(bap1,sf3b1)$p.value
+
+cor.mat[2,3] = wilcox.test(eif1ax,sf3b1)$p.value
+cor.mat[3,2] = wilcox.test(eif1ax,sf3b1)$p.value
+
+colnames(cor.mat) = c("bap1","eif1ax","sf3b1")
+rownames(cor.mat) = c("bap1","eif1ax","sf3b1")
+
+corrplot(cor.mat, method = "number",cl.lim=c(0,1),col=colorRampPalette(c("red","black"))(10),tl.col="black",main = name_gene)
+  }
+                               
+pdf("boxplot_genes_of_interest_Mann-whitneyTest_pvalue.pdf")
+par(mfrow=c(3,3))
+pvalues("TWIST1")
+pvalues("RNF2")
+pvalues("RING1")
+pvalues("JARID2")
+pvalues("BMI1")
+pvalues("KIT")
+pvalues("MYCN")
+pvalues("PHF1")
+dev.off()
+             
