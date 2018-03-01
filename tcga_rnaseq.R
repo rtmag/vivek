@@ -188,8 +188,15 @@ boxploter("PHF1")
 dev.off()
                                
 
+name_gene = "TWIST1"
 
-
-
+id=tx_ex$gene_id[which(tx_ex$gene_name==name_gene)]
+                               
+bdata = ex[grep(id,rownames(ex)),]
+                               
+dnames = gsub("\\..+","",names(bdata),perl = T)
+bap1 = dnames == "bap1"
+eif1ax = dnames == "eif1ax"
+sf3b1 = dnames == "sf3b1"
 
 
