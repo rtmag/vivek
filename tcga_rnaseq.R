@@ -212,10 +212,10 @@ cor.mat[3,2] = wilcox.test(eif1ax,sf3b1)$p.value
 
 colnames(cor.mat) = c("bap1","eif1ax","sf3b1")
 rownames(cor.mat) = c("bap1","eif1ax","sf3b1")
-
-corrplot(cor.mat, method = "number",cl.lim=c(0,1),col=colorRampPalette(c("red","black"))(10),tl.col="black",main = name_gene)
+corrplot(cor.mat, method = "number",cl.lim=c(0,1),col=colorRampPalette(c("red","black"))(10),tl.col="black")
+  title(name_gene,outer=F,cex.main=.9)  
   }
-                               
+                       
 pdf("boxplot_genes_of_interest_Mann-whitneyTest_pvalue.pdf")
 par(mfrow=c(3,3))
 pvalues("TWIST1")
