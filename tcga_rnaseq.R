@@ -212,7 +212,8 @@ cor.mat[3,2] = wilcox.test(eif1ax,sf3b1)$p.value
 
 colnames(cor.mat) = c("bap1","eif1ax","sf3b1")
 rownames(cor.mat) = c("bap1","eif1ax","sf3b1")
-corrplot(cor.mat, method = "number",cl.lim=c(0,1),col=colorRampPalette(c("red","black"))(10),tl.col="black",cl.pos='n')
+corrplot(cor.mat, method = "number",cl.lim=c(0,1),col=colorRampPalette(c("red","black"))(10),tl.col="black",cl.pos='n',
+        number.digits=4)
   title(name_gene,outer=F,cex.main=.9)  
   }
                        
