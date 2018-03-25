@@ -102,3 +102,24 @@ wm_gene=rownames(dds_res[which(dds_res$padj<0.05 & dds_res$log2FoldChange<(-1)),
 write.table(wm_gene,"wm_genes.txt",sep="\t",quote=F,row.names=F,col.names=F)
 
 write.csv(assay(dds_vsd)[which(dds_res$padj<0.05 & abs(dds_res$log2FoldChange)>1),],"dds_vsd.csv")
+
+###########################
+options(scipen=999)
+res=read.csv("lu_vs_wm_results_table.csv",row.names=1)
+
+up_reg = res[ which(res$log2FoldChange>0),]
+up_reg = up_reg[ !is.na(up_reg$padj),]
+up_reg_log=-log10(up_reg$padj)
+names(up_reg_log) = rownames(up_reg)
+up_reg_log[up_reg_log==Inf] = max(up_reg_log[up_reg_log!=Inf])
+
+dw_reg = res[ which(res$log2FoldChange<0),]
+dw_reg = dw_reg[ !is.na(dw_reg$padj),]
+dw_reg_log=log10(dw_reg$padj)
+names(dw_reg_log) = rownames(dw_reg)
+dw_reg_log[dw_reg_log==-Inf] = min(dw_reg_log[dw_reg_log!=-Inf])
+
+rankedlist = cbind(sort(c(up_reg_log,dw_reg_log),decreasing=T) )
+rankedlist = data.frame(ensid=rownames(rankedlist), log10FDR=rankedlist)
+write.table(rankedlist,"genes_ranked_lu_vs_wm_FCFDR.rnk", sep="\t", quote=F,col.names=F,row.names=F)
+
