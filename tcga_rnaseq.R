@@ -78,11 +78,21 @@ dev.off()
 
 #############################################################
 #removing chr 3
-                               
+
 library(ensembldb)
 library("EnsDb.Hsapiens.v86")   
 edb <- EnsDb.Hsapiens.v86
 tx <- genes(edb, columns=c("gene_id", "gene_name"))
+tx=data.frame(gene_id=tx$gene_id, gene_name=tx$gene_name)
+
+ex = countData
+ex = ex[rowSums(ex)>0,]
+
+#rownames_uniq = make.names(tx[ match( gsub("\\..+","",rownames(ex)), tx[['gene_id']] ) , 'gene_name'],unique=T)
+rownames_uniq = as.character(tx[ match( gsub("\\..+","",rownames(ex)), tx[['gene_id']] ) , 'gene_name'])
+
+ex = ex[!duplicated(rownames_uniq),]
+rownames(ex) <- rownames_uniq[!duplicated(rownames_uniq)]
 
 
 tx_ex = tx[tx$gene_id %in% gsub("\\..+","",rownames(ex),perl=T),]                               
@@ -138,18 +148,22 @@ dev.off()
 
 #
 
-temp = cbind(tx_ex$gene_name[tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange>0],perl=T)],res$log2FoldChange[res$log2FoldChange>0])
+temp = cbind(tx_ex$gene_name[tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange>0],perl=T)],
+             res$log2FoldChange[res$log2FoldChange>0])
 write.table(temp,"genes_names_log2fc_high_bap1.txt",sep="\t",row.names=F,col.names=F,quote=F)
 
-temp = cbind(tx_ex$gene_name[tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange<0],perl=T)],res$log2FoldChange[res$log2FoldChange<0])
+temp = cbind(tx_ex$gene_name[tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange<0],perl=T)],
+             res$log2FoldChange[res$log2FoldChange<0])
 write.table(temp,"genes_names_log2fc_high_NOTbap1.txt",sep="\t",row.names=F,col.names=F,quote=F)
 
 
 
-temp = tx_ex$gene_name[ (tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange<0],perl=T) ) & (tx_ex$gene_id %in% tx_xx[,1][tx_xx[,2]=="6"] )]
+temp = tx_ex$gene_name[ (tx_ex$gene_id %in% gsub("\\..+","",
+                                           rownames(res)[res$log2FoldChange<0],perl=T) ) & (tx_ex$gene_id %in% tx_xx[,1][tx_xx[,2]=="6"] )]
 write.table(temp,"genes_names_high_NOTbap1_chr6.txt",sep="\t",row.names=F,col.names=F,quote=F)
 
-temp = tx_ex$gene_name[ (tx_ex$gene_id %in% gsub("\\..+","",rownames(res)[res$log2FoldChange>0],perl=T) ) & (tx_ex$gene_id %in% tx_xx[,1][tx_xx[,2]=="6"] )]
+temp = tx_ex$gene_name[ (tx_ex$gene_id %in% gsub("\\..+","",
+                                           rownames(res)[res$log2FoldChange>0],perl=T) ) & (tx_ex$gene_id %in% tx_xx[,1][tx_xx[,2]=="6"] )]
 write.table(temp,"genes_names_high_NOTbap1_chr6.txt",sep="\t",row.names=F,col.names=F,quote=F)
 
 #
@@ -232,4 +246,105 @@ pvalues("KIT")
 pvalues("MYCN")
 pvalues("PHF1")
 dev.off()
-             
+#####################################################
+
+library(ensembldb)
+library("EnsDb.Hsapiens.v86")   
+edb <- EnsDb.Hsapiens.v86
+tx <- genes(edb, columns=c("gene_id", "gene_name"))
+tx=data.frame(gene_id=tx$gene_id, gene_name=tx$gene_name)
+
+ex = countData
+ex = ex[rowSums(ex)>0,]
+
+#rownames_uniq = make.names(tx[ match( gsub("\\..+","",rownames(ex)), tx[['gene_id']] ) , 'gene_name'],unique=T)
+rownames_uniq = as.character(tx[ match( gsub("\\..+","",rownames(ex)), tx[['gene_id']] ) , 'gene_name'])
+
+ex = ex[!duplicated(rownames_uniq),]
+                               
+x_dup <- rownames_uniq[!duplicated(rownames_uniq)]
+x_dup[which(is.na(x_dup))] = "NA"                         
+rownames(ex) = x_dup
+
+saveRDS(ex,"TCGA_countData.rds")
+
+countData = readRDS("TCGA_countData.rds")
+                               
+tx <- genes(edb, columns=c("gene_id", "gene_name"))
+tx_df=data.frame(gene_id=tx$gene_id, gene_name=tx$gene_name)
+
+ex = ex[!(rownames(ex) %in% as.character(tx_df[which(tx@seqnames==3),2])),]
+
+saveRDS(ex,"TCGA_countData_noChr3.rds")
+###############################################################
+library(DESeq2)
+countData = readRDS("TCGA_countData_noChr3.rds")
+#
+colData <- data.frame(group=colnames(countData))
+colData$group = gsub("\\..+","",colData$group,perl=T)
+colData[colData[,1]!='bap1',1]="sf3b1_eif1ax"
+                               
+dds <- DESeqDataSetFromMatrix(
+       countData = countData,
+       colData = colData,
+       design = ~ group)
+                               
+dds_deseq <- DESeq(dds)
+res <- results(dds_deseq, contrast=c("group","bap1","sf3b1_eif1ax")) 
+res=res[order(res$log2FoldChange,res$padj),] 
+write.csv(res,"deseq2_bap1_vs_sf3b1_eif1ax.csv")
+#######
+colData <- data.frame(group=colnames(countData))
+colData$group = gsub("\\..+","",colData$group,perl=T)
+                      
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,colData[,1] %in% c("bap1","eif1ax")],
+       colData = data.frame(group=colData[colData[,1] %in% c("bap1","eif1ax"),]),
+       design = ~ group)
+                               
+dds_deseq <- DESeq(dds)
+res <- results(dds_deseq, contrast=c("group","bap1","eif1ax")) 
+res=res[order(res$log2FoldChange,res$padj),] 
+write.csv(res,"deseq2_bap1_vs_eif1ax.csv")
+#######                          
+colData <- data.frame(group=colnames(countData))
+colData$group = gsub("\\..+","",colData$group,perl=T)
+                      
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,colData[,1] %in% c("bap1","sf3b1")],
+       colData = data.frame(group=colData[colData[,1] %in% c("bap1","sf3b1"),]),
+       design = ~ group)
+                               
+dds_deseq <- DESeq(dds)
+res <- results(dds_deseq, contrast=c("group","bap1","sf3b1")) 
+res=res[order(res$log2FoldChange,res$padj),] 
+write.csv(res,"deseq2_bap1_vs_sf3b1.csv")
+#######
+colData <- data.frame(group=colnames(countData))
+colData$group = gsub("\\..+","",colData$group,perl=T)
+                      
+dds <- DESeqDataSetFromMatrix(
+       countData = countData[,colData[,1] %in% c("eif1ax","sf3b1")],
+       colData = data.frame(group=colData[colData[,1] %in% c("eif1ax","sf3b1"),]),
+       design = ~ group)
+                               
+dds_deseq <- DESeq(dds)
+res <- results(dds_deseq, contrast=c("group","eif1ax","sf3b1")) 
+res=res[order(res$log2FoldChange,res$padj),] 
+write.csv(res,"deseq2_eif1ax_vs_sf3b1.csv")
+                               
+                               
+###############################################################
+up_reg = res[ which(res$log2FoldChange>0),]
+up_reg = up_reg[ !is.na(up_reg$padj),]
+up_reg_log=-log10(up_reg$padj)
+names(up_reg_log) = rownames(up_reg)
+
+dw_reg = res[ which(res$log2FoldChange<0),]
+dw_reg = dw_reg[ !is.na(dw_reg$padj),]
+dw_reg_log=log10(dw_reg$padj)
+names(dw_reg_log) = rownames(dw_reg)
+
+rankedlist = cbind(sort(c(up_reg_log,dw_reg_log),decreasing=T) )
+rankedlist = data.frame(ensid=rownames(rankedlist), log10FDR=rankedlist)
+write.table(rankedlist,"genes_ranked_bap1_vs_sf3b1_eif1ax_FCFDR.rnk", sep="\t", quote=F,col.names=F,row.names=F)
