@@ -1,4 +1,7 @@
 require(DESeq2)
+options(scipen=999)
+library(factoextra)
+
 
 bap1_file <- dir('BAP1/',full.names=TRUE) #where you have your files
 bap1 <- do.call(cbind, lapply(bap1_file, function(x) read.table(pipe(paste('zcat',x) ), sep="\t", row.names=1 ) ))
@@ -61,8 +64,9 @@ colors <- colorRampPalette(c("green","black","red"))(30)
 
 # set the custom distance and clustering functions
 hclustfunc <- function(x) hclust(x, method="complete")
-distfunc <- function(x) dist(x, method="euclidean")
+distfunc <- function(x) get_dist(x,method="spearman")
 
+                               
 par(mar=c(7,4,4,2)+0.1) 
 png(filename='vivek_heatmap.png', width=800, height=750)  
 heatmap.3(ex,col=colors, hclustfun=hclustfunc, distfun=distfunc, labRow = FALSE, labCol = FALSE,xlab="Tumor Sample", ylab="genes",
