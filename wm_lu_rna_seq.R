@@ -73,9 +73,16 @@ plot(res$log2FoldChange,-log10(res$padj),xlab=expression('Log'[2]*' Fold Change 
 abline(v=-1,lty = 2,col="grey")
 abline(v=1,lty = 2,col="grey")
 abline(h=-log10(0.05),lty = 2,col="grey")
-points(res$log2FoldChange[abs(res$log2FoldChange)>1 & res$padj<0.05],
-       -log10(res$padj)[abs(res$log2FoldChange)>1 & res$padj<0.05],
-      col=alpha("#c0392b",.05))
+
+
+points(res$log2FoldChange[res$log2FoldChange>1 & res$padj<0.05],
+       -log10(res$padj)[res$log2FoldChange>1 & res$padj<0.05],
+      col=alpha("#c0392b",.5))
+
+points(res$log2FoldChange[res$log2FoldChange<(-1) & res$padj<0.05],
+       -log10(res$padj)[res$log2FoldChange<(-1) & res$padj<0.05],
+      col=alpha("#6CA6CD",.5))
+
 legend("topright", paste("LU:",length(which(res$log2FoldChange>1 & res$padj<0.05))), bty="n") 
 legend("topleft", paste("WM:",length(which(res$log2FoldChange<(-1) & res$padj<0.05))), bty="n") 
 dev.off()
@@ -83,16 +90,19 @@ dev.off()
 source('https://raw.githubusercontent.com/rtmag/tumor-meth-pipe/master/heatmap3.R')
 
  library(RColorBrewer)
-colors <- colorRampPalette(c("green","black","red"))(30)
+library(factoextra)
+library(gplots)
+
+colors <- colorRampPalette(c("#6CA6CD","white","#c0392b"))(30)
 
 hclustfunc <- function(x) hclust(x, method="complete")
-distfunc <- function(x) dist(x, method="euclidean")
+distfunc <- function(x) get_dist(x,method="spearman")
 
 pdf('lu_wm_heatmap.pdf')  
-heatmap.3(assay(dds_vsd)[which(dds_res$padj<0.05 & abs(dds_res$log2FoldChange)>1),],col=colors, hclustfun=hclustfunc, 
+heatmap.2(assay(dds_vsd)[which(dds_res$padj<0.05 & abs(dds_res$log2FoldChange)>1),],col=colors, hclustfun=hclustfunc, 
           distfun=distfunc, labRow = FALSE,xlab="", ylab="genes",
-            scale="row", trace="none",KeyValueName="Expression",dendrogram="both",margins = c(2, 2),
-           cexRow=.6, cexCol=.6,keysize=0.9)
+            scale="row", trace="none",key.title="Expression",dendrogram="both",margins = c(2, 2),
+           cexRow=.6, cexCol=1,srtCol=25,keysize=0.9)
 
 dev.off()
 
