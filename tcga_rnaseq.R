@@ -204,8 +204,21 @@ boxploter("KIT")
 boxploter("MYCN")
 boxploter("PHF1")
 dev.off()
-                               
 
+pdf("boxplot_DNMT_TET_noOutline.pdf")
+par(mfrow=c(3,3))
+boxploter("DNMT1")
+boxploter("DNMT3A")
+boxploter("DNMT3B")
+boxploter("DNMT3L")
+boxploter("TET1")
+boxploter("TET2")
+boxploter("TET3")
+boxploter("TET2-AS1")
+boxploter("TET1P1")
+dev.off()
+
+library(corrplot)
 pvalues=function(name_gene){
 
 id=tx$gene_id[which(tx$gene_name==name_gene)]
@@ -245,6 +258,20 @@ pvalues("BMI1")
 pvalues("KIT")
 pvalues("MYCN")
 pvalues("PHF1")
+dev.off()
+
+pdf("boxplot_DNMT_TET_Mann-whitneyTest_pvalue.pdf")
+library(corrplot)
+par(mfrow=c(3,3))
+pvalues("DNMT1")
+pvalues("DNMT3A")
+pvalues("DNMT3B")
+pvalues("DNMT3L")
+pvalues("TET1")
+pvalues("TET2")
+pvalues("TET3")
+pvalues("TET2-AS1")
+pvalues("TET1P1")
 dev.off()
 #####################################################
 
