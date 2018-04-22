@@ -28,7 +28,7 @@ GTF.attrType="gene_name"
 
 dat=data[[1]]
 colnames(dat)=c("BRAF_1","BRAF_2","BRAF_3",
-                "BRAF_CDKN2A_1","BRAF_CDKN2A_2","BRAF_CDKN2A_3",
+                "B_C_1","B_C_2","B_C_3",
                 "CDKN2A_1","CDKN2A_2","CDKN2A_3",
                 "NHM_1","NHM_2","NHM_3")
 
@@ -42,11 +42,6 @@ library(DESeq2)
 library(gplots)
 library(factoextra)
 library(RColorBrewer)
-
-design<-data.frame(group=c("BRAF_1","BRAF_2","BRAF_3",
-                "B_C_1","B_C_2","B_C_3",
-                "CDKN2A_1","CDKN2A_2","CDKN2A_3",
-                "NHM_1","NHM_2","NHM_3") )
 
 design<-data.frame(group=c("BRAF","BRAF","BRAF",
                 "B_C","B_C","B_C",
