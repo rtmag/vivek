@@ -92,7 +92,7 @@ deseq_analysis = function( countData, vsd, A, A_ix, B, B_ix){
   # Volcano
   title= paste(A,"_VS_",B,"_volcano.pdf")
   pdf(title)
-  plot(dds_res$log2FoldChange,-log10(dds_res$padj),xlab=expression('Log'[2]*paste(' Fold Change ',A,' / ',B)),
+  plot(dds_res$log2FoldChange,-log10(dds_res$padj),xlab=expression('Log'[2]*paste(' Fold Change ')),
               ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
   abline(v=-1,lty = 2,col="grey")
   abline(v=1,lty = 2,col="grey")
@@ -120,7 +120,7 @@ deseq_analysis = function( countData, vsd, A, A_ix, B, B_ix){
   labRow = FALSE,xlab="", ylab="Genes",key.title="Gene expression",cexCol=.8)
   dev.off()
 # MAplot
-  title= paste(A,"_VS_",B,"_maplot.ps")
+  title= paste(A,"_VS_",B,"_maplot.pdf")
   pdf(title)
   plotMA(dds_res)
   dev.off()
