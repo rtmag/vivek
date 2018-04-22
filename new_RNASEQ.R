@@ -152,15 +152,15 @@ vsd = readRDS("NHM_vsd.rds")
 deseq_analysis(countData, vsd, A="NHM", A_ix=10:12, B="BRAF", B_ix=1:3)
 
 # 2) NHM VS CDKN2A
-deseq_analysis(countData, vsd, A="NHM", A_ix=10:12, B="CDKN2A", B_ix=4:6)
+deseq_analysis(countData, vsd, A="NHM", A_ix=10:12, B="CDKN2A", B_ix=7:9)
 
 # 3) NHM VS BRAF_CDKN2A
-deseq_analysis(countData, vsd, A="NHM", A_ix=10:12, B="BRAF_CDKN2A", B_ix=7:9)
+deseq_analysis(countData, vsd, A="NHM", A_ix=10:12, B="BRAF_CDKN2A", B_ix=4:6)
 
 # 4) BRAF VS BRAF_CDKN2A
-deseq_analysis(countData, vsd, A="BRAF", A_ix=1:3, B="BRAF_CDKN2A", B_ix=7:9)
+deseq_analysis(countData, vsd, A="BRAF", A_ix=1:3, B="BRAF_CDKN2A", B_ix=4:6)
 
 # 5) CDKN2A VS BRAF_CDKN2A
-deseq_analysis(countData, vsd, A="CDKN2A", A_ix=10:12, B="BRAF_CDKN2A", B_ix=7:9)
+deseq_analysis(countData, vsd, A="CDKN2A", A_ix=7:9, B="BRAF_CDKN2A", B_ix=4:6)
 
-
+###############
