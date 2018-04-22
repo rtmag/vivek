@@ -1,6 +1,7 @@
 
 library(Rsubread)
 options(scipen=999)
+
 data<-featureCounts(c(
 "BRAF_1_Aligned.sortedByCoord.out.bam",
 "BRAF_2_Aligned.sortedByCoord.out.bam",
@@ -25,8 +26,13 @@ nthreads=40,
 GTF.attrType="gene_name"
 )
 
-
 dat=data[[1]]
-colnames(dat)=c("lu_1","lu_2","lu_3","wm_1","wm_2","wm_3")
+colnames(dat)=c("BRAF_1","BRAF_2","BRAF_3",
+                "BRAF_+_CDKN2A_1","BRAF_+_CDKN2A_2","BRAF_+_CDKN2A_3",
+                "CDKN2A_1","CDKN2A_2","CDKN2A_3",
+                "NHM_1","NHM_2","NHM_3")
 
-saveRDS(dat,"lu_wm_counts.rds")
+saveRDS(dat,"NHM_counts.rds")
+###
+##
+#
