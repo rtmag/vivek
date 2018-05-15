@@ -91,56 +91,56 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 #M\=$1\_rmdup\.mfile
 #/g'
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/BAP1_Mel202_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/BAP1_Mel202_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/BAP1_Mel202_rmdup.mfile
 
 samtools index /home/rtm/vivek/chipseq/bam/BAP1_Mel202_rmdup.bam
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/BAP1_P92-1_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/BAP1_P92-1_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/BAP1_P92-1_rmdup.mfile
 
 samtools index /home/rtm/vivek/chipseq/bam/BAP1_P92-1_rmdup.bam
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/INPUT_Mel202_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/INPUT_Mel202_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/INPUT_Mel202_rmdup.mfile
 
 samtools index /home/rtm/vivek/chipseq/bam/INPUT_Mel202_rmdup.bam
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/INPUT_MP46_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/INPUT_MP46_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/INPUT_MP46_rmdup.mfile
 
 samtools index /home/rtm/vivek/chipseq/bam/INPUT_MP46_rmdup.bam
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/INPUT_P92-1_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/INPUT_P92-1_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/INPUT_P92-1_rmdup.mfile
 
 samtools index /home/rtm/vivek/chipseq/bam/INPUT_P92-1_rmdup.bam
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/Miz1_MP46_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/Miz1_MP46_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/Miz1_MP46_rmdup.mfile
 
 samtools index /home/rtm/vivek/chipseq/bam/Miz1_MP46_rmdup.bam
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/Miz1_P92-1_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/Miz1_P92-1_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/Miz1_P92-1_rmdup.mfile
 
 samtools index /home/rtm/vivek/chipseq/bam/Miz1_P92-1_rmdup.bam
 
-picard MarkDuplicates REMOVE_DUPLICATES=true \ 
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \ 
 I=/home/rtm/vivek/chipseq/bam/Myc_MP46_Aligned.sortedByCoord.out.bam \ 
 O=/home/rtm/vivek/chipseq/bam/Myc_MP46_rmdup.bam \ 
 M=/home/rtm/vivek/chipseq/bam/Myc_MP46_rmdup.mfile
