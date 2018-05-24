@@ -27,7 +27,7 @@ nthreads=40,
 GTF.attrType="gene_name"
 )
 
-
+/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf
 
 
 
