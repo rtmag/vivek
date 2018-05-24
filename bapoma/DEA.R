@@ -19,35 +19,6 @@ data<-featureCounts(c(
 annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
 isGTFAnnotationFile=TRUE,
 minMQS=4,
-strandSpecific=0,
-isPairedEnd=TRUE,
-autosort=TRUE,
-nthreads=40,
-GTF.attrType="gene_name"
-)
-
-
-
-
-library(Rsubread)
-
-data<-featureCounts(c(
-"22121b_Aligned.sortedByCoord.out.bam"),
-annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
-isGTFAnnotationFile=TRUE,
-minMQS=4,
-strandSpecific=1,
-isPairedEnd=TRUE,
-autosort=TRUE,
-nthreads=15,
-GTF.attrType="gene_name"
-)
-
-data<-featureCounts(c(
-"22121b_Aligned.sortedByCoord.out.bam"),
-annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
-isGTFAnnotationFile=TRUE,
-minMQS=4,
 strandSpecific=2,
 isPairedEnd=TRUE,
 autosort=TRUE,
@@ -55,14 +26,13 @@ nthreads=15,
 GTF.attrType="gene_name"
 )
 
-data<-featureCounts(c(
-"22121b_Aligned.sortedByCoord.out.bam"),
-annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
-isGTFAnnotationFile=TRUE,
-minMQS=4,
-strandSpecific=0,
-isPairedEnd=TRUE,
-autosort=TRUE,
-nthreads=15,
-GTF.attrType="gene_name"
-)
+dat=data[[1]]
+colnames(dat)=c("b2","n2",
+                "b5","n5",
+                "b7","n7",
+                "b81","n81",
+                "b82","n82",
+                "b9","n9")
+
+saveRDS(dat,"bapoma_counts.rds")
+######################
