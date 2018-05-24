@@ -16,18 +16,53 @@ data<-featureCounts(c(
 "82483n2_Aligned.sortedByCoord.out.bam",
 "93178b1_Aligned.sortedByCoord.out.bam",
 "93178n1_Aligned.sortedByCoord.out.bam"),
-annot.ext="/root/resources/gencode.v27.annotation.gtf",
+annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
 isGTFAnnotationFile=TRUE,
 minMQS=4,
 strandSpecific=0,
 isPairedEnd=TRUE,
-#PE_orientation="rf",
 autosort=TRUE,
 nthreads=40,
 GTF.attrType="gene_name"
 )
 
-/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf
 
 
 
+library(Rsubread)
+
+data<-featureCounts(c(
+"22121b_Aligned.sortedByCoord.out.bam"),
+annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=4,
+strandSpecific=1,
+isPairedEnd=TRUE,
+autosort=TRUE,
+nthreads=15,
+GTF.attrType="gene_name"
+)
+
+data<-featureCounts(c(
+"22121b_Aligned.sortedByCoord.out.bam"),
+annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=4,
+strandSpecific=2,
+isPairedEnd=TRUE,
+autosort=TRUE,
+nthreads=15,
+GTF.attrType="gene_name"
+)
+
+data<-featureCounts(c(
+"22121b_Aligned.sortedByCoord.out.bam"),
+annot.ext="/logical_dev/resources/gencode.v28.chr_patch_hapl_scaff.annotation.gtf",
+isGTFAnnotationFile=TRUE,
+minMQS=4,
+strandSpecific=0,
+isPairedEnd=TRUE,
+autosort=TRUE,
+nthreads=15,
+GTF.attrType="gene_name"
+)
