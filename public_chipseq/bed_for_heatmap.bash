@@ -32,16 +32,57 @@ echo "#CDKN2A" >> NHM_CDKN2A.bed
 
 computeMatrix reference-point \
 -S \
-/home/roberto/deepa/h3k9me3/bw/C_H3.bw \
-/home/roberto/deepa/h3k9me3/bw/K_H3.bw \
-/home/roberto/deepa/h3k9me3/bw/C_k9me3.bw \
-/home/roberto/deepa/h3k9me3/bw/K_k9me3.bw \
--R /home/roberto/deepa/novogene/deseq2/siC_siK_tss.bed --referencePoint center \
---sortRegions descend -bs 20 -a 2000 -b 2000 -p 40 -out tss_siC_vs_siK_h3k9me3_h3.mat
+/root/vivek/public_chipseq/bw/ATAC-Seq_NHM1.bw \
+/root/vivek/public_chipseq/bw/ATAC-Seq_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_SKmel239.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_SKmel239.bw \
+-R /root/vivek/vivek_new_rna_seq/deseq2/NHM_BRAF_CDKN2A.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF_CDKN2A.mat
 
-plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens Greens Reds Reds \
--m tss_siC_vs_siK_h3k9me3_h3.mat \
---samplesLabel "siControl H3" "siTIP60 H3" "siControl H3K9me3" "siTIP60 H3K9me3" \
---regionsLabel "Up-Reg Genes" "Down-Reg Genes" --zMax 30 \
--out tss_siC_vs_siK_h3k9me3_h3.pdf
+computeMatrix reference-point \
+-S \
+/root/vivek/public_chipseq/bw/ATAC-Seq_NHM1.bw \
+/root/vivek/public_chipseq/bw/ATAC-Seq_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_SKmel239.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_SKmel239.bw \
+-R /root/vivek/vivek_new_rna_seq/deseq2/NHM_BRAF.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF.mat
 
+computeMatrix reference-point \
+-S \
+/root/vivek/public_chipseq/bw/ATAC-Seq_NHM1.bw \
+/root/vivek/public_chipseq/bw/ATAC-Seq_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_SKmel239.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_SKmel239.bw \
+-R /root/vivek/vivek_new_rna_seq/deseq2/NHM_CDKN2A.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/vivek_new_rna_seq/heatmap/NHM_CDKN2A.mat
+##############################################################################################################################
+
+plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens Greens Reds Reds Reds Blues Blues Blues \
+-m /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF_CDKN2A.mat \
+--samplesLabel "ATAC-NHM1 ATAC-501MEL" "H3K27ac-NHM1" "H3K27ac-501MEL" "H3K27ac-SKmel239" "H3K4me1-NHM1" "H3K4me1-501MEL" "H3K4me1-SKmel239" \
+-out /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF_CDKN2A.pdf
+
+plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens Greens Reds Reds Reds Blues Blues Blues \
+-m /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF.mat \
+--samplesLabel "ATAC-NHM1 ATAC-501MEL" "H3K27ac-NHM1" "H3K27ac-501MEL" "H3K27ac-SKmel239" "H3K4me1-NHM1" "H3K4me1-501MEL" "H3K4me1-SKmel239" \
+-out /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF.pdf
+
+plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens Greens Reds Reds Reds Blues Blues Blues \
+-m /root/vivek/vivek_new_rna_seq/heatmap/NHM_CDKN2A.mat \
+--samplesLabel "ATAC-NHM1 ATAC-501MEL" "H3K27ac-NHM1" "H3K27ac-501MEL" "H3K27ac-SKmel239" "H3K4me1-NHM1" "H3K4me1-501MEL" "H3K4me1-SKmel239" \
+-out /root/vivek/vivek_new_rna_seq/heatmap/NHM_CDKN2A.pdf
+
+##############################################################################################################################
