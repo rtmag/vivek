@@ -86,3 +86,21 @@ plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Greens Greens Reds 
 -out /root/vivek/vivek_new_rna_seq/heatmap/NHM_CDKN2A.pdf
 
 ##############################################################################################################################
+
+computeMatrix reference-point \
+-S \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K27ac_SKmel239.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_NHM1.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_501MEL.bw \
+/root/vivek/public_chipseq/bw/ChIP-Seq_H3K4me1_SKmel239.bw \
+-R /root/vivek/vivek_new_rna_seq/deseq2/NHM_BRAF_CDKN2A.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF_CDKN2A_hk3.mat
+
+
+plotHeatmap --xAxisLabel "" --refPointLabel "TSS" --colorMap Reds Reds Reds Blues Blues Blues \
+-m /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF_CDKN2A_hk3.mat \
+--samplesLabel "H3K27ac-NHM1" "H3K27ac-501MEL" "H3K27ac-SKmel239" "H3K4me1-NHM1" "H3K4me1-501MEL" "H3K4me1-SKmel239" \
+-out /root/vivek/vivek_new_rna_seq/heatmap/NHM_BRAF_CDKN2A_h3k.pdf
+
