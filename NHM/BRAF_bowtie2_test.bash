@@ -45,3 +45,12 @@ bowtie2 -p 40 -x /root/resources/hg38_bowtie2/hg38 \
 
 samtools view -bS /root/vivek/vivek_new_rna_seq/bowtie2/B_C_3.sam > /root/vivek/vivek_new_rna_seq/bowtie2/B_C_3.bam
 rm /root/vivek/vivek_new_rna_seq/bowtie2/B_C_3.sam
+
+##############################################################################################################################
+samtools sort /root/vivek/vivek_new_rna_seq/bowtie2/BRAF_1.bam > /root/vivek/vivek_new_rna_seq/bowtie2/BRAF_1_sort.bam &
+samtools sort /root/vivek/vivek_new_rna_seq/bowtie2/BRAF_2.bam > /root/vivek/vivek_new_rna_seq/bowtie2/BRAF_2_sort.bam &
+samtools sort /root/vivek/vivek_new_rna_seq/bowtie2/BRAF_3.bam > /root/vivek/vivek_new_rna_seq/bowtie2/BRAF_3_sort.bam &
+samtools sort /root/vivek/vivek_new_rna_seq/bowtie2/B_C_1.bam > /root/vivek/vivek_new_rna_seq/bowtie2/B_C_1_sort.bam &
+#
+
+
