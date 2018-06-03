@@ -64,5 +64,7 @@ samtools index /root/vivek/vivek_new_rna_seq/bowtie2/B_C_1_sort.bam &
 samtools sort /root/vivek/vivek_new_rna_seq/bowtie2/B_C_2.bam > /root/vivek/vivek_new_rna_seq/bowtie2/B_C_2_sort.bam &
 samtools sort /root/vivek/vivek_new_rna_seq/bowtie2/B_C_3.bam > /root/vivek/vivek_new_rna_seq/bowtie2/B_C_3_sort.bam &
 
+samtools index /root/vivek/vivek_new_rna_seq/bowtie2/B_C_2_sort.bam &
+samtools index /root/vivek/vivek_new_rna_seq/bowtie2/B_C_3_sort.bam &
 
 
