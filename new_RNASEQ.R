@@ -139,7 +139,8 @@ deseq_analysis = function( countData, vsd, A, A_ix, B, B_ix){
   title= paste(A,"_VS_",B,"_genes_ranked_table_FCFDR.rnk")
   write.table(rankedlist,title, sep="\t", quote=F,col.names=F,row.names=F)
 # Significant Results ordered by log2FC
-  csv_table = dds_res[which(dds_res$padj<0.05 & abs(dds_res$log2FoldChange)>1),]
+#  csv_table = dds_res[which(dds_res$padj<0.05 & abs(dds_res$log2FoldChange)>1),]
+  csv_table = dds_res
   csv_table = csv_table[order(csv_table$log2FoldChange),]
   title= paste(A,"_VS_",B,"_differentially_expressed_genes.csv")
   write.csv(csv_table,title)
