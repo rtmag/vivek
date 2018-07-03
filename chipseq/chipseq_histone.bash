@@ -20,7 +20,7 @@ trim_galore --illumina -q 20 --fastqc -o /root/vivek/chip-seq/trimmed/ /root/viv
 trim_galore --illumina -q 20 --fastqc -o /root/vivek/chip-seq/trimmed/ /root/vivek/chip-seq/fastq/Chip-18_S55_R1_001.fastq.gz &
 ################################################################################################################################
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -29,7 +29,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/NHM_H3K4me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -38,7 +38,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/NHM_H3K9me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -47,7 +47,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/NHM_H3K27me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -56,7 +56,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/NHM_H3K27ac_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -65,7 +65,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A_H3K4me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -74,7 +74,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A_H3K9me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -83,7 +83,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A_H3K27me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -92,7 +92,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A_H3K27ac_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -101,7 +101,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/BRAF_H3K4me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -110,7 +110,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/BRAF_H3K9me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -119,7 +119,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/BRAF_H3K27me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -128,7 +128,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/BRAF_H3K27ac_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -137,7 +137,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/NHM_input_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -146,7 +146,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -155,7 +155,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -164,7 +164,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
@@ -173,7 +173,7 @@ STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_
 
-STAR --genomeDir /home/references/hg38/STAR_hg38_noAnnotation \
+STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
