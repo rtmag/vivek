@@ -328,3 +328,44 @@ macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K27me3 --o
 macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K27ac --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 ########################################################################################################
+samtools index/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/BRAF_H3K27me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/BRAF_H3K4me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/BRAF_H3K9me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A_H3K27ac_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A_H3K27me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A_H3K4me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/CDKN2A_H3K9me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/NHM_H3K27me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/NHM_H3K4me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/NHM_H3K9me3_rmdup.bam &
+samtools index/root/vivek/chip-seq/bam/NHM_input_rmdup.bam &
+
+wait
+##########################################################################################
+
+
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam -o /root/vivek/chip-seq/bw/BRAF_H3K27ac.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/BRAF_H3K27me3_rmdup.bam -o /root/vivek/chip-seq/bw/BRAF_H3K27me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/BRAF_H3K4me3_rmdup.bam -o /root/vivek/chip-seq/bw/BRAF_H3K4me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/BRAF_H3K9me3_rmdup.bam -o /root/vivek/chip-seq/bw/BRAF_H3K9me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K9me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A_H3K27ac_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A_H3K27me3_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A_H3K27me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A_H3K4me3_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A_H3K4me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/CDKN2A_H3K9me3_rmdup.bam -o /root/vivek/chip-seq/bw/CDKN2A_H3K9me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam -o /root/vivek/chip-seq/bw/NHM_H3K27ac.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/NHM_H3K27me3_rmdup.bam -o /root/vivek/chip-seq/bw/NHM_H3K27me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/NHM_H3K4me3_rmdup.bam -o /root/vivek/chip-seq/bw/NHM_H3K4me3.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b /root/vivek/chip-seq/bam/NHM_H3K9me3_rmdup.bam -o /root/vivek/chip-seq/bw/NHM_H3K9me3.bw
+
+######
