@@ -277,54 +277,54 @@ O=/root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam \
 M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.mfile &
 ########################################################################################################
 # MACS2 NHM
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K4me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K4me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/NHM_H3K4me3_rmdup.bam -c /root/vivek/chip-seq/bam/NHM_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K9me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K9me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/NHM_H3K9me3_rmdup.bam -c /root/vivek/chip-seq/bam/NHM_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K27me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K27me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/NHM_H3K27me3_rmdup.bam -c /root/vivek/chip-seq/bam/NHM_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K27ac --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K27ac --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam -c /root/vivek/chip-seq/bam/NHM_input_rmdup.bam &
 ########################################################################################################
 # MACS2 CDKN2A
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K4me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K4me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A_H3K4me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K9me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K9me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A_H3K9me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K27me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K27me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A_H3K27me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K27ac --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A_H3K27ac --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A_H3K27ac_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 ########################################################################################################
 # MACS2 BRAF
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K4me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K4me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/BRAF_H3K4me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K9me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K9me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/BRAF_H3K9me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K27me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K27me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/BRAF_H3K27me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K27ac --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n BRAF_H3K27ac --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 ########################################################################################################
 # MACS2 CDKN2A+BRAF
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K4me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K4me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K9me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K9me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K27me3 --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K27me3 --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 
-macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K27ac --outdir /home/rtm/vivek/chipseq/macs2 \
+macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n CDKN2A+BRAF_H3K27ac --outdir /home/rtm/vivek/chip-seq/macs2 \
 -t /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam -c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam &
 ########################################################################################################
