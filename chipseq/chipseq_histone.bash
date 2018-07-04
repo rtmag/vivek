@@ -212,69 +212,69 @@ M=/root/vivek/chip-seq/bam/NHM_input_rmdup.mfile &
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A_H3K4me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A_H3K4me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A_H3K4me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A_H3K4me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A_H3K9me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A_H3K9me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A_H3K9me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A_H3K9me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A_H3K27me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A_H3K27me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A_H3K27me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A_H3K27me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A_H3K27ac_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A_H3K27ac_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A_H3K27ac_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A_H3K27ac_rmdup.mfile &
 ####################################################################################################
 # BRAF
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/BRAF_H3K4me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/BRAF_H3K4me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/BRAF_H3K4me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/BRAF_H3K4me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/BRAF_H3K9me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/BRAF_H3K9me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/BRAF_H3K9me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/BRAF_H3K9me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/BRAF_H3K27me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/BRAF_H3K27me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/BRAF_H3K27me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/BRAF_H3K27me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/BRAF_H3K27ac_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam \
-M=/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.mfile
+M=/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.mfile &
 ####################################################################################################
 # CDKN2A+BRAF
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K4me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K9me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27me3_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.mfile &
 
 java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
 I=/root/vivek/chip-seq/bam/CDKN2A+BRAF_input_Aligned.sortedByCoord.out.bam \
 O=/root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam \
-M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.mfile
+M=/root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.mfile &
 ########################################################################################################
 # MACS2 NHM
 macs2 callpeak -g hs -q 0.05 --keep-dup auto --broad -n NHM_H3K4me3 --outdir /home/rtm/vivek/chipseq/macs2 \
