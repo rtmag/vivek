@@ -174,3 +174,64 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Red
 
 #
 pdfjam ach2azOnly_20bp_2kb_CPM_hg38_TSS_K4_byAcH2AZ.pdf h2azOnly_20bp_2kb_CPM_hg38_TSS_K4_byAcH2AZ.pdf --nup 2x1 --landscape
+
+/root/resources/hg38_tss.bed
+
+################################################################################################################################
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+-R /root/resources/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/chip-seq/heatmap/H3K27ac_alltss.mat
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/BRAF_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K27me3.bw \
+-R /root/resources/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/chip-seq/heatmap/H3K27me3_alltss.mat
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K4me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K4me3.bw \
+-R /root/resources/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/chip-seq/heatmap/H3K4me3_alltss.mat
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/BRAF_H3K9me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K9me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K9me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K9me3.bw \
+-R /root/resources/hg38_tss.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out /root/vivek/chip-seq/heatmap/H3K9me3_alltss.mat
+###########################################################################################
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
+-m /root/vivek/chip-seq/heatmap/H3K27ac_alltss.mat \
+ --samplesLabel "H3K27ac BRAF" "H3K27ac CDKN2A+BRAF" "H3K27ac CDKN2A" "H3K27ac NHM" \
+-out /root/vivek/chip-seq/heatmap/H3K27ac_alltss.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges \
+-m /root/vivek/chip-seq/heatmap/H3K27me3_alltss.mat \
+ --samplesLabel "H3K27me3 BRAF" "H3K27me3 CDKN2A+BRAF" "H3K27me3 CDKN2A" "H3K27me3 NHM" \
+-out /root/vivek/chip-seq/heatmap/H3K27me3_alltss.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens \
+-m /root/vivek/chip-seq/heatmap/H3K4me3_alltss.mat \
+ --samplesLabel "H3K4me3 BRAF" "H3K4me3 CDKN2A+BRAF" "H3K4me3 CDKN2A" "H3K4me3 NHM" \
+-out /root/vivek/chip-seq/heatmap/H3K4me3_alltss.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds \
+-m /root/vivek/chip-seq/heatmap/H3K9me3_alltss.mat \
+ --samplesLabel "H3K9me3 BRAF" "H3K9me3 CDKN2A+BRAF" "H3K9me3 CDKN2A" "H3K9me3 NHM" \
+-out /root/vivek/chip-seq/heatmap/H3K9me3_alltss.pdf
+###########################################################################################
