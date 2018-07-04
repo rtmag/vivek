@@ -148,7 +148,7 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Red
 -out /root/ong_dukenus/ATAC-SEQ/heatmap/rH3K9me3_NHM_CDKN2A.pdf
 
 #
-pdfjam rH3K27ac_NHM_BRAF.pdf  rH3K27me3_NHM_BRAF.pdf rH3K4me3_NHM_BRAF.pdf  rH3K9me3_NHM_BRAF.pdf --nup 2x1 --landscape
-pdfjam rH3K27ac_NHM_CDKN2A.pdf  rH3K27me3_NHM_CDKN2A.pdf rH3K4me3_NHM_CDKN2A.pdf  rH3K9me3_NHM_CDKN2A.pdf --nup 2x1 --landscape
-pdfjam rH3K27ac_NHM_BRAF_CDKN2A.pdf  rH3K27me3_NHM_BRAF_CDKN2A.pdf rH3K4me3_NHM_BRAF_CDKN2A.pdf  rH3K9me3_NHM_BRAF_CDKN2A.pdf --nup 2x1 --landscape
+pdfjam rH3K27ac_NHM_BRAF.pdf rH3K4me3_NHM_BRAF.pdf rH3K27me3_NHM_BRAF.pdf   rH3K9me3_NHM_BRAF.pdf --nup 4x1 --landscape
+pdfjam rH3K27ac_NHM_CDKN2A.pdf rH3K4me3_NHM_CDKN2A.pdf rH3K27me3_NHM_CDKN2A.pdf   rH3K9me3_NHM_CDKN2A.pdf --nup 4x1 --landscape
+pdfjam rH3K27ac_NHM_BRAF_CDKN2A.pdf  rH3K4me3_NHM_BRAF_CDKN2A.pdf rH3K27me3_NHM_BRAF_CDKN2A.pdf  rH3K9me3_NHM_BRAF_CDKN2A.pdf --nup 4x1 --landscape
 #
