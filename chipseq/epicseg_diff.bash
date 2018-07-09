@@ -45,19 +45,19 @@ Rscript /root/myPrograms/epicseg.R segment \
                   -c BRAF:/root/vivek/chip-seq/epicseg/BRAF_counts_norm.rda \
                   -c NHM:/root/vivek/chip-seq/epicseg/NHM_counts_norm.rda \
                   -r /root/vivek/chip-seq/epicseg/BRAF_counts_refined_regions.bed \
-                  -n 6 --nthreads 60 --outdir BRAF_NHM --prefix BRAF_NHM_
+                  -n 6 --nthreads 60 --outdir BRAF_NHM --prefix BRAF_NHM_ --annot genes:/root/resources/hg38_genes.bed
 
 Rscript /root/myPrograms/epicseg.R segment \
-                  -c CDKN2A:/root/vivek/chip-seq/epicseg/CDKN2A_counts.rda \
+                  -c CDKN2A:/root/vivek/chip-seq/epicseg/CDKN2A_counts_norm.rda \
                   -c NHM:/root/vivek/chip-seq/epicseg/NHM_counts_norm.rda \
                   -r /root/vivek/chip-seq/epicseg/BRAF_counts_refined_regions.bed \
-                  -n 6 --nthreads 60 --outdir CDKN2A_NHM --prefix CDKN2A_NHM_
+                  -n 6 --nthreads 60 --outdir CDKN2A_NHM --prefix CDKN2A_NHM_ --annot genes:/root/resources/hg38_genes.bed
 
 Rscript /root/myPrograms/epicseg.R segment \
-                  -c CDKN2A+BRAF:/root/vivek/chip-seq/epicseg/CDKN2A+BRAF_counts.rda \
+                  -c CDKN2A+BRAF:/root/vivek/chip-seq/epicseg/CDKN2A+BRAF_counts_norm.rda \
                   -c NHM:/root/vivek/chip-seq/epicseg/NHM_counts_norm.rda \
                   -r /root/vivek/chip-seq/epicseg/BRAF_counts_refined_regions.bed \
-                  -n 6 --nthreads 60 --outdir CDKN2A+BRAF_NHM --prefix CDKN2A+BRAF_NHM_
+                  -n 6 --nthreads 60 --outdir CDKN2A+BRAF_NHM --prefix CDKN2A+BRAF_NHM_ --annot genes:/root/resources/hg38_genes.bed
 ############################################################################################
 ############################################################################################
 
