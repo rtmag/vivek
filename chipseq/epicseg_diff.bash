@@ -80,9 +80,28 @@ epicseg segment \
                   -r BRAF_counts_refined_regions.bed \
                   -n 6 --nthreads 60 --outdir CDKN2A+BRAF_NHM --prefix CDKN2A+BRAF_NHM_ --annot genes:hg38_genes.bed
 
- 
+ ############################################################################################
+############################################################################################
+
+# Segment TBLAB
+
+Rscript epicseg.R segment \
+                  -c BRAF:BRAF_counts_norm.rda \
+                  -c NHM:NHM_counts_norm.rda \
+                  -r BRAF_counts_refined_regions.bed \
+                  -n 6 --nthreads 60 --outdir BRAF_NHM --prefix BRAF_NHM_ --annot genes:hg38_genes.bed --split4speed TRUE
+
+Rscript epicseg.R segment \
+                  -c CDKN2A:CDKN2A_counts_norm.rda \
+                  -c NHM:NHM_counts_norm.rda \
+                  -r BRAF_counts_refined_regions.bed \
+                  -n 6 --nthreads 60 --outdir CDKN2A_NHM --prefix CDKN2A_NHM_ --annot genes:hg38_genes.bed --split4speed TRUE
+
+Rscript epicseg.R segment \
+                  -c CDKN2A+BRAF:CDKN2A+BRAF_counts_norm.rda \
+                  -c NHM:NHM_counts_norm.rda \
+                  -r BRAF_counts_refined_regions.bed \
+                  -n 6 --nthreads 60 --outdir CDKN2A+BRAF_NHM --prefix CDKN2A+BRAF_NHM_ --annot genes:hg38_genes.bed --split4speed TRUE
 
 
-
-
-
+############################################################################################
