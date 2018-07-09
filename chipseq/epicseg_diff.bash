@@ -105,3 +105,20 @@ Rscript epicseg.R segment \
 
 
 ############################################################################################
+Rscript epicseg.R segment \
+                  -c BRAF:BRAF_counts_norm.rda \
+                  -c NHM:NHM_counts_norm.rda \
+                  -r BRAF_counts_refined_regions.bed \
+                  -n 5 --nthreads 60 --outdir epic_res --prefix BRAF_NHM_n5 --annot genes:hg38_genes.bed --split4speed TRUE
+
+Rscript epicseg.R segment \
+                  -c CDKN2A:CDKN2A_counts_norm.rda \
+                  -c NHM:NHM_counts_norm.rda \
+                  -r BRAF_counts_refined_regions.bed \
+                  -n 5 --nthreads 60 --outdir epic_res --prefix CDKN2A_NHM_n5 --annot genes:hg38_genes.bed --split4speed TRUE
+
+Rscript epicseg.R segment \
+                  -c CDKN2A+BRAF:CDKN2A+BRAF_counts_norm.rda \
+                  -c NHM:NHM_counts_norm.rda \
+                  -r BRAF_counts_refined_regions.bed \
+                  -n 5 --nthreads 60 --outdir epic_res --prefix CDKN2A+BRAF_NHM_n5 --annot genes:hg38_genes.bed --split4speed TRUE
