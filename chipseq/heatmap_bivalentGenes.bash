@@ -39,7 +39,7 @@ computeMatrix reference-point \
 ################################################################################################################################
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
--m H3K27ac_bivalent \
+-m H3K27ac_bivalent.mat \
  --samplesLabel "NHM" "BRAF" "BRAF+CDKN2A" "CDKN2A" \
 -out H3K27ac_bivalent.pdf
 
