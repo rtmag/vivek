@@ -6,3 +6,4 @@ python /root/myPrograms/rose/ROSE_main_hg38.py \
 -i /root/vivek/chip-seq/macs2/NHM_H3K27ac_peaks.bed \
 -g HG38 \
 -o /root/vivek/chip-seq/ROSE/NHM &> NHM.log
+# NOTES WORST PROGRAM EVER, RUN INSIDE THE DIRECTORY WITH THE SCRIPTS...
