@@ -209,3 +209,138 @@ sig_vsd = sig_vsd - rowMeans(sig_vsd)
   heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
   xlab="", ylab="MAPK Signalling Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
 dev.off()
+##############################################################################################################################
+##############################################################################################################################
+##############################################################################################################################
+##############################################################################################################################
+############ EDITED
+# NEW GMT
+options(scipen=999)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+library(openxlsx)
+
+vsd = readRDS("NHM_vsd.rds")
+gmt = read.xlsx("pathwayenrichment_BRAFvsBRAF+CDKN2A.xlsx",sheet = 1)
+
+# NHM_BRAF+CDKN2A
+braf_2m = vsd[,c(10,11,12,4,5,6)]
+
+pdf("PRC_target_NHM_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,1],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="PRC target Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("ATF2_MAPK_target_NHM_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% c(gmt[,2],gmt[,5]),]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="ATF2 & MAPK target Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("CellProliferation_NHM_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,3],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cell Proliferation Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("CellCycle_NHM_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,4],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cell Cycle Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+# NHM_BRAF
+braf_2m = vsd[,c(10,11,12,1,2,3)]
+
+pdf("PRC_target_NHM_VS_BRAF.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,1],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="PRC target Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("ATF2_MAPK_target_NHM_VS_BRAF.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% c(gmt[,2],gmt[,5]),]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="ATF2 & MAPK target Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("CellProliferation_NHM_VS_BRAF.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,3],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cell Proliferation Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("CellCycle_NHM_VS_BRAF.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,4],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cell Cycle Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+
+# BRAF_BRAF+CDKN2A
+braf_2m = vsd[,c(1,2,3,4,5,6)]
+
+pdf("PRC_target_BRAF_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,1],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="PRC target Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("ATF2_MAPK_target_BRAF_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% c(gmt[,2],gmt[,5]),]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="ATF2 & MAPK target Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("CellProliferation_BRAF_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,3],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cell Proliferation Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+pdf("CellCycle_BRAF_VS_BRAF+CDKN2A.pdf")
+sig_vsd = braf_2m[rownames(braf_2m) %in% gmt[,4],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cell Cycle Genes",key.title="Gene expression",cexCol=.65,cexRow=.2,Colv=F,dendrogram="row")
+dev.off()
+
+
+
