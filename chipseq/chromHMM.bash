@@ -6,31 +6,37 @@ binarizedBAM
 
 java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 
 /root/vivek/chip-seq/chromHMM/binarizedBAM \
-/root/vivek/chip-seq/chromHMM/LearnModel2 \
+/root/vivek/chip-seq/chromHMM/LearnModel \
 14 \
 hg38
+########################################################################3
+more ~/resources/hg38_tss.bed | awk -F'\t' '$1"\t"$2-500"\t"$3+500"\t"$4"\t"$5"\t"$6'| \
+bedtools intersect -a - -b NHM_14_segments.bed -wa -wb|grep -w "E7"|cut -f4|sort|uniq > NHM_E7_genes.txt
 
-java -mx52000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 binarizedBAM LearnModel2 14 hg38
-####################################################################################################################################
+more ~/resources/hg38_tss.bed | awk -F'\t' '$1"\t"$2-500"\t"$3+500"\t"$4"\t"$5"\t"$6'| \
+bedtools intersect -a - -b BRAF_14_segments.bed -wa -wb|grep -w "E7"|cut -f4|sort|uniq > BRAF_E7_genes.txt
 
-java -mx92000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar BinarizeBam \
-/root/resources/hg38.chrom.sizes \
-/root/vivek/chip-seq/bam/ \
-vivek_nhm_input_matrix2.txt \
-binarizedBAM2
+more ~/resources/hg38_tss.bed | awk -F'\t' '$1"\t"$2-500"\t"$3+500"\t"$4"\t"$5"\t"$6'| \
+bedtools intersect -a - -b BRAF+CDKN2A_14_segments.bed -wa -wb|grep -w "E7"|cut -f4|sort|uniq > BRAF_E7+CDKN2A_genes.txt
 
-java -mx52000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 binarizedBAM2 LearnModel2 10 hg38
-####################################################################################################################################
+cat NHM_E7_genes.txt BRAF_E7+CDKN2A_genes.txt BRAF_E7_genes.txt |sort|uniq > E7_genes.txt
+########################################################################
+more ~/resources/hg38_tss.bed | awk -F'\t' '$1"\t"$2-1000"\t"$3+1000"\t"$4"\t"$5"\t"$6'|grep -wf E7_genes.txt > poised.bed
+########################################################################
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K4me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K27me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
+-R poised.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 1000 -b 1000 -p max -out poised.mat
 
-java -mx92000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar BinarizeBam \
-/root/resources/hg38.chrom.sizes \
-/root/vivek/chip-seq/bam/ \
-vivek_nhm_ONLY_input_matrix \
-NHM_only_binarizedBAM
 
-java -mx52000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 NHM_only_binarizedBAM NHM_only_LearnModel 10 hg38
-####################################################################################################################################
-
-java -mx22000M -jar ChromHMM.jar BinarizeBam hg38.chrom.sizes bam/ input_matrix.txt binarizedBAM
-java -mx52000M -jar ChromHMM.jar LearnModel -p 0 binarizedBAM/ LearnModel/ 10 hg38
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
+-m poised.mat --kmeans 3 \
+ --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
+-out poised.pdf --outFileSortedRegions poised_kmeans.bed
 
