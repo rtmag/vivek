@@ -41,7 +41,12 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 -out poised.pdf --outFileSortedRegions poised_kmeans.bed
 ########
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues Reds Blues Reds Blues Reds \
--m poised.mat --kmeans 3 --zMin 0 0 0 0 0 0 --zMax 1.5 .5 1.5 .5 1.5 .5 \
+-m poised.mat --kmeans 4 --zMin 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 \
  --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
 -out poised_kmeans_zmet.pdf --outFileSortedRegions poised_kmeans_zmet.bed
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues Reds Blues Reds Blues Reds \
+-m poised.mat --zMin 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 --sortUsingSamples 5 \
+ --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
+-out poised_kmeans_nok.pdf --outFileSortedRegions poised_kmeans_nok.bed
 
