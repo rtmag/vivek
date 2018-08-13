@@ -28,6 +28,7 @@ fc_SE <- featureCounts(bam.files,annot.ext=ann,isPairedEnd=TRUE,nthreads=60)
 x=fc_SE$counts
 colnames(x) = c("NHM","BRAF","CB")
 saveRDS(x,"superEnhancer_counts.rds")
+x = readRDS("superEnhancer_counts.rds")
 x = x+1
 
 braf_nhm = log2(x[,2]/x[,1])
@@ -39,7 +40,7 @@ table( braf_nhm>.6 & cb_braf<(-0.6))
 table(cb_braf>.6 & cb_nhm>.4)
 
 braf_sp =  bed[cb_braf<(-0.5),]
-cb_sp = cb_braf>(0.5)
+cb_sp = bed[cb_braf>(0.5),]
 
 write.table(braf_sp,"braf_specific_se.bed",sep="\t",quote=F,col.names=F,row.names=F)
 write.table(cb_sp,"cb_specific_se.bed",sep="\t",quote=F,col.names=F,row.names=F)
