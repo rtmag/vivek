@@ -37,8 +37,22 @@ computeMatrix scale-regions \
 --regionBodyLength 10 \
 --sortRegions descend -bs 10 -a 0 -b 0 -p max -out superEnhancer_merged_10bd.mat
 
-
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
 -m superEnhancer_merged_10bd.mat --kmeans 3 \
  --samplesLabel "NHM" "BRAF" "CDKN2A+BRAF" \
 -out superEnhancer_merged_10bd.pdf --outFileSortedRegions superEnhancer_merged_10bd_kmeans.bed
+
+###
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam \
+/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam \
+/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam \
+-R /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed \
+--sortRegions descend -bs 1000 -a 35000 -b 35000 -p max -out superEnhancer_merged_70k.mat
+
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
+-m superEnhancer_merged_70k.mat --kmeans 3 \
+ --samplesLabel "NHM" "BRAF" "CDKN2A+BRAF" \
+-out superEnhancer_merged_70k.pdf --outFileSortedRegions superEnhancer_merged_70k.bed
