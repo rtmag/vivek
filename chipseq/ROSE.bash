@@ -48,7 +48,7 @@ computeMatrix reference-point \
 /root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
 /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
 -R /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed \
---sortRegions descend -bs 1000 -a 35000 -b 35000 -p max -out superEnhancer_merged_70k.mat
+--sortRegions descend -bs 1000 -a 35000 -b 35000 -p max -out superEnhancer_merged_70k.mat --referencePoint center
 
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
