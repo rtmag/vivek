@@ -55,3 +55,23 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 -m superEnhancer_merged_200k.mat --kmeans 10 \
  --samplesLabel "NHM" "BRAF" "CDKN2A+BRAF" \
 -out superEnhancer_merged_200k.pdf --outFileSortedRegions superEnhancer_merged_200k.bed
+##############################################################
+
+cat braf_specific_se.bed > R_diffSE.bed
+echo "#BRAF-specific" >> R_diffSE.bed
+cat cb_specific_se.bed >> R_diffSE.bed
+echo "#CDKN2A+BRAF-specific" >> R_diffSE.bed
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+-R R_diffSE.bed \
+--sortRegions descend -bs 1000 -a 100000 -b 100000 -p max -out R_diffSE.mat --referencePoint center
+
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blues \
+-m R_diffSE.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A+BRAF" \
+-out R_diffSE.pdf 
