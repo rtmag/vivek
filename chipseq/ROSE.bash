@@ -44,9 +44,9 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 ###
 computeMatrix reference-point \
 -S \
-/root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam \
-/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam \
-/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
 -R /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed \
 --sortRegions descend -bs 1000 -a 35000 -b 35000 -p max -out superEnhancer_merged_70k.mat
 
