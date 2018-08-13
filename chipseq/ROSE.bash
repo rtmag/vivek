@@ -25,3 +25,20 @@ python /root/myPrograms/rose/ROSE_main_hg38.py \
 -i /root/vivek/chip-seq/macs2/CDKN2A+BRAF_H3K27ac_peaks.bed \
 -g HG38 \
 -o /root/vivek/chip-seq/ROSE/CDKN2A+BRAF &> CDKN2A+BRAF.log
+##############################################################
+cat * | sort -k1,1 -k2,2n|bedtools merge -i -|grep -v "_" > superEnhancer_merged.bed
+
+computeMatrix scale-regions \
+-S \
+/root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam \
+/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam \
+/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam \
+-R /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed \
+--regionBodyLength 10 \
+--sortRegions descend -bs 10 -a 0 -b 0 -p max -out superEnhancer_merged_10bd.mat
+
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
+-m superEnhancer_merged_10bd.mat --kmeans 3 \
+ --samplesLabel "NHM" "BRAF" "CDKN2A+BRAF" \
+-out superEnhancer_merged_10bd.pdf --outFileSortedRegions superEnhancer_merged_10bd_kmeans.bed
