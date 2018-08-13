@@ -34,7 +34,6 @@ computeMatrix scale-regions \
 /root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
 /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
 -R /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed \
---regionBodyLength 10 \
 --sortRegions descend -bs 10 -a 0 -b 0 -p max -out superEnhancer_merged_10bd.mat
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues \
