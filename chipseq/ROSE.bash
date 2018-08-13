@@ -30,9 +30,9 @@ cat * | sort -k1,1 -k2,2n|bedtools merge -i -|grep -v "_" > superEnhancer_merged
 
 computeMatrix scale-regions \
 -S \
-/root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam \
-/root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam \
-/root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
 -R /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed \
 --regionBodyLength 10 \
 --sortRegions descend -bs 10 -a 0 -b 0 -p max -out superEnhancer_merged_10bd.mat
