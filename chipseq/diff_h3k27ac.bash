@@ -23,7 +23,7 @@ diffReps.pl --treatment ./bed/BRAF_H3K27ac.bed \
 ##########################################################################
 grep "Down" BRAF_vs_NHM_p|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > BRAF_vs_NHM_p_SE.bed
 echo "#NHM-specific" >> BRAF_vs_NHM_p_SE.bed
-grep "Up" BRAF_vs_NHM_p|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > BRAF_vs_NHM_p_SE.bed
+grep "Up" BRAF_vs_NHM_p|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - >> BRAF_vs_NHM_p_SE.bed
 echo "#BRAF-specific" >> BRAF_vs_NHM_p_SE.bed
 
 computeMatrix reference-point \
@@ -42,7 +42,7 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blue
 # BRAF_vs_NHM_n
 grep "Down" BRAF_vs_NHM_n|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > BRAF_vs_NHM_n_SE.bed
 echo "#NHM-specific" >> BRAF_vs_NHM_n_SE.bed
-grep "Up" BRAF_vs_NHM_n|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > BRAF_vs_NHM_n_SE.bed
+grep "Up" BRAF_vs_NHM_n|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - >> BRAF_vs_NHM_n_SE.bed
 echo "#BRAF-specific" >> BRAF_vs_NHM_n_SE.bed
 
 computeMatrix reference-point \
@@ -61,7 +61,7 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blue
 # CDKN2A+BRAF_vs_NHM_n
 grep "Down" CDKN2A+BRAF_vs_NHM_n|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > CDKN2A+BRAF_vs_NHM_n_SE.bed
 echo "#NHM-specific" >> CDKN2A+BRAF_vs_NHM_n_SE.bed
-grep "Up" CDKN2A+BRAF_vs_NHM_n|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > CDKN2A+BRAF_vs_NHM_n_SE.bed
+grep "Up" CDKN2A+BRAF_vs_NHM_n|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - >> CDKN2A+BRAF_vs_NHM_n_SE.bed
 echo "#CDKN2A+BRAF-specific" >> CDKN2A+BRAF_vs_NHM_n_SE.bed
 
 computeMatrix reference-point \
@@ -80,7 +80,7 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blue
 # CDKN2A+BRAF_vs_NHM_p
 grep "Down" CDKN2A+BRAF_vs_NHM_p|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > CDKN2A+BRAF_vs_NHM_p_SE.bed
 echo "#NHM-specific" >> CDKN2A+BRAF_vs_NHM_p_SE.bed
-grep "Up" CDKN2A+BRAF_vs_NHM_p|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - > CDKN2A+BRAF_vs_NHM_p_SE.bed
+grep "Up" CDKN2A+BRAF_vs_NHM_p|bedtools intersect -a /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -b - >> CDKN2A+BRAF_vs_NHM_p_SE.bed
 echo "#CDKN2A+BRAF-specific" >> CDKN2A+BRAF_vs_NHM_p_SE.bed
 
 computeMatrix reference-point \
