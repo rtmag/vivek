@@ -138,4 +138,11 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blue
  --samplesLabel "NHM" "BRAF" "CDKN2A+BRAF" \
 -out CDKN2A+BRAF_vs_NHM_n_SE.pdf
 
+####
+grep "Down" CDKN2A+BRAF_vs_NHM_p|bedtools intersect -b /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -a -|cut -f1-3 > CDKN2A+BRAF_vs_NHM_p_SE.bed
+echo "#NHM-specific" >> CDKN2A+BRAF_vs_NHM_p_SE.bed
+grep "Up" CDKN2A+BRAF_vs_NHM_p|bedtools intersect -b /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -a -|cut -f1-3 >> CDKN2A+BRAF_vs_NHM_p_SE.bed
+echo "#CDKN2A+BRAF-specific" >> CDKN2A+BRAF_vs_NHM_p_SE.bed
 
+grep "Down" CDKN2A+BRAF_vs_NHM_p|cut -f1-3|annotatePeaks.pl - hg38 -annStats CDKN2A+BRAF_vs_NHM.annStats > CDKN2A+BRAF_vs_NHM.anno
+grep "Up" CDKN2A+BRAF_vs_NHM_p|cut -f1-3|annotatePeaks.pl - hg38 -annStats CDKN2A+BRAF_vs_NHM_up.annStats > CDKN2A+BRAF_vs_NHM_up.anno
