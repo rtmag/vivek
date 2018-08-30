@@ -189,3 +189,10 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blue
 -m ct5_diffreps_superEnhancer_merge_signal.mat \
  --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
 -out ct5_diffreps_superEnhancer_merge_signal.pdf
+##
+#
+annotatePeaks.pl c1_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c1_ct5_diff_se.annStats > c1_ct5_diff_se.anno &
+annotatePeaks.pl c2_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c2_ct5_diff_se.annStats > c2_ct5_diff_se.anno &
+annotatePeaks.pl c3_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c3_ct5_diff_se.annStats > c3_ct5_diff_se.anno &
+annotatePeaks.pl c4_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c4_ct5_diff_se.annStats > c4_ct5_diff_se.anno &
+annotatePeaks.pl c5_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c5_ct5_diff_se.annStats > c5_ct5_diff_se.anno &
