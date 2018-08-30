@@ -146,3 +146,19 @@ echo "#CDKN2A+BRAF-specific" >> CDKN2A+BRAF_vs_NHM_p_SE.bed
 
 grep "Down" CDKN2A+BRAF_vs_NHM_p|cut -f1-3|annotatePeaks.pl - hg38 -annStats CDKN2A+BRAF_vs_NHM.annStats > CDKN2A+BRAF_vs_NHM.anno
 grep "Up" CDKN2A+BRAF_vs_NHM_p|cut -f1-3|annotatePeaks.pl - hg38 -annStats CDKN2A+BRAF_vs_NHM_up.annStats > CDKN2A+BRAF_vs_NHM_up.anno
+
+####################################
+cat *_p|grep -v "#"|grep -v "Treatment.avg"|cut -f1,2,3|sort -k1,1 -k2,2n|bedtools merge -i - | \
+bedtools intersect -b /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -a - > diffreps_superEnhancer_merge.bed
+
+
+computeMatrix scale-regions \
+-S /root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+-R /root/vivek/chip-seq/diffreps/diffreps_superEnhancer_merge.bed --averageTypeBins sum \
+--sortRegions keep -bs 1 -m 1 -p max -out m15_4kb_aroundTSS.mat --outFileNameMatrix diffreps_superEnhancer_merge_signal.txt
+#####################
+
+
