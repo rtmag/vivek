@@ -161,4 +161,31 @@ computeMatrix scale-regions \
 --sortRegions keep -bs 1 -m 1 -p max -out m15_4kb_aroundTSS.mat --outFileNameMatrix diffreps_superEnhancer_merge_signal.txt
 #####################
 
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+-R ct_diffreps_superEnhancer_merge_signal.bed \
+--sortRegions descend -bs 500 -a 10000 -b 10000 -p max -out ct_diffreps_superEnhancer_merge_signal.mat --referencePoint center
 
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blues \
+-m ct_diffreps_superEnhancer_merge_signal.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+-out ct_diffreps_superEnhancer_merge_signal.pdf
+#####################
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+-R ct5_diffreps_superEnhancer_merge_signal.bed \
+--sortRegions descend -bs 500 -a 10000 -b 10000 -p max -out ct5_diffreps_superEnhancer_merge_signal.mat --referencePoint center
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "SE" --colorMap Blues \
+-m ct5_diffreps_superEnhancer_merge_signal.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+-out ct5_diffreps_superEnhancer_merge_signal.pdf
