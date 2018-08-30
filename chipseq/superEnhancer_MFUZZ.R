@@ -74,6 +74,8 @@ write.table(bed[cl_wt$cluster==5,],"ct5_diffreps_superEnhancer_merge_signal.bed"
 label="#Cluster 5"
 write.table(label,"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
 ################################################################################################
-
-
-
+write.table(bed[cl_wt$cluster==1,],"c1_ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,sep="\t")
+write.table(bed[cl_wt$cluster==2,],"c2_ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,sep="\t")
+write.table(bed[cl_wt$cluster==3,],"c3_ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,sep="\t")
+write.table(bed[cl_wt$cluster==4,],"c4_ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,sep="\t")
+write.table(bed[cl_wt$cluster==5,],"c5_ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,sep="\t")
