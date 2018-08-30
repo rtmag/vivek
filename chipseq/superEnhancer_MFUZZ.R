@@ -18,30 +18,30 @@ dev.off()
 bed = read.table("diffreps_superEnhancer_merge.bed",sep="\t",header=F)
 
 
-write.table(bed[cl_wt$cluster==1,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F)
+write.table(bed[cl_wt$cluster==1,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,sep="\t")
 label="#Cluster 1"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==2,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==2,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 2"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==3,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==3,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 3"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==4,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==4,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 4"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==5,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==5,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 5"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==6,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==6,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 6"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==7,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==7,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 7"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==8,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==8,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 8"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
-write.table(bed[cl_wt$cluster==9,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==9,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 9"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
