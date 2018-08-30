@@ -45,3 +45,35 @@ write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names
 write.table(bed[cl_wt$cluster==9,],"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
 label="#Cluster 9"
 write.table(label,"ct_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+
+################################################################################################
+
+cl_wt<-mfuzz(wt.s,c=5,m=mestimate(wt.s))
+pdf('mfuzz_ct5.pdf')
+mfuzz.plot(wt.s,cl=cl_wt,mfrow=c(3,3),new.window=F,time.labels=c("NHM","BRAF","CDKN2A","B+C"))
+table(cl_wt$cluster)
+dev.off()
+
+
+bed = read.table("diffreps_superEnhancer_merge.bed",sep="\t",header=F)
+
+
+write.table(bed[cl_wt$cluster==1,],"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,sep="\t")
+label="#Cluster 1"
+write.table(label,"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==2,],"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
+label="#Cluster 2"
+write.table(label,"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==3,],"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
+label="#Cluster 3"
+write.table(label,"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==4,],"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
+label="#Cluster 4"
+write.table(label,"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+write.table(bed[cl_wt$cluster==5,],"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T,sep="\t")
+label="#Cluster 5"
+write.table(label,"ct5_diffreps_superEnhancer_merge_signal.bed",quote=F,col.names=F,row.names=F,append=T)
+################################################################################################
+
+
+
