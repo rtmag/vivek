@@ -6,6 +6,7 @@ bedtools merge -i - > superEnhancer_redo_merge.bed
 
 ##################################################################
 library(Rsubread)
+options(scipen=999)
 
 x=read.table('/root/vivek/chip-seq/ROSE/SE_redo/superEnhancer_redo_merge.bed',sep="\t",stringsAsFactors=F)
 
@@ -24,3 +25,17 @@ saveRDS(x,"superEnhancer_counts.rds")
 
 library(DESeq2)
 x= readRDS("superEnhancer_counts.rds")
+
+colData <- data.frame(group=c("NHM","BRAF","CDKN2A","CB") )
+dds <- DESeqDataSetFromMatrix(
+       countData = x,
+       colData = colData,
+       design = ~ group)
+
+dds <- estimateSizeFactors(dds)
+counts = counts(dds, normalized=TRUE)
+fc=counts[,4]/rowMeans(counts[,1:3])
+sig=counts[fc>1.6,]
+sig = sig[complete.cases(sig),]
+bed = rownames(sig[complete.cases(sig),])
+write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_60percent_CB_SE.bed",sep="\t",quote=F,row.name=F,col.name=F)
