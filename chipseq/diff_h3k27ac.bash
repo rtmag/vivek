@@ -2,6 +2,8 @@ bamToBed -i bam/BRAF_H3K27ac_rmdup.bam > bed/BRAF_H3K27ac.bed &
 bamToBed -i bam/CDKN2A+BRAF_H3K27ac_rmdup.bam > bed/CDKN2A+BRAF_H3K27ac.bed &
 bamToBed -i bam/CDKN2A_H3K27ac_rmdup.bam > bed/CDKN2A_H3K27ac.bed &
 bamToBed -i bam/NHM_H3K27ac_rmdup.bam > bed/NHM_H3K27ac.bed &
+bamToBed -i bam/NHM_input_rmdup.bam > bed/NHM_input.bed &
+bamToBed -i bam/CDKN2A+BRAF_input_rmdup.bam > bed/CDKN2A+BRAF_input.bed &
 
 diffReps.pl --treatment ./bed/CDKN2A+BRAF_H3K27ac.bed \
 --control ./bed/NHM_H3K27ac.bed \
@@ -22,6 +24,18 @@ diffReps.pl --treatment ./bed/BRAF_H3K27ac.bed \
 diffReps.pl --treatment ./bed/CDKN2A+BRAF_H3K27ac.bed \
 --control ./bed/BRAF_H3K27ac.bed \
 --meth gt --chrlen ~/resources/hg38.chrom.sizes --mode p --report /root/vivek/chip-seq/diffreps/CDKN2A+BRAF_vs_BRAF_p --nproc 60 --noanno --nohs
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/NHM_H3K27ac.bed --window 100 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/NHM_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_NHM --nproc 60 --noanno --nohs
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/NHM_H3K27ac.bed --window 100 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/NHM_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_NHM_1pro --noanno --nohs
 ##########################################################################
 more *_p|grep -P "Up|Down"|cut -f1-3|bedtools intersect -b /root/vivek/chip-seq/ROSE/heatmap/superEnhancer_merged.bed -a -|cut -f1-3 > diffreps_SE.bed
 
