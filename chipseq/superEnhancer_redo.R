@@ -37,6 +37,7 @@ dds <- DESeqDataSetFromMatrix(
 
 dds <- estimateSizeFactors(dds)
 counts = counts(dds, normalized=TRUE)
+
 fc=counts[,3]/counts[,1]
 sig=counts[fc>1.8,]
 
@@ -47,8 +48,23 @@ write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_80Percent_in_BRAF-CDKN
 fc=counts[,1]/counts[,3]
 sig=counts[fc>1.8,]
 
+sig = sig[complete.cases(sig),]
+bed = rownames(sig[complete.cases(sig),])
+write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_80Percent_in_NHM_SUB-SuperEnhancer.bed",sep="\t",quote=F,row.name=F,col.name=F)
+####################################################################################
+counts = counts(dds, normalized=TRUE)
+
+fc=counts[,3]/counts[,1]
+sig=counts[fc>1.8,]
+sig = sig[complete.cases(sig),]
+dim(sig)
+
+bed = rownames(sig[complete.cases(sig),])
+write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_80Percent_in_BRAF-CDKN2A_SUB-SuperEnhancer.bed",sep="\t",quote=F,row.name=F,col.name=F)
+
+fc=counts[,1]/counts[,3]
+sig=counts[fc>1.8,]
 
 sig = sig[complete.cases(sig),]
 bed = rownames(sig[complete.cases(sig),])
 write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_80Percent_in_NHM_SUB-SuperEnhancer.bed",sep="\t",quote=F,row.name=F,col.name=F)
-
