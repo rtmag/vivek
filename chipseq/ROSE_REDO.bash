@@ -52,3 +52,45 @@ python /root/myPrograms/rose/ROSE_main_hg38.py \
 -g HG38 -t 2500 \
 -o /root/vivek/chip-seq/ROSE/CDKN2A+BRAF_40 &> CDKN2A+BRAF_40.log &
 ##############################################################
+more ~/resources/hg38_tss.bed |awk -F"\t" '{print $1"\t"$2-2500"\t"$3+2500}'|perl -pe 's/\-\d+/1/g'| \
+bedtools intersect -v -a NHM_H3K27ac_40.bed  -b - > NHM_H3K27ac_40_noTSS.bed
+
+more ~/resources/hg38_tss.bed |awk -F"\t" '{print $1"\t"$2-2500"\t"$3+2500}'|perl -pe 's/\-\d+/1/g'| \
+bedtools intersect -v -a BRAF_H3K27ac_40.bed  -b - > BRAF_H3K27ac_40_noTSS.bed
+
+more ~/resources/hg38_tss.bed |awk -F"\t" '{print $1"\t"$2-2500"\t"$3+2500}'|perl -pe 's/\-\d+/1/g'| \
+bedtools intersect -v -a CDKN2A_H3K27ac_40.bed  -b - > CDKN2A_H3K27ac_40_noTSS.bed
+
+more ~/resources/hg38_tss.bed |awk -F"\t" '{print $1"\t"$2-2500"\t"$3+2500}'|perl -pe 's/\-\d+/1/g'| \
+bedtools intersect -v -a CDKN2A+BRAF_H3K27ac_40.bed  -b - > CDKN2A+BRAF_H3K27ac_40_noTSS.bed
+################################################################################
+python /root/myPrograms/rose/ROSE_main_hg38.py \
+-r /root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam \
+-c /root/vivek/chip-seq/bam/NHM_input_rmdup.bam \
+-i /root/vivek/chip-seq/macs2/NHM_H3K27ac_40_noTSS.bed \
+-g HG38 -t 2500 \
+-o /root/vivek/chip-seq/ROSE/NHM_40 &> NHM_40.log &
+# NOTES WORST PROGRAM EVER, RUN INSIDE THE DIRECTORY WITH THE SCRIPTS...
+################################################################################
+
+python /root/myPrograms/rose/ROSE_main_hg38.py \
+-r /root/vivek/chip-seq/bam/BRAF_H3K27ac_rmdup.bam \
+-c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam \
+-i /root/vivek/chip-seq/macs2/BRAF_H3K27ac_40_noTSS.bed \
+-g HG38 -t 2500 \
+-o /root/vivek/chip-seq/ROSE/BRAF_40 &> BRAF_40.log &
+################################################################################
+python /root/myPrograms/rose/ROSE_main_hg38.py \
+-r /root/vivek/chip-seq/bam/CDKN2A_H3K27ac_rmdup.bam \
+-c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam \
+-i /root/vivek/chip-seq/macs2/CDKN2A_H3K27ac_40_noTSS.bed \
+-g HG38 -t 2500 \
+-o /root/vivek/chip-seq/ROSE/CDKN2A_40 &> CDKN2A_40.log &
+##############################################################
+python /root/myPrograms/rose/ROSE_main_hg38.py \
+-r /root/vivek/chip-seq/bam/CDKN2A+BRAF_H3K27ac_rmdup.bam \
+-c /root/vivek/chip-seq/bam/CDKN2A+BRAF_input_rmdup.bam \
+-i /root/vivek/chip-seq/macs2/CDKN2A+BRAF_H3K27ac_40_noTSS.bed \
+-g HG38 -t 2500 \
+-o /root/vivek/chip-seq/ROSE/CDKN2A+BRAF_40 &> CDKN2A+BRAF_40.log &
+##############################################################
