@@ -21,13 +21,15 @@ bam.files <- c('/root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam',
 fc_SE <- featureCounts(bam.files,annot.ext=ann,isPairedEnd=TRUE,nthreads=60)
 
 x=fc_SE$counts
-colnames(x) = c("NHM","BRAF","CDKN2A","CB")
+colnames(x) = c("NHM","BRAF","CB")
 saveRDS(x,"superEnhancer_counts.rds")
 ######
+options(scipen=999)
 library(DESeq2)
+
 x= readRDS("superEnhancer_counts.rds")
 
-colData <- data.frame(group=c("NHM","BRAF","CDKN2A","CB") )
+colData <- data.frame(group=c("NHM","BRAF","CB") )
 dds <- DESeqDataSetFromMatrix(
        countData = x,
        colData = colData,
@@ -35,10 +37,18 @@ dds <- DESeqDataSetFromMatrix(
 
 dds <- estimateSizeFactors(dds)
 counts = counts(dds, normalized=TRUE)
-fc=counts[,4]/rowMeans(counts[,1:3])
-sig=counts[fc>1.6,]
+fc=counts[,3]/counts[,1]
+sig=counts[fc>1.8,]
+
 sig = sig[complete.cases(sig),]
 bed = rownames(sig[complete.cases(sig),])
-write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_60percent_CB_SE.bed",sep="\t",quote=F,row.name=F,col.name=F)
+write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_80Percent_in_BRAF-CDKN2A_SUB-SuperEnhancer.bed",sep="\t",quote=F,row.name=F,col.name=F)
 
+fc=counts[,1]/counts[,3]
+sig=counts[fc>1.8,]
+
+
+sig = sig[complete.cases(sig),]
+bed = rownames(sig[complete.cases(sig),])
+write.table(gsub("_!_","\t",bed,perl=T),"Significant_Open_80Percent_in_NHM_SUB-SuperEnhancer.bed",sep="\t",quote=F,row.name=F,col.name=F)
 
