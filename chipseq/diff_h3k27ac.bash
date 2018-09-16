@@ -216,3 +216,39 @@ annotatePeaks.pl c2_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c
 annotatePeaks.pl c3_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c3_ct5_diff_se.annStats > c3_ct5_diff_se.anno &
 annotatePeaks.pl c4_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c4_ct5_diff_se.annStats > c4_ct5_diff_se.anno &
 annotatePeaks.pl c5_ct5_diffreps_superEnhancer_merge_signal.bed hg38 -annStats c5_ct5_diff_se.annStats > c5_ct5_diff_se.anno &
+
+
+
+##########################
+
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/NHM_H3K27ac.bed --window 700 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/NHM_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_NHM_1pro_700w --noanno --nohs &
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/BRAF_H3K27ac.bed --window 700 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_BRAF_1pro_700w --noanno --nohs &
+
+
+
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/NHM_H3K27ac.bed --window 700 --nproc 50 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/NHM_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_NHM_50pro_700w --noanno --nohs &
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/BRAF_H3K27ac.bed --window 700 --nproc 50 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_BRAF_50pro_700w --noanno --nohs &
+
+
+
+##########################################################################
