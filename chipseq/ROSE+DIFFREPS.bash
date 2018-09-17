@@ -49,12 +49,12 @@ grep "Up" BC_VS_NHM_50pro_700w |awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){pri
 -a /root/vivek/chip-seq/macs2/NHM_H3K27ac_peaks.broadPeak -b - |cut -f1,2,3 > BC_VS_NHM_50pro_700w_UP_broad.bed
 ###
 
-grep "Down" BC_VS_BRAF_50pro_700w|awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){print $0 }} }'|bedtools intersect \
+grep "Down" BC_VS_BRAF_50pro_700w|awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){ if(sqrt($12^2)>1){print $0} }} }'|bedtools intersect \
 -b /root/vivek/chip-seq/macs2/CDKN2A+BRAF_H3K27ac_peaks.broadPeak -a - |cut -f1,2,3 > BC_VS_BRAF_50pro_700w_DOWN_diff.bed
-grep "Up" BC_VS_BRAF_50pro_700w|awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){print $0 }} }'|bedtools intersect \
+grep "Up" BC_VS_BRAF_50pro_700w|awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){ if(sqrt($12^2)>1){print $0} }} }'|bedtools intersect \
 -b /root/vivek/chip-seq/macs2/BRAF_H3K27ac_peaks.broadPeak -a - |cut -f1,2,3 > BC_VS_BRAF_50pro_700w_UP_diff.bed
 
-grep "Down" BC_VS_NHM_50pro_700w |awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){print $0 }} }'|bedtools intersect \
+grep "Down" BC_VS_NHM_50pro_700w |awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){ if(sqrt($12^2)>1){print $0} }} }'|bedtools intersect \
 -b /root/vivek/chip-seq/macs2/CDKN2A+BRAF_H3K27ac_peaks.broadPeak -a - |cut -f1,2,3 > BC_VS_NHM_50pro_700w_DOWN_diff.bed
-grep "Up" BC_VS_NHM_50pro_700w |awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){print $0 }} }'|bedtools intersect \
+grep "Up" BC_VS_NHM_50pro_700w |awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){ if(sqrt($12^2)>1){print $0} }} }'|bedtools intersect \
 -b /root/vivek/chip-seq/macs2/NHM_H3K27ac_peaks.broadPeak -a - |cut -f1,2,3 > BC_VS_NHM_50pro_700w_UP_diff.bed
