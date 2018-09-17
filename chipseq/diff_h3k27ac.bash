@@ -252,3 +252,16 @@ diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
 
 
 ##########################################################################
+
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/NHM_H3K27ac.bed --window 1000 --nproc 50 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/NHM_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_NHM_50pro_1000w --noanno --nohs 
+
+diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K27ac.bed \
+--control /root/vivek/chip-seq/bed/BRAF_H3K27ac.bed --window 1000 --nproc 50 \
+--btr /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--bco /root/vivek/chip-seq/bed/CDKN2A+BRAF_input.bed \
+--meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/diffreps/BC_VS_BRAF_50pro_1000w --noanno --nohs 
