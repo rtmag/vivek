@@ -49,4 +49,22 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 -m poised.mat --zMin 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 --sortUsingSamples 5 \
  --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
 -out poised_kmeans_nok.pdf --outFileSortedRegions poised_kmeans_nok.bed
+########################################################################
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K4me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K27me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
+-R poised.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out poised_3k.mat
 
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues Reds Blues Reds Blues Reds Blues Reds \
+-m poised.mat --kmeans 4 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+ --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
+-out poised_kmeans_zmet_3k.pdf --outFileSortedRegions poised_kmeans_zmet_3k.bed
