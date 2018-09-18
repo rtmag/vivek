@@ -61,3 +61,35 @@ grep "Down" BC_VS_NHM_50pro_700w |awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){ 
 -b /root/vivek/chip-seq/macs2/CDKN2A+BRAF_H3K27ac_peaks.broadPeak -a - |cut -f1,2,3 > BC_VS_NHM_50pro_700w_DOWN_diff.bed
 grep "Up" BC_VS_NHM_50pro_700w |awk -F"\t" '{if($14<0.05){if($7>50 || $8>50){ if(sqrt($12^2)>1){print $0} }} }'|bedtools intersect \
 -b /root/vivek/chip-seq/macs2/NHM_H3K27ac_peaks.broadPeak -a - |cut -f1,2,3 > BC_VS_NHM_50pro_700w_UP_diff.bed
+################################################################################################################
+################################################################################################################
+################################################################################################################
+################################################################################################################
+
+grep "Down" BC_VS_NHM_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>500 || $8>500){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_NHM_50pro_1000w_DOWN_diff_500_fc1.bed
+grep "Up" BC_VS_NHM_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>500 || $8>500){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_NHM_50pro_1000w_UP_diff_500_fc1.bed
+
+grep "Down" BC_VS_NHM_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>500 || $8>500){ if(sqrt($12^2)>1.5){print $0} }} }'|cut -f1,2,3 > BC_VS_NHM_50pro_1000w_DOWN_diff_500.bed
+grep "Up" BC_VS_NHM_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>500 || $8>500){ if(sqrt($12^2)>1.5){print $0} }} }'|cut -f1,2,3 > BC_VS_NHM_50pro_1000w_UP_diff_500.bed
+
+grep "Down" BC_VS_NHM_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>300 || $8>300){ if(sqrt($12^2)>1.5){print $0} }} }'|cut -f1,2,3 > BC_VS_NHM_50pro_1000w_DOWN_diff_300.bed
+grep "Up" BC_VS_NHM_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>300 || $8>300){ if(sqrt($12^2)>1.5){print $0} }} }'|cut -f1,2,3 > BC_VS_NHM_50pro_1000w_UP_diff_300.bed
+
+##########################################################################
+cat BC_VS_NHM_50pro_1000w_DOWN_diff_500.bed > BRAF_vs_NHM_DIFF_h3k27ac.bed
+echo "#NHM-specific" >> BRAF_vs_NHM_DIFF_h3k27ac.bed
+cat BC_VS_NHM_50pro_1000w_UP_diff_300.bed >> BRAF_vs_NHM_DIFF_h3k27ac.bed
+echo "#CDKN2A+BRAF-specific" >> BRAF_vs_NHM_DIFF_h3k27ac.bed
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+-R BRAF_vs_NHM_DIFF_h3k27ac.bed \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out BRAF_vs_NHM_DIFF_h3k27ac.mat --referencePoint center
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" --colorMap Blues \
+-m BRAF_vs_NHM_DIFF_h3k27ac.mat \
+ --samplesLabel "NHM" "CDKN2A+BRAF" \
+-out BRAF_vs_NHM_DIFF_h3k27ac.pdf 
+
