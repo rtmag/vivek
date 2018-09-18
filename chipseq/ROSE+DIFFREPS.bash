@@ -98,6 +98,21 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" --colorMap
 -m BRAF_vs_NHM_DIFF_h3k27ac.mat \
  --samplesLabel "NHM" "CDKN2A+BRAF" \
 -out BRAF_vs_NHM_DIFF_h3k27ac.pdf 
+#
+#
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+-R BRAF_vs_NHM_DIFF_h3k27ac.bed \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out BRAF_vs_NHM_DIFF_h3k27ac.mat --referencePoint center
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" --colorMap Blues \
+-m BRAF_vs_NHM_DIFF_h3k27ac.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+-out BRAF_vs_NHM_DIFF_h3k27ac_500R_FC3_ALL.pdf 
 ######
 cat BC_VS_NHM_50pro_1000w_DOWN_diff_500_fc1.bed > BRAF_vs_NHM_DIFF_h3k27ac_fc1.bed
 echo "#NHM-specific" >> BRAF_vs_NHM_DIFF_h3k27ac_fc1.bed
@@ -133,3 +148,17 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" --colorMap
 -m BRAF_vs_NHM_DIFF_h3k27ac_200_fc1.mat \
  --samplesLabel "NHM" "CDKN2A+BRAF" \
 -out BRAF_vs_NHM_DIFF_h3k27ac_200_fc1.pdf 
+#
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+-R BRAF_vs_NHM_DIFF_h3k27ac_200_fc1.bed \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out BRAF_vs_NHM_DIFF_h3k27ac_200_fc1.mat --referencePoint center
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" --colorMap Blues \
+-m BRAF_vs_NHM_DIFF_h3k27ac_200_fc1.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+-out BRAF_vs_NHM_DIFF_h3k27ac_200_fc1_all.pdf 
