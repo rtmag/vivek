@@ -65,6 +65,7 @@ computeMatrix reference-point \
 
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues Reds Blues Reds Blues Reds Blues Reds \
--m poised.mat --kmeans 4 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
- --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
+-m poised_3k.mat --kmeans 4 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+--samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
 -out poised_kmeans_zmet_3k.pdf --outFileSortedRegions poised_kmeans_zmet_3k.bed
+
