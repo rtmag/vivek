@@ -20,6 +20,7 @@ sample.annotation <- file.path("/home/rtm/vivek/navi/EPIC/rnbeads_sample_sheet.c
 rnb.options(import.table.separator=",")
 
 # Report directory
+system("rm -fr /home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_report")
 report.dir <- file.path("/home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_report")
 
 # Analysis directory
