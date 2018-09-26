@@ -12,21 +12,29 @@ write.csv(pre_sample_sheet,"rnbeads_sample_sheet.csv",row.names=F)
 
 ## Options and Parameters ##
 
-# Analysis Directories
+#idat files
 idat.dir <- file.path("/home/rtm/vivek/navi/EPIC/idat_Raw_Data")
-print(idat.dir)
 
+# Sample annotation
 sample.annotation <- file.path("/home/rtm/vivek/navi/EPIC/rnbeads_sample_sheet.csv")
 rnb.options(import.table.separator=",")
 
-report.dir <- file.path("/home/rtm/ctrad/GC_Illumina02/DNA_Methylation/RnBeads")
+# Report directory
+report.dir <- file.path("/home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_report")
 
+# Analysis directory
+analysis.dir <- "/home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_analysis"
 
+# Vanilla parameters
+rnb.options(filtering.sex.chromosomes.removal=TRUE, identifiers.column="Sample_ID")
+rnb.options(differential=FALSE)
+
+# Normalization parameters
+rnb.options(normalization=TRUE,normalization.method="swan",normalization.background.method="methylumi.noob")
 
 # Multiprocess
-num.cores <- 40
+num.cores <- 20
 parallel.setup(num.cores)
 
-sample.annotation <- file.path("/home/rtm/ctrad/GC_Illumina02/DNA_Methylation/sample_annotation_edited.csv")
-
-print(sample.annotation)
+rnb.run.analysis(dir.reports=report.dir, sample.sheet=sample.annotation, data.dir=idat.dir, data.type="infinium.idat.dir")
+###############################################################################################################################
