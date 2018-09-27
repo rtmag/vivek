@@ -61,7 +61,15 @@ parallel.setup(num.cores)
 
 data.source <- c(idat.dir, sample.annotation)
 result <- rnb.run.import(data.source=data.source,data.type="infinium.idat.dir", dir.reports=report.dir)
-rnb.set.norm <- rnb.execute.normalization(result$rnb.set, method="swan",bgcorr.method="methylumi.noob")
+rnb.set.norm <- rnb.execute.normalization(result$rnb.set, method="swan",bgcorr.method="methylumi.goob")
 
 save.rnb.set(rnb.set.norm,path="/home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_normalization/rnb.set.norm.RData")
 ###############################################################################################################################
+suppressMessages(library(RnBeads))
+
+rnb.set.norm=load.rnb.set("rnb.set.norm.RData.zip")
+rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
+           Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
+                     "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus") )
+
+MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no12,pheno.cols=c("Tumor"))
