@@ -71,13 +71,27 @@ rnb.set.norm=load.rnb.set("rnb.set.norm.RData.zip")
 rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
            Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
                      "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus") )
-
+#################
 MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm,pheno.cols=c("Tumor"))
 
-#
 comparison <- get.comparisons(MvsN_dmc)[1]
 dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
+summary(dmc_table$diffmeth.p.adj.fdr)
+summary(dmc_table$mean.diff)
+##
+#
+result$rnb.set@pheno = data.frame(result$rnb.set@pheno, 
+           Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
+                     "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus") )
 
+MvsN_dmc <- rnb.execute.computeDiffMeth(result$rnb.set,pheno.cols=c("Tumor"))
+
+comparison <- get.comparisons(MvsN_dmc)[1]
+dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
+summary(dmc_table$diffmeth.p.adj.fdr)
+summary(dmc_table$mean.diff)
+
+############################################################################################
 meth.norm<-meth(rnb.set.norm)
 
 colnames(meth.norm) = as.character(rnb.set.norm@pheno$Tumor)
@@ -90,7 +104,7 @@ library(gplots)
 library(factoextra)
 library(RColorBrewer)
 
-track=rnb.set.norm@pheno$Tumor
+track=as.character(rnb.set.norm@pheno$Tumor)
 track[track=="Melanoma"]=1
 track[track=="Nevus"]=2
 
