@@ -72,4 +72,36 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
            Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
                      "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus") )
 
-MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no12,pheno.cols=c("Tumor"))
+MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm,pheno.cols=c("Tumor"))
+
+#
+comparison <- get.comparisons(MvsN_dmc)[1]
+dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
+
+meth.norm<-meth(rnb.set.norm)
+
+colnames(meth.norm) = as.character(rnb.set.norm@pheno$Tumor)
+rownames(meth.norm) = rownames(rnb.set.norm@sites)
+
+meth.norm.sig=meth.norm[dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table[,3])>.25,]
+
+options(scipen=999)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+
+track=rnb.set.norm@pheno$Tumor
+track[track=="Melanoma"]=1
+track[track=="Nevus"]=2
+
+track=as.numeric(track)
+
+colores=c("#db4e68","#497bd1")
+clab=as.character(colores[track])
+
+colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+pdf("heatmap.pdf")
+x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,labCol = "",xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+dev.off()
