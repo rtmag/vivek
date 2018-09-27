@@ -1,6 +1,7 @@
 ###############################################################################################################################
 ### STD PIPE ###
 library(RnBeads)
+options(bitmapType="cairo")
 
 ## Preprocess Sample Sheet ##
 pre_sample_sheet = read.table(
