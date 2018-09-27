@@ -106,3 +106,6 @@ x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",dis
 labRow = FALSE,labCol = "",xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
+
+write.csv(dmc_table,"DMC_table.csv")
+
