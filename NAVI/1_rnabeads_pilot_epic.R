@@ -96,7 +96,7 @@ track[track=="Nevus"]=2
 
 track=as.numeric(track)
 
-colores=c("#db4e68","#497bd1")
+colores=c("#ffb3ba","#baffc9")
 clab=as.character(colores[track])
 
 colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
@@ -104,4 +104,5 @@ meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 pdf("heatmap.pdf")
 x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,labCol = "",xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
