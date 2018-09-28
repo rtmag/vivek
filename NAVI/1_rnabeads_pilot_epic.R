@@ -67,12 +67,15 @@ save.rnb.set(rnb.set.norm,path="/home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_normal
 ###############################################################################################################################
 suppressMessages(library(RnBeads))
 
-rnb.set.norm=load.rnb.set("rnb.set.norm.RData.zip")
+rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_normalization/rnb.set.norm.RData.zip")
 rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
            Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
-                     "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus") )
+                     "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus"),
+           Patient = c("1","1","2","2","3","3","4","4",
+                     "5","5","6","6","7","7","8","8"),
+                               )
 #################
-MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm,pheno.cols=c("Tumor"))
+MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm,pheno.cols=c("Tumor"),columns.pairs=c("Patient"))
 
 comparison <- get.comparisons(MvsN_dmc)[1]
 dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
