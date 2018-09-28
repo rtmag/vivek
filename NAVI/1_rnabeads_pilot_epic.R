@@ -72,22 +72,12 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
            Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
                      "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus"),
            Patient = c("1","1","2","2","3","3","4","4",
-                     "5","5","6","6","7","7","8","8"),
-                               )
+                     "5","5","6","6","7","7","8","8") )
+                               
 #################
-MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm,pheno.cols=c("Tumor"),columns.pairs=c("Patient"))
+rnb.options("columns.pairing"=c("Tumor"="Patient"))
 
-comparison <- get.comparisons(MvsN_dmc)[1]
-dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
-summary(dmc_table$diffmeth.p.adj.fdr)
-summary(dmc_table$mean.diff)
-##
-#
-result$rnb.set@pheno = data.frame(result$rnb.set@pheno, 
-           Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
-                     "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus") )
-
-MvsN_dmc <- rnb.execute.computeDiffMeth(result$rnb.set,pheno.cols=c("Tumor"))
+MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm,pheno.cols=c("Tumor"))
 
 comparison <- get.comparisons(MvsN_dmc)[1]
 dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
