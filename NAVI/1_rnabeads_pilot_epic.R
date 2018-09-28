@@ -89,7 +89,7 @@ summary(dmc_table$mean.diff)
 ############################################################################################
 meth.norm<-meth(rnb.set.norm)
 
-colnames(meth.norm) = as.character(rnb.set.norm@pheno$Tumor)
+colnames(meth.norm) = as.character(rnb.set.norm@pheno[,1])
 rownames(meth.norm) = rownames(rnb.set.norm@sites)
 
 meth.norm.sig=meth.norm[dmc_table$diffmeth.p.adj.fdr<0.3 & abs(dmc_table[,3])>.15,]
@@ -110,9 +110,9 @@ clab=as.character(colores[track])
 
 colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
-pdf("heatmap.pdf")
+pdf("heatmap_FDR30_DIF15.pdf")
 x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,labCol = "",xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
 
