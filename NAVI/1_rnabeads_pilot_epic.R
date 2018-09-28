@@ -84,13 +84,15 @@ dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
 summary(dmc_table$diffmeth.p.adj.fdr)
 summary(dmc_table$mean.diff)
 
+
+
 ############################################################################################
 meth.norm<-meth(rnb.set.norm)
 
 colnames(meth.norm) = as.character(rnb.set.norm@pheno$Tumor)
 rownames(meth.norm) = rownames(rnb.set.norm@sites)
 
-meth.norm.sig=meth.norm[dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table[,3])>.25,]
+meth.norm.sig=meth.norm[dmc_table$diffmeth.p.adj.fdr<0.3 & abs(dmc_table[,3])>.15,]
 
 options(scipen=999)
 library(gplots)
