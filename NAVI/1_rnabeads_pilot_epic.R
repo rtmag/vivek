@@ -152,3 +152,12 @@ x = heatmap.2(as.matrix(meth.common),col=colors,scale="none", trace="none",distf
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
+###
+probes.EPIC <- rnb.annotation2data.frame(rnb.get.annotation(type="probesEPIC",assembly="hg19"))
+res = probes.EPIC[match(rownames(meth.common),rownames(probes.EPIC)),1:3]
+res=cbind(res,dmc_table[match(rownames(meth.common),rownames(probes.EPIC)),3])
+res[res[,4]>0,4]="Hyper_Melanoma"
+res[res[,4]<0,4]="Hyper_Nevi"
+colnames(res) = c("chr","start","end","methylation")
+write.table(res,"CpG_FDR30_DIF15_537_common_with_without_9_10.bed",sep="\t",quote=F,col.names=F,row.names=F)
+
