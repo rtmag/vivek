@@ -132,5 +132,23 @@ legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","
 dev.off()
 
 ###
-prev=read.csv("DMC_table.csv")
-dmc_table
+prev=read.csv("DMC_table.csv.gz",header=T)
+
+table(dmc_table$diffmeth.p.adj.fdr<0.3 & abs(dmc_table[,3])>.20)
+table(prev$diffmeth.p.adj.fdr<0.3 & abs(prev[,4])>.20)
+
+meth.no910=meth.norm[dmc_table$diffmeth.p.adj.fdr<0.3 & abs(dmc_table[,3])>.20,]
+meth.wt910=meth.norm[prev$diffmeth.p.adj.fdr<0.3 & abs(prev[,4])>.20,]
+meth.common=meth.no910[rownames(meth.no910) %in% rownames(meth.wt910),]
+
+pdf("heatmap_FDR30_DIF15_1444_reColor.pdf")
+x = heatmap.2(as.matrix(meth.no910),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
+dev.off()
+
+pdf("heatmap_FDR30_DIF15_537_common_with_without_9_10.pdf")
+x = heatmap.2(as.matrix(meth.common),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
+dev.off()
