@@ -69,15 +69,17 @@ suppressMessages(library(RnBeads))
 
 rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC/RnBeads/RnBeads_normalization/rnb.set.norm.RData.zip")
 rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
-           Tumor = c("Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus",
-                     "Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus","Melanoma","Nevus"),
+           Tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                     "Melanoma","MIS","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi"),
            Patient = c("1","1","2","2","3","3","4","4",
                      "5","5","6","6","7","7","8","8") )
+
+rnb.set.norm_no910=remove.samples(rnb.set.norm,samples(rnb.set.norm)[9:10])
                                
 #################
 rnb.options("columns.pairing"=c("Tumor"="Patient"))
 
-MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm,pheno.cols=c("Tumor"))
+MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor"))
 
 comparison <- get.comparisons(MvsN_dmc)[1]
 dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
@@ -92,7 +94,7 @@ meth.norm<-meth(rnb.set.norm)
 colnames(meth.norm) = as.character(rnb.set.norm@pheno[,1])
 rownames(meth.norm) = rownames(rnb.set.norm@sites)
 
-meth.norm.sig=meth.norm[dmc_table$diffmeth.p.adj.fdr<0.3 & abs(dmc_table[,3])>.15,]
+meth.norm.sig=meth.norm[dmc_table$diffmeth.p.adj.fdr<0.3 & abs(dmc_table[,3])>.20,]
 
 options(scipen=999)
 library(gplots)
@@ -101,20 +103,34 @@ library(RColorBrewer)
 
 track=as.character(rnb.set.norm@pheno$Tumor)
 track[track=="Melanoma"]=1
-track[track=="Nevus"]=2
+track[track=="Nevi"]=2
+track[track=="MIS"]=3
+
 
 track=as.numeric(track)
-
-colores=c("#ffb3ba","#baffc9")
+colores=c("#ffb3ba","#baffc9","#bae1ff")
 clab=as.character(colores[track])
 
-colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(20))
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
-pdf("heatmap_FDR30_DIF15.pdf")
+pdf("heatmap_FDR30_DIF15_no9_no10.pdf")
 x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
-legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
 
-write.csv(dmc_table,"DMC_table.csv")
+write.csv(dmc_table,"DMC_table_no910.csv")
 
+#####
+meth.sd=apply(meth.norm,1,sd)
+meth.norm.sd=meth.norm[order(meth.sd,decreasing=T),]
+meth.norm.sd=meth.norm.sd[1:43344,]
+pdf("heatmap_top5prcent_variable_43344cpg.pdf")
+x = heatmap.2(as.matrix(meth.norm.sd),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
+dev.off()
+
+###
+prev=read.csv("DMC_table.csv")
+dmc_table
