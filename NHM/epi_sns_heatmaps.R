@@ -102,6 +102,7 @@ caspase_inhibition = c("CD27", "XIAP")
 
 
 
+colnames(data) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","CDKN2A","CDKN2A","CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
 
 ### SNS Classic
 pdf("sns_class.pdf")
