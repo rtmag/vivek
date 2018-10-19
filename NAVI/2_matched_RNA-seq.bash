@@ -2,7 +2,7 @@
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-01_S10_L002_R1_001.fastq.gz \
+--readFilesIn RNA-01_S10_L002_R1_001.fastq.gz \
 RNA-01_S10_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S10_
@@ -10,7 +10,7 @@ RNA-01_S10_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-02_S11_L002_R1_001.fastq.gz \
+--readFilesIn RNA-02_S11_L002_R1_001.fastq.gz \
 RNA-02_S11_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S11_
@@ -18,7 +18,7 @@ RNA-02_S11_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-03_S4_L001_R1_001.fastq.gz \
+--readFilesIn RNA-03_S4_L001_R1_001.fastq.gz \
 RNA-03_S4_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S4_
@@ -26,7 +26,7 @@ RNA-03_S4_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-04_S7_L001_R1_001.fastq.gz \
+--readFilesIn RNA-04_S7_L001_R1_001.fastq.gz \
 RNA-04_S7_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S7_
@@ -34,7 +34,7 @@ RNA-04_S7_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-05_S8_L001_R1_001.fastq.gz \
+--readFilesIn RNA-05_S8_L001_R1_001.fastq.gz \
 RNA-05_S8_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S8_
@@ -42,7 +42,7 @@ RNA-05_S8_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-06_S16_L002_R1_001.fastq.gz \
+--readFilesIn RNA-06_S16_L002_R1_001.fastq.gz \
 RNA-06_S16_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S16_
@@ -50,7 +50,7 @@ RNA-06_S16_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-07_S9_L001_R1_001.fastq.gz \
+--readFilesIn RNA-07_S9_L001_R1_001.fastq.gz \
 RNA-07_S9_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S9_
@@ -58,7 +58,7 @@ RNA-07_S9_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-08_S17_L002_R1_001.fastq.gz \
+--readFilesIn RNA-08_S17_L002_R1_001.fastq.gz \
 RNA-08_S17_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S17_
@@ -66,7 +66,7 @@ RNA-08_S17_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-09_S13_L002_R1_001.fastq.gz \
+--readFilesIn RNA-09_S13_L002_R1_001.fastq.gz \
 RNA-09_S13_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S13_
@@ -74,7 +74,7 @@ RNA-09_S13_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-11_S6_L001_R1_001.fastq.gz \
+--readFilesIn RNA-11_S6_L001_R1_001.fastq.gz \
 RNA-11_S6_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S6_
@@ -82,7 +82,7 @@ RNA-11_S6_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-12_S5_L001_R1_001.fastq.gz \
+--readFilesIn RNA-12_S5_L001_R1_001.fastq.gz \
 RNA-12_S5_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S5_
@@ -90,7 +90,7 @@ RNA-12_S5_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-13_S1_L001_R1_001.fastq.gz \
+--readFilesIn RNA-13_S1_L001_R1_001.fastq.gz \
 RNA-13_S1_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S1_
@@ -98,7 +98,7 @@ RNA-13_S1_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-14_S2_L001_R1_001.fastq.gz \
+--readFilesIn RNA-14_S2_L001_R1_001.fastq.gz \
 RNA-14_S2_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S2_
@@ -106,7 +106,7 @@ RNA-14_S2_L001_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-15_S14_L002_R1_001.fastq.gz \
+--readFilesIn RNA-15_S14_L002_R1_001.fastq.gz \
 RNA-15_S14_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S14_
@@ -114,7 +114,7 @@ RNA-15_S14_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-16_S15_L002_R1_001.fastq.gz \
+--readFilesIn RNA-16_S15_L002_R1_001.fastq.gz \
 RNA-16_S15_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S15_
@@ -122,7 +122,7 @@ RNA-16_S15_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-18_S12_L002_R1_001.fastq.gz \
+--readFilesIn RNA-18_S12_L002_R1_001.fastq.gz \
 RNA-18_S12_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S12_
@@ -130,7 +130,7 @@ RNA-18_S12_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-21_S18_L002_R1_001.fastq.gz \
+--readFilesIn RNA-21_S18_L002_R1_001.fastq.gz \
 RNA-21_S18_L002_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S18_
@@ -138,7 +138,7 @@ RNA-21_S18_L002_R2_001.fastq.gz \
 STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --readFilesCommand zcat \
 --runThreadN 40 \
-RNA-22_S3_L001_R1_001.fastq.gz \
+--readFilesIn RNA-22_S3_L001_R1_001.fastq.gz \
 RNA-22_S3_L001_R2_001.fastq.gz \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S3_
