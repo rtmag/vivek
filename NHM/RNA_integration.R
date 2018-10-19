@@ -31,12 +31,16 @@ dev.off()
 ########################################################################
 ########################################################################
 ########################################################################
-countData = cbind(NHM,BAPOMA,BAPOMA,BAPOMA)
+countData = cbind(NHM,BAPOMA,BAPOMA)
+
+colnames(countData) = make.names(colnames(countData),unique=T)
+
 
 design<-data.frame(group=c("BRAF","BRAF","BRAF",
                 "BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A",
                 "CDKN2A","CDKN2A","CDKN2A",
                 "NHM","NHM","NHM",
+              "MS","MS","MS","MS","MS","MS",
               "MS","MS","MS","MS","MS","MS",
               "MS","MS","MS","MS","MS","MS",
               "MS","MS","MS","MS","MS","MS"
