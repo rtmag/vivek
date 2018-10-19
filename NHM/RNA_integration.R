@@ -27,4 +27,30 @@ dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 pdf("Diagnostic_design_pca.pdf")
 plotPCA(dLRT_vsd,ntop=60000,intgroup=c('group'))
 dev.off()
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+countData = cbind(NHM,BAPOMA,BAPOMA,BAPOMA)
+
+design<-data.frame(group=c("BRAF","BRAF","BRAF",
+                "BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A",
+                "CDKN2A","CDKN2A","CDKN2A",
+                "NHM","NHM","NHM",
+              "MS","MS","MS","MS","MS","MS",
+              "MS","MS","MS","MS","MS","MS",
+              "MS","MS","MS","MS","MS","MS"
+               ) )
+
+dds <- DESeqDataSetFromMatrix(
+       countData = countData,
+       colData = design,
+       design = ~ group)
+
+dLRT <- DESeq(dds, test="LRT", reduced=~1)
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+
+pdf("Diagnostic_design_pca_NHM_MATCHNEVI.pdf")
+plotPCA(dLRT_vsd,ntop=60000,intgroup=c('group'))
+dev.off()
 ####
