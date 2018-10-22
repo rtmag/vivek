@@ -46,4 +46,25 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Enhancer" --colorMa
 -m ENHANCER_STRONG.mat \
  --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
 -out ENHANCER_STRONG.pdf
+#########################################################################################################################
+cat NHM_only_E3.bed > ENHANCER_STRONG_only.bed
+echo "#NHM only" >> ENHANCER_STRONG_only.bed
+cat BRAF_only_E3.bed >> ENHANCER_STRONG_only.bed
+echo "#BRAF only" >> ENHANCER_STRONG_only.bed
+cat CD_only_E3.bed >> ENHANCER_STRONG_only.bed
+echo "#CD only" >> ENHANCER_STRONG_only.bed
+#
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+-R ENHANCER_STRONG_only.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ENHANCER_STRONG_only.mat
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Enhancer" --colorMap Blues \
+-m ENHANCER_STRONG_only.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+-out ENHANCER_STRONG_only.pdf
 
