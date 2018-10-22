@@ -14,9 +14,9 @@ bam.files <- c('/root/vivek/chip-seq/bam/NHM_H3K27ac_rmdup.bam',
 fc_SE <- featureCounts(bam.files,annot.ext=ann,isPairedEnd=TRUE,nthreads=60)
 
 countData=fc_SE$counts
-colnames(x) = c("NHM","BRAF","CDKN2A","CB")
+colnames(countData) = c("NHM","BRAF","CDKN2A","CB")
 
-saveRDS(x,"E3_enhancer_counts.rds")
+saveRDS(countData,"E3_enhancer_counts.rds")
 ################################################################################
 countData=readRDS("E3_enhancer_counts.rds")
 options(scipen=999)
