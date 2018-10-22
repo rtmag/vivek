@@ -34,3 +34,11 @@ dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
 dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dLRT_res = results(dLRT)
 vsd = assay(dLRT_vsd)
+
+pdf("enhancer_pca.pdf")
+plotPCA(dLRT_vsd,ntop=150000,intgroup=c('group'))
+dev.off()
+################################################################################
+library(qvalue)
+qvalue(dLRT_res$pvalue)
+################################################################################
