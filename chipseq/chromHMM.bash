@@ -69,3 +69,16 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
 -out poised_kmeans_zmet_3k.pdf --outFileSortedRegions poised_kmeans_zmet_5k.bed
 #
+##################################################################################
+##################################################################################
+java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar BinarizeBam \
+/root/resources/hg38.chrom.sizes \
+/root/vivek/chip-seq/bam/ \
+vivek_nhm_full_input.matrix.txt \
+binarizedBAM
+
+java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 
+/root/vivek/chip-seq/chromHMM/binarizedBAM \
+/root/vivek/chip-seq/chromHMM/LearnModel \
+13 \
+hg38
