@@ -4,7 +4,7 @@ java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar BinarizeBam \
 vivek_nhm_input_matrix.txt \
 binarizedBAM
 
-java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 
+java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 \
 /root/vivek/chip-seq/chromHMM/binarizedBAM \
 /root/vivek/chip-seq/chromHMM/LearnModel \
 14 \
@@ -77,7 +77,7 @@ java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar BinarizeBam \
 vivek_nhm_full_input.matrix.txt \
 binarizedBAM_full
 
-java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 
+java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 \
 /root/vivek/chip-seq/chromHMM/binarizedBAM_full \
 /root/vivek/chip-seq/chromHMM/LearnModel_full \
 13 \
