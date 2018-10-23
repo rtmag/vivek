@@ -75,10 +75,13 @@ java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar BinarizeBam \
 /root/resources/hg38.chrom.sizes \
 /root/vivek/chip-seq/bam/ \
 vivek_nhm_full_input.matrix.txt \
-binarizedBAM
+binarizedBAM_full
 
 java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 
-/root/vivek/chip-seq/chromHMM/binarizedBAM \
-/root/vivek/chip-seq/chromHMM/LearnModel \
+/root/vivek/chip-seq/chromHMM/binarizedBAM_full \
+/root/vivek/chip-seq/chromHMM/LearnModel_full \
 13 \
 hg38
+######
+#
+#
