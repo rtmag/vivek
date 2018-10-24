@@ -97,3 +97,15 @@ java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 \
 hg38
 #
 #
+java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 \
+/root/vivek/chip-seq/chromHMM/binarizedBAM_full \
+/root/vivek/chip-seq/chromHMM/LearnModel_full_10 \
+10 \
+hg38
+#
+java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 \
+/root/vivek/chip-seq/chromHMM/binarizedBAM_full \
+/root/vivek/chip-seq/chromHMM/LearnModel_full_9 \
+9 \
+hg38
+##
