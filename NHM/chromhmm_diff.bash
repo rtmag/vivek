@@ -70,7 +70,7 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Enhancer" --colorMa
 #########################################################################################################################
 cat NHM_signal_filtered.bed > ENHANCER_Signal_only.bed
 echo "#NHM" >> ENHANCER_Signal_only.bed
-cat BRAF_signal_filtered.bed > ENHANCER_Signal_only.bed
+cat BRAF_signal_filtered.bed >> ENHANCER_Signal_only.bed
 echo "#BRAF" >> ENHANCER_Signal_only.bed
 cat CDKN2A_signal_filtered.bed >> ENHANCER_Signal_only.bed
 echo "#CDKN2A" >> ENHANCER_Signal_only.bed
@@ -84,9 +84,9 @@ computeMatrix reference-point \
 /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
 /root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
 -R ENHANCER_Signal_only.bed --referencePoint center \
---sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out ENHANCER_Signal_only.mat
+--sortRegions descend -bs 20 -a 10000 -b 10000 -p max -out ENHANCER_Signal_only.mat
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Enhancer" --colorMap Blues \
--m ENHANCER_Signal_only.mat \
+-m ENHANCER_Signal_only.mat --whatToShow "heatmap and colorbar" --zMax 1.7 --zMin .25 \
  --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
 -out ENHANCER_Signal_only.pdf
