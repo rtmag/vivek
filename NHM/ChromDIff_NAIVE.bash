@@ -31,6 +31,7 @@ bedtools intersect -a CDKN2A_enhancers.bed -b ../macs2/CDKN2A_H3K27me3_40.broadP
 
 bedtools intersect -a BC_enhancers.bed -b ../macs2/CDKN2A+BRAF_H3K27me3_40.broadPeak ../macs2/CDKN2A+BRAF_H3K4me3_40.broadPeak ../macs2/CDKN2A+BRAF_H3K9me3_40.broadPeak ~/resources/hg38.blacklist.bed -v > BC_enhancers_filtered.bed
 
+cat NHM_enhancer_filtered.bed BRAF_enhancers_filtered.bed CDKN2A_enhancers_filtered.bed BC_enhancers_filtered.bed > merged.enhancer_filtered.bed
 #############################################
 cat NHM_enhancer_filtered.bed > ENHANCER_STRONG_only.bed
 echo "#NHM" >> ENHANCER_STRONG_only.bed
