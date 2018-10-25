@@ -108,4 +108,32 @@ java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar LearnModel -p 0 \
 /root/vivek/chip-seq/chromHMM/LearnModel_full_9 \
 9 \
 hg38
-##
+########################################################################
+grep -w "1" Poised_expression_clustered|cut -f1|grep -wf - /root/resources/hg38_tss.bed > poised_expression.bed
+echo "#RED" >> poised_expression.bed
+grep -w "2" Poised_expression_clustered|cut -f1|grep -wf - /root/resources/hg38_tss.bed >> poised_expression.bed
+echo "#BLUE" >> poised_expression.bed
+grep -w "3" Poised_expression_clustered|cut -f1|grep -wf - /root/resources/hg38_tss.bed >> poised_expression.bed
+echo "#GREEN" >> poised_expression.bed
+grep -w "4" Poised_expression_clustered|cut -f1|grep -wf - /root/resources/hg38_tss.bed >> poised_expression.bed
+echo "#ORANGE" >> poised_expression.bed
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K4me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K27me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
+-R poised_expression.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out poised_expression.mat
+
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues Reds Blues Reds Blues Reds Blues Reds \
+-m poised_expression.mat --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+--samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 B+C" "H3K27me3 B+C" \
+-out poised_expression.pdf 
+#
