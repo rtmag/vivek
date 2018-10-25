@@ -52,6 +52,6 @@ colnames(avg_rpkm)=c("N1","N2","N3","N4")
 avg_rpkm=data.frame(gene_id=rownames(avg_rpkm),avg_rpkm)
 
 saveRDS(avg_rpkm,"NHM_avg_rpkm.rds")
-write.table(avg_rpkm, "NHM_avg_rpkm.txt",sep="\t",col.names=T,row.names=F,quote=F,quote=F)
+write.table(avg_rpkm, "NHM_avg_rpkm.txt",sep="\t",col.names=T,row.names=F,quote=F)
 write.csv(avg_rpkm, "NHM_avg_rpkm.csv")
 
