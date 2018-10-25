@@ -63,9 +63,18 @@ max.sec = function(x){n <- length(x); return(sort(x,partial=n-1)[n-1]) }
 res=apply(countData,1,function(x) max(x)/max.sec(x))
 en_sp=apply(countData,1,which.max)
 en_sp_ch = en_sp[which(res>2)]
-names(which(en_sp_ch==1))
           
 write.table(gsub("_!_","\t",names(which(en_sp_ch==1)),perl=T),"NHM_signal_filtered.bed",sep="\t",quote=F,row.name=F,col.name=F)
 write.table(gsub("_!_","\t",names(which(en_sp_ch==2)),perl=T),"BRAF_signal_filtered.bed",sep="\t",quote=F,row.name=F,col.name=F)
 write.table(gsub("_!_","\t",names(which(en_sp_ch==3)),perl=T),"CDKN2A_signal_filtered.bed",sep="\t",quote=F,row.name=F,col.name=F)
 write.table(gsub("_!_","\t",names(which(en_sp_ch==4)),perl=T),"CB_signal_filtered.bed",sep="\t",quote=F,row.name=F,col.name=F)
+##
+en_sp_ch = en_sp[which(res>3)]
+          
+write.table(gsub("_!_","\t",names(which(en_sp_ch==1)),perl=T),"NHM_signal_filtered_3x.bed",sep="\t",quote=F,row.name=F,col.name=F)
+write.table(gsub("_!_","\t",names(which(en_sp_ch==2)),perl=T),"BRAF_signal_filtered_3x.bed",sep="\t",quote=F,row.name=F,col.name=F)
+write.table(gsub("_!_","\t",names(which(en_sp_ch==3)),perl=T),"CDKN2A_signal_filtered_3x.bed",sep="\t",quote=F,row.name=F,col.name=F)
+write.table(gsub("_!_","\t",names(which(en_sp_ch==4)),perl=T),"CB_signal_filtered_3x.bed",sep="\t",quote=F,row.name=F,col.name=F)
+##
+          
+          
