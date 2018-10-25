@@ -76,5 +76,13 @@ write.table(gsub("_!_","\t",names(which(en_sp_ch==2)),perl=T),"BRAF_signal_filte
 write.table(gsub("_!_","\t",names(which(en_sp_ch==3)),perl=T),"CDKN2A_signal_filtered_3x.bed",sep="\t",quote=F,row.name=F,col.name=F)
 write.table(gsub("_!_","\t",names(which(en_sp_ch==4)),perl=T),"CB_signal_filtered_3x.bed",sep="\t",quote=F,row.name=F,col.name=F)
 ##
-          
-          
+################################################################################
+res=apply(countData,1,function(x) max(x)/min(x))
+en_sp=apply(countData,1,which.max)
+en_sp_ch = en_sp[which(res>2)]
+
+write.table(gsub("_!_","\t",names(which(en_sp_ch==1)),perl=T),"NHM_signal_filtered_max_min.bed",sep="\t",quote=F,row.name=F,col.name=F)
+write.table(gsub("_!_","\t",names(which(en_sp_ch==2)),perl=T),"BRAF_signal_filtered_max_min.bed",sep="\t",quote=F,row.name=F,col.name=F)
+write.table(gsub("_!_","\t",names(which(en_sp_ch==3)),perl=T),"CDKN2A_signal_filtered_max_min.bed",sep="\t",quote=F,row.name=F,col.name=F)
+write.table(gsub("_!_","\t",names(which(en_sp_ch==4)),perl=T),"CB_signal_filtered_max_min.bed",sep="\t",quote=F,row.name=F,col.name=F)
+##
