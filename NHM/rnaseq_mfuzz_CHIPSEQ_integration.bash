@@ -336,3 +336,183 @@ computeMatrix reference-point \
 -R ct_9_TSS.bed --referencePoint center \
 --sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out H3K9me3_C9.mat
 ################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C1.mat \
+-out H3K27ac_C1.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C1.mat \
+-out H3K4me3_C1.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C1.mat \
+-out H3K27me3_C1.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C1.mat \
+-out H3K9me3_C1.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C2.mat \
+-out H3K27ac_C2.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C2.mat \
+-out H3K4me3_C2.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C2.mat \
+-out H3K27me3_C2.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C2.mat \
+-out H3K9me3_C2.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C3.mat \
+-out H3K27ac_C3.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C3.mat \
+-out H3K4me3_C3.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C3.mat \
+-out H3K27me3_C3.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C3.mat \
+-out H3K9me3_C3.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C4.mat \
+-out H3K27ac_C4.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C4.mat \
+-out H3K4me3_C4.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C4.mat \
+-out H3K27me3_C4.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C4.mat \
+-out H3K9me3_C4.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C5.mat \
+-out H3K27ac_C5.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C5.mat \
+-out H3K4me3_C5.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C5.mat \
+-out H3K27me3_C5.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C5.mat \
+-out H3K9me3_C5.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C6.mat \
+-out H3K27ac_C6.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C6.mat \
+-out H3K4me3_C6.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C6.mat \
+-out H3K27me3_C6.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C6.mat \
+-out H3K9me3_C6.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C7.mat \
+-out H3K27ac_C7.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C7.mat \
+-out H3K4me3_C7.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C7.mat \
+-out H3K27me3_C7.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C7.mat \
+-out H3K9me3_C7.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C8.mat \
+-out H3K27ac_C8.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C8.mat \
+-out H3K4me3_C8.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C8.mat \
+-out H3K27me3_C8.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C8.mat \
+-out H3K9me3_C8.pdf
+################################################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues --regionsLabel "" \
+ --samplesLabel "H3K27ac NHM" "H3K27ac BRAF" "H3K27ac CDKN2A" "H3K27ac B+C" \
+ -m H3K27ac_C9.mat \
+-out H3K27ac_C9.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens --regionsLabel "" \
+ --samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_C9.mat \
+-out H3K4me3_C9.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges --regionsLabel "" \
+ --samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_C9.mat \
+-out H3K27me3_C9.pdf
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Reds --regionsLabel "" \
+ --samplesLabel "H3K9me3 NHM" "H3K9me3 BRAF" "H3K9me3 CDKN2A" "H3K9me3 B+C" \
+-m H3K9me3_C9.mat \
+-out H3K9me3_C9.pdf
+################################################################################################################################
