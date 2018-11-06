@@ -69,6 +69,11 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
 -out poised_kmeans_zmet_3k.pdf --outFileSortedRegions poised_kmeans_zmet_5k.bed
 #
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blues Reds Blues Reds Blues Reds Blues Reds \
+-m poised_5k.mat --kmeans 4 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+--samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
+-out poised_kmeans_zmet_3k.pdf --outFileSortedRegions poised_kmeans_zmet_5k.bed
+#
 ##################################################################################
 ##################################################################################
 java -mx22000M -jar /root/myPrograms/ChromHMM/ChromHMM.jar BinarizeBam \
@@ -137,3 +142,65 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Blu
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 B+C" "H3K27me3 B+C" \
 -out poised_expression.pdf 
 #
+
+plotProfile  \
+--samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 B+C" "H3K27me3 B+C" \
+-m poised_5k.mat --yMin 0 0 0 0 0 0 0 0 --yMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+--colors "#ffb3ba" "#ff6961" "#bae1ff" "#aec6cf" "#77dd77" "#baffc9" "#000000" "#000000" \
+              -out poised_5k_onlyProfile.pdf --perGroup
+
+########################################################################
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K4me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw \
+-R poised_kmeans_zmet_5k.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out H3K4me3_poised_5k.mat
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
+-R poised_kmeans_zmet_5k.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out H3K27me3_poised_5k.mat
+
+########################
+plotProfile  \
+--samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K4me3_poised_5k_onlyProfile.pdf --perGroup
+              
+plotProfile  \
+--samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K27me3_poised_5k_onlyProfile.pdf --perGroup
+
+plotProfile  \
+--samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K4me3_poised_5k_onlyProfile.svg --perGroup --plotFileFormat "svg"
+              
+plotProfile  \
+--samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K27me3_poised_5k_onlyProfile.svg --perGroup --plotFileFormat "svg"
+
+plotProfile  \
+--samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K4me3_poised_5k_onlyProfile_individual.pdf
+              
+plotProfile  \
+--samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K27me3_poised_5k_onlyProfile_individual.pdf
