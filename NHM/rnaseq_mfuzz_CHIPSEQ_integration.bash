@@ -516,3 +516,13 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Red
 -m H3K9me3_C9.mat \
 -out H3K9me3_C9.pdf
 ################################################################################################################################
+pdfjam H3K27ac_C1.pdf H3K4me3_C1.pdf H3K27me3_C1.pdf H3K9me3_C1.pdf --nup 4x1 --landscape -o ./PDFjoin/C1_chipseq.pdf
+pdfjam H3K27ac_C2.pdf H3K4me3_C2.pdf H3K27me3_C2.pdf H3K9me3_C2.pdf --nup 4x1 --landscape -o ./PDFjoin/C2_chipseq.pdf
+pdfjam H3K27ac_C3.pdf H3K4me3_C3.pdf H3K27me3_C3.pdf H3K9me3_C3.pdf --nup 4x1 --landscape -o ./PDFjoin/C3_chipseq.pdf
+pdfjam H3K27ac_C4.pdf H3K4me3_C4.pdf H3K27me3_C4.pdf H3K9me3_C4.pdf --nup 4x1 --landscape -o ./PDFjoin/C4_chipseq.pdf
+pdfjam H3K27ac_C5.pdf H3K4me3_C5.pdf H3K27me3_C5.pdf H3K9me3_C5.pdf --nup 4x1 --landscape -o ./PDFjoin/C5_chipseq.pdf
+pdfjam H3K27ac_C6.pdf H3K4me3_C6.pdf H3K27me3_C6.pdf H3K9me3_C6.pdf --nup 4x1 --landscape -o ./PDFjoin/C6_chipseq.pdf
+pdfjam H3K27ac_C7.pdf H3K4me3_C7.pdf H3K27me3_C7.pdf H3K9me3_C7.pdf --nup 4x1 --landscape -o ./PDFjoin/C7_chipseq.pdf
+pdfjam H3K27ac_C8.pdf H3K4me3_C8.pdf H3K27me3_C8.pdf H3K9me3_C8.pdf --nup 4x1 --landscape -o ./PDFjoin/C8_chipseq.pdf
+pdfjam H3K27ac_C9.pdf H3K4me3_C9.pdf H3K27me3_C9.pdf H3K9me3_C9.pdf --nup 4x1 --landscape -o ./PDFjoin/C9_chipseq.pdf
+
