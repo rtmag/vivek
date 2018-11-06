@@ -204,3 +204,15 @@ plotProfile  \
 -m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
 --colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
 -out H3K27me3_poised_5k_onlyProfile_individual.pdf
+
+plotProfile  \
+--samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K4me3_poised_5k_onlyProfile_individual.svg --plotFileFormat "svg"
+              
+plotProfile  \
+--samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K27me3_poised_5k_onlyProfile_individual.svg --plotFileFormat "svg"
