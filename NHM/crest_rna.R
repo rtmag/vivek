@@ -25,6 +25,9 @@ nthreads=55,
 GTF.attrType="gene_name"
 )
 
+saveRDS(data,"NHM_crest_featureCounts.rds")
+
+
 dat=data[[1]]
 colnames(dat)=c("NHM_1","NHM_2","NHM_3","BRAF_1","BRAF_2","BRAF_3",
                  "CDKN2A_1","CDKN2A_2","CDKN2A_3","B_C_1","B_C_2","B_C_3",
