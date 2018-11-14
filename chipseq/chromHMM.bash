@@ -216,3 +216,23 @@ plotProfile  \
 -m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 --plotType "se" \
 --colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
 -out H3K27me3_poised_5k_onlyProfile_individual.svg --plotFileFormat "svg"
+
+####################################
+plotProfile  \
+--samplesLabel "H3K4me3 NHM" "H3K4me3 BRAF" "H3K4me3 CDKN2A" "H3K4me3 B+C" \
+-m H3K4me3_poised_5k.mat --plotWidth 5 --plotHeight 5 \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K4me3_poised_5k_onlyProfile_individual_test.pdf --outFileNameData H3K4me3_poised_5k_onlyProfile_individual.tab
+
+plotProfile  \
+--samplesLabel "H3K27me3 NHM" "H3K27me3 BRAF" "H3K27me3 CDKN2A" "H3K27me3 B+C" \
+-m H3K27me3_poised_5k.mat --plotWidth 5 --plotHeight 5 \
+--colors "#d61d2e" "#0d9929" "#2c2fe0" "#000000" \
+-out H3K27me3_poised_5k_onlyProfile_individual.pdf --outFileNameData H3K27me3_poised_5k_onlyProfile_individual.tab
+
+more H3K4me3_poised_5k_onlyProfile_individual.tab|perl -pe 's/\t/\,/g' > H3K4me3_poised_5k_onlyProfile_individual.csv
+
+more H3K27me3_poised_5k_onlyProfile_individual.tab|perl -pe 's/\t/\,/g' > H3K27me3_poised_5k_onlyProfile_individual.csv
+
+
+
