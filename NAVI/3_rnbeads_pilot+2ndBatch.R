@@ -22,7 +22,7 @@ write.csv(pre_sample_sheet,"rnbeads_sample_sheet.csv",row.names=F)
 ## Options and Parameters ##
 
 #idat files
-idat.dir <- file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/idat")
+idat.dir <- file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/idats")
 
 # Sample annotation
 sample.annotation <- file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/rnbeads_sample_sheet.csv")
@@ -50,7 +50,7 @@ rnb.run.analysis(dir.reports=report.dir, sample.sheet=sample.annotation, data.di
 ###############################################################################################################################
 ## preprocessing
 #idat files
-idat.dir <- file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/idat_Raw_Data")
+idat.dir <- file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/idats")
 
 # Sample annotation
 sample.annotation <- file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/rnbeads_sample_sheet.csv")
