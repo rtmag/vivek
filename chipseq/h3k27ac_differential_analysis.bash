@@ -94,6 +94,34 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" --colorMap
 -m CDKN2A+BRAF_vs_NHM_H3K27me3.mat \
  --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
 -out CDKN2A+BRAF_vs_NHM_H3K27me3.pdf 
+# ALL
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/NHM_H3K4me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K9me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K9me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K9me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K9me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K27me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
+-R CDKN2A+BRAF_vs_NHM_H3K27ac.bed \
+--sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out CDKN2A+BRAF_vs_NHM_all.mat --referencePoint center
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" \
+--colorMap Blues Blues Blues Blues Greens Greens Greens Greens Reds Reds Reds Reds Oranges Oranges Oranges Oranges \
+-m CDKN2A+BRAF_vs_NHM_all.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+-out CDKN2A+BRAF_vs_NHM_all.pdf 
 ############################################################################################################################
 # B v N
 
