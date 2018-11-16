@@ -165,3 +165,5 @@ deseq_analysis(countData, vsd, A="BRAF", A_ix=1:3, B="BRAF_CDKN2A", B_ix=4:6)
 deseq_analysis(countData, vsd, A="CDKN2A", A_ix=7:9, B="BRAF_CDKN2A", B_ix=4:6)
 
 ###############
+# 6) BRAF VS CDKN2A
+deseq_analysis(countData, vsd, A="BRAF", A_ix=1:3, B="CDKN2A", B_ix=7:9)
