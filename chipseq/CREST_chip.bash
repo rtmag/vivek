@@ -4,7 +4,6 @@
 trim_galore --illumina -q 20 --fastqc -o ./ SRR191355.fastq 
 
 STAR --genomeDir /root/resources/hg38_noanno/ \
---readFilesCommand zcat \
 --runThreadN 60 \
 --alignIntronMax 1 \
 --alignEndsType EndToEnd \
