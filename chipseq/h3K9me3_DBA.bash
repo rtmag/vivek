@@ -35,3 +35,6 @@ diffReps.pl --treatment /root/vivek/chip-seq/bed/BRAF_H3K9me3.bed \
 --meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/H3K9me3_diff/B_VS_C_H3K9me3_50pro_1000w --noanno --nohs &
 
 ############################################################################################################################
+#BC - N
+grep "Down" BC_VS_N_H3K9me3_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>200 || $8>200){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_N_H3K9me3_50pro_1000w_down.bed
+grep "Up" BC_VS_N_H3K9me3_50pro_1000w |awk -F"\t" '{if($14<0.05){if($7>200 || $8>200){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_N_H3K9me3_50pro_1000w_up.bed
