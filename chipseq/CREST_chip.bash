@@ -8,7 +8,7 @@ STAR --genomeDir /root/resources/hg38_noanno/ \
 --runThreadN 60 \
 --alignIntronMax 1 \
 --alignEndsType EndToEnd \
---readFilesIn SRR191355.fastq \
+--readFilesIn SRR191355_trimmed.fq \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix crest_
 
