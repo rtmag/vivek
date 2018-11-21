@@ -245,3 +245,24 @@ write.table(rownames(dLRT_res[which(apply(vsd[,10:13],1,sd)<.2 & dLRT_res$log2Fo
                               "MedHighSim_SD2.txt", quote=F,sep="\t",col.names=F,row.names=F)
 write.table(rownames(dLRT_res[which(apply(vsd[,10:13],1,sd)<.1 & dLRT_res$log2FoldChange>1 & dLRT_res$padj<0.05),]),
                               "HighSim_SD3.txt", quote=F,sep="\t",col.names=F,row.names=F)
+###
+gmt = read.table("geneset_neural_crest_vivek.txt",stringsAsFactors=F)
+
+sig_vsd = vsd[rownames(vsd) %in% gmt[,1],]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","CDKN2A","CDKN2A","CDKN2A",
+                      "BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A","CREST")
+
+  heatmap.2(sig_vsd/rowSums(sig_vsd),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="CREST Genes",key.title="Gene expression",cexCol=.65,cexRow=.5)
+#
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="CREST Genes",key.title="Gene expression",cexCol=.65,cexRow=.5)
+#
+tempVSD = sig_vsd
+tempVSD[,1:12] = sig_vsd[,1:12]/rowSums(sig_vsd[,1:12])
+
+  heatmap.2((tempVSD),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="CREST Genes",key.title="Gene expression",cexCol=.65,cexRow=.5)
+
+
