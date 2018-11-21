@@ -1,7 +1,7 @@
 
 ~/myPrograms/sra-tools/sratoolkit.2.9.0-centos_linux64/bin/fastq-dump --split-files -Z SRR191355 > SRR191355.fastq 
 
-trim_galore --illumina -q 20 --fastqc -o /root/vivek/chip-seq/trimmed/ SRR191355.fastq 
+trim_galore --illumina -q 20 --fastqc -o ./ SRR191355.fastq 
 
 STAR --genomeDir /root/resources/hg38_noanno/ \
 --readFilesCommand zcat \
