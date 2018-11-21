@@ -20,3 +20,6 @@ M=crest_rmdup.mfile
 samtools index crest_rmdup.bam 
 
 bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b crest_rmdup.bam -o crest.bw
+#####
+###
+#
