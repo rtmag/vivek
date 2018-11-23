@@ -26,23 +26,22 @@ multiBigwigSummary bins -b \
 /root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
 /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
 crest.bw \
--p max -o H3K27ac_summary.npz
+-p max -bs 1000 -o H3K27ac_summary.npz
 
 plotPCA -in H3K27ac_summary.npz \
 -o PCA_H3K27ac_summary.pdf \
 -T ""
 
-plotCorrelation \ 
--in H3K27ac_summary.npz \ 
---corMethod spearman --skipZeros \ 
---plotTitle "" \ 
---whatToPlot heatmap --colorMap RdYlBu --plotNumbers \ 
--o heatmap_SpearmanCorr_H3K27ac_summary.pdf 
+plotCorrelation -in H3K27ac_summary.npz \
+--corMethod spearman --skipZeros \
+--plotTitle "" \
+--whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
+-o heatmap_SpearmanCorr_H3K27ac_summary.pdf
 
-plotCorrelation \ 
--in H3K27ac_summary.npz \ 
---corMethod pearson --skipZeros \ 
---plotTitle "" \ 
---whatToPlot heatmap --colorMap RdYlBu --plotNumbers \ 
--o heatmap_pearsonCorr_H3K27ac_summary.pdf 
+plotCorrelation \
+-in H3K27ac_summary.npz \
+--corMethod pearson --skipZeros \
+--plotTitle "" \
+--whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
+-o heatmap_pearsonCorr_H3K27ac_summary.pdf
 ###
