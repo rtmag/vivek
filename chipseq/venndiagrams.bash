@@ -20,22 +20,22 @@ multiIntersectBed -i NHM_H3K27ac_40_noTSS.bed BRAF_H3K27ac_40_noTSS.bed CDKN2A_H
 -names NHM NB NC NBC -header > multi_H3K27ac_noTSS.bed
 #####################################################################################################################################
 library(VennDiagram)
-
-###TF only 
-#read file
-multi_bed<-read.table("multiIntersect_output_TF5.bed",header=T,stringsAsFactors=F)
-
+multi_bed<-read.table("multi_H3K27ac.bed",header=T,stringsAsFactors=F)
 #formating
-list.multi<-list(CEBPb=which(multi_bed$CEBPb==1),JUND=which(multi_bed$JUND==1))
-
-#set venn;  i'll explain the parameters:
-#Fill Vector with colors,
-#alpha is how transparent do you want the colors
-#cex the size of the numbers,
-#lty the type of line 2 is dashed, 1 is full. other numbers are funny :P
-#cat.cex is the TF name size
-#margins is to play with the margins, if not specified the plot might get truncated
-vp <- venn.diagram(list.multi,fill=c("red", "green"), alpha = .4, 
-cex = .8,lty =2,cat.cex=.7, filename = NULL,margin=.1)
+list.multi<-list(NHM=which(multi_bed$NHM==1),NB=which(multi_bed$NB==1),NC=which(multi_bed$NC==1),NBC=which(multi_bed$NBC==1))
+vp <- venn.diagram(list.multi,fill=c("red", "green","blue","orange"), alpha = .3, 
+cex = 1,lty =2,cat.cex=1, filename = NULL,margin=.1,col=NA)
 #plotting
+pdf("multi_H3K27ac.pdf")
 grid.draw(vp)
+dev.off()
+
+multi_bed<-read.table("multi_H3K27ac_noTSS.bed",header=T,stringsAsFactors=F)
+#formating
+list.multi<-list(NHM=which(multi_bed$NHM==1),NB=which(multi_bed$NB==1),NC=which(multi_bed$NC==1),NBC=which(multi_bed$NBC==1))
+vp <- venn.diagram(list.multi,fill=c("red", "green","blue","orange"), alpha = .3, 
+cex = 1,lty =2,cat.cex=1, filename = NULL,margin=.1,col=NA)
+#plotting
+pdf("multi_H3K27ac_noTSS.pdf")
+grid.draw(vp)
+dev.off()
