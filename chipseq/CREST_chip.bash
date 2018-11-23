@@ -25,7 +25,7 @@ multiBigwigSummary bins -b \
 /root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
 /root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
 /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
-crest.bw\
+crest.bw \
 -p max -o H3K27ac_summary.npz
 
 plotPCA -in H3K27ac_summary.npz \
