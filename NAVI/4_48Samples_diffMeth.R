@@ -35,4 +35,6 @@ write.csv(dmc_table,"melanoma_vs_nevi_DMC_table.csv")
 ############################################################################################
 rnb.options("differential.variability"=TRUE)
 diff.var <- rnb.execute.diffVar(rnb.set,cmp.cols,region.types="sites")
-
+comparison <- get.comparisons(diff.var)[1]
+tab.sites <- get.table(diff.var,comparison,"sites",return.data.frame=TRUE)
+                                        
