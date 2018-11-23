@@ -29,7 +29,7 @@ crest.bw \
 -p max -o H3K27ac_summary.npz
 
 plotPCA -in H3K27ac_summary.npz \
--o PCA_H3K27ac_summary.png \
+-o PCA_H3K27ac_summary.pdf \
 -T ""
 
 plotCorrelation \ 
@@ -37,11 +37,12 @@ plotCorrelation \
 --corMethod spearman --skipZeros \ 
 --plotTitle "" \ 
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \ 
--o heatmap_SpearmanCorr_H3K27ac_summary.png 
+-o heatmap_SpearmanCorr_H3K27ac_summary.pdf 
 
 plotCorrelation \ 
 -in H3K27ac_summary.npz \ 
 --corMethod pearson --skipZeros \ 
 --plotTitle "" \ 
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \ 
--o heatmap_pearsonCorr_H3K27ac_summary.png 
+-o heatmap_pearsonCorr_H3K27ac_summary.pdf 
+###
