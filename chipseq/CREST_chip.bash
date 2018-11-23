@@ -45,3 +45,19 @@ plotCorrelation \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
 -o heatmap_pearsonCorr_H3K27ac_summary.pdf
 ###
+
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/crest/crest.bw \
+-R /root/vivek/chip-seq/diffreps/BRAF_vs_NHM_DIFF_h3k27ac_200_fc1.bed \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out CREST_DIFF_H3K27ac_comparison.mat --referencePoint center
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H3K27ac" --colorMap Blues \
+-m CREST_DIFF_H3K27ac_comparison.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" "CREST" \
+-out CREST_DIFF_H3K27ac_comparison.pdf 
+#######
