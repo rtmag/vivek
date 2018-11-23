@@ -1,0 +1,1 @@
+multiIntersectBed -i 1_CD41+_tr_over_CD41+_untr.bed 1_CD41+_untr_over_CD41+_tr.bed 2_CD41-_tr_over_CD41-_untr.bed 2_CD41-_untr_over_CD41-_tr.bed 3_CD41+_untr_over_CD41-_untr.bed 3_CD41-_untr_over_CD41+_untr.bed 4_CD41+_tr_over_CD41-_tr.bed 4_CD41-_tr_over_CD41+_tr.bed|grep -P '\t2\t' |cut -f5|sort|uniq -c|sort -n
