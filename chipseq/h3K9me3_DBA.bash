@@ -66,3 +66,9 @@ diffReps.pl --treatment /root/vivek/chip-seq/bed/CDKN2A+BRAF_H3K9me3.bed \
 --control /root/vivek/chip-seq/bed/NHM_H3K9me3.bed --window 5000 --nproc 1 --nsd 2 \
 --meth gt --chrlen ~/resources/hg38.chrom.sizes --mode s --report /root/vivek/chip-seq/H3K9me3_diff/BC_VS_N_H3K9me3_b --noanno --nohs &
 
+grep "Down" BC_VS_N_H3K9me3_b |awk -F"\t" '{if($14<0.05){if($7>200 || $8>200){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_N_H3K9me3_b_down.bed
+grep "Up" BC_VS_N_H3K9me3_b |awk -F"\t" '{if($14<0.05){if($7>200 || $8>200){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_N_H3K9me3_b_up.bed
+
+grep "Down" BC_VS_N_H3K9me3_default |awk -F"\t" '{if($14<0.05){if($7>200 || $8>200){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_N_H3K9me3_default_down.bed
+grep "Up" BC_VS_N_H3K9me3_default |awk -F"\t" '{if($14<0.05){if($7>200 || $8>200){ if(sqrt($12^2)>1){print $0} }} }'|cut -f1,2,3 > BC_VS_N_H3K9me3_default_up.bed
+##############
