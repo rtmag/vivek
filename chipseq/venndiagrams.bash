@@ -1,7 +1,24 @@
+#####################################################################################################################################
+more hg38_tss.bed | awk -F'\t' '$1"\t"$2-500"\t"$3+500"\t"$4"\t"$5"\t"$6'| \
+bedtools intersect -a - -b NHM_10_segments.bed -wa -wb|grep -w "E4"|cut -f4|sort|uniq > NHM_E4_genes.txt
 
+more hg38_tss.bed | awk -F'\t' '$1"\t"$2-500"\t"$3+500"\t"$4"\t"$5"\t"$6'| \
+bedtools intersect -a - -b BRAF_10_segments.bed -wa -wb|grep -w "E4"|cut -f4|sort|uniq > BRAF_E4_genes.txt
 
-multiIntersectBed -i 1_CD41+_tr_over_CD41+_untr.bed 1_CD41+_untr_over_CD41+_tr.bed 2_CD41-_tr_over_CD41-_untr.bed 2_CD41-_untr_over_CD41-_tr.bed 3_CD41+_untr_over_CD41-_untr.bed 3_CD41-_untr_over_CD41+_untr.bed 4_CD41+_tr_over_CD41-_tr.bed 4_CD41-_tr_over_CD41+_tr.bed|grep -P '\t2\t' |cut -f5|sort|uniq -c|sort -n
+more hg38_tss.bed | awk -F'\t' '$1"\t"$2-500"\t"$3+500"\t"$4"\t"$5"\t"$6'| \
+bedtools intersect -a - -b CDKN2A_10_segments.bed -wa -wb|grep -w "E4"|cut -f4|sort|uniq > CDKN2A_E4_genes.txt
 
+more hg38_tss.bed | awk -F'\t' '$1"\t"$2-500"\t"$3+500"\t"$4"\t"$5"\t"$6'| \
+bedtools intersect -a - -b BRAF+CDKN2A_10_segments.bed -wa -wb|grep -w "E4"|cut -f4|sort|uniq > BRAF+CDKN2A_E4_genes.txt
+
+#####################################################################################################################################
+
+multiIntersectBed -i NHM_H3K27ac_40.bed BRAF_H3K27ac_40.bed CDKN2A_H3K27ac_40.bed CDKN2A+BRAF_H3K27ac_40.bed \
+-names NHM NB NC NBC -header > multi_H3K27ac.bed
+
+multiIntersectBed -i NHM_H3K27ac_40_noTSS.bed BRAF_H3K27ac_40_noTSS.bed CDKN2A_H3K27ac_40_noTSS.bed CDKN2A+BRAF_H3K27ac_40_noTSS.bed \
+-names NHM NB NC NBC -header > multi_H3K27ac_noTSS.bed
+#####################################################################################################################################
 library(VennDiagram)
 
 ###TF only 
