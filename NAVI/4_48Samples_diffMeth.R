@@ -117,10 +117,13 @@ for(ix in dim(meth.norm)[1]){
 meth.norm.sig=meth.norm[which(dmc_table$diffmeth.p.adj.fdr<0.005 & abs(dmc_table[,3])>.80),]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
-png("heatmap_FDR5e-3_DIF80_no9_no10.png",width= 3.25,
+meth.norm.sig=meth.norm.centered[which(dmc_table$diffmeth.p.adj.fdr<0.005 & abs(dmc_table[,3])>.80),]
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+
+png("heatmap_FDR5e-3_DIF80_no9_no10_centered.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
-x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+x = heatmap.2(as.matrix(meth.norm.centered),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
