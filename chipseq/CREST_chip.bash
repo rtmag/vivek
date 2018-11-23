@@ -20,5 +20,28 @@ samtools index crest_rmdup.bam
 
 bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b crest_rmdup.bam -o crest.bw
 #####
-###
-#
+multiBigwigSummary bins -b \
+/root/vivek/chip-seq/bw/NHM_H3K27ac.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K27ac.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27ac.bw \
+crest.bw\
+-p max -o H3K27ac_summary.npz
+
+plotPCA -in H3K27ac_summary.npz \
+-o PCA_H3K27ac_summary.png \
+-T ""
+
+plotCorrelation \ 
+-in H3K27ac_summary.npz \ 
+--corMethod spearman --skipZeros \ 
+--plotTitle "" \ 
+--whatToPlot heatmap --colorMap RdYlBu --plotNumbers \ 
+-o heatmap_SpearmanCorr_H3K27ac_summary.png 
+
+plotCorrelation \ 
+-in H3K27ac_summary.npz \ 
+--corMethod pearson --skipZeros \ 
+--plotTitle "" \ 
+--whatToPlot heatmap --colorMap RdYlBu --plotNumbers \ 
+-o heatmap_pearsonCorr_H3K27ac_summary.png 
