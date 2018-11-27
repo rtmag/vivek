@@ -7,7 +7,14 @@ rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_n
 meth.norm<-meth(rnb.set.norm)
 colnames(meth.norm) = as.character(rnb.set.norm@pheno[,1])
 rownames(meth.norm) = rownames(rnb.set.norm@sites)
-saveRDS(meth.norm,"beta_48samples.RDS")
+mval.norm <- mval(rnb.set.norm,row.names=T)
+
+#saveRDS(meth.norm,"beta_48samples.RDS")
+############################################################################################
+# ANOVA NEVI
+
+
+
 ############################################################################################
 rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
            Tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
@@ -25,6 +32,13 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
 ############################################################################################
 rnb.set.norm_no910=remove.samples(rnb.set.norm,samples(rnb.set.norm)[9:10])
 rnb.options("columns.pairing"=c("Tumor"="Patient"))
+rnb.options("differential.variability"=TRUE)
+# Multiprocess
+num.cores <- 20
+parallel.setup(num.cores)
+diff_path = file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_auto_run")
+
+rnb.run.differential(rnb.set.norm_no910,diff_path)
 
 MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor"))
 
