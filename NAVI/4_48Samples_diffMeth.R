@@ -91,7 +91,7 @@ dev.off()
 
 
 meth.norm.centered = meth.norm
-for(ix in dim(meth.norm)[1]){
+for(ix in 1:dim(meth.norm)[1]){ 
            meth.norm.centered[ix,1] = meth.norm[ix,1]-mean(meth.norm[ix,1:2])
            meth.norm.centered[ix,2] = meth.norm[ix,2]-mean(meth.norm[ix,1:2])
            meth.norm.centered[ix,3] = meth.norm[ix,3]-mean(meth.norm[ix,3:4])
