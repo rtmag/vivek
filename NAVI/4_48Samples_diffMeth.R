@@ -75,7 +75,21 @@ clab=as.character(colores[track])
 
 colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(20))
 
-# CENTERING
+
+meth.norm.sig=meth.norm[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+
+
+png("heatmap_FDR5e-3_DIF80_no9_no10_Nocentered.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
+dev.off()
+############################################################################################
+
+
 meth.norm.centered = meth.norm
 for(ix in dim(meth.norm)[1]){
            meth.norm.centered[ix,1] = meth.norm[ix,1]-mean(meth.norm[ix,1:2])
@@ -129,16 +143,17 @@ for(ix in dim(meth.norm)[1]){
 }
 #
 
-meth.norm.sig=meth.norm[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
+
+meth.norm.sig=meth.norm.centered[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
-meth.norm.sig=meth.norm.centered[which(dmc_table$diffmeth.p.adj.fdr<0.005 & abs(dmc_table[,3])>.80),]
-meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
-
-png("heatmap_FDR5e-3_DIF80_no9_no10_Nocentered.png",width= 3.25,
+png("heatmap_FDR5e-2_DIF15_no9_no10_centered.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
 x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
+
+
+
