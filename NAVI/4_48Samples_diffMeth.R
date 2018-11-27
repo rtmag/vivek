@@ -1,5 +1,6 @@
 ############################################################################################
 suppressMessages(library(RnBeads))
+options(bitmapType="cairo")
 options(scipen=999)
 ############################################################################################
 rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_normalization/rnb.set.norm.RData.zip")
@@ -32,7 +33,7 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
 ############################################################################################
 rnb.set.norm_no910=remove.samples(rnb.set.norm,samples(rnb.set.norm)[9:10])
 rnb.options("columns.pairing"=c("Tumor"="Patient"))
-rnb.options("differential.variability"=TRUE)
+rnb.options("differential.variability"=FALSE)
 # Multiprocess
 num.cores <- 20
 parallel.setup(num.cores)
@@ -128,16 +129,16 @@ for(ix in dim(meth.norm)[1]){
 }
 #
 
-meth.norm.sig=meth.norm[which(dmc_table$diffmeth.p.adj.fdr<0.005 & abs(dmc_table[,3])>.80),]
+meth.norm.sig=meth.norm[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
 meth.norm.sig=meth.norm.centered[which(dmc_table$diffmeth.p.adj.fdr<0.005 & abs(dmc_table[,3])>.80),]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
-png("heatmap_FDR5e-3_DIF80_no9_no10_centered.png",width= 3.25,
+png("heatmap_FDR5e-3_DIF80_no9_no10_Nocentered.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
-x = heatmap.2(as.matrix(meth.norm.centered),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
