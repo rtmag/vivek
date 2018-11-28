@@ -233,6 +233,16 @@ x = heatmap.2(as.matrix(melanoma.meth.norm),col=colors,scale="none", trace="none
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
 dev.off()
 
+
+melanoma_variation = site_anno_mel_vs_nevi[site_anno_mel_vs_nevi$cgid %in% names(topmelanoma),]
+nevi_variation = site_anno_mel_vs_nevi[site_anno_mel_vs_nevi$cgid %in% names(topnevi),]
+
+table(melanoma_variation$Chromosome)
+table(nevi_variation$Chromosome)
+
+write.csv(melanoma_variation,"melanoma_variation_CpG.csv")
+write.csv(nevi_variation,"nevi_variation_CpG.csv")
+
 # 1% ALL 8668
 
  Tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
@@ -273,4 +283,14 @@ plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","green","blue"), border=T, bty="n" )
 dev.off()
 
+topall = tail(sort(allSD),(8668))
+all.meth.norm = meth.norm[rownames(meth.norm) %in% names(topall), ]
+pca <- prcomp(all.meth.norm, center = TRUE,scale. = TRUE)
+sx=summary(pca)
+
+pdf("PCA_top1Variation_all.pdf")
+plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
+    xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","green","blue"), border=T, bty="n" )
+dev.off()
 ############################################################################################
