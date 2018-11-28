@@ -35,7 +35,7 @@ num.cores <- 20
 parallel.setup(num.cores)
 diff_path = file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_report")
 
-rnb.run.differential(rnb.set.norm_no910,diff_path)
+#rnb.run.differential(rnb.set.norm_no910,diff_path)
 
 MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor"))
 
@@ -136,12 +136,11 @@ for(ix in 1:dim(meth.norm)[1]){
            meth.norm.centered[ix,48] = meth.norm[ix,48]-mean(meth.norm[ix,47:48])
 }
 #
-
+meth.norm.centered = readRDS('meth.norm.centered.rds')
 
 meth.norm.sig=meth.norm.centered[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
-
-colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(9))
+colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(5))
 
 png("heatmap_FDR5e-2_DIF15_no9_no10_centered.png",width= 3.25,
   height= 3.25,units="in",
@@ -151,13 +150,27 @@ labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=cl
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
 
-png("heatmap_FDR5e-2_DIF15_no9_no10_centered_rowScale_9Colors.png",width= 3.25,
+##############################################
+# CpG obtention
+
+hc <- as.hclust( x$rowDendrogram )
+groups=cutree( hc, k=2 )
+track2=as.numeric(groups)
+colores2=c("red","blue")
+clab2=(colores2[track2])
+
+png("heatmap_FDR5e-2_DIF15_no9_no10_centered_obt.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
-x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab,RowSideColors=clab2)
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
+
+
+############################################################################################
+#Meth PCA
+
 ############################################################################################
 # Variance Nevi
 nevi = mval.norm[,rnb.set.norm@pheno$Tumor=="Nevi"]
