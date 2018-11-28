@@ -12,10 +12,6 @@ mval.norm <- mval(rnb.set.norm,row.names=T)
 
 #saveRDS(meth.norm,"beta_48samples.RDS")
 ############################################################################################
-# ANOVA NEVI
-
-
-
 ############################################################################################
 rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
            Tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
@@ -88,8 +84,6 @@ labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=cl
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
 ############################################################################################
-
-
 meth.norm.centered = meth.norm
 for(ix in 1:dim(meth.norm)[1]){ 
            meth.norm.centered[ix,1] = meth.norm[ix,1]-mean(meth.norm[ix,1:2])
@@ -157,5 +151,18 @@ labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=cl
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
 
+png("heatmap_FDR5e-2_DIF15_no9_no10_centered_rowScale_9Colors.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
+dev.off()
+############################################################################################
+# Variance Nevi
+nevi = mval.norm[,rnb.set.norm@pheno$Tumor=="Nevi"]
+melanoma = mval.norm[,rnb.set.norm@pheno$Tumor=="Melanoma"]
 
-
+neviSD = apply(nevi,1,sd)
+melanomaSD = apply(melanoma,1,sd)
+############################################################################################
