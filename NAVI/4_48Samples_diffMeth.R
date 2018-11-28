@@ -167,15 +167,110 @@ labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=cl
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
 dev.off()
 
+site_anno_mel_vs_nevi = read.csv("../../RnB_Diff_report/mel_vs_nevi/tables/diffMethTable_site_cmp16.csv")
 
-############################################################################################
-#Meth PCA
+high_melanoma = site_anno_mel_vs_nevi[site_anno_mel_vs_nevi$cgid %in% names(which(groups==1)),]
+high_nevi = site_anno_mel_vs_nevi[site_anno_mel_vs_nevi$cgid %in% names(which(groups==2)),]
 
+write.csv(high_melanoma,"high_melanoma_diffMeth_CpG.csv")
+write.csv(high_nevi,"high_nevi_diffMeth_CpG.csv")
 ############################################################################################
-# Variance Nevi
+# Variance analysis
 nevi = mval.norm[,rnb.set.norm@pheno$Tumor=="Nevi"]
 melanoma = mval.norm[,rnb.set.norm@pheno$Tumor=="Melanoma"]
 
 neviSD = apply(nevi,1,sd)
 melanomaSD = apply(melanoma,1,sd)
+allSD = apply(melanoma,1,sd)
+############################################################################################
+############## Meth PCA
+# Nevi VS melanoma
+pca <- prcomp(x, center = TRUE,scale. = TRUE)
+
+ Tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                     "Melanoma","MIS","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi")
+
+track = Tumor
+track[track=="Melanoma"]=1
+track[track=="Nevi"]=2
+track[track=="MIS"]=3
+
+track=as.numeric(track)
+colores=c("red","green","blue")
+clab=as.character(colores[track])
+
+sx=summary(pca)
+
+pdf("PCA_Nevi_vs_melanoma_FDR5e-2_DIF15_no9_no10_centered.pdf")
+plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
+    xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","green","blue"), border=T, bty="n" )
+dev.off()
+
+# 1% NEVI 8668
+topnevi = tail(sort(neviSD),8668)
+nevi.meth.norm = meth.norm[rownames(meth.norm) %in% names(topnevi), rnb.set.norm@pheno$Tumor=="Nevi"]
+
+png("heatmap_top1_NEVI.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(nevi.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+dev.off()
+
+# 1% MELANOMA 8668
+topmelanoma = tail(sort(melanomaSD),8668)
+melanoma.meth.norm = meth.norm[rownames(meth.norm) %in% names(topmelanoma), rnb.set.norm@pheno$Tumor=="Melanoma"]
+
+png("heatmap_top1_Melanoma.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(melanoma.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+dev.off()
+
+# 1% ALL 8668
+
+ Tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                     "Melanoma","MIS","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi")
+
+track = Tumor
+track[track=="Melanoma"]=1
+track[track=="Nevi"]=2
+track[track=="MIS"]=3
+
+track=as.numeric(track)
+colores=c("red","green","blue")
+clab=as.character(colores[track])
+
+topall = tail(sort(allSD),86680)
+all.meth.norm = meth.norm[rownames(meth.norm) %in% names(topall), ]
+pca <- prcomp(all.meth.norm, center = TRUE,scale. = TRUE)
+sx=summary(pca)
+
+pdf("PCA_top10Variation_all.pdf")
+plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
+    xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","green","blue"), border=T, bty="n" )
+dev.off()
+
+topall = tail(sort(allSD),(86680/2))
+all.meth.norm = meth.norm[rownames(meth.norm) %in% names(topall), ]
+pca <- prcomp(all.meth.norm, center = TRUE,scale. = TRUE)
+sx=summary(pca)
+
+pdf("PCA_top5Variation_all.pdf")
+plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
+    xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","green","blue"), border=T, bty="n" )
+dev.off()
+
 ############################################################################################
