@@ -147,6 +147,8 @@ for(ix in 1:dim(meth.norm)[1]){
 meth.norm.sig=meth.norm.centered[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
+colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(5))
+
 png("heatmap_FDR5e-2_DIF15_no9_no10_centered.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
