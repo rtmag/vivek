@@ -37,7 +37,7 @@ rnb.options("differential.variability"=FALSE)
 # Multiprocess
 num.cores <- 20
 parallel.setup(num.cores)
-diff_path = file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_auto_run")
+diff_path = file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_report")
 
 rnb.run.differential(rnb.set.norm_no910,diff_path)
 
