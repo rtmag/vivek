@@ -294,3 +294,12 @@ plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
 legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","green","blue"), border=T, bty="n" )
 dev.off()
 ############################################################################################
+# Keep from nevi to Melanoma, but form groups whitin neva & melanoma
+# 1) Remove sex CpGs
+rnb.set.filtered <- rnb.execute.context.removal(rnb.set.norm)$dataset
+rnb.set.filtered <- rnb.execute.sex.removal(rnb.set.filtered)$dataset
+rnb.set.filtered <- rnb.execute.snp.removal(rnb.set.filtered, snp="any")$dataset
+rnb.set.filtered <- rnb.execute.na.removal(rnb.set.filtered)$dataset
+meth.filtered <-meth (rnb.set.filtered)
+# 2) Keep CpGs that have no difference between Nevi and Melanoma <.25
+rownames(meth.norm.centered) %in% rownames(meth.filtered)
