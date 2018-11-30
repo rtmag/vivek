@@ -301,8 +301,13 @@ rnb.set.filtered <- rnb.execute.sex.removal(rnb.set.filtered)$dataset
 rnb.set.filtered <- rnb.execute.snp.removal(rnb.set.filtered, snp="any")$dataset
 rnb.set.filtered <- rnb.execute.na.removal(rnb.set.filtered)$dataset
 meth.filtered <-meth (rnb.set.filtered)
+rownames(meth.filtered)<-rownames(rnb.set.filtered@sites)
 # 2) Keep CpGs that have no difference between Nevi and Melanoma <.25 in at leasst one CpG
 meth.filtered.centered = meth.norm.centered[rownames(meth.norm.centered) %in% rownames(meth.filtered),]
+saveRDS(meth.filtered.centered,"meth.filtered.centered.rds")
+saveRDS(meth.filtered,"meth.filtered.rds")
+saveRDS(Tumor,"Tumor.rds")
+
 # Select CpGs with difference of no more than 10% BetaScore in at least one paired patient sample
-meth.filtered.centered[rowSums(meth.filtered.centered >=0 & meth.filtered.centered <=0.05 ) >= 1, ]
+idx = meth.filtered.centered[rowSums(meth.filtered.centered >=0 & meth.filtered.centered <=0.05 ) >= 24, ]
 # 
