@@ -301,5 +301,6 @@ rnb.set.filtered <- rnb.execute.sex.removal(rnb.set.filtered)$dataset
 rnb.set.filtered <- rnb.execute.snp.removal(rnb.set.filtered, snp="any")$dataset
 rnb.set.filtered <- rnb.execute.na.removal(rnb.set.filtered)$dataset
 meth.filtered <-meth (rnb.set.filtered)
-# 2) Keep CpGs that have no difference between Nevi and Melanoma <.25
-rownames(meth.norm.centered) %in% rownames(meth.filtered)
+# 2) Keep CpGs that have no difference between Nevi and Melanoma <.25 in at leasst one CpG
+meth.filtered.centered = meth.norm.centered[rownames(meth.norm.centered) %in% rownames(meth.filtered),]
+meth.filtered.centered[rowSums(meth.filtered.centered >=0 & meth.filtered.centered <=0.05 ) >= 1, ]
