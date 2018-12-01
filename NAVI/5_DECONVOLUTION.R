@@ -105,11 +105,22 @@ labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
 dev.off()
 
 ####################################################################################
-library(sva)
-require(Biobase)
+library(SmartSVA)
 
-eset<-new("ExpressionSet", exprs=data.matrix(nevi))
+df <- data.frame(pred=1:23)
+## Determine the number of SVs
+Y.r <- t(resid(lm(t(nevi) ~ pred, data=df)))
+n.sv <- EstDimRMT(Y.r, FALSE)$dim + 1
+mod <- model.matrix( ~ pred, df)
+sv.obj <- smartsva.cpp(nevi, mod=mod, mod0=NULL, n.sv=n.sv)
 
-edata = exprs(eset)
-mod = model.matrix(~as.factor(cancer), data=pheno)
-n.sv = num.sv(edata,mod,method="leek")
+sv.obj$pprob.gam<0.001
+table(sv.obj$pprob.b<0.001)
+
+all.meth.norm = nevi[sv.obj$pprob.gam<0.001, ]
+heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+
+###########
+svobj = sva(nevi,mod,mod0=NULL,n.sv=7)
+pValues = f.pvalue(nevi,mod,mod0)
