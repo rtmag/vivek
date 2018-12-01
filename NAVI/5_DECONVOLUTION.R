@@ -76,3 +76,10 @@ all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]
 heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
 dev.off()
+
+####################################################################################
+library(sva)
+
+edata = exprs(bladderEset)
+mod = model.matrix(~as.factor(cancer), data=pheno)
+n.sv = num.sv(edata,mod,method="leek")
