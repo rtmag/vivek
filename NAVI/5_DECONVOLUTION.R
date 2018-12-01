@@ -1,4 +1,8 @@
 source("https://raw.githubusercontent.com/rtmag/refactor/master/R/refactor.R")
+options(scipen=999)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
 
  tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
                      "Melanoma","MIS","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
@@ -9,21 +13,66 @@ source("https://raw.githubusercontent.com/rtmag/refactor/master/R/refactor.R")
                     
 meth.filtered = readRDS("meth.filtered.rds")
 nevi = meth.filtered[,tumor=="Nevi"]
-k = 5
+k = 10
 datafile = nevi
 results <- refactor(datafile,k)
-RC <- results$refactor_components # Extract the ReFACTor components
-ranked_list <- results$ranked_list # Extract the list of sites ranked by ReFACTor
 
-# Can also provide one or more of the optional arguments
-results <- refactor(datafile,k,covarfile="../demo_files/demo_covariates.txt",t=500,numcomp=10,stdth=0.01,out="demo_results")
+colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(9))
 
-
-png("heatmap_top10000_CpG_highestVariability_nevi.png",width= 3.25,
+png("heatmap_REFACTOR_K10_NEVI_10KCpG.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
-topnevi = tail(sort(neviSD),10000)
-all.meth.norm = nevi[rownames(nevi) %in% names(topnevi), ]
+all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]),10000), ]
+heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+dev.off()
+
+k = 8
+results <- refactor(datafile,k)
+png("heatmap_REFACTOR_K8_NEVI_10KCpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]),10000), ]
+heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+dev.off()
+
+k = 6
+results <- refactor(datafile,k)
+png("heatmap_REFACTOR_K6_NEVI_10KCpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]),10000), ]
+heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+dev.off()
+
+k = 5
+results <- refactor(datafile,k)
+png("heatmap_REFACTOR_K5_NEVI_10KCpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]),10000), ]
+heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+dev.off()
+
+k = 4
+results <- refactor(datafile,k)
+png("heatmap_REFACTOR_K4_NEVI_10KCpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]),10000), ]
+heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+dev.off()
+
+k = 3
+results <- refactor(datafile,k)
+png("heatmap_REFACTOR_K3_NEVI_10KCpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]),10000), ]
 heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
 dev.off()
