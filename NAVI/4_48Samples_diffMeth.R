@@ -18,7 +18,7 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
                      "Melanoma","MIS","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
                     "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
                     "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
-                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Nevi","Melanoma","Melanoma","Nevi","Melanoma","Nevi",
                     "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi"),
            Patient = c("1","1","2","2","3","3","4","4",
                      "5","5","6","6","7","7","8","8",
@@ -27,7 +27,12 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
                       "17","17","18","18","19","19","20","20",
                       "21","21","22","22","23","23","24","24") )
 ############################################################################################
-rnb.set.norm_no910=remove.samples(rnb.set.norm,samples(rnb.set.norm)[9:10])
+rnb.set.filtered <- rnb.execute.context.removal(rnb.set.norm)$dataset
+rnb.set.filtered <- rnb.execute.sex.removal(rnb.set.filtered)$dataset
+rnb.set.filtered <- rnb.execute.snp.removal(rnb.set.filtered, snp="any")$dataset
+rnb.set.filtered <- rnb.execute.na.removal(rnb.set.filtered)$dataset
+#######################################################################
+rnb.set.norm_no910=remove.samples(rnb.set.norm,samples(rnb.set.filtered)[9:10])
 rnb.options("columns.pairing"=c("Tumor"="Patient"))
 rnb.options("differential.variability"=FALSE)
 # Multiprocess
@@ -311,3 +316,14 @@ saveRDS(Tumor,"Tumor.rds")
 # Select CpGs with difference of no more than 10% BetaScore in at least one paired patient sample
 idx = meth.filtered.centered[rowSums(meth.filtered.centered >=0 & meth.filtered.centered <=0.05 ) >= 24, ]
 # 
+meth.filtered.centered = readRDS("meth.filtered.centered.rds")
+meth.filtered = readRDS("meth.filtered.rds")
+ tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                     "Melanoma","MIS","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Nevi","Melanoma","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi")
+
+nevi = meth.filtered[,tumor=="Nevi"]
+melanoma = meth.filtered[,tumor=="Melanoma"]
