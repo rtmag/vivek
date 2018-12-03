@@ -179,6 +179,32 @@ high_nevi = site_anno_mel_vs_nevi[site_anno_mel_vs_nevi$cgid %in% names(which(gr
 
 write.csv(high_melanoma,"high_melanoma_diffMeth_CpG.csv")
 write.csv(high_nevi,"high_nevi_diffMeth_CpG.csv")
+##########################################################################################
+nevi = meth.norm[,rnb.set.norm@pheno$Tumor=="Nevi"]
+melanoma = meth.norm[,rnb.set.norm@pheno$Tumor=="Melanoma"]
+
+meth.norm.sig=nevi[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(5))
+
+png("heatmap_NEVI_FDR5e-2_DIF15_no9_no10_centered_obt.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",RowSideColors=clab2)
+dev.off()
+
+meth.norm.sig=melanoma[which(dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff)>.15),]
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+colors <- rev(colorRampPalette( (brewer.pal(9, "PuOr")) )(5))
+
+png("heatmap_MELANOMA_FDR5e-2_DIF15_no9_no10_centered_obt.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",RowSideColors=clab2)
+dev.off()
+
 ############################################################################################
 # Variance analysis
 nevi = mval.norm[,rnb.set.norm@pheno$Tumor=="Nevi"]
