@@ -47,6 +47,22 @@ MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor")
 comparison <- get.comparisons(MvsN_dmc)[1]
 dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
 
+#####################
+genes_table <-get.table(MvsN_dmc, comparison, "genes", return.data.frame=TRUE)
+gns = read.csv("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_report/differential_methylation_data/diffMethTable_region_cmp16_genes.csv")
+genes_table = cbind(gns[,1:5],genes_table)
+table(genes_table$comb.p.adj.fdr<0.05 & abs(genes_table$mean.mean.diff)>.15)
+x=genes_table[genes_table$comb.p.adj.fdr<0.05 & abs(genes_table$mean.mean.diff)>.15,]
+write.csv(x, "MvsN_genes.csv")
+#####################
+#####################
+genes_table <-get.table(MvsN_dmc, comparison, "promoters", return.data.frame=TRUE)
+gns=read.csv("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_report/differential_methylation_data/diffMethTable_region_cmp16_promoters.csv")
+genes_table = cbind(gns[,1:5],genes_table)
+table(genes_table$comb.p.adj.fdr<0.05 & abs(genes_table$mean.mean.diff)>.15)
+x=genes_table[genes_table$comb.p.adj.fdr<0.05 & abs(genes_table$mean.mean.diff)>.15,]
+write.csv(x, "MvsN_promoters.csv")
+#####################
 write.csv(dmc_table,"melanoma_vs_nevi_DMC_table.csv")
 ############################################################################################
 rnb.options("differential.variability"=TRUE)
