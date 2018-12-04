@@ -113,8 +113,8 @@ sig_vsd = vsd[which(dLRT_res$padj<0.05),]
 
 track=as.character(design$cell)
 track[track=="Normal"]=1
-track[track=="Nevus"]=2
-track[track=="Melanoma"]=3
+track[track=="Melanoma"]=2
+track[track=="Nevus"]=3
 track[track=="MIS"]=4
 
 track=as.numeric(track)
