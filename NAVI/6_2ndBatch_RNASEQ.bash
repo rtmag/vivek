@@ -1,22 +1,5 @@
 STAR --genomeDir /root/resources/star_hg38_overhang100/ --genomeLoad LoadAndExit
 
-RNA-26_S1_L001_R1_001.fastq.gz
-RNA-27_S2_L001_R1_001.fastq.gz
-RNA-28_S3_L001_R1_001.fastq.gz
-RNA-29_S4_L001_R1_001.fastq.gz
-RNA-30_S5_L001_R1_001.fastq.gz
-RNA-31_S6_L001_R1_001.fastq.gz
-RNA-32_S7_L001_R1_001.fastq.gz
-RNA-33_S8_L001_R1_001.fastq.gz
-RNA-34_S9_L001_R1_001.fastq.gz
-RNA-35_S10_L001_R1_001.fastq.gz
-RNA-36_S11_L001_R1_001.fastq.gz
-RNA-37_S12_L001_R1_001.fastq.gz
-RNA-38_S13_L001_R1_001.fastq.gz
-RNA-39_S14_L001_R1_001.fastq.gz
-RNA-40_S15_L001_R1_001.fastq.gz
-
-
 STAR --genomeDir /root/resources/star_hg38_overhang100/ --genomeLoad LoadAndKeep \
 --readFilesCommand zcat --limitBAMsortRAM 10000000000 \
 --runThreadN 40 \
