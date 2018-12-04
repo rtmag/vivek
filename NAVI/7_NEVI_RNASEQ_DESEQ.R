@@ -210,4 +210,4 @@ deseq_analysis(countData, vsd, A="Normal", A_ix=which(design$cell=="Normal"), B=
 deseq_analysis(countData, vsd, A="Normal", A_ix=which(design$cell=="Normal"),B="Melanoma", B_ix=which(design$cell=="Melanoma"),clab=clab)
 
 # 3) Nevi VS Melanoma
-deseq_analysis(countData, vsd, A="Nevus", A_ix=which(design$cell=="Normal"), B="Melanoma", B_ix=which(design$cell=="Melanoma"),clab=clab)
+deseq_analysis(countData, vsd, A="Nevus", A_ix=which(design$cell=="Nevus"), B="Melanoma", B_ix=which(design$cell=="Melanoma"),clab=clab)
