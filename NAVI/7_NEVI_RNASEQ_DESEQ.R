@@ -153,7 +153,7 @@ deseq_analysis = function( countData, vsd, A, A_ix, B, B_ix, clab){
   legend("topleft", paste(B,":",length(which(dds_res$log2FoldChange<(-1) & dds_res$padj<0.05))), bty="n") 
   dev.off()
   # Heatmap
-  title= paste(A,"_VS_",B,"_heatmap.ps",sep="")  
+  title= paste(A,"_VS_",B,"_heatmap.png",sep="")  
 png(title,width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
@@ -165,7 +165,7 @@ png(title,width= 3.25,
   legend("topright",legend=c("Normal","Melanoma","Nevi","MIS"),fill=c("#ffdfba","#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n")
   dev.off()
   # Heatmap ALL
-  title= paste(A,"_VS_",B,"_heatmap_all_samples.ps",sep="")
+  title= paste(A,"_VS_",B,"_heatmap_all_samples.png",sep="")
 png(title,width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
