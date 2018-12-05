@@ -105,7 +105,7 @@ dev.off()
 ####################################################################################
 idx = meth.filtered.centered[rowSums(meth.filtered.centered >=0 & meth.filtered.centered <=0.05 ) >= 24, ]
 
-png("heatmap_REFACTOR_K4_NEVI_projectedBOTH_NoDiffPatiets_8440CpG.png",width= 3.25,
+png("heatmap_REFACTOR_K4_NEVI_projectedBOTH_NoDiffPatiets_24patients.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
 all.meth.norm = meth.filtered[rownames(meth.filtered) %in% head(names(results$RankedProbeNames[1,]),100000), ]
