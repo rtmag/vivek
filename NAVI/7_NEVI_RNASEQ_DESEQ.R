@@ -2,6 +2,8 @@
 library(Rsubread)
 options(scipen=999)
 
+sink("RNA-Seq_featureCounts.log")
+
 data<-featureCounts(c(
 "R26_Aligned.sortedByCoord.out.bam",
 "R27_Aligned.sortedByCoord.out.bam",
@@ -46,6 +48,9 @@ autosort=TRUE,
 nthreads=40,
 GTF.attrType="gene_name"
 )
+
+sink()
+
 
 dat=data[[1]]
 colnames(dat)=c("R26","R27","R28","R29","R30","R31","R32","R33","R34","R35","R36","R37","R38","R39","R40",
