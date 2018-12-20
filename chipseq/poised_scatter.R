@@ -130,3 +130,30 @@ plot(log2(rowSums(k4[,301:400]))-log2(rowSums(k4[,1:100])),log2(rowSums(k27[,301
 xlab="NBC VS NHM Log2 H3K4me3 TSS",ylab="NBC VS NHM Log2 H3K27me3",col = col_rna_log2fc,
 pch = 20,main="NBC VS NHM")
 dev.off()
+###################################################################################################################
+###################################################################################################################
+###################################################################################################################
+poised = read.table("~/CSI/vivek/new_rnaseq/chip_seq_integration/poised_kmeans_zmet_5k.bed",sep="\t")
+poised = as.character(poised[,4])
+rna = readRDS("NHM_vsd.rds")
+
+rna = rna[which(rownames(rna) %in% poised),]
+
+bed = read.table("hg38_tss.bed",sep="\t",stringsAsFactors=F)
+k4 = read.table(pipe("grep -v '#' H3K4me3_TSS_1k.rtxt|grep -v 'genes'"),sep="\t")
+k27 = read.table(pipe("grep -v '#' H3K27me3_TSS_1k.rtxt|grep -v 'genes'"),sep="\t")
+
+ix = match(bed[,4],rownames(rna))
+k4 = k4[!is.na(ix),]
+k27 = k27[!is.na(ix),]
+rna=rna[ix[!is.na(ix)],]
+rbPal <- colorRampPalette(c('grey','blue','red','red','red'))
+
+
+pdf("CHROMHMM_poised_scatter_DE_BC_VS_NHM_difference_chip.pdf")
+rbPal <- colorRampPalette(c('blue','blue','blue','grey','red','red','red','red'))
+col_rna_log2fc <- rbPal(200)[as.numeric(cut(rowMeans(rna[,7:9])-rowMeans(rna[,10:12]),breaks = 200))]
+plot(log2(rowSums(k4[,301:400]))-log2(rowSums(k4[,1:100])),log2(rowSums(k27[,301:400]))-log2(rowSums(k27[,1:100])),
+xlab="NBC VS NHM Log2 H3K4me3 TSS",ylab="NBC VS NHM Log2 H3K27me3",col = col_rna_log2fc,
+pch = 20,main="NBC VS NHM")
+dev.off()
