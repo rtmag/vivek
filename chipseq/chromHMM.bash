@@ -234,5 +234,17 @@ more H3K4me3_poised_5k_onlyProfile_individual.tab|perl -pe 's/\t/\,/g' > H3K4me3
 
 more H3K27me3_poised_5k_onlyProfile_individual.tab|perl -pe 's/\t/\,/g' > H3K27me3_poised_5k_onlyProfile_individual.csv
 
+############
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K9me3.bw \
+/root/vivek/chip-seq/bw/BRAF_H3K9me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A_H3K9me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K9me3.bw \
+-R poised_kmeans_zmet_5k.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out H3K9me3_poised_5k.mat
 
-
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Oranges \
+-m H3K9me3_poised_5k.mat \
+--samplesLabel "H3K9me3 NHM" "H3K9me3 NB" "H3K9me3 NC" "H3K9me3 NBC" \
+-out poised_expression.pdf 
