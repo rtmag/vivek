@@ -123,8 +123,10 @@ plot(log2(rowSums(k4[,301:400])),log2(rowSums(k27[,301:400])),xlab="Log2 H3K4me3
 pch = 20,main="BRAF+CDKN2A")
 dev.off()
 
+pdf("poised_scatter_DE_BC_VS_NHM_difference_chip.pdf")
 rbPal <- colorRampPalette(c('blue','blue','grey','red','red'))
 col_rna_log2fc <- rbPal(200)[as.numeric(cut(rowMeans(rna[,7:9])-rowMeans(rna[,10:12]),breaks = 200))]
 plot(log2(rowSums(k4[,301:400]))-log2(rowSums(k4[,1:100])),log2(rowSums(k27[,301:400]))-log2(rowSums(k27[,1:100])),
-xlab="Log2 H3K4me3 TSS",ylab="Log2 H3K27me3",col = col_rna_log2fc,
+xlab="NBC VS NHM Log2 H3K4me3 TSS",ylab="NBC VS NHM Log2 H3K27me3",col = col_rna_log2fc,
 pch = 20,main="NBC VS NHM")
+dev.off()
