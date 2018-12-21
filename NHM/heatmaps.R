@@ -352,13 +352,14 @@ library(gplots)
 library(factoextra)
 library(RColorBrewer)
 
-gmt = c('TFAP2C','SLITRK6','NGFR','AQP1','L1CAM','RXRG','GFRA2','MITF','MLPH','TRPM1','MLANAGPR143','RAB27A')
+gmt = c('TFAP2C','SLITRK6','NGFR','L1CAM','RXRG','GFRA2','MITF','TRPM1','MLANAGPR143','RAB27A')
 vsd = readRDS("NHM_vsd.rds")
+vsd=vsd[,c(10:12,1:3,4:6)]
 
-pdf("CC_gene.pdf")
+pdf("vivek_interesting_genes.pdf")
 sig_vsd = vsd[rownames(vsd) %in% gmt,]
-colnames(sig_vsd) = c("BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A","CDKN2A","CDKN2A","CDKN2A","NHM","NHM","NHM")
-colors = colorRampPalette(c("green","black","red"))(20)
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
   heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.9)
+  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.9,dendrogram="none",Colv=F)
 dev.off()
