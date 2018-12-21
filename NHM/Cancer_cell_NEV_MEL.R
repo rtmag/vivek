@@ -22,6 +22,8 @@ gene_name=(data[3:dim(data)[1],4])
 gene_name = make.names(gene_name,unique=T)
 rownames(expr) = gene_name
 
+saveRDS(expr,"expr_group_name.rds")
+
 library(ggplot2)
 library(graphics)
 library(scales)
@@ -41,4 +43,54 @@ stripchart(gene ~ cell, vertical = TRUE, data = TFAP2C, jitter = 0.3,
     method = "jitter", pch = 20, col = alpha(colour='red',alpha=.5),cex = 2)
 boxplot(gene ~ cell,data = TFAP2C,add=TRUE,boxlwd = 2)
 dev.off()
+
+####################################################################################################
+options(scipen=999)
+library(DESeq2)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+
+countData = readRDS("~/CSI/vivek/chip-seq/poised_scatterplot/NHM_counts.rds")
+vsd = readRDS("~/CSI/vivek/chip-seq/poised_scatterplot/NHM_vsd.rds")
+
+design <- data.frame( group = c("BRAF","BRAF","BRAF","BC","BC","BC" ) )
+  dds <- DESeqDataSetFromMatrix(countData = countData[,1:6], colData = design, design = ~ group )
+  dds <- DESeq(dds)
+  dds_res = results(dds,contrast=c("group","BC","BRAF"))
+
+  sig_vsd = vsd[which(abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05), 1:6]
+  sig_expr = expr[rownames(expr) %in% rownames(sig_vsd),]
+
+  sig_expr= as.data.frame.matrix(sig_expr)
+
+  sig_vsd = sig_vsd[rownames(sig_vsd) %in% rownames(sig_expr),]
+
+ix = match(rownames(sig_expr),rownames(sig_vsd))
+sig_vsd=sig_vsd[ix,]
+
+tt= matrix(as.numeric(unlist(sig_expr)),ncol=35)
+rownames(tt) = rownames(sig_expr)
+colnames(tt) = colnames(sig_expr)
+
+combined= cbind(sig_vsd-rowMeans(sig_vsd),tt-rowMeans(tt))
+combined=combined[complete.cases(combined),]
+
+png("heatmap_NEVI_MEL_NB_NBC.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+  heatmap.2(combined,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  labRow = FALSE,xlab="", ylab="Genes",key.title="Gene expression",cexCol=.8)
+dev.off()
+
+
+png("heatmap_NB_NBC.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  labRow = FALSE,xlab="", ylab="Genes",key.title="Gene expression",cexCol=.8)
+dev.off()
+
 
