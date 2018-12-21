@@ -39,6 +39,6 @@ pdf("TFAP2C_Cancer_cell_RNA.pdf")
 stripchart(gene ~ cell, vertical = TRUE, data = TFAP2C, jitter = 0.3, 
            ylab = expression('Log2 normalized by sample expected counts TFAP2C'),
     method = "jitter", pch = 20, col = alpha(colour='red',alpha=.5),cex = 2)
-boxplot(gene ~ cell,data = TFAP2C,add=TRUE)
+boxplot(gene ~ cell,data = TFAP2C,add=TRUE,boxlwd = 2)
 dev.off()
 
