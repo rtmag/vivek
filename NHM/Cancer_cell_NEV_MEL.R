@@ -115,3 +115,21 @@ plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
 legend("topright",legend=c("NB","NBC","NEV","MEL"),fill=c("red","green","blue","purple"), border=T, bty="n" )
 #dev.off()
 
+library(pheatmap)
+colnames(combined)[1] = "NB"
+colnames(combined)[2] = "NB"
+colnames(combined)[3] = "NB"
+colnames(combined)[4] = "NBC"
+colnames(combined)[5] = "NBC"
+colnames(combined)[6] = "NBC"
+sampleDists <- dist(t(combined))
+library("RColorBrewer")
+sampleDistMatrix <- as.matrix(sampleDists)
+colnames(sampleDistMatrix) <- NULL
+pdf("DISTANCE_heatmap_NEVI_MEL_NB_NBC.pdf")
+  colors <- (colorRampPalette( (brewer.pal(9, "RdYlBu")) )(200))
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+dev.off()
