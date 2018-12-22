@@ -95,3 +95,23 @@ png("heatmap_NB_NBC.png",width= 3.25,
   labRow = FALSE,xlab="", ylab="Genes",key.title="Gene expression",cexCol=.8)
 dev.off()
 
+pca <- prcomp(combined, center = TRUE,scale. = TRUE)
+
+track = colnames(combined)
+track[grep('BRAF',track)] = 1
+track[grep('B_C',track)] = 2
+track[track=="Nev"]=3
+track[track=="Mel"]=4
+
+track=as.numeric(track)
+colores=c("red","green","blue","purple")
+clab=as.character(colores[track])
+
+sx=summary(pca)
+
+#pdf("PCA_Nevi_vs_melanoma_FDR5e-2_DIF15_no9_no10_centered.pdf")
+plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
+    xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
+legend("topright",legend=c("NB","NBC","NEV","MEL"),fill=c("red","green","blue","purple"), border=T, bty="n" )
+#dev.off()
+
