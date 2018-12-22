@@ -122,14 +122,17 @@ colnames(combined)[3] = "NB"
 colnames(combined)[4] = "NBC"
 colnames(combined)[5] = "NBC"
 colnames(combined)[6] = "NBC"
-sampleDists <- dist(t(combined))
+sampleDists <- get_dist(t(combined),method="pearson")
 library("RColorBrewer")
 sampleDistMatrix <- as.matrix(sampleDists)
 colnames(sampleDistMatrix) <- NULL
-pdf("DISTANCE_heatmap_NEVI_MEL_NB_NBC.pdf")
+pdf("DISTANCE_heatmap_NEVI_MEL_NB_NBC_pearsonDistance.pdf")
   colors <- (colorRampPalette( (brewer.pal(9, "RdYlBu")) )(200))
 pheatmap(sampleDistMatrix,
          clustering_distance_rows=sampleDists,
          clustering_distance_cols=sampleDists,
          col=colors)
 dev.off()
+
+euclidean", "maximum", "manhattan", "canberra", "binary",
+          "minkowski", "pearson", "spearman" or "kendall".
