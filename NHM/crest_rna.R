@@ -279,7 +279,7 @@ colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","CDKN2A","CDKN2A","
                       "BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A","CREST")
 pdf("MedHighSim_SD2_REDO.pdf",height=10,width=3.5)
   heatmap.2(sig_vsd/rowSums(sig_vsd),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.6)
+  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.6,density.info="none")
 dev.off()
 
 vsd = readRDS("crest_vsd.rds")
@@ -296,4 +296,7 @@ pdf("MedLowSim_SD3_REDO.pdf",height=14,width=3.5)
   xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.6)
 dev.off()
 
-            
+   pdf("vivek_colorKey.pdf",height=5,width=9)
+  heatmap.2(sig_vsd/rowSums(sig_vsd),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.6,density.info="none")
+dev.off()         
