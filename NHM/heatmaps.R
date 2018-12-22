@@ -363,3 +363,15 @@ colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF
   heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
   xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.9,dendrogram="none",Colv=F)
 dev.off()
+
+> pdf("vivek_interesting_genes_REDO.pdf",,height=4,width=3)
+> sig_vsd = vsd[rownames(vsd) %in% gmt,]
+> colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+>   colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+>   heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
++   xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.7,dendrogram="none",Colv=F,
++ sepwidth=c(0.01,0.01),
++            sepcolor="black",
++            colsep=1:ncol(sig_vsd),
++            rowsep=1:nrow(sig_vsd) )
+> dev.off()
