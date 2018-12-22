@@ -51,6 +51,8 @@ library(gplots)
 library(factoextra)
 library(RColorBrewer)
 
+expr = readRDS("expr_group_name.rds")
+
 countData = readRDS("~/CSI/vivek/chip-seq/poised_scatterplot/NHM_counts.rds")
 vsd = readRDS("~/CSI/vivek/chip-seq/poised_scatterplot/NHM_vsd.rds")
 
@@ -92,5 +94,4 @@ png("heatmap_NB_NBC.png",width= 3.25,
   heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
   labRow = FALSE,xlab="", ylab="Genes",key.title="Gene expression",cexCol=.8)
 dev.off()
-
 
