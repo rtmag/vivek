@@ -270,14 +270,14 @@ tempVSD[,1:12] = sig_vsd[,1:12]/rowSums(sig_vsd[,1:12])
 # MedHighSim_SD2.txt
 vsd = readRDS("crest_vsd.rds")
 
-x = read.table("MedHighSim_SD2.txt",sep="\t")
+x = read.table("MedLowSim_SD3.txt",sep="\t")
 x = as.character(x[,1])
 
 sig_vsd = vsd[rownames(vsd) %in% x,]
 sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
 colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","CDKN2A","CDKN2A","CDKN2A",
                       "BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A","CREST")
-pdf("MedHighSim_SD2_REDO.pdf",height=10,width=3.5)
+pdf("MedLowSim_SD3_REDO.pdf",height=10,width=3.5)
   heatmap.2(sig_vsd/rowSums(sig_vsd),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
   xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.6,density.info="none")
 dev.off()
