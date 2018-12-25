@@ -279,7 +279,7 @@ colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","CDKN2A","CDKN2A","
                       "BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A","CREST")
 pdf("MedLowSim_SD3_REDO.pdf",height=10,width=3.5)
   heatmap.2(sig_vsd/rowSums(sig_vsd),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.6,density.info="none")
+  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.4,density.info="none")
 dev.off()
 
 vsd = readRDS("crest_vsd.rds")
