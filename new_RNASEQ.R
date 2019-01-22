@@ -167,3 +167,70 @@ deseq_analysis(countData, vsd, A="CDKN2A", A_ix=7:9, B="BRAF_CDKN2A", B_ix=4:6)
 ###############
 # 6) BRAF VS CDKN2A
 deseq_analysis(countData, vsd, A="BRAF", A_ix=1:3, B="CDKN2A", B_ix=7:9)
+
+#####################################################################
+# NHM VS BRAF
+A="NHM"; A_ix=10:12; B="BRAF"; B_ix=1:3;
+design <- data.frame( group = c( rep(A, 3), rep(B, 3) ) )
+  dds <- DESeqDataSetFromMatrix(countData = countData[, c(A_ix, B_ix) ], colData = design, design = ~ group )
+  dds <- DESeq(dds)
+  dds_res = results(dds,contrast=c("group",A,B))
+
+pdf("NHM_VS_VE_VOLCANOPLOT.pdf")
+plot(dds_res$log2FoldChange,-log10(dds_res$padj),xlab=expression('Log'[2]*paste(' Fold Change ')),
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+  abline(v=-1,lty = 2,col="grey")
+  abline(v=1,lty = 2,col="grey")
+  abline(h=-log10(0.05),lty = 2,col="grey")
+  points(dds_res$log2FoldChange[abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05],
+       -log10(dds_res$padj)[abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05],
+      col=alpha("black",.5),pch=20)
+  legend("topright", paste("NHM :",length(which(dds_res$log2FoldChange>1 & dds_res$padj<0.05))), bty="n") 
+  legend("topleft", paste("VE :",length(which(dds_res$log2FoldChange<(-1) & dds_res$padj<0.05))), bty="n") 
+
+  ix = c(which(dds_res$log2FoldChange %in% tail(sort(dds_res$log2FoldChange),5)),
+  which(dds_res$log2FoldChange %in% head(sort(dds_res$log2FoldChange),5)),
+  which(-log10(dds_res$padj) %in% tail(sort(-log10(dds_res$padj)[dds_res$log2FoldChange>1]),8)[1:5]),
+  which(-log10(dds_res$padj) %in% tail(sort(-log10(dds_res$padj)[dds_res$log2FoldChange<(-1)]),9)[1:5]))
+
+  points(dds_res$log2FoldChange[ix],
+       -log10(dds_res$padj)[ix],
+      col="red",pch=20)
+library(wordcloud)
+nc=wordlayout(dds_res$log2FoldChange[ix],
+       -log10(dds_res$padj)[ix],rownames(dds_res)[ix],cex=1,ylim=c(0,305),xlim=c(-9,9))
+text(nc[,1],nc[,2],label=rownames(dds_res)[ix],cex=1)
+dev.off()
+# BRAF VS NBC
+A="BRAF"; A_ix=1:3; B="BRAF_CDKN2A"; B_ix=4:6;
+
+design <- data.frame( group = c( rep(A, 3), rep(B, 3) ) )
+  dds <- DESeqDataSetFromMatrix(countData = countData[, c(A_ix, B_ix) ], colData = design, design = ~ group )
+  dds <- DESeq(dds)
+  dds_res = results(dds,contrast=c("group",A,B))
+
+pdf("VE_VS_VE+KO_VOLCANOPLOT.pdf")
+plot(dds_res$log2FoldChange,-log10(dds_res$padj),xlab=expression('Log'[2]*paste(' Fold Change ')),
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+  abline(v=-1,lty = 2,col="grey")
+  abline(v=1,lty = 2,col="grey")
+  abline(h=-log10(0.05),lty = 2,col="grey")
+  points(dds_res$log2FoldChange[abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05],
+       -log10(dds_res$padj)[abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05],
+      col=alpha("black",.5),pch=20)
+  legend("topright", paste("VE :",length(which(dds_res$log2FoldChange>1 & dds_res$padj<0.05))), bty="n") 
+  legend("topleft", paste("VE+KO :",length(which(dds_res$log2FoldChange<(-1) & dds_res$padj<0.05))), bty="n") 
+
+  ix = c(which(dds_res$log2FoldChange %in% tail(sort(dds_res$log2FoldChange),5)),
+  which(dds_res$log2FoldChange %in% head(sort(dds_res$log2FoldChange),5)),
+  which(-log10(dds_res$padj) %in% tail(sort(-log10(dds_res$padj)[dds_res$log2FoldChange>1]),13)[1:5]),
+  which(-log10(dds_res$padj) %in% tail(sort(-log10(dds_res$padj)[dds_res$log2FoldChange<(-1)]),20)[1:5]))
+
+  points(dds_res$log2FoldChange[ix],
+       -log10(dds_res$padj)[ix],
+      col="red",pch=20)
+library(wordcloud)
+nc=wordlayout(dds_res$log2FoldChange[ix],
+       -log10(dds_res$padj)[ix],rownames(dds_res)[ix],cex=1,ylim=c(0,305),xlim=c(-9,9))
+text(nc[,1],nc[,2],label=rownames(dds_res)[ix],cex=1)
+dev.off()
