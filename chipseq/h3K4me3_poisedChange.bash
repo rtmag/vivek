@@ -45,14 +45,14 @@ computeMatrix reference-point \
 --sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out tss_genes_transition.mat
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens Reds Greens Reds \
--m tss_genes_transition.mat --kmeans 4 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+-m tss_genes_transition.mat --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
 -out tss_genes_transition.pdf --outFileSortedRegions tss_genes_transition.bed
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens Reds Greens Reds \
--m tss_genes_transition.mat --kmeans 4 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+-m tss_genes_transition.mat --kmeans 2 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
--out tss_genes_transition_kmeans4.pdf --outFileSortedRegions tss_genes_transition_kmeans4.bed
+-out tss_genes_transition_kmeans2.pdf --outFileSortedRegions tss_genes_transition_kmeans2.bed
 #
 ####################################################################################################
 
@@ -70,7 +70,7 @@ computeMatrix reference-point \
 --sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out tss_genes_transition_all.mat
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens Reds Greens Reds Greens Reds Greens Reds \
--m tss_genes_transition_all.mat --kmeans 4 --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+-m tss_genes_transition_all.mat --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 CDKN2A+BRAF" "H3K27me3 CDKN2A+BRAF" \
--out tss_genes_transition_kmeans4_all.pdf --outFileSortedRegions tss_genes_transition_kmeans4_all.bed
+-out tss_genes_transition_all.pdf --outFileSortedRegions tss_genes_transition_all.bed
 #
