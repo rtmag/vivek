@@ -15,8 +15,6 @@ expr = expr[,ix]
 group_name = as.character(sample_name[ix])
 colnames(group_name) = NULL
 
-
-
 group_name[grep("Nev",as.character(group_name))] = "Nev"
 group_name[grep("Mel",as.character(group_name))] = "Mel"
 
@@ -40,6 +38,49 @@ library(openxlsx)
 library(beeswarm)
 
 TFAP2C = data.frame(cell = group_name, gene=as.numeric(expr[which(rownames(expr)=="TFAP2C"),]) )
+
+x = TFAP2C[,2]
+names(x) = TFAP2C[,1]
+
+zx = c(
+x[1]-mean(x[1:2]),
+x[2]-mean(x[1:2]),
+x[3]-mean(x[3:4]),
+x[4]-mean(x[3:4]),
+x[5]-mean(x[5:6]),
+x[6]-mean(x[5:6]),
+x[7]-mean(x[7:8]),
+x[8]-mean(x[7:8]),
+x[9]-mean(x[9:10]),
+x[10]-mean(x[9:10]),
+x[11]-mean(x[11:12]),
+x[12]-mean(x[11:12]),
+x[13]-mean(x[13:14]),
+x[14]-mean(x[13:14]),
+x[15]-mean(x[15:16]),
+x[16]-mean(x[15:16]),
+x[17]-mean(x[17:18]),
+x[18]-mean(x[17:18]),
+x[19]-mean(x[19:20]),
+x[20]-mean(x[19:20]),
+x[21]-mean(x[21:22]),
+x[22]-mean(x[21:22]),
+x[23]-mean(x[23:25]),
+x[24]-mean(x[23:25]),
+x[25]-mean(x[23:25]),
+x[26]-mean(x[26:27]),
+x[27]-mean(x[26:27]),
+x[28]-mean(x[28:29]),
+x[29]-mean(x[28:29]),
+x[30]-mean(x[30:31]),
+x[31]-mean(x[30:31]),
+x[32]-mean(x[32:33]),
+x[33]-mean(x[32:33]),
+x[34]-mean(x[34:35]),
+x[35]-mean(x[34:35])
+           )
+
+TFAP2C = data.frame(cell = group_name, gene=as.numeric(zx) )
 
 pdf("TFAP2C_Cancer_cell_RNA.pdf")
 stripchart(gene ~ cell, vertical = TRUE, data = TFAP2C, jitter = 0.3, 
