@@ -109,3 +109,32 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Gre
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 BRAF" "H3K27me3 BRAF" "H3K4me3 CDKN2A" "H3K27me3 CDKN2A" "H3K4me3 NBC" "H3K27me3 NBC" \
 -out TSS_NHM_H3K4me3_all.pdf
 #####################################################################################################
+
+
+cat NHM_H3K4me3_peaks.broadPeak CDKN2A+BRAF_H3K4me3_peaks.broadPeak | \
+sort -k1,1 -k2,2n|bedtools merge -i - > H3K4me3_merge.bed
+
+cat NHM_H3K27me3_peaks.broadPeak CDKN2A+BRAF_H3K27me3_peaks.broadPeak | \
+sort -k1,1 -k2,2n|bedtools merge -i - > H3K27me3_merge.bed
+
+
+
+#####################################################################################################
+computeMatrix reference-point \
+-S \
+/root/vivek/chip-seq/bw/NHM_H3K4me3.bw \
+/root/vivek/chip-seq/bw/NHM_H3K27me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K4me3.bw \
+/root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
+-R TSS_NHM_H3K4me3.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out TSS_NHM_H3K4me3.mat
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens Reds Greens Reds \
+-m TSS_NHM_H3K4me3.mat --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+--samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 NBC" "H3K27me3 NBC" \
+-out TSS_NHM_H3K4me3.pdf 
+#####################################################################################################
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Greens Reds Greens Reds \
+-m tss_genes_transition.mat --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
+--samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 NBC" "H3K27me3 NBC" \
+-out tss_genes_transition_tss_atLeast_1k4k27.pdf 
