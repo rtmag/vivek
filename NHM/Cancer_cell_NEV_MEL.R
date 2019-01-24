@@ -89,29 +89,38 @@ stripchart(gene ~ cell, vertical = TRUE, data = TFAP2C, jitter = 0.3,
 boxplot(gene ~ cell,data = TFAP2C,add=TRUE,boxlwd = 2)
 dev.off()
 
-beeswarm(gene ~ cell, vertical = TRUE, data = TFAP2C,
-           ylab = expression('Log2 normalized by sample expected counts TFAP2C'),
+pdf("TFAP2C_Cancer_cell_RNA_overplot_dashed.pdf")
+stripchart(gene ~ cell, vertical = TRUE, data = TFAP2C,xlim=c(0,3), main ="TFAP2C",
+           ylab = expression('Log2 normalized expected counts centered by patient sample'),
+    method = "overplot", pch = 20, col = alpha(colour='red',alpha=.5),cex = 2)
+boxplot(gene ~ cell,data = TFAP2C,add=TRUE,boxlwd = 2)
+dev.off()
+
+pdf("TFAP2C_Cancer_cell_RNA_beeswarm.pdf")
+beeswarm(gene ~ cell, vertical = TRUE, data = TFAP2C,xlim=c(0,3), main ="TFAP2C",
+           ylab = expression('Log2 normalized expected counts centered by patient sample'),
     method = "swarm", pch = 20, col = alpha(colour='red',alpha=.5),cex = 2)
 boxplot(gene ~ cell,data = TFAP2C,add=TRUE,boxlwd = 2)
+dev.off()
 
-lines( c(1,2), c(zx[2],zx[1]) )
-lines( c(1,2), c(zx[4],zx[3]) )
-lines( c(1,2), c(zx[6],zx[5]) )
-lines( c(1,2), c(zx[8],zx[7]) )
-lines( c(1,2), c(zx[10],zx[9]) )
-lines( c(1,2), c(zx[12],zx[11]) )
-lines( c(1,2), c(zx[14],zx[13]) )
-lines( c(1,2), c(zx[16],zx[15]) )
-lines( c(1,2), c(zx[18],zx[17]) )
-lines( c(1,2), c(zx[20],zx[19]) )
-lines( c(1,2), c(zx[22],zx[21]) )
-lines( c(1,2), c(zx[24],zx[23]) )
-lines( c(1,2), c(zx[25],zx[23]) )
-lines( c(1,2), c(zx[27],zx[26]) )
-lines( c(1,2), c(zx[29],zx[28]) )
-lines( c(1,2), c(zx[31],zx[30]) )
-lines( c(1,2), c(zx[33],zx[32]) )
-lines( c(1,2), c(zx[35],zx[34]) )
+lines( c(1,2), c(zx[2],zx[1]),lty=2,col="grey" )
+lines( c(1,2), c(zx[4],zx[3]),lty=2,col="grey" )
+lines( c(1,2), c(zx[6],zx[5]),lty=2,col="grey" )
+lines( c(1,2), c(zx[8],zx[7]),lty=2,col="grey" )
+lines( c(1,2), c(zx[10],zx[9]),lty=2,col="grey" )
+lines( c(1,2), c(zx[12],zx[11]),lty=2,col="grey" )
+lines( c(1,2), c(zx[14],zx[13]),lty=2,col="grey" )
+lines( c(1,2), c(zx[16],zx[15]),lty=2,col="grey" )
+lines( c(1,2), c(zx[18],zx[17]),lty=2,col="grey" )
+lines( c(1,2), c(zx[20],zx[19]),lty=2,col="grey" )
+lines( c(1,2), c(zx[22],zx[21]),lty=2,col="grey" )
+lines( c(1,2), c(zx[24],zx[23]),lty=2,col="grey" )
+lines( c(1,2), c(zx[25],zx[23]),lty=2,col="grey" )
+lines( c(1,2), c(zx[27],zx[26]),lty=2,col="grey" )
+lines( c(1,2), c(zx[29],zx[28]),lty=2,col="grey" )
+lines( c(1,2), c(zx[31],zx[30]),lty=2,col="grey" )
+lines( c(1,2), c(zx[33],zx[32]),lty=2,col="grey" )
+lines( c(1,2), c(zx[35],zx[34]),lty=2,col="grey" )
 
       
 ####################################################################################################
