@@ -89,10 +89,12 @@ stripchart(gene ~ cell, vertical = TRUE, data = TFAP2C, jitter = 0.3,
 boxplot(gene ~ cell,data = TFAP2C,add=TRUE,boxlwd = 2)
 dev.off()
 
+TFAP2C$cell<-factor(TFAP2C$cell, levels=c("Nev", "Mel"))
+
 pdf("TFAP2C_Cancer_cell_RNA_overplot_dashed.pdf")
 stripchart(gene ~ cell, vertical = TRUE, data = TFAP2C,xlim=c(0,3), main ="TFAP2C",
            ylab = expression('Log2 normalized expected counts centered by patient sample'),
-    method = "overplot", pch = 20, col = alpha(colour='red',alpha=.5),cex = 2)
+    method = "overplot", pch = 20, col = "red",cex = 2)
 boxplot(gene ~ cell,data = TFAP2C,add=TRUE,boxlwd = 2)
 dev.off()
 
@@ -122,7 +124,24 @@ lines( c(1,2), c(zx[31],zx[30]),lty=2,col="grey" )
 lines( c(1,2), c(zx[33],zx[32]),lty=2,col="grey" )
 lines( c(1,2), c(zx[35],zx[34]),lty=2,col="grey" )
 
-      
+lines( c(1,2), c(zx[1],zx[2]),lty=2,col="grey" )
+lines( c(1,2), c(zx[3],zx[4]),lty=2,col="grey" )
+lines( c(1,2), c(zx[5],zx[6]),lty=2,col="grey" )
+lines( c(1,2), c(zx[7],zx[8]),lty=2,col="grey" )
+lines( c(1,2), c(zx[9],zx[10]),lty=2,col="grey" )
+lines( c(1,2), c(zx[11],zx[12]),lty=2,col="grey" )
+lines( c(1,2), c(zx[13],zx[14]),lty=2,col="grey" )
+lines( c(1,2), c(zx[15],zx[16]),lty=2,col="grey" )
+lines( c(1,2), c(zx[17],zx[18]),lty=2,col="grey" )
+lines( c(1,2), c(zx[19],zx[20]),lty=2,col="grey" )
+lines( c(1,2), c(zx[21],zx[22]),lty=2,col="grey" )
+lines( c(1,2), c(zx[23],zx[24]),lty=2,col="grey" )
+lines( c(1,2), c(zx[23],zx[25]),lty=2,col="grey" )
+lines( c(1,2), c(zx[26],zx[27]),lty=2,col="grey" )
+lines( c(1,2), c(zx[28],zx[29]),lty=2,col="grey" )
+lines( c(1,2), c(zx[30],zx[31]),lty=2,col="grey" )
+lines( c(1,2), c(zx[32],zx[33]),lty=2,col="grey" )
+lines( c(1,2), c(zx[34],zx[35]),lty=2,col="grey" )
 ####################################################################################################
 options(scipen=999)
 library(DESeq2)
