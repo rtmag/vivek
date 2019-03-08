@@ -83,7 +83,20 @@ all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]
 heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
 dev.off()
+########################################
 
+k = 3
+results <- refactor(datafile,k)
+#png("heatmap_REFACTOR_K4_NEVI_10KCpG.png",width= 3.25,
+#  height= 3.25,units="in",
+#  res=1200,pointsize=4)
+all.meth.norm = nevi[rownames(nevi) %in% head(names(results$RankedProbeNames[1,]),35000), ]
+heatmap.2(as.matrix(all.meth.norm),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl")
+#dev.off()
+
+
+#########################################
 melanoma = meth.filtered[,tumor=="Melanoma"]
 png("heatmap_REFACTOR_K4_NEVI_projectedMELANOMA_10KCpG.png",width= 3.25,
   height= 3.25,units="in",
