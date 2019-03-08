@@ -38,3 +38,14 @@ write.table(names(which(groups==2)),"TFAP2C_blue_genes.txt",sep="\t",quote=F,col
 write.table(names(which(groups==3)),"TFAP2C_green_genes.txt",sep="\t",quote=F,col.names=F,row.names=F)
 write.table(names(which(groups==4)),"TFAP2C_orange_genes.txt",sep="\t",quote=F,col.names=F,row.names=F)
 
+##########
+
+gmt = c("CDKN1A","CRABP2","CSTA","ECM1","ERBB2","ESR1","GPX1","MMP2","RET","SULT1E1")
+
+sig_vsd = vsd[rownames(vsd) %in% gmt,]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+colnames(sig_vsd) = c("NHM","NHM","NHM","BRAF","BRAF","BRAF","CDKN2A","CDKN2A","CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A","BRAF+CDKN2A")
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.8,Colv=F,dendrogram="row")
