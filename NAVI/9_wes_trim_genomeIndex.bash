@@ -61,3 +61,9 @@
 /home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes/fastq_trim/ \
 /home/rtm/vivek/navi/wes/fastq_cat/VM8_R1.fastq.gz \
 /home/rtm/vivek/navi/wes/fastq_cat/VM8_R2.fastq.gz &
+
+#########################
+# BWA index 
+# bwtsw is for large genomes
+bwa index -a bwtsw ~/resources/hg38/star/genome.fa
+
