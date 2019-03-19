@@ -65,5 +65,5 @@
 #########################
 # BWA index 
 # bwtsw is for large genomes
-bwa index -a bwtsw ~/resources/hg38/star/genome.fa
+bwa index -a bwtsw /home/references/bwa_hg38/hg38.fasta
 
