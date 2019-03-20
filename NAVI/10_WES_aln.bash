@@ -102,3 +102,118 @@ bwa mem -t 23 -T 0 \
 /home/rtm/vivek/navi/wes/fastq_trim/VM8_R1_val_1.fq.gz \
 /home/rtm/vivek/navi/wes/fastq_trim/VM8_R2_val_2.fq.gz | \
 samtools view -Shb -o /home/rtm/vivek/navi/wes/bam/VM8 -
+
+#######################################################################
+# SORT
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM19 \
+OUTPUT=VM19_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM1 \
+OUTPUT=VM1_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM20 \
+OUTPUT=VM20_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM25 \
+OUTPUT=VM25_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM26 \
+OUTPUT=VM26_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM2 \
+OUTPUT=VM2_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM31 \
+OUTPUT=VM31_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM32 \
+OUTPUT=VM32_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM33 \
+OUTPUT=VM33_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM34 \
+OUTPUT=VM34_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM3 \
+OUTPUT=VM3_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM43 \
+OUTPUT=VM43_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM44 \
+OUTPUT=VM44_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM4 \
+OUTPUT=VM4_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM7 \
+OUTPUT=VM7_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=VM8 \
+OUTPUT=VM8_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+##########################################################################
