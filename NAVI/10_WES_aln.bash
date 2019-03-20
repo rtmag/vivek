@@ -217,3 +217,32 @@ OUTPUT=VM8_sort.bam \
 SORT_ORDER=coordinate \
 VALIDATION_STRINGENCY=STRICT
 ##########################################################################
+VM19
+VM1
+VM20
+VM25
+VM26
+VM2
+VM31
+VM32
+VM33
+VM34
+VM3
+VM43
+VM44
+VM4
+VM7
+VM8
+
+java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
+VALIDATION_STRINGENCY=STRICT \
+CREATE_INDEX=true \
+M=VM19_rmdup.txt \
+INPUT=VM19_sort.bam \
+OUTPUT=HCT116_DMSO_48h_addRG_realigned_recalibrated_rmdup.bam
+
+
+java -jar picard.jar MarkDuplicates \
+CREATE_INDEX=true \
+INPUT=<input.bam> \
+VALIDATION_STRINGENCY=STRICT
