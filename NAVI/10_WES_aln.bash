@@ -110,231 +110,215 @@ CREATE_INDEX=true \
 INPUT=VM19 \
 OUTPUT=VM19_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM1 \
 OUTPUT=VM1_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM20 \
 OUTPUT=VM20_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM25 \
 OUTPUT=VM25_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM26 \
 OUTPUT=VM26_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM2 \
 OUTPUT=VM2_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM31 \
 OUTPUT=VM31_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM32 \
 OUTPUT=VM32_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM33 \
 OUTPUT=VM33_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM34 \
 OUTPUT=VM34_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM3 \
 OUTPUT=VM3_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM43 \
 OUTPUT=VM43_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM44 \
 OUTPUT=VM44_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM4 \
 OUTPUT=VM4_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM7 \
 OUTPUT=VM7_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 
 java -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
 INPUT=VM8 \
 OUTPUT=VM8_sort.bam \
 SORT_ORDER=coordinate \
-VALIDATION_STRINGENCY=STRICT
+VALIDATION_STRINGENCY=STRICT &
 ##########################################################################
-VM19
-VM1
-VM20
-VM25
-VM26
-VM2
-VM31
-VM32
-VM33
-VM34
-VM3
-VM43
-VM44
-VM4
-VM7
-VM8
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM19_MFILE.txt \
 INPUT=VM19_sort.bam \
-OUTPUT=VM19_rmdup.bam
+OUTPUT=VM19_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM1_MFILE.txt \
 INPUT=VM1_sort.bam \
-OUTPUT=VM1_rmdup.bam
+OUTPUT=VM1_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM20_MFILE.txt \
 INPUT=VM20_sort.bam \
-OUTPUT=VM20_rmdup.bam
+OUTPUT=VM20_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM25_MFILE.txt \
 INPUT=VM25_sort.bam \
-OUTPUT=VM25_rmdup.bam
+OUTPUT=VM25_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM26_MFILE.txt \
 INPUT=VM26_sort.bam \
-OUTPUT=VM26_rmdup.bam
+OUTPUT=VM26_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM2_MFILE.txt \
 INPUT=VM2_sort.bam \
-OUTPUT=VM2_rmdup.bam
+OUTPUT=VM2_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM31_MFILE.txt \
 INPUT=VM31_sort.bam \
-OUTPUT=VM31_rmdup.bam
+OUTPUT=VM31_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM32_MFILE.txt \
 INPUT=VM32_sort.bam \
-OUTPUT=VM32_rmdup.bam
+OUTPUT=VM32_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM33_MFILE.txt \
 INPUT=VM33_sort.bam \
-OUTPUT=VM33_rmdup.bam
+OUTPUT=VM33_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM34_MFILE.txt \
 INPUT=VM34_sort.bam \
-OUTPUT=VM34_rmdup.bam
+OUTPUT=VM34_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM43_MFILE.txt \
 INPUT=VM43_sort.bam \
-OUTPUT=VM43_rmdup.bam
+OUTPUT=VM43_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM44_MFILE.txt \
 INPUT=VM44_sort.bam \
-OUTPUT=VM44_rmdup.bam
+OUTPUT=VM44_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM4_MFILE.txt \
 INPUT=VM4_sort.bam \
-OUTPUT=VM4_rmdup.bam
+OUTPUT=VM4_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM7_MFILE.txt \
 INPUT=VM7_sort.bam \
-OUTPUT=VM7_rmdup.bam
+OUTPUT=VM7_rmdup.bam &
 
 java -Xmx60g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=VM8_MFILE.txt \
 INPUT=VM8_sort.bam \
-OUTPUT=VM8_rmdup.bam
+OUTPUT=VM8_rmdup.bam &
