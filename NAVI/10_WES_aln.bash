@@ -322,3 +322,73 @@ CREATE_INDEX=true \
 M=VM8_MFILE.txt \
 INPUT=VM8_sort.bam \
 OUTPUT=VM8_rmdup.bam 
+################################################################################################################
+#DIR
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar CreateSequenceDictionary \
+R= /home/references/bwa_hg38/hg38.fasta \
+O= /home/references/bwa_hg38/hg38.fasta.dict
+# 
+VM2_rmdup.bam
+VM31_rmdup.bam
+VM32_rmdup.bam
+VM33_rmdup.bam
+VM34_rmdup.bam
+VM43_rmdup.bam
+VM44_rmdup.bam
+VM7_rmdup.bam
+VM8_rmdup.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/bwa_hg38/hg38.fasta \
+-nt 20 \
+-known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/bwa_hg38/hg38.fasta \
+-nt 20 \
+-known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+/home/rtm/vivek/navi/wes/bam/VM20_rmdup.bam \
+-o VM20.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/bwa_hg38/hg38.fasta \
+-nt 20 \
+-known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+/home/rtm/vivek/navi/wes/bam/VM25_rmdup.bam \
+-o VM25.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/bwa_hg38/hg38.fasta \
+-nt 20 \
+-known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+/home/rtm/vivek/navi/wes/bam/VM26_rmdup.bam \
+-o VM26.realign_target.intervals
+########################################################################################################################
+java -jar GenomeAnalysisTK.jar \
+-T IndelRealigner \
+-R <reference> \
+-known <known_indels.vcf> \
+-targetIntervals <realign_target.intervals> \
+--noOriginalAlignmentTags \
+[ -I <input.bam> ] \
+-nWayOut <output.map>
+
+java -jar GenomeAnalysisTK.jar \
+-T BaseRecalibrator \
+-R <reference> \
+-I <input.bam> \
+-knownSites <dbsnp.vcf>
+-o <bqsr.grp>
+
+java -jar GenomeAnalysisTK.jar \
+-T PrintReads \
+-R <reference> \
+-I <input.bam> \
+--BQSR <bqsr.grp> \
+-o <output.bam>
