@@ -327,7 +327,17 @@ OUTPUT=VM8_rmdup.bam
 java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar CreateSequenceDictionary \
 R= /home/references/bwa_hg38/hg38.fasta \
 O= /home/references/bwa_hg38/hg38.fasta.dict
-# 
+#########################################
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortVcf \
+    I=/home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+    O=/home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.sorted.vcf \
+    SEQUENCE_DICTIONARY=/home/references/bwa_hg38/hg38.dict 
+    
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortVcf \
+    I=/home/references/hg38_bundle/dbsnp_146.hg38.vcf \
+    O=/home/references/hg38_bundle/dbsnp_146.hg38.vcf.sorted.vcf \
+    SEQUENCE_DICTIONARY=/home/references/bwa_hg38/hg38.dict 
+########################################
 VM2_rmdup.bam
 VM31_rmdup.bam
 VM32_rmdup.bam
@@ -342,33 +352,10 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T RealignerTargetCreator \
 -R /home/references/bwa_hg38/hg38.fasta \
 -nt 20 \
--known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.sorted.vcf \
 -I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
 -o /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals
 
-java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
--T RealignerTargetCreator \
--R /home/references/bwa_hg38/hg38.fasta \
--nt 20 \
--known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
-/home/rtm/vivek/navi/wes/bam/VM20_rmdup.bam \
--o VM20.realign_target.intervals
-
-java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
--T RealignerTargetCreator \
--R /home/references/bwa_hg38/hg38.fasta \
--nt 20 \
--known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
-/home/rtm/vivek/navi/wes/bam/VM25_rmdup.bam \
--o VM25.realign_target.intervals
-
-java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
--T RealignerTargetCreator \
--R /home/references/bwa_hg38/hg38.fasta \
--nt 20 \
--known /home/references/hg38_bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf \
-/home/rtm/vivek/navi/wes/bam/VM26_rmdup.bam \
--o VM26.realign_target.intervals
 ########################################################################################################################
 java -jar GenomeAnalysisTK.jar \
 -T IndelRealigner \
