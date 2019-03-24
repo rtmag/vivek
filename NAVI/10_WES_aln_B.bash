@@ -323,3 +323,11 @@ M=VM8_MFILE.txt \
 INPUT=VM8_sort.bam \
 OUTPUT=VM8_rmdup.bam 
 ################################################################################################################
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals
+
