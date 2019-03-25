@@ -442,7 +442,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM1_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -451,7 +451,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM2.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM2_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM2_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM2_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -460,7 +460,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM19.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM19_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM19_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM19_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -469,7 +469,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM20.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM20_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM20_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM20_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -478,7 +478,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM25.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM25_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM25_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM25_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -487,7 +487,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM26.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM26_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM26_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM26_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -496,7 +496,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM31.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM31_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM31_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM31_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -505,7 +505,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM32.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM32_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM32_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM32_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -514,7 +514,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM33.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM33_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM33_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM33_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -523,7 +523,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM34.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM34_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM34_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM34_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -532,7 +532,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM43.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM43_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM43_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM43_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -541,7 +541,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM44.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM44_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM44_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM44_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -550,7 +550,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM7.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM7_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM7_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM7_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -559,5 +559,5 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -targetIntervals /home/rtm/vivek/navi/wes/bam/VM8.realign_target.intervals \
 --noOriginalAlignmentTags \
-/home/rtm/vivek/navi/wes/bam/VM8_rmdup.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM8_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM8_realigned.bam
