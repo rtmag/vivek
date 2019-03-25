@@ -436,7 +436,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -I /home/rtm/vivek/navi/wes/bam/VM8_rmdup.bam \
 -o /home/rtm/vivek/navi/wes/bam/VM8.realign_target.intervals
 ################################################################################################################
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -445,7 +445,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM1_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -454,7 +454,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM2_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM2_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -463,7 +463,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM19_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM19_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -472,7 +472,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM20_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM20_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -481,7 +481,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM25_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM25_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -490,7 +490,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM26_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM26_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -499,7 +499,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM31_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM31_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -508,7 +508,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM32_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM32_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -517,7 +517,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM33_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM33_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -526,7 +526,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM34_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM34_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -535,7 +535,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM43_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM43_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -544,7 +544,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM44_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM44_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
@@ -553,7 +553,7 @@ java -jar GenomeAnalysisTK.jar \
 /home/rtm/vivek/navi/wes/bam/VM7_rmdup.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM7_realigned.bam
 
-java -jar GenomeAnalysisTK.jar \
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
