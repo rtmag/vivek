@@ -323,7 +323,8 @@ M=VM8_MFILE.txt \
 INPUT=VM8_sort.bam \
 OUTPUT=VM8_rmdup.bam 
 ################################################################################################################
-java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+
+sudo java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T RealignerTargetCreator \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -nt 20 \
@@ -331,3 +332,115 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
 -o /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals
 
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM2_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM2.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM19_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM19.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM20_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM20.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM25_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM25.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM26_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM26.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM31_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM31.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM32_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM32.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM33_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM33.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM34_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM34.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM43_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM43.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM44_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM44.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM7_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM7.realign_target.intervals
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM8_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM8.realign_target.intervals
+################################################################################################################
+java -jar GenomeAnalysisTK.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals \
+--noOriginalAlignmentTags \
+[ -I <input.bam> ] \
+-nWayOut <output.map>
