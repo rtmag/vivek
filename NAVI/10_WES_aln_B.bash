@@ -569,7 +569,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM1_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM1.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -577,7 +577,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM2_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM2.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -585,7 +585,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM19_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM19.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -593,7 +593,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM20_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM20.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -601,7 +601,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM25_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM25.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -609,7 +609,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM26_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM26.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -617,7 +617,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM31_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM31.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -625,7 +625,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM32_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM32.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -633,7 +633,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM33_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM33.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -641,7 +641,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM34_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM34.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -649,7 +649,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM43_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM43.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -657,7 +657,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM44_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM44.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -665,7 +665,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM7_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM7.bqsr.grp
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -673,7 +673,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM8_realigned.bam \
--knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
 -o /home/rtm/vivek/navi/wes/bam/VM8.bqsr.grp
 ####################################################################################################################################
 
