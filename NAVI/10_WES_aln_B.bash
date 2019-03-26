@@ -662,20 +662,6 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM8.bqsr.grp
 ####################################################################################################################################
-.bam
-VM2_realigned.bam
-VM19_realigned.bam
-VM20_realigned.bam
-VM25_realigned.bam
-VM26_realigned.bam
-VM31_realigned.bam
-VM32_realigned.bam
-VM33_realigned.bam
-VM34_realigned.bam
-VM43_realigned.bam
-VM44_realigned.bam
-VM7_realigned.bam
-VM8_realigned.bam
 
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
