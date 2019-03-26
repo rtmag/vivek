@@ -564,198 +564,226 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 ####################################################################################################################################
 ####################################################################################################################################
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM1_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM1.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM2_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM2.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM19_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM19.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM20_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM20.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM25_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM25.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM26_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM26.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM31_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM31.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM32_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM32.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM33_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM33.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM34_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM34.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM43_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM43.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM44_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM44.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM7_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM7.bqsr.grp
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM8_realigned.bam \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
 -o /home/rtm/vivek/navi/wes/bam/VM8.bqsr.grp
 ####################################################################################################################################
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM1_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM1.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM1_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM2_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM2.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM2_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM19_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM19.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM19_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM20_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM20.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM20_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM25_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM25.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM25_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM26_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM26.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM26_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM31_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM31.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM31_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM32_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM32.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM32_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM33_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM33.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM33_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM34_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM34.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM34_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM43_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM43.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM43_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM44_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM44.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM44_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM7_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM7.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM7_recalibrated.bam
 
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
+-nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes/bam/VM8_realigned.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM8.bqsr.grp \
