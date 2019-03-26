@@ -563,7 +563,78 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 --out /home/rtm/vivek/navi/wes/bam/VM8_realigned.bam
 ####################################################################################################################################
 ####################################################################################################################################
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM1_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM1_realigned.addRG.bam \
+RGID=VM1 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM1 CREATE_INDEX=true &
 
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM2_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM2_realigned.addRG.bam \
+RGID=VM2 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM2 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM19_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM19_realigned.addRG.bam \
+RGID=VM19 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM19 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM20_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM20_realigned.addRG.bam \
+RGID=VM20 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM20 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM25_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM25_realigned.addRG.bam \
+RGID=VM25 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM25 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM26_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM26_realigned.addRG.bam \
+RGID=VM26 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM26 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM31_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM31_realigned.addRG.bam \
+RGID=VM31 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM31 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM32_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM32_realigned.addRG.bam \
+RGID=VM32 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM32 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM33_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM33_realigned.addRG.bam \
+RGID=VM33 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM33 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM34_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM34_realigned.addRG.bam \
+RGID=VM34 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM34 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM43_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM43_realigned.addRG.bam \
+RGID=VM43 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM43 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM44_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM44_realigned.addRG.bam \
+RGID=VM44 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM44 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM7_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM7_realigned.addRG.bam \
+RGID=VM7 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM7 CREATE_INDEX=true &
+
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM8_realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM8_realigned.addRG.bam \
+RGID=VM8 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM8 CREATE_INDEX=true &
+
+####################################################################################################################################
+####################################################################################################################################
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
 -nct 20 \
