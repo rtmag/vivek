@@ -19,3 +19,9 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1-PoisedTSS" --col
 -m H1_heSC_poised_TSS.mat --zMin 0 0 0 0 0 0 0 0 --zMax 1.7 1.2 1.7 1.2 1.7 1.2 1.7 1.2 \
 --samplesLabel "H3K4me3 NHM" "H3K27me3 NHM" "H3K4me3 NB" "H3K27me3 NB" "H3K4me3 NC" "H3K27me3 NC" "H3K4me3 NBC" "H3K27me3 NBC" \
 -out H1_poised_TSS.pdf 
+
+################################################################3
+
+# H9 enhancer table was downloaded from Epigenomic Annotation of Enhancers Predicts Transcriptional Regulators of Human Neural Crest
+# https://www.cell.com/cms/10.1016/j.stem.2012.07.006/attachment/b2e099d7-b344-4d37-b5d1-7fded46195f3/mmc2
+
