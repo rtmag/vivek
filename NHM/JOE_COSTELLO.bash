@@ -91,7 +91,7 @@ computeMatrix reference-point \
 /root/vivek/chip-seq/bw/CDKN2A_H3K27me3.bw \
 /root/vivek/chip-seq/bw/CDKN2A+BRAF_H3K27me3.bw \
 -R H1_heSC_active_enhancer.bed \
---sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H1_heSC_genic_enhancer_all.mat \
+--sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H1_heSC_active_enhancer_all.mat \
 --referencePoint center
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 GenicEnhancer" \
