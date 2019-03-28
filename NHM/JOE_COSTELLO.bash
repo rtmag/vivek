@@ -94,7 +94,7 @@ computeMatrix reference-point \
 --sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H1_heSC_active_enhancer_all.mat \
 --referencePoint center
 
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 GenicEnhancer" \
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 ActiveEnhancer" \
 --colorMap Blues Blues Blues Blues Greens Greens Greens Greens Reds Reds Reds Reds Oranges Oranges Oranges Oranges \
 -m H1_heSC_active_enhancer_all.mat \
  --samplesLabel "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" \
@@ -110,7 +110,7 @@ computeMatrix reference-point \
 --sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H1_heSC_active_enhancer.mat \
 --referencePoint center
 
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 GenicEnhancer" \
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 ActiveEnhancer" \
 --colorMap Blues \
 -m H1_heSC_active_enhancer.mat \
  --samplesLabel "NHM" "VE" "KO" "VE+KO" \
@@ -149,7 +149,7 @@ computeMatrix reference-point \
 --sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H9_active_enhancer_hg38liftover_all.mat \
 --referencePoint center
 
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 GenicEnhancer" \
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "hNCC activeEnhancer" \
 --colorMap Blues Blues Blues Blues Greens Greens Greens Greens Reds Reds Reds Reds Oranges Oranges Oranges Oranges \
 -m H9_active_enhancer_hg38liftover_all.mat \
  --samplesLabel "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" \
@@ -165,7 +165,7 @@ computeMatrix reference-point \
 --sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H9_active_enhancer_hg38liftover.mat \
 --referencePoint center
 
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 GenicEnhancer" \
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "hNCC activeEnhancer" \
 --colorMap Blues \
 -m H9_active_enhancer_hg38liftover.mat \
  --samplesLabel "NHM" "VE" "KO" "VE+KO" \
@@ -199,7 +199,7 @@ computeMatrix reference-point \
 --sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H9_poised_enhancers_hg38liftover_all.mat \
 --referencePoint center
 
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 GenicEnhancer" \
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "hNCC poisedEnhancer" \
 --colorMap Blues Blues Blues Blues Greens Greens Greens Greens Reds Reds Reds Reds Oranges Oranges Oranges Oranges \
 -m H9_poised_enhancers_hg38liftover_all.mat \
  --samplesLabel "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" "NHM" "VE" "KO" "VE+KO" \
@@ -215,7 +215,7 @@ computeMatrix reference-point \
 --sortRegions descend --sortUsingSamples 1 4 -bs 20 -a 5000 -b 5000 -p max -out H9_poised_enhancers_hg38liftover.mat \
 --referencePoint center
 
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "H1 GenicEnhancer" \
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "hNCC poisedEnhancer" \
 --colorMap Blues \
 -m H9_poised_enhancers_hg38liftover.mat \
  --samplesLabel "NHM" "VE" "KO" "VE+KO" \
