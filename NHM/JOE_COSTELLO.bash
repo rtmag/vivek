@@ -233,7 +233,7 @@ computeMatrix reference-point \
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Enhancer" --colorMap Greys \
 -m foreskinDNASE_onNHMenhancers.mat \
- --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+ --samplesLabel "DNASE-Seq foreskin melanocyte" \
 -out foreskinDNASE_onNHMenhancers.pdf 
 
 
