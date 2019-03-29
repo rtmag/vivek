@@ -221,3 +221,20 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "hNCC poisedEnhancer
  --samplesLabel "NHM" "VE" "KO" "VE+KO" \
 -out H9_poised_enhancers_hg38liftover.pdf 
 
+############################################################################################################################
+# DNASE
+wget https://www.encodeproject.org/files/ENCFF520XMG/@@download/ENCFF520XMG.bigWig
+
+computeMatrix reference-point \
+-S \
+/root/vivek/NHM/joe_costello/ENCFF520XMG.bigWig \
+-R /root/vivek/chip-seq/h3k27ac_diff/CDKN2A+BRAF_vs_NHM_H3K27ac.bed \
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out foreskinDNASE_onNHMenhancers.mat --referencePoint center
+
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Enhancer" --colorMap Greys \
+-m foreskinDNASE_onNHMenhancers.mat \
+ --samplesLabel "NHM" "BRAF" "CDKN2A" "CDKN2A+BRAF" \
+-out foreskinDNASE_onNHMenhancers.pdf 
+
+
+
