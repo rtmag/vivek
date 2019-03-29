@@ -217,6 +217,22 @@ OUTPUT=VM8_sort.bam \
 SORT_ORDER=coordinate \
 VALIDATION_STRINGENCY=STRICT
 ##########################################################################
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM19_sort.bam -outfile VM19_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM1_sort.bam -outfile VM1_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM20_sort.bam -outfile VM20_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM25_sort.bam -outfile VM25_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM26_sort.bam -outfile VM26_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM2_sort.bam -outfile VM2_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM31_sort.bam -outfile VM31_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM32_sort.bam -outfile VM32_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM33_sort.bam -outfile VM33_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM34_sort.bam -outfile VM34_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM3_sort.bam -outfile VM3_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM43_sort.bam -outfile VM43_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM44_sort.bam -outfile VM44_sort.pdf --java-mem-size=200G 
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM7_sort.bam -outfile VM7_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM8_sort.bam -outfile VM8_sort.pdf --java-mem-size=200G
+##########################################################################
 
 java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
