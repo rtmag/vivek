@@ -7,7 +7,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 # Allele frequencies only
 
         # Save off the header for later:
-        zcat gnomad.exomes.r2.1.1.sites.vcf.bgz| grep '^#' > header &
+        zcat gnomad.exomes.r2.1.1.sites.vcf.bgz|head -n 900 > header
 
         # Get all lines in the file except the header:
         # Preserve all fields before INFO, Grab only the AF annotation from the INFO Field
@@ -31,6 +31,10 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 
         # Cleanup:
         rm header body simplified_info simplified_body simplified.vcf simplified.vcf.idx
+        
+        # add CHR
+        awk '{ if($0 !~ /^#/) print "chr"$0; else if(match($0,/(##contig=<ID=)(.*)/,m)) print m[1]"chr"m[2]; else print $0 }' \
+        no_chr.vcf > with_chr.vcf
 
 ########
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar CollectSequencingArtifactMetrics \
