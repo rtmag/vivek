@@ -236,5 +236,11 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "Enhancer" --colorMa
  --samplesLabel "DNASE-Seq foreskin melanocyte" \
 -out foreskinDNASE_onNHMenhancers.pdf 
 
+############################################################################################################################
+# -check overlap between NCC active enhancers and NHM-specfic,VEKO-specific - vennDiagram
+# NHM
+bedtools intersect -a H1_heSC_active_enhancer.bed -b /root/vivek/chip-seq/h3k27ac_diff/BC_VS_N_50pro_1000w_DOWN_diff_200_fc1.bed|wc -l
+# VEKO
+bedtools intersect -a H1_heSC_active_enhancer.bed -b /root/vivek/chip-seq/h3k27ac_diff/BC_VS_N_50pro_1000w_UP_diff_200_fc1.bed|wc -l
 
 
