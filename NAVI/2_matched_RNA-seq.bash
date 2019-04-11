@@ -315,3 +315,82 @@ STAR --genomeDir /root/resources/star_hg38_overhang100/ \
 --outSAMtype BAM SortedByCoordinate  \
 --outFileNamePrefix /root/vivek/EPIC_NEVI_PILOT/RNA_seq/bam/S38_
 
+
+####################################################################################################################
+####################################################################################################################
+####################################################################################################################
+R01  S10
+R02  S11
+R18  S12
+R09  S13
+R15  S14
+R16  S15
+R06  S16
+R08  S17
+R21  S18
+R13  S1
+R14  S2
+R22  S3 
+R03  S4
+R12  S5
+R11  S6
+R04  S7
+R05  S8
+R07  S9
+
+
+mv S10_Aligned.sortedByCoord.out.bam R01_Aligned.sortedByCoord.out.bam
+mv S11_Aligned.sortedByCoord.out.bam R02_Aligned.sortedByCoord.out.bam
+mv S12_Aligned.sortedByCoord.out.bam R18_Aligned.sortedByCoord.out.bam
+mv S13_Aligned.sortedByCoord.out.bam R09_Aligned.sortedByCoord.out.bam
+mv S14_Aligned.sortedByCoord.out.bam R15_Aligned.sortedByCoord.out.bam
+mv S15_Aligned.sortedByCoord.out.bam R16_Aligned.sortedByCoord.out.bam
+mv S16_Aligned.sortedByCoord.out.bam R06_Aligned.sortedByCoord.out.bam
+mv S17_Aligned.sortedByCoord.out.bam R08_Aligned.sortedByCoord.out.bam
+mv S18_Aligned.sortedByCoord.out.bam R21_Aligned.sortedByCoord.out.bam
+mv S1_Aligned.sortedByCoord.out.bam R13_Aligned.sortedByCoord.out.bam
+mv S2_Aligned.sortedByCoord.out.bam R14_Aligned.sortedByCoord.out.bam
+mv S38_Aligned.sortedByCoord.out.bam B1_Aligned.sortedByCoord.out.bam
+mv S3_Aligned.sortedByCoord.out.bam R22_Aligned.sortedByCoord.out.bam
+mv S4_Aligned.sortedByCoord.out.bam R03_Aligned.sortedByCoord.out.bam
+mv S5_Aligned.sortedByCoord.out.bam R12_Aligned.sortedByCoord.out.bam
+mv S6_Aligned.sortedByCoord.out.bam R11_Aligned.sortedByCoord.out.bam
+mv S7_Aligned.sortedByCoord.out.bam R04_Aligned.sortedByCoord.out.bam
+mv S8_Aligned.sortedByCoord.out.bam R05_Aligned.sortedByCoord.out.bam
+mv S9_Aligned.sortedByCoord.out.bam R07_Aligned.sortedByCoord.out.bam
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
