@@ -105,6 +105,7 @@ design<-data.frame(cell=c(
 "Normal","Nevus","Melanoma", #59-60
                           ),
 patient=c(
+0,
 1,1,1,
 2,2,2,
 3,3,3,
@@ -118,5 +119,7 @@ patient=c(
 11,11,
 12,12,
 13,13,
-14,14,14)
+14,14,14),
+name = c(
+         
 )
