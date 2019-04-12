@@ -73,13 +73,24 @@ M=H3K27me3_76_rmdup.mfile
 
 samtools index H3K4me3_36_rmdup.bam &
 samtools index H3K4me3_76_rmdup.bam &
-samtools index H3K4me27_36_rmdup.bam &
-samtools index H3K4me27_76_rmdup.bam &
+samtools index H3K27me3_36_rmdup.bam &
+samtools index H3K27me3_76_rmdup.bam &
 wait
-bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K4me3_36_rmdup.bam -o H3K4me3_36_rmdup.bw
-bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K4me3_76_rmdup.bam -o H3K4me3_76_rmdup.bw
+#bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K4me3_36_rmdup.bam -o H3K4me3_36_rmdup.bw
+#bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K4me3_76_rmdup.bam -o H3K4me3_76_rmdup.bw
 bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K27me3_36_rmdup.bam -o H3K27me3_36_rmdup.bw
 bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K27me3_76_rmdup.bam -o H3K27me3_76_rmdup.bw
 
+### DOWNLOAD BAMS
+# H3K27me3 ENCSR216OGD
+#1
+wget https://www.encodeproject.org/files/ENCFF083QQZ/@@download/ENCFF083QQZ.bam
+#2
+wget https://www.encodeproject.org/files/ENCFF310SBN/@@download/ENCFF310SBN.bam
 
-
+# H3K4me3 ENCSR019SQX
+#1
+wget https://www.encodeproject.org/files/ENCFF467XCU/@@download/ENCFF467XCU.bam
+#2
+wget https://www.encodeproject.org/files/ENCFF494FNC/@@download/ENCFF494FNC.bam
+###########################################################################################
