@@ -81,6 +81,7 @@ saveRDS(data,"RNA_Seq_featureCounts_batch3_output.rds")
 dat=data[[1]]
 
 design<-data.frame(cell=c(
+"B1", #B1
 "Normal","Nevus","Melanoma", #1-3
 "Normal","Nevus","Melanoma", #4-6
 "Normal","Nevus","Melanoma", #7-9
@@ -94,7 +95,14 @@ design<-data.frame(cell=c(
          "Nevus","Melanoma", #32-33
          "Nevus","Melanoma", #34-35
          "Nevus","Melanoma", #36-37
-"Normal","Nevus","Melanoma" #38-40
+"Normal","Nevus","Melanoma", #38-40
+"Normal","Nevus","Melanoma", #41-43 #BATCH3
+"Normal","Nevus","Melanoma", #44-46
+"Normal","Nevus","Melanoma", #47-49
+"Normal","Nevus","Melanoma", #50-52
+"Normal","Nevus","Melanoma", #53-55
+"Normal","Nevus","Melanoma", #56-58
+"Normal","Nevus","Melanoma", #59-60
                           ),
 patient=c(
 1,1,1,
