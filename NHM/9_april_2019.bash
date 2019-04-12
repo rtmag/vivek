@@ -51,3 +51,35 @@ STAR --genomeDir /root/resources/hg38_noanno/ \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix H3K27me3_36_
 #####################
+java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
+I=H3K4me3_36_Aligned.sortedByCoord.out.bam \
+O=H3K4me3_36_rmdup.bam \
+M=H3K4me3_36_rmdup.mfile
+
+java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
+I=H3K4me3_76_Aligned.sortedByCoord.out.bam \
+O=H3K4me3_76_rmdup.bam \
+M=H3K4me3_76_rmdup.mfile
+
+java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
+I=H3K27me3_36_Aligned.sortedByCoord.out.bam \
+O=H3K27me3_36_rmdup.bam \
+M=H3K27me3_36_rmdup.mfile
+
+java -jar /root/myPrograms/picard/build/libs/picard.jar MarkDuplicates REMOVE_DUPLICATES=true \
+I=H3K27me3_76_Aligned.sortedByCoord.out.bam \
+O=H3K27me3_76_rmdup.bam \
+M=H3K27me3_76_rmdup.mfile
+
+samtools index H3K4me3_36_rmdup.bam &
+samtools index H3K4me3_76_rmdup.bam &
+samtools index H3K4me27_36_rmdup.bam &
+samtools index H3K4me27_76_rmdup.bam &
+wait
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K4me3_36_rmdup.bam -o H3K4me3_36_rmdup.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K4me3_76_rmdup.bam -o H3K4me3_76_rmdup.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K27me3_36_rmdup.bam -o H3K27me3_36_rmdup.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b H3K27me3_76_rmdup.bam -o H3K27me3_76_rmdup.bw
+
+
+
