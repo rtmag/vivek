@@ -29,7 +29,7 @@ STAR --genomeDir /root/resources/hg38_noanno/ \
 --runThreadN 40 \
 --alignIntronMax 1 \
 --alignEndsType EndToEnd \
---readFilesIn ENCFF296CUY.fastq.gz \
+--readFilesIn ENCFF739WMB.fastq.gz \
 --outSAMtype BAM SortedByCoordinate \
 --outFileNamePrefix H3K4me3_76_
 
