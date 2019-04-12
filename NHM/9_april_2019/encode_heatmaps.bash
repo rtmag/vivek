@@ -94,3 +94,13 @@ wget https://www.encodeproject.org/files/ENCFF467XCU/@@download/ENCFF467XCU.bam
 #2
 wget https://www.encodeproject.org/files/ENCFF494FNC/@@download/ENCFF494FNC.bam
 ###########################################################################################
+samtools index ENCFF083QQZ.bam &
+samtools index ENCFF310SBN.bam &
+samtools index ENCFF467XCU.bam &
+samtools index ENCFF494FNC.bam &
+wait
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b ENCFF083QQZ.bam -o dw.H3K27me3_1_rmdup.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b ENCFF310SBN.bam -o dw.H3K27me3_2_rmdup.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b ENCFF467XCU.bam -o dw.H3K4me3_1_rmdup.bw
+bamCoverage -p max -e 200 -bs 1 --normalizeUsing CPM -b ENCFF494FNC.bam -o dw.H3K4me3_2_rmdup.bw
+########
