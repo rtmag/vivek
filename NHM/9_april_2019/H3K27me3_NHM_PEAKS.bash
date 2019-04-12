@@ -2,7 +2,7 @@
 # H3K27me3 peaks in VE+KO not bivalent
 bedtools intersect -a CDKN2A+BRAF_H3K27me3_peaks.broadPeak -b CDKN2A+BRAF_H3K4me3_peaks.broadPeak -v | \
 bedtools intersect -a - -b CDKN2A+BRAF_H3K27ac_peaks.broadPeak -v | \
-bedtools intersect -a - -b NHM_H3K27ac_peaks.broadPeak -v | \
+bedtools intersect -a - -b NHM_H3K27me3_peaks.broadPeak -v | \
 bedtools intersect -a - -b /root/resources/hg38_tss.bed -wa -wb| \
 cut -f10,11,12,13,14,15|sort|uniq  \
 > /root/vivek/NHM/joe_costello/VEKO_H3K27me3_notBivalent_notInNHM.bed
@@ -24,7 +24,7 @@ plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "TSS" --colorMap Gre
 # H3K27me3 peaks in NHM not bivalent
 bedtools intersect -a NHM_H3K27me3_peaks.broadPeak -b NHM_H3K4me3_peaks.broadPeak -v | \
 bedtools intersect -a - -b NHM_H3K27ac_peaks.broadPeak -v | \
-bedtools intersect -a - -b CDKN2A+BRAF_H3K27ac_peaks.broadPeak -v | \
+bedtools intersect -a - -b CDKN2A+BRAF_H3K27me3_peaks.broadPeak -v | \
 bedtools intersect -a - -b /root/resources/hg38_tss.bed -wa -wb| \
 cut -f10,11,12,13,14,15|sort|uniq  \
 > /root/vivek/NHM/joe_costello/NHM_H3K27me3_notBivalent_notInVEKO.bed
