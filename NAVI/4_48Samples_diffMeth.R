@@ -33,7 +33,7 @@ rnb.set.filtered <- rnb.execute.snp.removal(rnb.set.filtered, snp="any")$dataset
 rnb.set.filtered <- rnb.execute.na.removal(rnb.set.filtered)$dataset
 save.rnb.set(rnb.set.filtered,path="/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData")
 #######################################################################
-rnb.set.norm_no910=remove.samples(rnb.set.norm,samples(rnb.set.filtered)[9:10])
+rnb.set.norm_no910=remove.samples(rnb.set.filtered,samples(rnb.set.filtered)[9:10])
 rnb.options("columns.pairing"=c("Tumor"="Patient"))
 rnb.options("differential.variability"=FALSE)
 # Multiprocess
