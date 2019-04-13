@@ -24,9 +24,10 @@ clab=as.character(colores[track])
 colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
 
 # standard
-meth.norm.sig=meth.norm[ dmc_table$diffmeth.p.adj.fdr<0.01 & abs(dmc_table$mean.diff)>.28 ,]
+meth.norm.sig=meth.norm[ dmc_table$diffmeth.p.adj.fdr<0.01 & abs(dmc_table$mean.diff)>.25 ,]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 dim(meth.norm.sig)
+saveRDS(rownames(meth.norm.sig),"LinearModel_132_CpG.rds")
 
 png("heatmap_FDR5e-3_DIF25_no9_no10_NotCentered.png",width= 3.25,
   height= 3.25,units="in",
@@ -152,9 +153,24 @@ dev.off()
 
 ############################################################################################
 ############################################################################################
+cpg_40 = read.table("/home/rtm/vivek/navi/meth_GEO/40_cpg_elasticNet.txt",stringsAsFactors=FALSE)
+cpg_40 = cpg_40[,1]
+cpg_132 = readRDS("/home/rtm/vivek/navi/EPIC_2nd_batch/LinearModel_132_CpG.rds")
 
 GSE86355 = read.table("GSE86355_unmethylated_methylated_signal.txt.gz")
-GSE120878 = read.table("GSE120878_Matrix_Intensity_Pval.txt.gz")
-
 GSE86355_anno = read.table("GSE86355_annotation.txt")
-GSE120878_anno = read.table("GSE120878_annotation.txt")
+id = as.numeric(gsub("GSM", "", GSE86355_anno[,1]))
+GSE86355_40 = GSE86355[rownames(GSE86355) %in% cpg_40, c(1:14,15:47)]
+
+GSE86355_beta_40 = matrix(0,ncol=75,nrow=40)
+
+GSE86355_132 = GSE86355[rownames(GSE86355) %in% cpg_132[,1], ]
+GSE86355_beta_132 = matrix(0,ncol=75,nrow=40)
+
+
+
+
+
+
+#GSE120878 = read.table("GSE120878_Matrix_Intensity_Pval.txt.gz")
+#GSE120878_anno = read.table("GSE120878_annotation.txt")
