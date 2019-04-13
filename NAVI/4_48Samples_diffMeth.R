@@ -48,7 +48,15 @@ MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor")
 comparison <- get.comparisons(MvsN_dmc)[1]
 dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
 saveRDS(dmc_table,"dmc_MvsN_byPatient.rds")
-#####################
+################################################################################################################
+# Removing Patient pairing
+rnb.options("columns.pairing"=NULL)
+MvsN_dmc_noPatient <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor"))
+
+comparison <- get.comparisons(MvsN_dmc_noPatient)[1]
+dmc_noPatient_table <-get.table(MvsN_dmc_noPatient, comparison, "sites", return.data.frame=TRUE)
+saveRDS(dmc_noPatient_table,"dmc_MvsN_NoPatient.rds")
+################################################################################################################
 genes_table <-get.table(MvsN_dmc, comparison, "genes", return.data.frame=TRUE)
 gns = read.csv("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_report/differential_methylation_data/diffMethTable_region_cmp16_genes.csv")
 genes_table = cbind(gns[,1:5],genes_table)
