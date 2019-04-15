@@ -167,10 +167,49 @@ GSE86355_beta_40 = matrix(0,ncol=75,nrow=40)
 GSE86355_132 = GSE86355[rownames(GSE86355) %in% cpg_132[,1], ]
 GSE86355_beta_132 = matrix(0,ncol=75,nrow=40)
 
+############################################################################################
+############################################################################################
+library(Biobase)
+library(GEOquery)
 
+# load series and platform data from GEO
+#450k prev
 
+gset <- getGEO("GSE86355", GSEMatrix =TRUE, getGPL=FALSE)
+if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
 
+# set parameters and draw the plot
 
+dev.new(width=4+dim(gset)[[2]]/5, height=6)
+par(mar=c(2+round(max(nchar(sampleNames(gset)))/2),4,2,1))
+title <- paste ("GSE86355", '/', annotation(gset), " selected samples", sep ='')
+boxplot(exprs(gset), boxwex=0.7, notch=T, main=title, outline=FALSE, las=2)
 
-#GSE120878 = read.table("GSE120878_Matrix_Intensity_Pval.txt.gz")
-#GSE120878_anno = read.table("GSE120878_annotation.txt")
+############################################################################################
+############################################################################################
+#27k
+gset <- getGEO("GSE45266", GSEMatrix =TRUE, getGPL=FALSE)
+if (length(gset) > 1) idx <- grep("GPL8490", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+
+# set parameters and draw the plot
+
+dev.new(width=4+dim(gset)[[2]]/5, height=6)
+par(mar=c(2+round(max(nchar(sampleNames(gset)))/2),4,2,1))
+title <- paste ("GSE45266", '/', annotation(gset), " selected samples", sep ='')
+boxplot(exprs(gset), boxwex=0.7, notch=T, main=title, outline=FALSE, las=2)
+
+############################################################################################
+############################################################################################
+# train K
+gset <- getGEO("GSE120878", GSEMatrix =TRUE, getGPL=FALSE)
+if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+
+# set parameters and draw the plot
+
+dev.new(width=4+dim(gset)[[2]]/5, height=6)
+par(mar=c(2+round(max(nchar(sampleNames(gset)))/2),4,2,1))
+title <- paste ("GSE120878", '/', annotation(gset), " selected samples", sep ='')
+boxplot(exprs(gset), boxwex=0.7, notch=T, main=title, outline=FALSE, las=2)
