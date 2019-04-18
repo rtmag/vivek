@@ -305,5 +305,16 @@ labRow = FALSE,xlab="",  ylab=paste(dim(GSE45266_132cpg)[1],"CpGs"),key.title="M
 legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
 #######################
-# Melanoma
+# Melanoma THIS IS GOLDENGATE
+gset <- getGEO("GSE54623", GSEMatrix =TRUE, getGPL=FALSE)
+if (length(gset) > 1) idx <- grep("GPL9183", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+GSE54623_beta =exprs(gset)
+saveRDS(GSE54623_beta,"GSE54623_beta.rds")
+#
+GSE54623_beta = readRDS("GSE54623_beta.rds")
+
+GSE54623_40cpg = GSE54623_beta[ rownames(GSE54623_beta) %in% cpg_40 , ]
+GSE54623_132cpg = GSE54623_beta[ rownames(GSE54623_beta) %in% cpg_132 , ]
+
 
