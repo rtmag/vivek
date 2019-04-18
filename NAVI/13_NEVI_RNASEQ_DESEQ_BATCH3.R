@@ -108,13 +108,15 @@ design$Type[is.na(design$Type)] = "Normal"
 design$Type[26:34] = "Unclassified"
 design$Batch[1:25] = 1 ; design$Batch[20:34] = 2 ; design$Batch[35:55] = 3
 ################################################################################################
+# Removing B1 sample
+countData = countData [,2:dim(countData)[2]] 
+design = design[2:dim(design)[1],]
+################################################################################################
 dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Type )
 dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
 dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dLRT_res = results(dLRT)
 vsd = assay(dLRT_vsd)
-
-table(dLRT_res$padj<0.05)
 
 pdf("Diagnostic_pca_all_samples.pdf")
 plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Type","Batch"))
