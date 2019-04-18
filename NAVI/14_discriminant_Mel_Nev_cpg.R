@@ -184,21 +184,56 @@ cpg_132 = readRDS("/home/rtm/vivek/navi/EPIC_2nd_batch/LinearModel_132_CpG.rds")
 ############################################################################################
 ######## TRAIN
 
-GSE86355_anno = read.table("GSE120878_annotation.txt")
 gset <- getGEO("GSE120878", GSEMatrix =TRUE, getGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
 GSE120878_beta =exprs(gset)
 saveRDS(GSE120878_beta,"GSE120878_beta.rds")
+#
+GSE120878_beta = readRDS("GSE120878_beta.rds")
+
+GSE120878_anno = read.table("GSE120878_annotation.txt")
+GSE120878_40cpg = GSE120878_beta[ rownames(GSE120878_beta) %in% cpg_40 , which(colnames(GSE120878_beta) %in% GSE120878_anno[,1])]
+GSE120878_132cpg = GSE120878_beta[ rownames(GSE120878_beta) %in% cpg_132 , which(colnames(GSE120878_beta) %in% GSE120878_anno[,1])]
+
+if(sum(!(colnames(GSE120878_40cpg) == GSE120878_anno[,1]))==0){print("same_order")}
+  track=as.character(GSE120878_anno[,5])
+  track[track=="melanoma"]=1
+  track[track=="nevus"]=2
+  track=as.numeric(track)
+  colores=c("#ffb3ba","#baffc9")
+  clab=as.character(colores[track])
+  
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+
+png("heatmap_GSE120878_elasticNet_40CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE120878_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(GSE120878_40cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
+
+GSE120878_132cpg = GSE120878_132cpg[complete.cases(GSE120878_132cpg),]
+png("heatmap_GSE120878_elasticNet_132CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE120878_132cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="",  ylab=paste(dim(GSE120878_132cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
+
 
 ############################################################################################
 ######## 450k prev
-GSE86355_anno = read.table("GSE86355_anno.txt")
 gset <- getGEO("GSE86355", GSEMatrix =TRUE, getGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
 GSE86355_beta =exprs(gset)
 saveRDS(GSE86355_beta,"GSE86355_beta.rds")
+#
+GSE86355_beta = readRDS("GSE86355_beta.rds")
+GSE86355_anno = read.table("GSE86355_anno.txt")
 
 GSE86355_40cpg = GSE86355_beta[ rownames(GSE86355_beta) %in% cpg_40 , which(colnames(GSE86355_beta) %in% GSE86355_anno[,1])]
 GSE86355_132cpg = GSE86355_beta[ rownames(GSE86355_beta) %in% cpg_132 , which(colnames(GSE86355_beta) %in% GSE86355_anno[,1])]
@@ -217,21 +252,56 @@ png("heatmap_GSE86355_450K_40CpG.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
 x = heatmap.2(as.matrix(GSE86355_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab="40 CpGs",key.title="Methylation lvl",ColSideColors=clab)
+labRow = FALSE,xlab="", ylab=paste(dim(GSE86355_40cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
 
 png("heatmap_GSE86355_450K_132CpG.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
-x = heatmap.2(as.matrix(GSE86355_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="",  ylab="132 CpGs",key.title="Methylation lvl",ColSideColors=clab)
+x = heatmap.2(as.matrix(GSE86355_132cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="",  ylab=paste(dim(GSE86355_132cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
 ############################################################################################
 ######## 27K
-GSE45266_anno = read.table("GSE45266_anno.txt")
 gset <- getGEO("GSE45266", GSEMatrix =TRUE, getGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL8490", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
+GSE45266_beta =exprs(gset)
+saveRDS(GSE45266_beta,"GSE45266_beta.rds")
+#
+GSE45266_anno = read.table("GSE45266_anno.txt")
+GSE45266_beta = readRDS("GSE45266_beta.rds")
 
+
+GSE45266_40cpg = GSE45266_beta[ rownames(GSE45266_beta) %in% cpg_40 , which(colnames(GSE45266_beta) %in% GSE45266_anno[,1])]
+GSE45266_132cpg = GSE45266_beta[ rownames(GSE45266_beta) %in% cpg_132 , which(colnames(GSE45266_beta) %in% GSE45266_anno[,1])]
+
+
+if(sum(!(colnames(GSE45266_40cpg) == GSE45266_anno[,1]))==0){print("same_order")}
+  track=as.character(GSE45266_anno[,2])
+  track[track=="MELANOMA"]=1
+  track[track=="NEVI"]=2
+  track=as.numeric(track)
+  colores=c("#ffb3ba","#baffc9")
+  clab=as.character(colores[track])
+  
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+
+png("heatmap_GSE45266_27K_40CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE86355_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(GSE86355_40cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
+
+png("heatmap_GSE45266_27K_132CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE86355_132cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="",  ylab=paste(dim(GSE86355_132cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
+#######################
