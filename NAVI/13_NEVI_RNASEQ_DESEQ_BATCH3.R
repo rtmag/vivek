@@ -122,4 +122,12 @@ pdf("Diagnostic_pca_all_samples.pdf")
 plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Type","Batch"))
 dev.off()
 
+pdf("Diagnostic_pca_type_samples.pdf")
+plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Type"))
+dev.off()
+
+pdf("Diagnostic_pca_batch_samples.pdf")
+plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Batch"))
+dev.off()
+
 saveRDS(vsd,"NHM_vsd.rds")
