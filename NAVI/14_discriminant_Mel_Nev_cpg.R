@@ -172,19 +172,28 @@ GSE86355_beta_132 = matrix(0,ncol=75,nrow=40)
 library(Biobase)
 library(GEOquery)
 
-# load series and platform data from GEO
-#450k prev
+cpg_40 = read.table("/home/rtm/vivek/navi/meth_GEO/40_cpg_elasticNet.txt",stringsAsFactors=FALSE)
+cpg_40 = cpg_40[,1]
+cpg_132 = readRDS("/home/rtm/vivek/navi/EPIC_2nd_batch/LinearModel_132_CpG.rds")
 
+######## TRAIN
+
+GSE86355_anno = read.table("GSE120878_annotation.txt")
+gset <- getGEO("GSE120878", GSEMatrix =TRUE, getGPL=FALSE)
+if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+GSE120878_beta =exprs(gset)
+
+
+######## 450k prev
+GSE86355_anno = read.table("GSE86355_anno.txt")
 gset <- getGEO("GSE86355", GSEMatrix =TRUE, getGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
+GSE86355_beta =exprs(gset)
 
-# set parameters and draw the plot
+GSE86355_beta = GSE86355_beta[ rownames(GSE86355_beta) %in% cpg_40 , which(colnames(GSE86355_beta) %in% GSE86355_anno[,1])]
 
-dev.new(width=4+dim(gset)[[2]]/5, height=6)
-par(mar=c(2+round(max(nchar(sampleNames(gset)))/2),4,2,1))
-title <- paste ("GSE86355", '/', annotation(gset), " selected samples", sep ='')
-boxplot(exprs(gset), boxwex=0.7, notch=T, main=title, outline=FALSE, las=2)
 
 ############################################################################################
 ############################################################################################
