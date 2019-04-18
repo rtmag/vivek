@@ -78,48 +78,46 @@ sink()
 
 saveRDS(data,"RNA_Seq_featureCounts_batch3_output.rds")
 
-dat=data[[1]]
+countData=data[[1]]
+colnames(countData) = gsub("X.home.rtm.vivek.navi.rnaseq.RNA_seq.bam.","",colnames(countData))
+colnames(countData) = gsub("X.home.rtm.vivek.navi.rnaseq.bam3.","",colnames(countData))
+colnames(countData) = gsub("_Aligned.sortedByCoord.out.bam","",colnames(countData))
+saveRDS(countData,"NEVI_counts.rds")
+####################################################################################################
+####################################################################################################
 
-design<-data.frame(cell=c(
-"B1", #B1
-"Normal","Nevus","Melanoma", #1-3
-"Normal","Nevus","Melanoma", #4-6
-"Normal","Nevus","Melanoma", #7-9
-         "Nevus","Melanoma", #10-12
-         "Nevus","Melanoma", #13-14
-         "Nevus","Melanoma", #15-16
-                 "Melanoma", #18
-         "Nevus","Melanoma", #21-22
-"Normal","MIS","Melanoma",   #26-28
-"Normal","Nevus","Melanoma", #29-31
-         "Nevus","Melanoma", #32-33
-         "Nevus","Melanoma", #34-35
-         "Nevus","Melanoma", #36-37
-"Normal","Nevus","Melanoma", #38-40
-"Normal","Nevus","Melanoma", #41-43 #BATCH3
-"Normal","Nevus","Melanoma", #44-46
-"Normal","Nevus","Melanoma", #47-49
-"Normal","Nevus","Melanoma", #50-52
-"Normal","Nevus","Melanoma", #53-55
-"Normal","Nevus","Melanoma", #56-58
-"Normal","Nevus","Melanoma", #59-60
-                          ),
-patient=c(
-0,
-1,1,1,
-2,2,2,
-3,3,3,
-4,4,
-5,5,
-6,6,
-7,
-8,8,
-9,9,9,
-10,10,10,
-11,11,
-12,12,
-13,13,
-14,14,14),
-name = c(
-         
-)
+options(scipen=999)
+library(DESeq2)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+
+countData=readRDS("NEVI_counts.rds")
+anno=read.csv("sample_list_RNA_NEVI_ANNO.csv",header=FALSE,stringsAsFactor=FALSE)
+anno = rbind(anno, c("B1","B1","B1"))
+anno[,2] = gsub("NA-","",anno[,2])
+
+design<-data.frame(RNA_ID=colnames(countData),
+                   VM_ID=rep(0,dim(countData)[2]),
+                   Type=rep(0,dim(countData)[2]),
+                   Batch=rep(0,dim(countData)[2]))
+
+design$VM_ID = anno[match(design[,1],anno[,2]),1]
+design$Type = anno[match(design[,1],anno[,2]),3]
+design$Type[is.na(design$Type)] = "Normal"
+design$Type[26:34] = "Unclassified"
+design$Batch[1:25] = 1 ; design$Batch[20:34] = 2 ; design$Batch[35:55] = 3
+################################################################################################
+dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Type )
+dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
+dLRT_vsd <- varianceStabilizingTransformation(dLRT)
+dLRT_res = results(dLRT)
+vsd = assay(dLRT_vsd)
+
+table(dLRT_res$padj<0.05)
+
+pdf("Diagnostic_pca_all_samples.pdf")
+plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Type","Batch"))
+dev.off()
+
+saveRDS(vsd,"NHM_vsd.rds")
