@@ -171,11 +171,17 @@ GSE86355_beta_132 = matrix(0,ncol=75,nrow=40)
 ############################################################################################
 library(Biobase)
 library(GEOquery)
+options(bitmapType="cairo")
+options(scipen=999)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
 
 cpg_40 = read.table("/home/rtm/vivek/navi/meth_GEO/40_cpg_elasticNet.txt",stringsAsFactors=FALSE)
 cpg_40 = cpg_40[,1]
 cpg_132 = readRDS("/home/rtm/vivek/navi/EPIC_2nd_batch/LinearModel_132_CpG.rds")
 
+############################################################################################
 ######## TRAIN
 
 GSE86355_anno = read.table("GSE120878_annotation.txt")
@@ -183,42 +189,49 @@ gset <- getGEO("GSE120878", GSEMatrix =TRUE, getGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
 GSE120878_beta =exprs(gset)
+saveRDS(GSE120878_beta,"GSE120878_beta.rds")
 
-
+############################################################################################
 ######## 450k prev
 GSE86355_anno = read.table("GSE86355_anno.txt")
 gset <- getGEO("GSE86355", GSEMatrix =TRUE, getGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
 GSE86355_beta =exprs(gset)
+saveRDS(GSE86355_beta,"GSE86355_beta.rds")
 
-GSE86355_beta = GSE86355_beta[ rownames(GSE86355_beta) %in% cpg_40 , which(colnames(GSE86355_beta) %in% GSE86355_anno[,1])]
+GSE86355_40cpg = GSE86355_beta[ rownames(GSE86355_beta) %in% cpg_40 , which(colnames(GSE86355_beta) %in% GSE86355_anno[,1])]
+GSE86355_132cpg = GSE86355_beta[ rownames(GSE86355_beta) %in% cpg_132 , which(colnames(GSE86355_beta) %in% GSE86355_anno[,1])]
 
+if(sum(!(colnames(GSE86355_40cpg) == GSE86355_anno[,1]))==0){print("same_order")}
+  track=as.character(GSE86355_anno[,2])
+  track[track=="MELANOMA"]=1
+  track[track=="NEVI"]=2
+  track=as.numeric(track)
+  colores=c("#ffb3ba","#baffc9")
+  clab=as.character(colores[track])
+  
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
 
+png("heatmap_GSE86355_450K_40CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE86355_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="40 CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
+
+png("heatmap_GSE86355_450K_132CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE86355_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="",  ylab="132 CpGs",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
 ############################################################################################
-############################################################################################
-#27k
+######## 27K
+GSE45266_anno = read.table("GSE45266_anno.txt")
 gset <- getGEO("GSE45266", GSEMatrix =TRUE, getGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL8490", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
 
-# set parameters and draw the plot
-
-dev.new(width=4+dim(gset)[[2]]/5, height=6)
-par(mar=c(2+round(max(nchar(sampleNames(gset)))/2),4,2,1))
-title <- paste ("GSE45266", '/', annotation(gset), " selected samples", sep ='')
-boxplot(exprs(gset), boxwex=0.7, notch=T, main=title, outline=FALSE, las=2)
-
-############################################################################################
-############################################################################################
-# train K
-gset <- getGEO("GSE120878", GSEMatrix =TRUE, getGPL=FALSE)
-if (length(gset) > 1) idx <- grep("GPL13534", attr(gset, "names")) else idx <- 1
-gset <- gset[[idx]]
-
-# set parameters and draw the plot
-
-dev.new(width=4+dim(gset)[[2]]/5, height=6)
-par(mar=c(2+round(max(nchar(sampleNames(gset)))/2),4,2,1))
-title <- paste ("GSE120878", '/', annotation(gset), " selected samples", sep ='')
-boxplot(exprs(gset), boxwex=0.7, notch=T, main=title, outline=FALSE, las=2)
