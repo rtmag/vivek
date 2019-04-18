@@ -292,16 +292,18 @@ if(sum(!(colnames(GSE45266_40cpg) == GSE45266_anno[,1]))==0){print("same_order")
 png("heatmap_GSE45266_27K_40CpG.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
-x = heatmap.2(as.matrix(GSE86355_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab=paste(dim(GSE86355_40cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
+x = heatmap.2(as.matrix(GSE45266_40cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(GSE45266_40cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
 
 png("heatmap_GSE45266_27K_132CpG.png",width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
-x = heatmap.2(as.matrix(GSE86355_132cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="",  ylab=paste(dim(GSE86355_132cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
+x = heatmap.2(as.matrix(GSE45266_132cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="",  ylab=paste(dim(GSE45266_132cpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
 #######################
+# Melanoma
+
