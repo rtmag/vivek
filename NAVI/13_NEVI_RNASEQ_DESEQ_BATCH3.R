@@ -108,19 +108,40 @@ design$Type[is.na(design$Type)] = "Normal"
 design$Type[26:34] = "Unclassified"
 design$Batch[1:25] = 1 ; design$Batch[20:34] = 2 ; design$Batch[35:55] = 3
 ################################################################################################
+# Adding missing info
+
+design[design$RNA_ID=="R32",3] = "Nevus"
+design[design$RNA_ID=="R33",3] = "Melanoma"
+
+design[design$RNA_ID=="R34",3] = "Nevus"
+design[design$RNA_ID=="R35",3] = "Melanoma"
+
+
+design[design$RNA_ID=="R36",3] = "Nevus"
+design[design$RNA_ID=="R37",3] = "Melanoma"
+design[design$RNA_ID=="R38",3] = "Normal"
+
+design[design$RNA_ID=="R39",3] = "Nevus"
+design[design$RNA_ID=="R40",3] = "Melanoma"
+
 # Removing B1 sample
 countData = countData [,2:dim(countData)[2]] 
 design = design[2:dim(design)[1],]
+
+# Removing Normal
+design = design[design$Type!="Normal",]
+countData = countData [,design$Type!="Normal"]
+
+# Factoring
+design$Type = as.factor(design$Type)
+design$Batch = as.factor(design$Batch)
+
 ################################################################################################
-dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Type )
+dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Type + Batch )
 dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
 dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dLRT_res = results(dLRT)
 vsd = assay(dLRT_vsd)
-
-pdf("Diagnostic_pca_all_samples.pdf")
-plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Type","Batch"))
-dev.off()
 
 pdf("Diagnostic_pca_type_samples.pdf")
 plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Type"))
@@ -130,4 +151,29 @@ pdf("Diagnostic_pca_batch_samples.pdf")
 plotPCA(dLRT_vsd,ntop=50000,intgroup=c("Batch"))
 dev.off()
 
-saveRDS(vsd,"NHM_vsd.rds")
+#######
+# remove batch effect
+mat <- limma::removeBatchEffect(vsd, dLRT_vsd$Batch)
+
+track = as.numeric(design$Type=="Melanoma")+1
+colores = c("blue","red")
+colores = colores[track]
+
+myPCA <- prcomp(t(mat), scale. = F, center = T)
+sx=summary(myPCA)
+
+pdf("Diagnostic_pca_Type_samples_BATCHcorrected.pdf")
+plot(myPCA$x[,1:2],col=colores,pch = 19,cex=2,
+     xlab=paste("PCA1",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%") )
+legend("topleft", c("Nevus","Melanoma"),fill=c("blue","red"), bty="n") 
+dev.off()
+
+pdf("Diagnostic_pca_Type_samples_BATCHcorrected_withNames.pdf")
+plot(myPCA$x[,1:2],col=colores,pch = 19,cex=2,
+     xlab=paste("PCA1",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%") )
+legend("topleft", c("Nevus","Melanoma"),fill=c("blue","red"), bty="n") 
+text(myPCA$x[,1:2]+.5,label=as.character(design$RNA_ID),cex=1)
+dev.off()
+
+
+
