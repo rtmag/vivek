@@ -384,5 +384,5 @@ png("heatmap_TCGA_SKCM_132CpG_segmented.png",width= 3.25,
   res=1200,pointsize=4)
 x = heatmap.2(as.matrix(SKCM_132cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab=paste(dim(SKCM_40cpg)[1],"CpGs"),key.title="Methylation lvl",RowSideColors=rlab)
-legend("topright",legend=c("Melanoma","Nevi"),fill=c("darkred","darkgreen"), border=T, bty="n" )
+legend("topright",legend=c("Melanoma CpGs","Nevi CpGs"),fill=c("darkred","darkgreen"), border=T, bty="n" )
 dev.off()
