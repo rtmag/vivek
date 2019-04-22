@@ -351,4 +351,38 @@ x = heatmap.2(as.matrix(SKCM_132cpg),col=colors,scale="none", trace="none",distf
 labRow = FALSE,xlab="",  ylab=paste(dim(SKCM_132cpg)[1],"CpGs"),key.title="Methylation lvl")
 dev.off()
 ###############
+# TCGA K TEST INDENTIFY
+setwd("../EPIC_2nd_batch/")
 
+x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(meth.norm.sig)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab)
+
+hc <- as.hclust( x$rowDendrogram )
+groups=cutree( hc, k=2 ) # 1:NEVI ; 2:MELANOMA
+track=as.numeric(groups)
+colores=c("darkgreen","darkred")
+rlab=(colores[track])
+saveRDS(groups,"132CpG_NEVI_MELANOMA_specific.rds")
+###
+png("heatmap_cpg_seg_test.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(meth.norm.sig)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab,RowSideColors=rlab)
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("#ffb3ba","#baffc9","#bae1ff"), border=T, bty="n" )
+dev.off()
+###############
+match(names(groups) %in% rownames(SKCM_132cpg))
+
+skcm_groups = groups[names(groups) %in% rownames(SKCM_132cpg)] 
+track=as.numeric(skcm_groups)
+colores=c("darkgreen","darkred")
+rlab=(colores[track])
+
+png("heatmap_TCGA_SKCM_132CpG_segmented.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(SKCM_132cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(SKCM_40cpg)[1],"CpGs"),key.title="Methylation lvl",RowSideColors=rlab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("darkred","darkgreen"), border=T, bty="n" )
+dev.off()
