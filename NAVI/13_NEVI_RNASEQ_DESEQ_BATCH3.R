@@ -175,5 +175,43 @@ legend("topleft", c("Nevus","Melanoma"),fill=c("blue","red"), bty="n")
 text(myPCA$x[,1:2]+.5,label=as.character(design$RNA_ID),cex=1)
 dev.off()
 
+###################################################################################################
+#add patient interaction
+
+options(scipen=999)
+library(DESeq2)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+
+dds <- DESeq(dLRT, test="LRT", 
+           full= ~ Type + Batch, 
+           reduced= ~ Batch )
+
+dds_res <- results(dLRT,contrast=c("Type","Melanoma","Nevus"))
 
 
+# Volcano
+  title= "Melanoma_VS_Nevus_volcano.pdf"
+  pdf(title)
+  plot(dds_res$log2FoldChange,-log10(dds_res$padj),xlab=expression('Log'[2]*paste(' Fold Change ')),
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+  abline(v=-1,lty = 2,col="grey")
+  abline(v=1,lty = 2,col="grey")
+  abline(h=-log10(0.05),lty = 2,col="grey")
+  points(dds_res$log2FoldChange[abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05],
+       -log10(dds_res$padj)[abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05],
+      col="red",pch=20)
+  legend("topright", paste("Melanoma",":",length(which(dds_res$log2FoldChange>1 & dds_res$padj<0.05))), bty="n") 
+  legend("topleft", paste("Nevus",":",length(which(dds_res$log2FoldChange<(-1) & dds_res$padj<0.05))), bty="n") 
+  dev.off()
+  # Heatmap
+  title="Melanoma_VS_Nevus_heatmap.png"
+png(title,width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+  sig_vsd = vsd[which(abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05), ]
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8)
+dev.off()
