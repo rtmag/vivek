@@ -23,8 +23,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM19_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -33,8 +32,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM1_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -43,8 +41,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM20_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -53,8 +50,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM25_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -63,8 +59,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM26_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -73,8 +68,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM2_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -83,8 +77,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM31_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -93,8 +86,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM32_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -103,8 +95,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM33_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -113,8 +104,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM34_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -123,8 +113,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM43_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -133,8 +122,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM44_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -143,8 +131,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM7_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06
 
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -153,6 +140,5 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 --germline-resource /home/references/hg38_bundle/gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
 -L chr7:140753269-140753400 \
 -O /home/rtm/vivek/navi/wes/braf_vc/VM8_BRAF_EXON15.vcf.gz \
---af-of-alleles-not-in-resource 2.5e-06 \
---dbsnp /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf
+--af-of-alleles-not-in-resource 2.5e-06 
 ################
