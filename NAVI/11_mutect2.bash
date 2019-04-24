@@ -1,4 +1,5 @@
 ########
+# https://github.com/broadinstitute/gatk/blob/master/scripts/mutect2_wdl/mutect_resources.wdl
 # Select gnomad biallelic
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar SelectVariants -h
 
@@ -23,7 +24,8 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
         cat header simplified_body > simplified.vcf
 
         # Zip the VCF:
-        bgzip simplified.vcf -O gnomad.exomes.r2.1.1.AFonly.vcf.gz
+        bgzip simplified.vcf
+        mv simplified.vcf.gz gnomad.exomes.r2.1.1.AFonly.vcf.gz
 
         # Index output file:
         java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar IndexFeatureFile \
@@ -33,15 +35,16 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
         rm header body simplified_info simplified_body simplified.vcf simplified.vcf.idx
         
         # add CHR
-        awk '{ if($0 !~ /^#/) print "chr"$0; else if(match($0,/(##contig=<ID=)(.*)/,m)) print m[1]"chr"m[2]; else print $0 }' \
-        no_chr.vcf > with_chr.vcf
-
- java -jar picard.jar LiftoverVcf \\
-     I=input.vcf \\
-     O=lifted_over.vcf \\
-     CHAIN=b37tohg38.chain \\
-     REJECT=rejected_variants.vcf \\
-     R=reference_sequence.fasta
+zcat gnomad.exomes.r2.1.1.AFonly.vcf.gz|awk '{ if($0 !~ /^#/) print "chr"$0; else if(match($0,/(##contig=<ID=)(.*)/,m)) print m[1]"chr"m[2]; else print $0 }' \
+      > with_chr.vcf
+      
+ java -jar /home/rtm/myprograms/picard/build/libs/picard.jar LiftoverVcf \
+ CREATE_INDEX=true \
+     I=with_chr.vcf \
+     O=gnomad.exomes.r2.1.1.AFonly.withChr.b37tohg38.vcf \
+     CHAIN=hg19ToHg38.over.chain \
+     REJECT=rejected_variants.vcf \
+     R=/home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta
 
 ########
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar CollectSequencingArtifactMetrics \
