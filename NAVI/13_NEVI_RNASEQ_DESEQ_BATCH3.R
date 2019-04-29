@@ -263,3 +263,5 @@ heatmap.2(centered_vsd,col=colors,scale="none", trace="none",distfun = function(
 labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8,ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
+
+write.csv(dds_res_patient,"DEG_Melanoma_VS_Nevus_MatchedPatientAnalysis.csv")
