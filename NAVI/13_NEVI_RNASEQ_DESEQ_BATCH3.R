@@ -271,5 +271,5 @@ write.csv(dds_res_patient_sig,"DEG_Melanoma_VS_Nevus_MatchedPatientAnalysis_Sign
 
 mel=rownames(dds_res_patient)[which( dds_res$log2FoldChange>1 & dds_res$padj<0.05) ]
 nev=rownames(dds_res_patient)[which( dds_res$log2FoldChange<(-1) & dds_res$padj<0.05) ]
-write.table(mel,"melanoma_highExpressGenes.txt",sep="\t",col.names=F,row.names=F)
-write.table(nev,"nevus_highExpressGenes.txt",sep="\t",col.names=F,row.names=F)
+write.table(mel,"melanoma_highExpressGenes.txt",sep="\t",col.names=F,row.names=F,quote=F)
+write.table(nev,"nevus_highExpressGenes.txt",sep="\t",col.names=F,row.names=F,quote=F)
