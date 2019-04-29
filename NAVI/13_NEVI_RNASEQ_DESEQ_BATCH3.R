@@ -129,15 +129,26 @@ countData = countData [,2:dim(countData)[2]]
 design = design[2:dim(design)[1],]
 
 # Removing Normal
-design = design[design$Type!="Normal",]
 countData = countData [,design$Type!="Normal"]
+design = design[design$Type!="Normal",]
 
 # Factoring
 design$Type = as.factor(design$Type)
 design$Batch = as.factor(design$Batch)
 
+# Sort by VM id
+library(gtools)
+design = design[mixedorder(design$VM_ID),]
+#paired grouping
+ Patient= c(0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17,18,18,0,0,0,0,0,0,0,0,0)
+design$Patient = Patient
+design$Patient =  as.factor(design$Patient)
+design = design[match(colnames(countData),design$RNA_ID),]
+# remove unmatched patients
+countData = countData [,design$Patient!="0"]
+design = design[design$Patient!="0",]
 ################################################################################################
-dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Type + Batch )
+dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Batch + Patient + Type )
 dLRT <- DESeq(dLRT, test="LRT", reduced=~1)
 dLRT_vsd <- varianceStabilizingTransformation(dLRT)
 dLRT_res = results(dLRT)
@@ -184,13 +195,20 @@ library(gplots)
 library(factoextra)
 library(RColorBrewer)
 
-dds <- DESeq(dLRT, test="LRT", 
-           full= ~ Type + Batch, 
-           reduced= ~ Batch )
-
-dds_res <- results(dLRT,contrast=c("Type","Melanoma","Nevus"))
+dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Batch + Type )
+dds_batch <- DESeq(dLRT)
+dds_res_batch <- results(dds_batch,contrast=c("Type","Melanoma","Nevus"))
 
 
+dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Patient + Type )
+dds_patient <- DESeq(dLRT)
+dds_res_patient <- results(dds_patient,contrast=c("Type","Melanoma","Nevus"))
+
+dLRT_vsd <- varianceStabilizingTransformation(dds_patient)
+vsd = assay(dLRT_vsd)
+
+dds_res = dds_res_batch
+dds_res = dds_res_patient
 # Volcano
   title= "Melanoma_VS_Nevus_volcano.pdf"
   pdf(title)
