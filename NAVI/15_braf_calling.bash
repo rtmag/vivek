@@ -156,7 +156,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 done
 
 zgrep -P "chr7\t" *vcf.gz
-zgrep -P "chr7\t" *vcf.gz|cut -f1-7|perl -pe 's/\:/\t/g' > BRAF_summary_noFILTER.txt
+zgrep -P "chr7\t" BRAF_*.vcf.gz|cut -f1-7|perl -pe 's/\:/\t/g' > BRAF_summary_noFILTER.txt
 
 # NRAS
 for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
