@@ -264,4 +264,12 @@ labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expr
 legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
 
-write.csv(dds_res_patient,"DEG_Melanoma_VS_Nevus_MatchedPatientAnalysis.csv")
+write.csv(dds_res_patient,"DEG_Melanoma_VS_Nevus_MatchedPatientAnalysis_allGenes.csv")
+
+dds_res_patient_sig = dds_res_patient[which(abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05), ]
+write.csv(dds_res_patient_sig,"DEG_Melanoma_VS_Nevus_MatchedPatientAnalysis_SignificantGenes.csv")
+
+mel=rownames(dds_res_patient)[which( dds_res$log2FoldChange>1 & dds_res$padj<0.05) ]
+nev=rownames(dds_res_patient)[which( dds_res$log2FoldChange<(-1) & dds_res$padj<0.05) ]
+write.table(mel,"melanoma_highExpressGenes.txt",sep="\t",colnames=F,rownames=F)
+write.table(nev,"nevus_highExpressGenes.txt",sep="\t",colnames=F,rownames=F)
