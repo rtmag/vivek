@@ -151,11 +151,12 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I $bamfile \
 -tumor $sample \
--L chr7:140753269-140753400 \
--O /home/rtm/vivek/navi/wes/braf_vc/BRAFEXON15_$sample.vcf.gz
+-L chr7:140730665-140924928 \
+-O /home/rtm/vivek/navi/wes/braf_vc/BRAF_$sample.vcf.gz
 done
 
 zgrep -P "chr7\t" *vcf.gz
+zgrep -P "chr7\t" *vcf.gz|cut -f1-7|perl -pe 's/\:/\t/g' > BRAF_summary_noFILTER.txt
 
 # NRAS
 for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
@@ -171,6 +172,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 done
 
 zgrep -P "chr1\t" *vcf.gz
+zgrep -P "chr1\t" *vcf.gz|cut -f1-7|perl -pe 's/\:/\t/g' > NRAS_summary_noFILTER.txt
 
 #NF1
 for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
@@ -186,7 +188,7 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 done
 
 zgrep -P "chr17\t" *vcf.gz
-
+zgrep -P "chr17\t" *vcf.gz|cut -f1-7|perl -pe 's/\:/\t/g' > NF1_summary_noFILTER.txt
 
 
 
