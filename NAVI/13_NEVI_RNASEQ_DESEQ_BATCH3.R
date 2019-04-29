@@ -224,6 +224,13 @@ dds_res = dds_res_patient
   legend("topleft", paste("Nevus",":",length(which(dds_res$log2FoldChange<(-1) & dds_res$padj<0.05))), bty="n") 
   dev.off()
   # Heatmap
+
+track=as.character(design$Type)
+track[track=="Melanoma"]=1
+track[track=="Nevus"]=2
+track=as.numeric(track)
+colores=c("#ffb3ba","#baffc9","#bae1ff")
+clab=as.character(colores[track])
   title="Melanoma_VS_Nevus_heatmap.png"
 png(title,width= 3.25,
   height= 3.25,units="in",
@@ -231,5 +238,6 @@ png(title,width= 3.25,
   sig_vsd = vsd[which(abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05), ]
   colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
 heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8)
+labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8,ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
