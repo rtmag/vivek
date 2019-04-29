@@ -142,3 +142,48 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 -O /home/rtm/vivek/navi/wes/braf_vc/VM8_BRAF_EXON15.vcf.gz \
 --af-of-alleles-not-in-resource 2.5e-06 
 ################
+# EXON15 BRAF
+for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
+do ls -lh $bamfile; 
+name=${bamfile//\/home\/rtm\/vivek\/navi\/wes\/bam\/} ;
+sample=${name//\_recalibrated\.bam} ;
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I $bamfile \
+-tumor $sample \
+-L chr7:140753269-140753400 \
+-O /home/rtm/vivek/navi/wes/braf_vc/NRAS_$sample.vcf.gz
+done
+
+zgrep "chr7" *vcf.gz
+
+# NRAS
+for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
+do ls -lh $bamfile; 
+name=${bamfile//\/home\/rtm\/vivek\/navi\/wes\/bam\/} ;
+sample=${name//\_recalibrated\.bam} ;
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I $bamfile \
+-tumor $sample \
+-L chr1:114704469-114716894 \
+-O /home/rtm/vivek/navi/wes/braf_vc/NRAS_$sample.vcf.gz
+done
+
+#NF1
+for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
+do ls -lh $bamfile; 
+name=${bamfile//\/home\/rtm\/vivek\/navi\/wes\/bam\/} ;
+sample=${name//\_recalibrated\.bam} ;
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I $bamfile \
+-tumor $sample \
+-L chr17:31094927-31377677 \
+-O /home/rtm/vivek/navi/wes/braf_vc/NF1_$sample.vcf.gz
+done
+
+
+
+
+
