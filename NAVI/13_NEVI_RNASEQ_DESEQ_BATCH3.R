@@ -231,13 +231,35 @@ track[track=="Nevus"]=2
 track=as.numeric(track)
 colores=c("#ffb3ba","#baffc9","#bae1ff")
 clab=as.character(colores[track])
-  title="Melanoma_VS_Nevus_heatmap.png"
+  title="Melanoma_VS_Nevus_heatmap_notCentered.png"
 png(title,width= 3.25,
   height= 3.25,units="in",
   res=1200,pointsize=4)
   sig_vsd = vsd[which(abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05), ]
+colnames(sig_vsd) = paste(design[,1],design[,2])
   colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
 heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8,ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
+
+ title="Melanoma_VS_Nevus_heatmap_Centered.png"
+ patient_number = max(as.numeric(as.character(design$Patient)))
+png(title,width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+  sig_vsd = vsd[which(abs(dds_res$log2FoldChange)>1 & dds_res$padj<0.05), ]
+colnames(sig_vsd) = paste(design[,1],design[,2])
+
+centered_vsd = sig_vsd
+for( i in 1:patient_number){
+   ix = which(design$Patient==i)
+   centered_vsd[,ix[1]] = sig_vsd[,ix[1]] - rowMeans(sig_vsd[,ix])
+   centered_vsd[,ix[2]] = sig_vsd[,ix[2]] - rowMeans(sig_vsd[,ix])
+ }
+
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+heatmap.2(centered_vsd,col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8,ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevus"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
