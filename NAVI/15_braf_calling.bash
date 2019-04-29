@@ -152,10 +152,10 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 -I $bamfile \
 -tumor $sample \
 -L chr7:140753269-140753400 \
--O /home/rtm/vivek/navi/wes/braf_vc/NRAS_$sample.vcf.gz
+-O /home/rtm/vivek/navi/wes/braf_vc/BRAFEXON15_$sample.vcf.gz
 done
 
-zgrep "chr7" *vcf.gz
+zgrep -P "chr7\t" *vcf.gz
 
 # NRAS
 for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
@@ -170,6 +170,8 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 -O /home/rtm/vivek/navi/wes/braf_vc/NRAS_$sample.vcf.gz
 done
 
+zgrep -P "chr1\t" *vcf.gz
+
 #NF1
 for bamfile in /home/rtm/vivek/navi/wes/bam/*_recalibrated.bam;
 do ls -lh $bamfile; 
@@ -182,6 +184,8 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 -L chr17:31094927-31377677 \
 -O /home/rtm/vivek/navi/wes/braf_vc/NF1_$sample.vcf.gz
 done
+
+zgrep -P "chr17\t" *vcf.gz
 
 
 
