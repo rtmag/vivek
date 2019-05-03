@@ -204,3 +204,47 @@ pheatmap(sampleDistMatrix,
          clustering_distance_cols=sampleDists,
          col=colors)
 dev.off()
+                  
+############################################################################################
+options(scipen=999)
+library(DESeq2)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+
+expr = readRDS("expr_group_name.rds")
+sig = read.csv("~/CSI/vivek/new_rnaseq/crest/22_april_2019/NCC_signature.csv")
+          
+track=as.character(colnames(expr))
+track[track=="Nev"] = 1
+track[track=="Mel"] = 2
+track = as.numeric(track)
+colores=c("#800000","#4363d8")
+clab=as.character(colores[track])
+                  
+sig_vsd = expr[rownames(expr) %in% as.character(sig[sig$Signature=="Neural crest-like",1]),]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+sig_vsd = sig_vsd[complete.cases(sig_vsd),]
+                  
+x = matrix(as.numeric(unlist(x)),ncol=35)
+colnames(x) = colnames(sig_vsd)
+rownames(x) = rownames(sig_vsd)
+                 
+pdf("CREST_SIGNATURE_HUNTER.pdf",height=10,width=6.5)
+  heatmap.2(x,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="",key.title="Gene expression",cexCol=.85,cexRow=1,dendrogram="both",ColSideColors=clab)
+dev.off()    
+
+pdf("color_key.pdf",height=5,width=6)
+  heatmap.2(x,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="",key.title="Gene expression",cexCol=.85,cexRow=1,dendrogram="both",ColSideColors=clab,density.info="none")
+dev.off()
+      
+pdf("color_hunter_heatmap.legend.pdf",height=5,width=6)
+plot(NULL)
+legend("top",legend=c("NEV","MEL"),fill=c("#800000","#4363d8"), border=T, bty="n" )
+dev.off()
+                  
+                  
+                  
