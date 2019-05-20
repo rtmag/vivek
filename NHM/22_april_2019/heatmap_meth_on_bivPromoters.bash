@@ -54,14 +54,14 @@ melanoma_train_mean_beta.bw \
 nevi_prev450k_mean_beta.bw \
 melanoma_prev450k_mean_beta.bw \
 -R /home/rtm/vivek/navi/meth_GEO/meth_nhm/poised_kmeans_zmet_5k_3clusters.bed --referencePoint center \
---sortRegions descend -bs 20 -a 1000 -b 1000 -p max \
--out /home/rtm/vivek/navi/meth_GEO/meth_nhm/melanoma_nevi_mean_beta_on_poised_kmeans_zmet_5k_3clusters.mat
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max \
+-out /home/rtm/vivek/navi/meth_GEO/meth_nhm/melanoma_nevi_mean_beta_on_poised_kmeans_zmet_5k_3clusters_10k.mat
 
 plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "PoisedTSS" \
 --colorMap Reds \
--m /home/rtm/vivek/navi/meth_GEO/meth_nhm/melanoma_nevi_mean_beta_on_poised_kmeans_zmet_5k_3clusters.mat \
+-m /home/rtm/vivek/navi/meth_GEO/meth_nhm/melanoma_nevi_mean_beta_on_poised_kmeans_zmet_5k_3clusters_10k.mat \
 --samplesLabel "Nevi GSE120878" "Melanoma GSE120878" "Nevi GSE86355" "Melanoma GSE86355" \
--out /home/rtm/vivek/navi/meth_GEO/meth_nhm/melanoma_nevi_mean_beta_on_poised_kmeans_zmet_5k_3clusters.pdf
+-out /home/rtm/vivek/navi/meth_GEO/meth_nhm/melanoma_nevi_mean_beta_on_poised_kmeans_zmet_5k_3clusters_10k.pdf
 ####################################################################################################################################
 ####################################################################################################################################
 ####################################################################################################################################
