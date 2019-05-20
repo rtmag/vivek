@@ -197,7 +197,7 @@ track=as.character(GSE86355_anno[,2])
   colores=c("#ffb3ba","#baffc9")
   clab=as.character(colores[track])
 
-x_cpg = x[ rownames(x) %in% cpg[,4] , ]
+x_cpg = x[ rownames(x) %in% cpg[,4] , which(colnames(x) %in% GSE86355_anno[,1]) ]
 dim(x_cpg)
 x_cpg=x_cpg[complete.cases(x_cpg),]
 dim(x_cpg)
