@@ -209,3 +209,59 @@ x = heatmap.2(as.matrix(x_cpg),col=colors,scale="none", trace="none",distfun = f
 labRow = FALSE,xlab="", ylab="CpGs in Bivalent Promoters",key.title="Methylation lvl",ColSideColors=clab)
 legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
 dev.off()
+
+############################################################################################
+# HEATMAP CPGS of POISED GENES
+info = read.table("hm450.hg38.manifest.tsv",sep="\t", header=T)
+biv = read.table("meth_nhm/poised_kmeans_zmet_5k_3clusters.bed", sep="\t", header=F)
+
+info=info[as.character(info[,20]) %in% as.character(biv[,4]),]
+######################################## TRAIN_SAMPLE ########################################
+cpg = as.character(info$probeID)
+
+GSE120878_anno = read.table("GSE120878_annotation.txt")
+x = readRDS("/home/rtm/vivek/navi/meth_GEO/GSE120878_beta.rds")
+
+track=as.character(GSE120878_anno[,5])
+ track[track=="melanoma"]=1
+  track[track=="nevus"]=2
+  track=as.numeric(track)
+  colores=c("#ffb3ba","#baffc9")
+  clab=as.character(colores[track])
+
+x_cpg = x[ rownames(x) %in% cpg , ]
+dim(x_cpg)
+x_cpg=x_cpg[complete.cases(x_cpg),]
+dim(x_cpg)
+
+png("heatmap_GSE120878_bivalent_genebody.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(x_cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs in Bivalent Promoters",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
+
+######################################## 450k prev ########################################
+GSE86355_anno = read.table("GSE86355_anno.txt")
+x = readRDS("/home/rtm/vivek/navi/meth_GEO/GSE86355_beta.rds")
+
+track=as.character(GSE86355_anno[,2])
+ track[track=="MELANOMA"]=1
+  track[track=="NEVI"]=2
+  track=as.numeric(track)
+  colores=c("#ffb3ba","#baffc9")
+  clab=as.character(colores[track])
+
+x_cpg = x[ rownames(x) %in% cpg , which(colnames(x) %in% GSE86355_anno[,1]) ]
+dim(x_cpg)
+x_cpg=x_cpg[complete.cases(x_cpg),]
+dim(x_cpg)
+
+png("heatmap_GSE86355_bivalent_genebody.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(x_cpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs in Bivalent Promoters",key.title="Methylation lvl",ColSideColors=clab)
+legend("topright",legend=c("Melanoma","Nevi"),fill=c("#ffb3ba","#baffc9"), border=T, bty="n" )
+dev.off()
