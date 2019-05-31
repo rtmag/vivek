@@ -102,10 +102,10 @@ melanoma_train_mean_beta.bw \
 nevi_prev450k_mean_beta.bw \
 melanoma_prev450k_mean_beta.bw \
 -R /home/rtm/vivek/navi/meth_GEO/meth_nhm/poised_kmeans_zmet_tss_+4k_-1k.bed --referencePoint center \
---sortRegions descend -bs 20 -a 1000 -b 4000 -p max \
+--sortRegions descend -bs 20 -a 4000 -b 1000 -p max \
 -out /home/rtm/vivek/navi/meth_GEO/meth_nhm/poised_kmeans_zmet_tss_+4k_-1k.mat
 
-plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "PoisedTSS" \
+plotHeatmap --xAxisLabel "" --yAxisLabel "" --refPointLabel "tss" \
 --colorMap Reds \
 -m /home/rtm/vivek/navi/meth_GEO/meth_nhm/poised_kmeans_zmet_tss_+4k_-1k.mat \
 --samplesLabel "Nevi GSE120878" "Melanoma GSE120878" "Nevi GSE86355" "Melanoma GSE86355" \
