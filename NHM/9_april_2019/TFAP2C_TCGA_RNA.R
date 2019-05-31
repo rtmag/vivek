@@ -88,3 +88,66 @@ stripchart(gene ~ cell, vertical = TRUE, data = HSPA5, jitter = 0.3, ylab = expr
     method = "jitter", pch = 20, col = alpha(colour='red',alpha=.1),cex = 2,las=2)
 boxplot(gene ~ cell,data = HSPA5, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
 dev.off()
+
+######################
+data = read.table("data_RNA_Seq_v2_expression_median.txt",header=T,sep="\t")
+data1 = data[which(data$Hugo_Symbol %in% c("TFAP2C",
+                                            "MITF")),]
+rownames(data1) = data1[,1]
+data1 = data1[,3:dim(data1)[2]]
+data1 = log2((data1+1))
+jit1 <- setNames(split(data1, seq(nrow(data1))), rownames(data1))
+box1 <- t(data1)
+
+pdf("jitter_SKCM_RNA_TFAP2C.pdf")
+stripchart(jit1,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Counts TCGA:SKCM'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.1),cex = 2,las=2)
+boxplot(box1, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+dev.off()
+
+##################
+pdf("jitter_SKCM_RNA_MITF_TFAP2C.pdf")
+stripchart(jit1,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Counts TCGA:SKCM'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.1),cex = 2,las=2)
+boxplot(box1, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+dev.off()
+
+barbox = sort(box1[,1]-box1[,2])
+names(barbox)=NULL
+color = c("#56B4E9","#c23b22")
+track = as.numeric(barbox>0)+1
+pdf("barplot_log2fc_MITF_TFAP2C.pdf")
+barplot(barbox,ylim=c(-5,14),ylab="Log2 Fold Change",xlab="TCGA:SKCM Samples",border=NA,col=color[track])
+legend("topleft",legend=c("Higher MITF expression","Higher TFAP2C expression"),fill=c("#c23b22","#56B4E9"), border=T, bty="n" )
+dev.off()
+
+############################################################################################################
+samples = read.csv("~/Downloads/TCGA-samples_alteredexpression_TFAP2C&MITF.csv",header=F)
+samples = gsub("skcm_tcga.","",as.character(samples[,1]))
+samples = gsub("-",".",samples)
+
+data1 = data[which(data$Hugo_Symbol %in% c("TFAP2C","MITF")),
+            colnames(data) %in% samples]
+
+rownames(data1) = data1[,1]
+data1 = data1[,3:dim(data1)[2]]
+data1 = log2((data1+1))
+jit1 <- setNames(split(data1, seq(nrow(data1))), rownames(data1))
+box1 <- t(data1)
+
+pdf("jitter_SKCM_RNA_MITF_TFAP2C_ONLY_SAMPLES_WITH_ALTERATIONS.pdf")
+stripchart(jit1,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Counts TCGA:SKCM'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.1),cex = 2,las=2)
+boxplot(box1, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+dev.off()
+
+
+
+barbox = sort(box1[,1]-box1[,2])
+names(barbox)=NULL
+color = c("#56B4E9","#c23b22")
+track = as.numeric(barbox>0)+1
+pdf("barplot_log2fc_MITF_TFAP2C_ONLY_SAMPLES_WITH_ALTERATIONS.pdf")
+barplot(barbox,ylim=c(-5,14),ylab="Log2 Fold Change",xlab="TCGA:SKCM Samples",border=NA,col=color[track])
+legend("topleft",legend=c("Higher MITF expression","Higher TFAP2C expression"),fill=c("#c23b22","#56B4E9"), border=T, bty="n" )
+dev.off()
