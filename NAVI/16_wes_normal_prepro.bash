@@ -123,4 +123,136 @@ cat DLP-073_S73_L001_R2_001.fastq.gz DLP-073_S73_L002_R2_001.fastq.gz DLP-073_S7
 /home/rtm/vivek/navi/wes_normal/fastq/DLP-073_S73_R2.fastq.gz &
 ######
 
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-001_S65\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-001_S65' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-001_S65_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-001_S65_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-001_S65.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-025_S66\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-025_S66' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-025_S66_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-025_S66_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-025_S66.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-026_S57\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-026_S57' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-026_S57_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-026_S57_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-026_S57.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-027_S58\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-027_S58' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-027_S58_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-027_S58_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-027_S58.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-028_S67\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-028_S67' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-028_S67_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-028_S67_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-028_S67.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-029_S59\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-029_S59' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-029_S59_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-029_S59_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-029_S59.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-030_S74\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-030_S74' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-030_S74_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-030_S74_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-030_S74.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-031_S62\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-031_S62' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-031_S62_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-031_S62_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-031_S62.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-041_S68\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-041_S68' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-041_S68_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-041_S68_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-041_S68.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-047_S75\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-047_S75' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-047_S75_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-047_S75_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-047_S75.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-052_S69\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-052_S69' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-052_S69_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-052_S69_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-052_S69.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-053_S76\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-053_S76' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-053_S76_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-053_S76_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-053_S76.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-054_S77\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-054_S77' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-054_S77_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-054_S77_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-054_S77.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-059_S70\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-059_S70' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-059_S70_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-059_S70_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-059_S70.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-065_S60\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-065_S60' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-065_S60_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-065_S60_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-065_S60.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-069_S61\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-069_S61' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-069_S61_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-069_S61_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-069_S61.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-070_S71\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-070_S71' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-070_S71_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-070_S71_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-070_S71.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-071_S72\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-071_S72' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-071_S72_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-071_S72_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-071_S72.bam -
+
+bwa mem -t 23 -T 0 \
+-R '@RG\tID:DLP-073_S73\tLB:WES\tPL:illumina\tPU:NULL\SM:DLP-073_S73' \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-073_S73_R1_val_1.fq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-073_S73_R2_val_2.fq.gz | \
+samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-073_S73.bam -
 
