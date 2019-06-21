@@ -46,3 +46,81 @@ cat DLP-070_S71_L001_R2_001.fastq.gz DLP-070_S71_L002_R2_001.fastq.gz DLP-070_S7
 cat DLP-071_S72_L001_R2_001.fastq.gz DLP-071_S72_L002_R2_001.fastq.gz DLP-071_S72_L003_R2_001.fastq.gz DLP-071_S72_L004_R2_001.fastq.gz > /home/rtm/vivek/navi/wes_normal/fastq/DLP-071_S72_R2.fastq.gz
 cat DLP-073_S73_L001_R2_001.fastq.gz DLP-073_S73_L002_R2_001.fastq.gz DLP-073_S73_L003_R2_001.fastq.gz DLP-073_S73_L004_R2_001.fastq.gz > /home/rtm/vivek/navi/wes_normal/fastq/DLP-073_S73_R2.fastq.gz
 ##
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-001_S65_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-001_S65_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-025_S66_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-025_S66_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-026_S57_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-026_S57_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-027_S58_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-027_S58_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-028_S67_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-028_S67_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-029_S59_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-029_S59_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-030_S74_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-030_S74_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-031_S62_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-031_S62_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-041_S68_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-041_S68_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-047_S75_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-047_S75_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-052_S69_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-052_S69_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-053_S76_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-053_S76_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-054_S77_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-054_S77_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-059_S70_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-059_S70_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-065_S60_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-065_S60_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-069_S61_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-069_S61_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-070_S71_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-070_S71_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-071_S72_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-071_S72_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 --fastqc -o /home/rtm/vivek/navi/wes_normal/fastq_trim \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-073_S73_R1.fastq.gz \
+/home/rtm/vivek/navi/wes_normal/fastq/DLP-073_S73_R2.fastq.gz &
+######
+
+
