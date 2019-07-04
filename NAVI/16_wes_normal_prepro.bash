@@ -256,3 +256,210 @@ bwa mem -t 23 -T 0 \
 /home/rtm/vivek/navi/wes_normal/fastq_trim/DLP-073_S73_R2_val_2.fq.gz | \
 samtools view -Shb -o /home/rtm/vivek/navi/wes_normal/bam/DLP-073_S73.bam -
 
+##############################################################
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-001_S65.bam \
+OUTPUT=NORMAL_VM35_VM36_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-025_S66.bam \
+OUTPUT=NORMAL_VM1_VM2_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-026_S57.bam \
+OUTPUT=NORMAL_VM9_VM10_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-027_S58.bam \
+OUTPUT=VM9_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-028_S67.bam \
+OUTPUT=VM10_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-029_S59.bam \
+OUTPUT=NORMAL_VM11_VM12_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-030_S74.bam \
+OUTPUT=VM12_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-031_S62.bam \
+OUTPUT=VM11_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-041_S68.bam \
+OUTPUT=VM15_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-047_S75.bam \
+OUTPUT=VM17_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-052_S69.bam \
+OUTPUT=VM22_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-053_S76.bam \
+OUTPUT=VM23_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-054_S77.bam \
+OUTPUT=VM24_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-059_S70.bam \
+OUTPUT=VM29_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-065_S60.bam \
+OUTPUT=VM45_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-069_S61.bam \
+OUTPUT=NORMAL_VM19_VM20_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-070_S71.bam \
+OUTPUT=NORMAL_VM21_VM22_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-071_S72.bam \
+OUTPUT=NORMAL_VM23_VM24_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=DLP-073_S73.bam \
+OUTPUT=NORMAL_VM43_VM44_sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT
+
+
+##########################################################################
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM19_sort.bam -outfile VM19_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM1_sort.bam -outfile VM1_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM20_sort.bam -outfile VM20_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM25_sort.bam -outfile VM25_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM26_sort.bam -outfile VM26_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM2_sort.bam -outfile VM2_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM31_sort.bam -outfile VM31_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM32_sort.bam -outfile VM32_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM33_sort.bam -outfile VM33_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM34_sort.bam -outfile VM34_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM3_sort.bam -outfile VM3_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM43_sort.bam -outfile VM43_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM44_sort.bam -outfile VM44_sort.pdf --java-mem-size=200G 
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM7_sort.bam -outfile VM7_sort.pdf --java-mem-size=200G
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc -bam VM8_sort.bam -outfile VM8_sort.pdf --java-mem-size=200G
+##########################################################################
+
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
+VALIDATION_STRINGENCY=STRICT \
+CREATE_INDEX=true \
+M=VM19_MFILE.txt \
+INPUT=VM19_sort.bam \
+OUTPUT=VM19_rmdup.bam 
+
+
+############################################################################################################
+############################################################################################################
+############################################################################################################
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
+-o /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals
+
+############################################################################################################
+############################################################################################################
+############################################################################################################
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
+--out /home/rtm/vivek/navi/wes/bam/VM1_realigned.bam
+############################################################################################################
+############################################################################################################
+############################################################################################################
+
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T BaseRecalibrator \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I /home/rtm/vivek/navi/wes/bam/VM1_realigned.addRG.bam \
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
+-o /home/rtm/vivek/navi/wes/bam/VM1.bqsr.grp
+############################################################################################################
+############################################################################################################
+############################################################################################################
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I /home/rtm/vivek/navi/wes/bam/VM1_realigned.addRG.bam \
+--BQSR /home/rtm/vivek/navi/wes/bam/VM1.bqsr.grp \
+-o /home/rtm/vivek/navi/wes/bam/VM1_recalibrated.bam
