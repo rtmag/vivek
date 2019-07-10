@@ -1023,19 +1023,174 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 ############################################################################################################
 ############################################################################################################
 ############################################################################################################
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
+.realigned.bam
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--I VM1_realigned.addRG.bam \
---BQSR VM1.bqsr.grp \
--o VM1_recalibrated.bam
+-I NORMAL_VM11_VM12_sort.realigned.bam \
+--BQSR NORMAL_VM11_VM12_sort.bqsr.grp \
+-o NORMAL_VM11_VM12.recalibrated.bam
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--I /home/rtm/vivek/navi/wes/bam/VM1_realigned.addRG.bam \
---BQSR /home/rtm/vivek/navi/wes/bam/VM1.bqsr.grp \
--o /home/rtm/vivek/navi/wes/bam/VM1_recalibrated.bam
+-I NORMAL_VM19_VM20_sort.realigned.bam \
+--BQSR NORMAL_VM19_VM20_sort.bqsr.grp \
+-o NORMAL_VM19_VM20.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I NORMAL_VM1_VM2_sort.realigned.bam \
+--BQSR NORMAL_VM1_VM2_sort.bqsr.grp \
+-o NORMAL_VM1_VM2.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I NORMAL_VM21_VM22_sort.realigned.bam \
+--BQSR NORMAL_VM21_VM22_sort.bqsr.grp \
+-o NORMAL_VM21_VM22.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I NORMAL_VM23_VM24_sort.realigned.bam \
+--BQSR NORMAL_VM23_VM24_sort.bqsr.grp \
+-o NORMAL_VM23_VM24.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I NORMAL_VM35_VM36_sort.realigned.bam \
+--BQSR NORMAL_VM35_VM36_sort.bqsr.grp \
+-o NORMAL_VM35_VM36.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I NORMAL_VM43_VM44_sort.realigned.bam \
+--BQSR NORMAL_VM43_VM44_sort.bqsr.grp \
+-o NORMAL_VM43_VM44.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I NORMAL_VM9_VM10_sort.realigned.bam \
+--BQSR NORMAL_VM9_VM10_sort.bqsr.grp \
+-o NORMAL_VM9_VM10.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM10_sort.realigned.bam \
+--BQSR VM10_sort.bqsr.grp \
+-o VM10.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM11_sort.realigned.bam \
+--BQSR VM11_sort.bqsr.grp \
+-o VM11.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM12_sort.realigned.bam \
+--BQSR VM12_sort.bqsr.grp \
+-o VM12.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM15_sort.realigned.bam \
+--BQSR VM15_sort.bqsr.grp \
+-o VM15.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM17_sort.realigned.bam \
+--BQSR VM17_sort.bqsr.grp \
+-o VM17.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM22_sort.realigned.bam \
+--BQSR VM22_sort.bqsr.grp \
+-o VM22.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM23_sort.realigned.bam \
+--BQSR VM23_sort.bqsr.grp \
+-o VM23.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM24_sort.realigned.bam \
+--BQSR VM24_sort.bqsr.grp \
+-o VM24.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM29_sort.realigned.bam \
+--BQSR VM29_sort.bqsr.grp \
+-o VM29.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM45_sort.realigned.bam \
+--BQSR VM45_sort.bqsr.grp \
+-o VM45.recalibrated.bam
+
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I VM9_sort.realigned.bam \
+--BQSR VM9_sort.bqsr.grp \
+-o VM9.recalibrated.bam
