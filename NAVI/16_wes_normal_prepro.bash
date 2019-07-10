@@ -705,14 +705,175 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
--targetIntervals /home/rtm/vivek/navi/wes/bam/VM1.realign_target.intervals \
+-targetIntervals NORMAL_VM11_VM12_sort.realign_target.intervals \
 --noOriginalAlignmentTags \
--I /home/rtm/vivek/navi/wes/bam/VM1_rmdup.bam \
---out /home/rtm/vivek/navi/wes/bam/VM1_realigned.bam
-############################################################################################################
-############################################################################################################
-############################################################################################################
+-I NORMAL_VM11_VM12_sort.rmdup.bam \
+--out NORMAL_VM11_VM12_sort.realigned.bam
 
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM19_VM20_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM19_VM20_sort.rmdup.bam \
+--out NORMAL_VM19_VM20_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM1_VM2_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM1_VM2_sort.rmdup.bam \
+--out NORMAL_VM1_VM2_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM21_VM22_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM21_VM22_sort.rmdup.bam \
+--out NORMAL_VM21_VM22_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM23_VM24_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM23_VM24_sort.rmdup.bam \
+--out NORMAL_VM23_VM24_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM35_VM36_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM35_VM36_sort.rmdup.bam \
+--out NORMAL_VM35_VM36_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM43_VM44_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM43_VM44_sort.rmdup.bam \
+--out NORMAL_VM43_VM44_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM9_VM10_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM9_VM10_sort.rmdup.bam \
+--out NORMAL_VM9_VM10_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM10_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM10_sort.rmdup.bam \
+--out VM10_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM11_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM11_sort.rmdup.bam \
+--out VM11_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM12_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM12_sort.rmdup.bam \
+--out VM12_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM15_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM15_sort.rmdup.bam \
+--out VM15_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM17_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM17_sort.rmdup.bam \
+--out VM17_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM22_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM22_sort.rmdup.bam \
+--out VM22_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM23_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM23_sort.rmdup.bam \
+--out VM23_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM24_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM24_sort.rmdup.bam \
+--out VM24_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM29_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM29_sort.rmdup.bam \
+--out VM29_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM45_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM45_sort.rmdup.bam \
+--out VM45_sort.realigned.bam
+
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals VM9_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I VM9_sort.rmdup.bam \
+--out VM9_sort.realigned.bam
+############################################################################################################
+############################################################################################################
+############################################################################################################
 
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
