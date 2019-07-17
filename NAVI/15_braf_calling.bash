@@ -296,3 +296,15 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
    -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM32.maf \
    --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
    --ref-version hg38 --output-file-format MAF
+   
+   ###
+more all_VM10.maf |grep -v "#"|cut -f9|sort|uniq -c
+
+ grep -w "BRAF" *.maf|cut -f 1,5-10,35,37,38,41,42|grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"
+ grep -w "NRAS" *.maf|cut -f 1,5-10,35,37,38,41,42|grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"
+ grep -w "NF1" *.maf|cut -f 1,5-10,35,37,38,41,42|grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"
+
+######
+grep -w "BRAF" *.maf|cut -f 1,5-10,35,37,38,41,42|cut -f1,6|sort|uniq|grep "BRAF"
+grep -w "NRAS" *.maf|cut -f 1,5-10,35,37,38,41,42|cut -f1,6|sort|uniq|grep "NRAS"
+grep -w "NF1" *.maf|cut -f 1,5-10,35,37,38,41,42|cut -f1,6|sort|uniq|grep "NF1"
