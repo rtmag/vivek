@@ -217,3 +217,11 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 -O /home/rtm/vivek/navi/wes/test_vcf/all_$sample.vcf.gz
 done
 ##################
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM10.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM10.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+ 
