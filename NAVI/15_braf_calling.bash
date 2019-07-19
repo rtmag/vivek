@@ -228,10 +228,21 @@ all_VM26.vcf.gz
 all_VM2.vcf.gz
 all_VM31.vcf.gz
 all_VM32.vcf.gz
-############################################################################################################
-############################################################################################################
+
 all_VM11.vcf.gz
+all_VM12.vcf.gz
+all_VM15.vcf.gz
+all_VM17.vcf.gz
+all_VM22.vcf.gz
 all_VM33.vcf.gz
+all_VM34.vcf.gz
+all_VM43.vcf.gz
+all_VM44.vcf.gz
+
+############################################################################################################
+############################################################################################################
+all_VM7.vcf.gz
+all_VM23.vcf.gz
 ############################################################################################################
 ############################################################################################################
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
@@ -296,6 +307,72 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
    -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM32.maf \
    --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
    --ref-version hg38 --output-file-format MAF
+ ###################################################
+
+   
+   java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM11.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM11.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+   java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM12.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM12.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+      java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM15.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM15.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+      java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM17.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM17.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+      java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM22.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM22.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+      java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM33.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM33.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+      java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM34.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM34.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+      java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM43.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM43.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
+      java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes/test_vcf/all_VM44.vcf.gz \
+   -O /home/rtm/vivek/navi/wes/test_funcotator/all_VM44.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+   
    
    ###
 more all_VM10.maf |grep -v "#"|cut -f9|sort|uniq -c
