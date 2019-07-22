@@ -84,8 +84,8 @@ rnb.set.norm.nevi.noEQ=remove.samples(rnb.set.norm.nevi,samples(rnb.set.norm.nev
 
 b_vs_n <- rnb.execute.computeDiffMeth(rnb.set.norm.nevi.noEQ,pheno.cols=c("BRAF"))
 comparison <- get.comparisons(b_vs_n)[1]
-b_vs_n_table <-get.table(NRAS, comparison, "sites", return.data.frame=TRUE)
-table(b_vs_n_table$diffmeth.p.adj.fdr<0.1)
+b_vs_n_table <-get.table(b_vs_n, comparison, "sites", return.data.frame=TRUE)
+table(b_vs_n_table$diffmeth.p.adj.fdr<0.1) # 2 cpg
 
 
 
