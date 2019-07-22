@@ -69,15 +69,24 @@ rnb.set.norm.noNA=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm
 NRAS <- rnb.execute.computeDiffMeth(rnb.set.norm.noNA,pheno.cols=c("NRAS"))
 comparison <- get.comparisons(NRAS)[1]
 NRAS_table <-get.table(NRAS, comparison, "sites", return.data.frame=TRUE)
-table(NRAS_table$diffmeth.p.adj.fdr<0.05)
+table(NRAS_table$diffmeth.p.adj.fdr<0.1) # 327 cpg
 ############################################################################################
 #  NF1
 rnb.set.norm.noNA=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno[,'NF1']=="NA"])
 NF1 <- rnb.execute.computeDiffMeth(rnb.set.norm.noNA,pheno.cols=c("NF1"))
 comparison <- get.comparisons(NF1)[1]
 NF1_table <-get.table(NF1, comparison, "sites", return.data.frame=TRUE)
-table(NF1_table$diffmeth.p.adj.fdr<0.05)
+table(NF1_table$diffmeth.p.adj.fdr<0.1) # 23 cpg
 ############################################################################################
+#BRAF VS NRAS nevi
+rnb.set.norm.nevi=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno[,'Tumor']=="Melanoma"])
+rnb.set.norm.nevi.noEQ=remove.samples(rnb.set.norm.nevi,samples(rnb.set.norm.nevi)[rnb.set.norm.nevi@pheno[,c(9)]==rnb.set.norm.nevi@pheno[,c(10)]])
+
+b_vs_n <- rnb.execute.computeDiffMeth(rnb.set.norm.nevi.noEQ,pheno.cols=c("BRAF"))
+comparison <- get.comparisons(b_vs_n)[1]
+b_vs_n_table <-get.table(NRAS, comparison, "sites", return.data.frame=TRUE)
+table(b_vs_n_table$diffmeth.p.adj.fdr<0.1)
+
 
 
 
