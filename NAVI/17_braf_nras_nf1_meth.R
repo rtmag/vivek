@@ -197,3 +197,32 @@ png("heatmap-nevi_vs_melanoma_centered_BRAF_mutants.png",width= 3.25,
 heatmap.3(as.matrix(meth.norm.centered.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(clab[rnb.set.norm@pheno[,'BRAF']=="MUT",]))
 dev.off()
+#########################
+# TCGA BRAF integration
+mut = read.csv("/root/TCGA/Rnbeads/SKCM/SKCM_mutation_matrix.csv",header=TRUE)
+mut_stat = mut[,c('BRAF','NRAS','NF1')]
+saveRDS(mut_stat,"skcm_mut_stat.rds")
+#
+mut = readRDS("~/vivek/navi/meth_GEO/tcga_skcm/skcm_mut_stat.rds")
+SKCM = readRDS("~/vivek/navi/meth_GEO/betaVALUES.rds")
+                               
+SKCM.sig = SKCM[rownames(SKCM) %in% c(hi_melanoma,hi_nevi),]
+colnames(SKCM.sig) = NULL
+SKCM.sig = SKCM.sig[complete.cases(SKCM.sig),]
+
+skcm.clab = mut
+skcm.clab[skcm.clab==0] = "blue"
+skcm.clab[skcm.clab==1] = "red"
+
+skcm.rlab = rownames(SKCM.sig)
+skcm.rlab[rownames(SKCM.sig) %in% hi_melanoma] = "#957DAD"
+skcm.rlab[rownames(SKCM.sig) %in% hi_nevi] = "#5DB1D1"
+rownames(SKCM.sig) = NULL
+skcm.rlab = rbind(skcm.rlab)
+                               
+png("heatmap-BRAF_methSignature_on_450K-TCGA-SKCM.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+heatmap.3(as.matrix(SKCM.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(skcm.clab),RowSideColors=as.matrix(skcm.rlab))
+dev.off()
