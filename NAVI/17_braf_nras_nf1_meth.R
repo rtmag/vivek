@@ -148,3 +148,15 @@ png("heatmap-nevi_vs_melanoma_centered_mutInfo.png",width= 3.25,
 heatmap.3(as.matrix(meth.norm.centered.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(clab))
 dev.off()
+############################################################################################
+############################################################################################
+############################################################################################
+#  BRAF
+rnb.set.norm.noNA=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno[,'BRAF']=="NA"])
+BRAF <- rnb.execute.computeDiffMeth(rnb.set.norm.noNA,pheno.cols=c("BRAF"))
+comparison <- get.comparisons(BRAF)[1]
+BRAF_table <-get.table(BRAF, comparison, "sites", return.data.frame=TRUE)
+table(BRAF_table$diffmeth.p.adj.fdr<0.1) # 3 cpg
+
+
+
