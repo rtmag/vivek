@@ -232,6 +232,15 @@ plot.new()
 legend("center",legend=c("No Alteration","Alteration","No Information","High-Methylation Melanoma","High-Methylation Nevi"),
        fill=c("blue","red","grey","#957DAD","#5DB1D1"))
 dev.off()
+                               
+#TCGA BRAF ONLY
+png("heatmap-BRAF_methSignature_on_450K-TCGA-SKCM_ONLYBRAFMUTANTS.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+heatmap.3(as.matrix(SKCM.sig[,mut[,'BRAF']==1]),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",RowSideColors=as.matrix(skcm.rlab))
+dev.off()
+                               
 ############################################################################################
 ######## TRAIN
 
