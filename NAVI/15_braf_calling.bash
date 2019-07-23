@@ -434,3 +434,22 @@ more all_VM10.maf |grep -v "#"|cut -f9|sort|uniq -c
 grep -w "BRAF" *.maf|cut -f 1,5-10,35,37,38,41,42|cut -f1,6|sort|uniq|grep "BRAF"
 grep -w "NRAS" *.maf|cut -f 1,5-10,35,37,38,41,42|cut -f1,6|sort|uniq|grep "NRAS"
 grep -w "NF1" *.maf|cut -f 1,5-10,35,37,38,41,42|cut -f1,6|sort|uniq|grep "NF1"
+
+
+
+################
+
+more all_VM10.maf |grep -v "##"|cut -f 1,5,6,7,9,10,35,37,38,41,42|grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"
+
+for maffile in *.maf;
+do sample=${maffile//\.maff} ;
+echo $sample;
+grep -v "##" $maffile |cut -f 1,5,6,7,9,10,35,37,38,41,42|grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins" > $maffile.tab
+done
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I $bamfile \
+-tumor $sample \
+-O /home/rtm/vivek/navi/wes/test_vcf/all_$sample.vcf.gz
+done
