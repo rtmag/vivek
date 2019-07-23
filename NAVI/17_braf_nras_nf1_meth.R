@@ -226,3 +226,70 @@ png("heatmap-BRAF_methSignature_on_450K-TCGA-SKCM.png",width= 3.25,
 heatmap.3(as.matrix(SKCM.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
 labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(skcm.clab),RowSideColors=as.matrix(skcm.rlab))
 dev.off()
+
+pdf("bar_legend.pdf")
+plot.new()
+legend("center",legend=c("No Alteration","Alteration","No Information","High-Methylation Melanoma","High-Methylation Nevi"),
+       fill=c("blue","red","grey","#957DAD","#5DB1D1"))
+dev.off()
+############################################################################################
+######## TRAIN
+
+GSE120878_beta = readRDS("~/vivek/navi/meth_GEO/GSE120878_beta.rds")
+
+GSE120878_anno = read.table("~/vivek/navi/meth_GEO/GSE120878_annotation.txt")
+GSE120878_braf = GSE120878_beta[ rownames(GSE120878_beta) %in% braf_cpg , which(colnames(GSE120878_beta) %in% GSE120878_anno[,1])]
+
+if(sum(!(colnames(GSE120878_braf) == GSE120878_anno[,1]))==0){print("same_order")}
+  track=as.character(GSE120878_anno[,5])
+  track[track=="melanoma"]=1
+  track[track=="nevus"]=2
+  track=as.numeric(track)
+  colores=c("#ffb3ba","#baffc9")
+  clab=as.character(colores[track])
+                               
+
+  
+GSE120878_braf = GSE120878_braf[complete.cases(GSE120878_braf),]
+                          
+skcm.rlab = rownames(GSE120878_braf)
+skcm.rlab[rownames(GSE120878_braf) %in% hi_melanoma] = "#957DAD"
+skcm.rlab[rownames(GSE120878_braf) %in% hi_nevi] = "#5DB1D1"
+                               
+png("heatmap_GSE120878_BRAF_CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE120878_braf),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(GSE120878_braf)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab,
+             RowSideColors=skcm.rlab)
+dev.off()
+
+
+############################################################################################
+######## 450k prev
+GSE86355_beta = readRDS("~/vivek/navi/meth_GEO/GSE86355_beta.rds")
+GSE86355_anno = read.table("~/vivek/navi/meth_GEO/GSE86355_anno.txt")
+
+GSE86355_brafcpg = GSE86355_beta[ rownames(GSE86355_beta) %in% braf_cpg , which(colnames(GSE86355_beta) %in% GSE86355_anno[,1])]
+
+if(sum(!(colnames(GSE86355_brafcpg) == GSE86355_anno[,1]))==0){print("same_order")}
+  track=as.character(GSE86355_anno[,2])
+  track[track=="MELANOMA"]=1
+  track[track=="NEVI"]=2
+  track=as.numeric(track)
+  colores=c("#ffb3ba","#baffc9")
+  clab=as.character(colores[track])
+                               
+GSE86355_brafcpg = GSE86355_brafcpg[complete.cases(GSE86355_brafcpg),]
+                          
+skcm.rlab = rownames(GSE86355_brafcpg)
+skcm.rlab[rownames(GSE86355_brafcpg) %in% hi_melanoma] = "#957DAD"
+skcm.rlab[rownames(GSE86355_brafcpg) %in% hi_nevi] = "#5DB1D1"
+                               
+png("heatmap_GSE86355_BRAF_CpG.png",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+x = heatmap.2(as.matrix(GSE86355_brafcpg),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(GSE86355_brafcpg)[1],"CpGs"),key.title="Methylation lvl",ColSideColors=clab,
+             RowSideColors=skcm.rlab)
+dev.off()
