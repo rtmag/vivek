@@ -33,7 +33,7 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
                     "MUT","MUT","NA","NA","WT","WT","MUT","MUT","MUT","MUT",
                     "WT","WT","MUT","MUT","WT","WT","NA","NA","MUT","MUT",
                     "WT","WT","WT","WT","NA","NA","NA","NA","NA","NA",
-                    "NA","NA","WT","MUT","MUT","MUT","NA","NA"),
+                    "NA","NA","MUT","MUT","MUT","MUT","NA","NA"),
            
            NRAS = c("WT","WT","NA","NA","NA","NA","MUT","MUT","WT","WT",
                     "WT","WT","NA","NA","WT","WT","WT","WT","WT","WT",
@@ -152,11 +152,25 @@ dev.off()
 ############################################################################################
 ############################################################################################
 #  BRAF
-rnb.set.norm.noNA=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno[,'BRAF']=="NA"])
-BRAF <- rnb.execute.computeDiffMeth(rnb.set.norm.noNA,pheno.cols=c("BRAF"))
-comparison <- get.comparisons(BRAF)[1]
-BRAF_table <-get.table(BRAF, comparison, "sites", return.data.frame=TRUE)
-table(BRAF_table$diffmeth.p.adj.fdr<0.1) # 3 cpg
+rnb.set.brafmut=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno[,'BRAF']!="MUT"])
+BRAF.tum <- rnb.execute.computeDiffMeth(rnb.set.brafmut,pheno.cols=c("Tumor"))
+comparison <- get.comparisons(BRAF.tum)[1]
+BRAF.tum_table <-get.table(BRAF.tum, comparison, "sites", return.data.frame=TRUE)
+table(BRAF.tum_table$diffmeth.p.adj.fdr<0.1) # 3 cpg
 
+#  NRAS
+rnb.set.nrasmut=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno[,'NRAS']!="MUT"])
+NRAS.tum <- rnb.execute.computeDiffMeth(rnb.set.nrasmut,pheno.cols=c("Tumor"))
+comparison <- get.comparisons(NRAS.tum)[1]
+NRAS.tum_table <-get.table(NRAS.tum, comparison, "sites", return.data.frame=TRUE)
+table(NRAS.tum_table$diffmeth.p.adj.fdr<0.1) # 3 cpg
+############################################################################################
 
-
+#centered
+meth.norm.centered.sig = meth.norm.centered[row.names(meth.norm.centered) %in% cpgs,]
+png("heatmap-nevi_vs_melanoma_centered_mutInfo.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+heatmap.3(as.matrix(meth.norm.centered.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(clab))
+dev.off()
