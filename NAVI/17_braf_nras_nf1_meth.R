@@ -159,6 +159,14 @@ comparison <- get.comparisons(BRAF.tum)[1]
 BRAF.tum_table <-get.table(BRAF.tum, comparison, "sites", return.data.frame=TRUE)
 table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  abs(BRAF.tum_table$mean.diff)>.25) # 1064 cpg
 braf_cpg = rownames(meth.norm)[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  abs(BRAF.tum_table$mean.diff)>.25]
+table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)>.25) #177
+table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)<(-.25)) #887
+hi_melanoma = rownames(meth.norm)[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)>.25]
+hi_nevi = rownames(meth.norm)[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)<(-.25)]
+saveRDS(hi_melanoma,"hi_melanoma_cpg_braf.rds")
+saveRDS(hi_nevi,"hi_nevi_cpg_braf.rds")
+write.csv(BRAF.tum_table[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  abs(BRAF.tum_table$mean.diff)>.25,],"BRAF.Mel_vs_Nevi_filtered.csv")
+write.csv(BRAF.tum_table,"BRAF.Mel_vs_Nevi_complete.csv")
 
 #  NRAS
 rnb.set.nrasmut=remove.samples(rnb.set.norm,c(7:10)
@@ -171,13 +179,14 @@ nras_cpg = rownames(meth.norm)[NRAS.tum_table$diffmeth.p.adj.fdr<0.05 &  abs(NRA
 
 ############################################################################################
 
-#centered
-meth.norm.centered.sig = meth.norm.centered[row.names(meth.norm.centered) %in% braf_cpg,]
+#centeredrnb.set.norm@pheno[,'BRAF']=="MUT"
+xclab = clab[rnb.set.norm@pheno[,'BRAF']=="MUT",]
+meth.norm.centered.sig = meth.norm.centered[row.names(meth.norm.centered) %in% braf_cpg, rnb.set.norm@pheno[,'BRAF']=="MUT"]
 png("heatmap-nevi_vs_melanoma_centered_BRAF_mutants.png",width= 3.25,
   height= 5.25,units="in",
   res=1200,pointsize=4)
 heatmap.3(as.matrix(meth.norm.centered.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(clab))
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(xclab))
 dev.off()
 
 
@@ -186,5 +195,5 @@ png("heatmap-nevi_vs_melanoma_centered_BRAF_mutants.png",width= 3.25,
   height= 5.25,units="in",
   res=1200,pointsize=4)
 heatmap.3(as.matrix(meth.norm.centered.sig),col=colors,scale="none", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
-labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(clab))
+labRow = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl",ColSideColors=as.matrix(clab[rnb.set.norm@pheno[,'BRAF']=="MUT",]))
 dev.off()
