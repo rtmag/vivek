@@ -1,3 +1,8 @@
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar IndexFeatureFile \
+-F /home/references/hg38_bundle/best_practice/af-only-gnomad.hg38_july_2019.vcf.gz
+
+####################################################################################################
 java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar Mutect2 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -I /home/rtm/vivek/navi/wes_normal/bam/VM11.recalibrated.bam \
