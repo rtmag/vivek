@@ -132,57 +132,183 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.
 ####################################################################################################
 ####################################################################################################
 ####################################################################################################
-gatk FilterMutectCalls -R ref.fasta -V unfiltered.vcf -O filtered.vcf
-
 
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM10.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM10.filtered.vcf.gz
+   
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM10.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM10.filtered.PASS.vcf.gz \
+   --exclude-filtered
 
-zcat VM10.filtered.vcf.gz|grep "PASS" > VM10.filtered.PASS.vcf
-
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM10.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM10.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM11.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM11.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM11.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM11.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM11.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM11.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM12.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM12.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM12.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM12.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM12.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM12.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM19.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM19.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM19.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM19.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM19.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM19.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM1.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM1.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM1.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM1.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM1.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM1.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM20.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM20.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM20.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM20.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM20.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM20.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM2.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM2.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM2.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM2.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM2.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM2.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM43.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM43.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM43.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM43.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM43.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM43.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM44.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM44.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM44.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM44.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM44.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM44.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
+####################################################################################################
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM9.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM9.filtered.vcf.gz
+
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM9.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/mutect2/VM9.filtered.PASS.vcf.gz \
+   --exclude-filtered
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/mutect2/VM9.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/funcotator/VM9.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF
