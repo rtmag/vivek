@@ -140,6 +140,8 @@ java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.j
 -V /home/rtm/vivek/navi/mutect2/VM10.uf.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM10.filtered.vcf.gz
 
+zcat VM10.filtered.vcf.gz|grep "PASS" > VM10.filtered.PASS.vcf
+
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/mutect2/VM11.uf.vcf.gz \
