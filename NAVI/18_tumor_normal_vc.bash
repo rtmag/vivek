@@ -128,14 +128,59 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.
 --af-of-alleles-not-in-resource 2.5e-06 \
 -O /home/rtm/vivek/navi/mutect2/VM10.uf.vcf.gz
 
+####################################################################################################
+####################################################################################################
+####################################################################################################
+####################################################################################################
+gatk FilterMutectCalls -R ref.fasta -V unfiltered.vcf -O filtered.vcf
 
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM10.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM10.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM11.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM11.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM12.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM12.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM19.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM19.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM1.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM1.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM20.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM20.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM2.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM2.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM43.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM43.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM44.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM44.filtered.vcf.gz
 
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/mutect2/VM9.uf.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM9.filtered.vcf.gz
