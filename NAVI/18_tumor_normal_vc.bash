@@ -312,3 +312,27 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
    -O /home/rtm/vivek/navi/funcotator/VM9.maf \
    --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
    --ref-version hg38 --output-file-format MAF
+
+grep -w "BRAF" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"|sort -V -k 1 > \
+BRAF_Mel_Nevi_VS_Melanoma_MiniMAF.tab
+
+grep "NRAS" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"|sort -V -k 1 > \
+NRAS_Mel_Nevi_VS_Melanoma_MiniMAF.tab
+
+grep -w "NF1" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"|sort -V -k 1 > \
+NF1_Mel_Nevi_VS_Melanoma_MiniMAF.tab
+
+grep -w "BRAF" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+sort -V -k 1 > \
+BRAF_ALLTypeAlterations_Mel_Nevi_VS_Melanoma_MiniMAF.tab
+
+grep -w "NRAS" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+sort -V -k 1 > \
+NRAS_ALLTypeAlterations_Mel_Nevi_VS_Melanoma_MiniMAF.tab
+
+grep -w "NF1" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+sort -V -k 1 > \
+NF1_ALLTypeAlterations_Mel_Nevi_VS_Melanoma_MiniMAF.tab
