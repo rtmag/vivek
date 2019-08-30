@@ -42,7 +42,7 @@ cat DLP-95_S13_L001_R2_001.fastq.gz DLP-95_S13_L002_R2_001.fastq.gz > NORMAL_VM9
 
 
 
-VM35
+
 VM36
 VM37
 VM41
@@ -75,5 +75,45 @@ VM6
 
 /home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
 --fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
-/home/rtm/vivek/navi/wes3/fastq/VM1000_R1.fastq.gz \
-/home/rtm/vivek/navi/wes3/fastq/VM1000_R2.fastq.gz &
+/home/rtm/vivek/navi/wes3/fastq/VM35_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM35_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM36_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM36_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM37_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM37_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM41_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM41_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM42_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM42_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM46_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM46_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM48_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM48_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM45_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM45_R2.fastq.gz &
+
+/home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
+--fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
+/home/rtm/vivek/navi/wes3/fastq/VM46_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM46_R2.fastq.gz &
