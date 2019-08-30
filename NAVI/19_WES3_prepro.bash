@@ -110,10 +110,10 @@ VM6
 
 /home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
 --fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
-/home/rtm/vivek/navi/wes3/fastq/VM45_R1.fastq.gz \
-/home/rtm/vivek/navi/wes3/fastq/VM45_R2.fastq.gz &
+/home/rtm/vivek/navi/wes3/fastq/VM5_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM5_R2.fastq.gz &
 
 /home/rtm/myprograms/TrimGalore/trim_galore --paired --illumina -q 20 \
 --fastqc -o /home/rtm/vivek/navi/wes3/fastq_trim \
-/home/rtm/vivek/navi/wes3/fastq/VM46_R1.fastq.gz \
-/home/rtm/vivek/navi/wes3/fastq/VM46_R2.fastq.gz &
+/home/rtm/vivek/navi/wes3/fastq/VM6_R1.fastq.gz \
+/home/rtm/vivek/navi/wes3/fastq/VM6_R2.fastq.gz &
