@@ -114,7 +114,7 @@ fastq2=$(echo $fastqfile|perl -pe "s/R1_val_1/R2_val_2/g") ;
 samplename=$(echo $fastqfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/fastq_trimmed\///g'|perl -pe 's/_R.+_val_.+//g') ;
 echo $fastq2;
 echo $samplename;
-echo bwa mem -t 23 -T 0 -R "'@RG\tID:$samplename\tLB:WES3\tPL:illumina\tPU:NULL\tSM:$samplename'" \
+bwa mem -t 23 -T 0 -R "'@RG\tID:$samplename\tLB:WES3\tPL:illumina\tPU:NULL\tSM:$samplename'" \
 /home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz $fastqfile $fastq2 | \
 samtools view -Shb -o /home/rtm/vivek/navi/wes3/bam/$samplename.bam - ;
 done
