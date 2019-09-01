@@ -153,11 +153,11 @@ done
 ############################################################################################################################
 ############################################################################################################################
 ############################################################################################################################
-# Target intervals
 for bamfile in /home/rtm/vivek/navi/wes3/bam/*.rmdup.sort.bam ;
 do echo $bamfile; 
 samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.rmdup.sort.bam//g') ;
 echo $samplename;
+############################# Target intervals #############################
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T RealignerTargetCreator \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -165,7 +165,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
 -I $bamfile \
 -o /home/rtm/vivek/navi/wes3/bam/$samplename.realign_target.intervals ;
-
+############################# INDEL REALigner #############################
 java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T IndelRealigner \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
@@ -174,37 +174,22 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 --noOriginalAlignmentTags \
 -I $bamfile \
 --out /home/rtm/vivek/navi/wes3/bam/$samplename.realigned.bam ;
-done
-############################################################################################################################
-# INDEL REALigner
-for bamfile in /home/rtm/vivek/navi/wes3/bam/*.rmdup.sort.bam ;
-do echo $bamfile; 
-samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.rmdup.sort.bam//g') ;
-echo $samplename;
-java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
--T IndelRealigner \
--R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
--targetIntervals NORMAL_VM11_VM12_sort.realign_target.intervals \
---noOriginalAlignmentTags \
--I NORMAL_VM11_VM12_sort.rmdup.bam \
---out NORMAL_VM11_VM12_sort.realigned.bam ;
-
-#baserecalibrator
+############################## baserecalibrator #############################
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
--I NORMAL_VM11_VM12_sort.realigned.bam \
--o NORMAL_VM11_VM12_sort.bqsr.grp
-done
-
-# recalibrate
+-I /home/rtm/vivek/navi/wes3/bam/$samplename.realigned.bam \
+-o /home/rtm/vivek/navi/wes3/bam/$samplename.bqsr.grp ;
+############################# recalibrate #############################
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--I NORMAL_VM11_VM12_sort.realigned.bam \
---BQSR NORMAL_VM11_VM12_sort.bqsr.grp \
--o NORMAL_VM11_VM12.recalibrated.bam
+-I /home/rtm/vivek/navi/wes3/bam/$samplename.realigned.bam \
+--BQSR /home/rtm/vivek/navi/wes3/bam/$samplename.bqsr.grp \
+-o /home/rtm/vivek/navi/wes3/bam/$samplename.recalibrated.bam ;
+done
+############################################################################################################################
+
