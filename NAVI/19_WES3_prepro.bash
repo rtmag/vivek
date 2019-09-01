@@ -105,7 +105,7 @@ cat DLP-95_S13_L001_R2_001.fastq.gz DLP-95_S13_L002_R2_001.fastq.gz > NORMAL_VM9
 /home/rtm/vivek/navi/wes3/fastq/VM6_R1.fastq.gz \
 /home/rtm/vivek/navi/wes3/fastq/VM6_R2.fastq.gz &
 
-##########
+############################################################################################################################
 # Mapping
 
 for fastqfile in /home/rtm/vivek/navi/wes3/fastq_trimmed/*R1*.fq.gz ;
@@ -120,6 +120,7 @@ samtools view -Shb -o /home/rtm/vivek/navi/wes3/bam/$samplename.bam - ;
 done
 
 ############################################################################################################################
+# BAM SORT
 for bamfile in /home/rtm/vivek/navi/wes3/bam/*bam ;
 do echo $bamfile; 
 samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.bam//g') ;
@@ -132,6 +133,7 @@ SORT_ORDER=coordinate \
 VALIDATION_STRINGENCY=STRICT;
 done
 ############################################################################################################################
+# RMDUP
 for bamfile in /home/rtm/vivek/navi/wes3/bam/*.sort.bam ;
 do echo $bamfile; 
 samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.sort.bam//g') ;
@@ -142,4 +144,42 @@ CREATE_INDEX=true \
 M=$samplename.MFILE.txt \
 INPUT=$bamfile \
 OUTPUT=$samplename.rmdup.sort.bam ;
+done
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+# Target intervals
+for bamfile in /home/rtm/vivek/navi/wes3/bam/*.rmdup.sort.bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.rmdup.sort.bam//g') ;
+echo $samplename;
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I $bamfile \
+-o /home/rtm/vivek/navi/wes3/bam/$samplename.realign_target.intervals ;
+done
+############################################################################################################################
+# INDEL REALigner
+
+
+for bamfile in /home/rtm/vivek/navi/wes3/bam/*.rmdup.sort.bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.rmdup.sort.bam//g') ;
+echo $samplename;
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals NORMAL_VM11_VM12_sort.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I NORMAL_VM11_VM12_sort.rmdup.bam \
+--out NORMAL_VM11_VM12_sort.realigned.bam ;
 done
