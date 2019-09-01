@@ -119,5 +119,27 @@ bwa mem -t 23 -T 0 -R "@RG\tID:$samplename\tLB:WES3\tPL:illumina\tPU:NULL\tSM:$s
 samtools view -Shb -o /home/rtm/vivek/navi/wes3/bam/$samplename.bam - ;
 done
 
-
-
+############################################################################################################################
+for bamfile in /home/rtm/vivek/navi/wes3/bam/*bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.bam//g') ;
+echo $samplename;
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=$bamfile \
+OUTPUT=/home/rtm/vivek/navi/wes3/bam/$samplename.sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT;
+done
+############################################################################################################################
+for bamfile in /home/rtm/vivek/navi/wes3/bam/*.sort.bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.sort.bam//g') ;
+echo $samplename;
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
+VALIDATION_STRINGENCY=STRICT \
+CREATE_INDEX=true \
+M=$samplename.MFILE.txt \
+INPUT=$bamfile \
+OUTPUT=$samplename.rmdup.sort.bam ;
+done
