@@ -193,3 +193,11 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 done
 ############################################################################################################################
 
+for bamfile in /home/rtm/vivek/navi/wes3/bam/*.rmdup.sort.bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.rmdup.sort.bam//g') ;
+echo $samplename;
+/home/rtm/myprograms/qualimap_v2.2.1/qualimap bamqc \
+-bam /home/rtm/vivek/navi/wes3/bam/$sample.sort.bam \
+-outfile /home/rtm/vivek/navi/wes3/bam/bamqc/$sample.pdf --java-mem-size=200G ;
+done
