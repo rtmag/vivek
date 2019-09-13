@@ -236,7 +236,7 @@ name=${name//\.vcf\.gz\.tbi} ;
 echo $name;
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--V /home/rtm/vivek/navi/wes3/vcf_test/$name.vcf.gz \
+-V /home/rtm/vivek/navi/wes3/vcf_gatk4.1.3/$name.vcf.gz \
 -O /home/rtm/vivek/navi/wes3/vcf_test/$name.filtered.vcf.gz ;
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
    -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
