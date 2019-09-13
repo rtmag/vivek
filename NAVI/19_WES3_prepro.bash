@@ -214,8 +214,22 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
 -O /home/rtm/vivek/navi/wes3/vcf_test/all_$sample.vcf.gz
 done
 ############################################################################################################################
+
+############################################################################################################################
+#### MUTECT VCF ALL Variant NO NORMAL using gatk4.1.3
+for bamfile in /home/rtm/vivek/navi/wes3/bam/*recalibrated.bam;
+do ls -lh $bamfile; 
+name=${bamfile//\/home\/rtm\/vivek\/navi\/wes3\/bam\/} ;
+sample=${name//\.recalibrated\.bam} ;
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.3.0/gatk-package-4.1.3.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I $bamfile \
+-tumor $sample \
+-O /home/rtm/vivek/navi/wes3/vcf_gatk4.1.3/all_$sample.vcf.gz
+done
+############################################################################################################################
 #### FUNCOTATOR VCF ALL Variant NO NORMAL
-for vcf in /home/rtm/vivek/navi/wes3/vcf_test/*tbi;
+for vcf in /home/rtm/vivek/navi/wes3/vcf_gatk4.1.3/*tbi;
 do ls -lh $bamfile; 
 name=${vcf//\/home\/rtm\/vivek\/navi\/wes3\/vcf_test\/} ;
 name=${name//\.vcf\.gz\.tbi} ;
@@ -236,20 +250,6 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.
    --ref-version hg38 --output-file-format MAF;
 done
 #######################################################################
-############################################################################################################################
-#### MUTECT VCF ALL Variant NO NORMAL using gatk4.1.3
-for bamfile in /home/rtm/vivek/navi/wes3/bam/*recalibrated.bam;
-do ls -lh $bamfile; 
-name=${bamfile//\/home\/rtm\/vivek\/navi\/wes3\/bam\/} ;
-sample=${name//\.recalibrated\.bam} ;
-java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.3.0/gatk-package-4.1.3.0-local.jar Mutect2 \
--R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--I $bamfile \
--tumor $sample \
--O /home/rtm/vivek/navi/wes3/vcf_gatk4.1.3/all_$sample.vcf.gz
-done
-############################################################################################################################
-
 
 
 
