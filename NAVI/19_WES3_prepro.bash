@@ -230,9 +230,10 @@ done
 ############################################################################################################################
 #### FUNCOTATOR VCF ALL Variant NO NORMAL
 for vcf in /home/rtm/vivek/navi/wes3/vcf_gatk4.1.3/*tbi;
-do ls -lh $bamfile; 
+do echo $vcf; 
 name=${vcf//\/home\/rtm\/vivek\/navi\/wes3\/vcf_gatk4.1.3\/} ;
 name=${name//\.vcf\.gz\.tbi} ;
+echo $name;
 java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -V /home/rtm/vivek/navi/wes3/vcf_test/$name.vcf.gz \
