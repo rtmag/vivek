@@ -253,6 +253,17 @@ done
 #######################################################################
 
 
+grep -w "BRAF" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"|sort -V -k 1 > \
+BRAF_WES_MiniMAF.tab
+
+grep "NRAS" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"|sort -V -k 1 > \
+NRAS_WES_MiniMAF.tab
+
+grep -w "NF1" *.maf|cut -f 1,5-10,35,37,38,41,42| \
+grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"|sort -V -k 1 > \
+NF1_WES_MiniMAF.tab
 
 
 grep -w "BRAF" *.maf|cut -f 1,5-10,35,37,38,41,42| \
