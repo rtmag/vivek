@@ -3,8 +3,15 @@
 suppressMessages(library(RnBeads))
 options(bitmapType="cairo")
 options(scipen=999)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
 ############################################################################################
 rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData.zip")
+rnb.set.norm=load.rnb.set("rnb.set.norm.filtered.RData.zip")
+meth.norm.centered = readRDS('meth.norm.centered.rds')
+meth.filtered.centered = readRDS('meth.filtered.centered.rds')
+
 ############################################################################################
 # original
 #rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
@@ -25,7 +32,28 @@ rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_n
 #                   "NA","WT","MUT","NA","WT","WT","NA","NA","WT","NA",
 #                   "WT","WT","WT","WT","NA","NA","NA","NA","NA","NA",
 #                   "NA","NA","MUT","WT","WT","NA","NA","NA") )
+############################################################################################
+# updated with wes3
+rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
+           BRAF = c("WT", "WT", "NA", "NA", "MUT","MUT","MUT","MUT","MUT","MUT",
+                    "MUT","MUT","NA", "NA", "WT", "WT", "MUT","MUT","MUT","MUT",
+                    "WT", "WT", "MUT","MUT","WT", "WT", "NA", "NA", "MUT","MUT",
+                    "WT", "WT", "WT", "WT", "MUT", "MUT", "MUT", "MUT", "NA", "NA",
+                    "MUT", "MUT", "MUT","MUT","MUT","MUT","MUT", "MUT"),
            
+           NRAS = c("WT","WT","NA","NA","WT","WT","MUT","MUT","WT","WT",
+                    "WT","WT","NA","NA","WT","WT","WT","WT","WT","WT",
+                    "MUT","MUT","WT","WT","MUT","MUT","NA","NA","WT","WT",
+                    "MUT","MUT","WT","WT","WT","WT","WT","WT","NA","NA",
+                    "NA","NA","WT","WT","WT","WT","NA","NA"),
+           
+           NF1 = c("WT","WT","NA","NA","WT","WT","MUT","MUT","MUT","MUT",
+                   "WT","WT","NA","NA","MUT","MUT","WT","WT","WT","WT",
+                   "WT","WT","MUT","MUT","WT","WT","NA","NA","WT","WT",
+                   "WT","WT","WT","WT","WT","WT","WT","WT","NA","NA",
+                   "NA","NA","MUT","WT","WT","WT","NA","NA") )
+           
+############################################################################################
 
 
 rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno, 
@@ -62,7 +90,7 @@ rnb.set.norm.noNA=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm
 BRAF <- rnb.execute.computeDiffMeth(rnb.set.norm.noNA,pheno.cols=c("BRAF"))
 comparison <- get.comparisons(BRAF)[1]
 BRAF_table <-get.table(BRAF, comparison, "sites", return.data.frame=TRUE)
-table(BRAF_table$diffmeth.p.adj.fdr<0.1) # 3 cpg
+table(BRAF_table$diffmeth.p.adj.fdr<0.1) # 3 cpg --> now 11cpg
 ############################################################################################
 #  NRAS
 rnb.set.norm.noNA=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno[,'NRAS']=="NA"])
@@ -159,8 +187,8 @@ comparison <- get.comparisons(BRAF.tum)[1]
 BRAF.tum_table <-get.table(BRAF.tum, comparison, "sites", return.data.frame=TRUE)
 table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  abs(BRAF.tum_table$mean.diff)>.25) # 1064 cpg
 braf_cpg = rownames(meth.norm)[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  abs(BRAF.tum_table$mean.diff)>.25]
-table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)>.25) #177
-table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)<(-.25)) #887
+table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)>.25) #177 ---> 57
+table(BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)<(-.25)) #887 --> 516
 hi_melanoma = rownames(meth.norm)[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)>.25]
 hi_nevi = rownames(meth.norm)[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  (BRAF.tum_table$mean.diff)<(-.25)]
 saveRDS(hi_melanoma,"hi_melanoma_cpg_braf.rds")
