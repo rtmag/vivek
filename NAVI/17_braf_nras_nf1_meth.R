@@ -196,6 +196,28 @@ saveRDS(hi_nevi,"hi_nevi_cpg_braf.rds")
 write.csv(BRAF.tum_table[BRAF.tum_table$diffmeth.p.adj.fdr<0.05 &  abs(BRAF.tum_table$mean.diff)>.25,],"BRAF.Mel_vs_Nevi_filtered.csv")
 write.csv(BRAF.tum_table,"BRAF.Mel_vs_Nevi_complete.csv")
 
+library(IlluminaHumanMethylationEPICmanifest)
+data(IlluminaHumanMethylationEPICmanifest)
+info<-getAnnotation(IlluminaHumanMethylationEPICmanifest)
+
+library("IlluminaHumanMethylationEPICanno.ilm10b4.hg19")
+data(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+info<-getAnnotation(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+info = info[,c(1,2,3,4,22,24)]
+
+ix = which(info[,4] %in% hi_nevi )
+hi_nevi_bed = as.data.frame(info[ix,])
+hi_nevi_bed = cbind(hi_nevi_bed[,1],hi_nevi_bed[,2]-1,hi_nevi_bed[,2]+1,hi_nevi_bed[,3:6])
+write.table(hi_nevi_bed,"hi_nevi.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+ix = which(info[,4] %in% hi_melanoma )
+hi_melanoma_bed = as.data.frame(info[ix,])
+hi_melanoma_bed = cbind(hi_melanoma_bed[,1],hi_melanoma_bed[,2]-1,hi_melanoma_bed[,2]+1,hi_melanoma_bed[,3:6])
+write.table(hi_melanoma_bed,"hi_melanoma.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+
+
 #  NRAS
 rnb.set.nrasmut=remove.samples(rnb.set.norm,c(7:10)
 rnb.set.nrasmut=remove.samples(rnb.set.nrasmut,samples(rnb.set.nrasmut)[rnb.set.nrasmut@pheno[,'NRAS']!="MUT"])
