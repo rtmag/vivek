@@ -210,11 +210,14 @@ ix = which(info[,4] %in% hi_nevi )
 hi_nevi_bed = as.data.frame(info[ix,])
 hi_nevi_bed = cbind(hi_nevi_bed[,1],hi_nevi_bed[,2]-1,hi_nevi_bed[,2]+1,hi_nevi_bed[,3:6])
 write.table(hi_nevi_bed,"hi_nevi.bed",quote=F,col.names=F,row.names=F,sep="\t")
+write.table(hi_nevi_bed[,1:3],"hi_nevi_forGreat.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
 
 ix = which(info[,4] %in% hi_melanoma )
 hi_melanoma_bed = as.data.frame(info[ix,])
 hi_melanoma_bed = cbind(hi_melanoma_bed[,1],hi_melanoma_bed[,2]-1,hi_melanoma_bed[,2]+1,hi_melanoma_bed[,3:6])
 write.table(hi_melanoma_bed,"hi_melanoma.bed",quote=F,col.names=F,row.names=F,sep="\t")
+write.table(hi_melanoma_bed[,1:3],"hi_melanoma_forGreat.bed",quote=F,col.names=F,row.names=F,sep="\t")
 
 
 
