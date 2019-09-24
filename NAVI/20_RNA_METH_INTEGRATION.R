@@ -61,7 +61,32 @@ design = design[match(colnames(countData),design$RNA_ID),]
 countData = countData [,design$Patient!="0"]
 design = design[design$Patient!="0",]
 ################################################################################################
+dLRT <- DESeqDataSetFromMatrix(countData = countData, colData = design, design = ~ Patient + Type )
+dds_patient <- DESeq(dLRT)
 
+dLRT_vsd <- varianceStabilizingTransformation(dds_patient)
+vsd = assay(dLRT_vsd)
+
+nevi_genes<-read.table("/Users/wone/CSI/vivek/nevi/mel_vs_nevi/BRAF_analysis/hi_nevi_associated_genes.txt",sep="\t",stringsAsFactors=F)
+nevi_genes <- nevi_genes[,1]
+mel_genes<-read.table("/Users/wone/CSI/vivek/nevi/mel_vs_nevi/BRAF_analysis/hi_melanoma_associated_genes.txt",sep="\t",stringsAsFactors=F)
+mel_genes <- mel_genes[,1]
+
+
+sig_vsd1 = vsd[rownames(vsd) %in% mel_genes, ]
+sig_vsd2 = vsd[rownames(vsd) %in% nevi_genes, ]
+sig_vsd = rbind(sig_vsd1,sig_vsd2)
+colnames(sig_vsd) = paste(design[,1],design[,2])
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+
+track=as.character(design$Type)
+track[track=="Melanoma"]=1
+track[track=="Nevus"]=2
+track=as.numeric(track)
+colores=c("#ffb3ba","#baffc9","#bae1ff")
+clab=as.character(colores[track])
+
+ patient_number = max(as.numeric(as.character(design$Patient)))
 
 centered_vsd = sig_vsd
 for( i in 1:patient_number){
@@ -69,3 +94,19 @@ for( i in 1:patient_number){
    centered_vsd[,ix[1]] = sig_vsd[,ix[1]] - rowMeans(sig_vsd[,ix])
    centered_vsd[,ix[2]] = sig_vsd[,ix[2]] - rowMeans(sig_vsd[,ix])
  }
+
+centered_vsd = centered_vsd[apply(centered_vsd,1,sd)!=0,]
+
+
+rlab = rownames(centered_vsd)
+rlab[rlab %in% mel_genes] = "red"
+rlab[rlab %in% nevi_genes] = "blue"
+
+png("
+",width= 3.25,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+heatmap.2(centered_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8,ColSideColors=clab,RowSideColors=rlab)
+legend("topright",legend=c("Melanoma","Nevus","Hi-Meth Mel","Hi-Meth Nevi"),fill=c("#ffb3ba","#baffc9","red","blue"), border=T, bty="n" )
+dev.off()
