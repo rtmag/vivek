@@ -4,7 +4,7 @@ library(RnBeads)
 options(bitmapType="cairo")
 
 ## Preprocess Sample Sheet ##
-pre_sample_sheet_pilot = read.table(
+pre_sample_sheet = read.table(
     pipe("grep 'BN' /home/rtm/vivek/navi/new_epic/2019_09_18_UCSF_EPIC_GenStudSS.csv| \
     perl -pe 's/\\,/\\t/g'|perl -pe 's/ BN/_BN/g'|cut -f1,6,7")
     )
