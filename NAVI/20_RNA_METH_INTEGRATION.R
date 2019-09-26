@@ -110,3 +110,17 @@ heatmap.2(centered_vsd,col=colors,scale="row", trace="none",distfun = function(x
 labRow = FALSE,xlab="", ylab=paste(dim(sig_vsd)[1],"Genes"),key.title="Gene expression",cexCol=.8,ColSideColors=clab,RowSideColors=rlab)
 legend("topright",legend=c("Melanoma","Nevus","Hi-Meth Mel","Hi-Meth Nevi"),fill=c("#ffb3ba","#baffc9","red","blue"), border=T, bty="n" )
 dev.off()
+
+data <- vsd[52856,]
+
+Nevi<-data[design$Type=="Nevus"]
+Melanoma<-data[design$Type=="Melanoma"]
+
+pdf("~/CSI/vivek/nevi/26_sep_2019/PRAME_RNASEQ_boxplot.pdf",height=8,width=8)
+data <- cbind(Melanoma,Nevi)
+stripchart(as.data.frame((data)),vertical = TRUE,#jitter = 0.3, 
+          ylab = 'PRAME expression level (Log2 normalized read counts)',
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.4),cex = 2,las=2)
+
+boxplot(data, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+dev.off()
