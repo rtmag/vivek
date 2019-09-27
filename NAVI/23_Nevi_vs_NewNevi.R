@@ -24,7 +24,8 @@ rnb.set.nevi=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@phen
 combined.rnb.set.norm <- combine(rnb.set.nevi, rnb.set.norm.new)
 
 combined.rnb.set.norm@pheno$Tumor <- as.character(combined.rnb.set.norm@pheno$Tumor)
-combined.rnb.set.norm@pheno$Tumor[is.na(combined.rnb.set.norm@pheno$Tumor)] <- "NewNevi"
+combined.rnb.set.norm@pheno$Tumor[24:31] <- "NewNevi1"
+combined.rnb.set.norm@pheno$Tumor[32:39] <- "NewNevi2"
 combined.rnb.set.norm@pheno$Tumor <- as.factor(combined.rnb.set.norm@pheno$Tumor)
 
 nevidiff <- rnb.execute.computeDiffMeth(combined.rnb.set.norm,pheno.cols=c("Tumor"))
