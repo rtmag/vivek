@@ -103,17 +103,6 @@ meth.norm.sig = beta[dmc_table$diffmeth.p.adj.fdr<0.05 & abs(dmc_table$mean.diff
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
 ###################################################################################################
-meth.norm.sig = beta[Nvnull,]
-meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
-
-png("heatmap-NvNull.png",width= 3.25,
-  height= 5.25,units="in",
-  res=1200,pointsize=4)
-heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
-          distfun = function(x) get_dist(x,method="pearson"),dendrogram='both',
-xlab="", ylab="",key.title="Methylation lvl",ColSideColors=clab,labRow = FALSE,labCol=FALSE)
-legend("topright",legend=c("Nevi","NewNevi1","NewNevi2"),fill=c("blue","green","red"), border=T, bty="n" )
-dev.off()
 
 meth.norm.sig = beta[NvN,]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
@@ -126,6 +115,52 @@ heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
 xlab="", ylab="",key.title="Methylation lvl",ColSideColors=clab,labRow = FALSE,labCol=FALSE)
 legend("topright",legend=c("Nevi","NewNevi1","NewNevi2"),fill=c("blue","green","red"), border=T, bty="n" )
 dev.off()
+
+meth.norm.sig = beta[Nvnull,]
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+
+png("heatmap-NvNull.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+x=heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
+          distfun = function(x) get_dist(x,method="pearson"),dendrogram='both',
+xlab="", ylab="",key.title="Methylation lvl",ColSideColors=clab,labRow = FALSE,labCol=FALSE)
+legend("topright",legend=c("Nevi","NewNevi1","NewNevi2"),fill=c("blue","green","red"), border=T, bty="n" )
+dev.off()
+
+###################################################################################################
+hc <- as.hclust( x$rowDendrogram )
+groups=cutree( hc, k=3 )
+track2=as.numeric(groups)
+colores2=c("grey","orange","purple")
+clab2=(colores2[track2])
+
+png("heatmap-NvNull_rowSideColors_K3.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+x=heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
+          distfun = function(x) get_dist(x,method="pearson"),dendrogram='both',
+xlab="", ylab="",key.title="Methylation lvl",RowSideColors=clab2,ColSideColors=clab,labRow = FALSE,labCol=FALSE)
+legend("topright",legend=c("Nevi","NewNevi1","NewNevi2"),fill=c("blue","green","red"), border=T, bty="n" )
+dev.off()
+
+
+ix = which(info[,4] %in% names(groups)[groups==1] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2]-1,tmp[,2]+1,tmp[,3:6])
+write.table(tmp,"Nevi_GreyCluster.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+ix = which(info[,4] %in% names(groups)[groups==2] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2]-1,tmp[,2]+1,tmp[,3:6])
+write.table(tmp,"Nevi_OrangeCluster.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+ix = which(info[,4] %in% names(groups)[groups==3] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2]-1,tmp[,2]+1,tmp[,3:6])
+write.table(tmp,"Nevi_PurpleCluster.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+
 ###################################################################################################
 hi_newnevi = rownames(beta)[dmc_table$diffmeth.p.adj.fdr<0.05 &  (dmc_table$mean.diff)<(-.25)]
 ix = which(info[,4] %in% hi_newnevi )
