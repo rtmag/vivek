@@ -112,7 +112,7 @@ png("heatmap-NvNull.png",width= 3.25,
 heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
           distfun = function(x) get_dist(x,method="pearson"),dendrogram='both',
 xlab="", ylab="",key.title="Methylation lvl",ColSideColors=clab,labRow = FALSE,labCol=FALSE)
-legend("topright",legend=c("Nevi","NewNevi"),fill=c("blue","green"), border=T, bty="n" )
+legend("topright",legend=c("Nevi","NewNevi1","NewNevi2"),fill=c("blue","green","red"), border=T, bty="n" )
 dev.off()
 
 meth.norm.sig = beta[NvN,]
@@ -124,7 +124,7 @@ png("heatmap-NvNull.png",width= 3.25,
 heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
           distfun = function(x) get_dist(x,method="pearson"),dendrogram='both',
 xlab="", ylab="",key.title="Methylation lvl",ColSideColors=clab,labRow = FALSE,labCol=FALSE)
-legend("topright",legend=c("Nevi","NewNevi"),fill=c("blue","green"), border=T, bty="n" )
+legend("topright",legend=c("Nevi","NewNevi1","NewNevi2"),fill=c("blue","green","red"), border=T, bty="n" )
 dev.off()
 ###################################################################################################
 hi_newnevi = rownames(beta)[dmc_table$diffmeth.p.adj.fdr<0.05 &  (dmc_table$mean.diff)<(-.25)]
