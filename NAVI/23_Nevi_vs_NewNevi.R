@@ -118,7 +118,7 @@ dev.off()
 meth.norm.sig = beta[NvN,]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
-png("heatmap-NvNull.png",width= 3.25,
+png("heatmap-NvN.png",width= 3.25,
   height= 5.25,units="in",
   res=1200,pointsize=4)
 heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
