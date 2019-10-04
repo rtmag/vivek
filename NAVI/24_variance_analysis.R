@@ -19,21 +19,71 @@ beta.sd <- apply(beta,1,sd)
 # 0.5 %
 beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], ]
 
-column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm@pheno$Tumor),
-                              col = list(Type = c("Melanoma" = "darkred", "Nevi" = "darkblue", "MIS" = "grey") ) )
 
-pdf("SD_heatmap_top_0.05_cpg.pdf")
+
+column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm@pheno$Tumor),
+                              col = list(Type = c("Melanoma" = "red", "Nevi" = "blue", "MIS" = "grey") ) )
+
+pdf("SD_heatmap_top_0.005_cpg.pdf",width=9)
 Heatmap(beta.005,
-show_row_names = FALSE,show_column_names = TRUE,name = "Expression",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
 column_title="Top 0.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
 top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
 dev.off()
+
+hcw <- hclust(dist(t(beta.005), method = "euclidean"), method = "ward.D2")
+
+pdf("SD_heatmap_top_0.05_cpg_onlyDend.pdf",width=9)
+Heatmap(matrix(nc = 48, nr = 0),cluster_columns = hcw,
+show_column_names = TRUE,
+column_title="Top 0.5% CpGs with the highest SD",top_annotation = column_ha)
+dev.off()
+
 # 1%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.01)], ]
+
+pdf("SD_heatmap_top_0.01_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 1% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
 
 # 2.5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.025)], ]
 
+pdf("SD_heatmap_top_0.025_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 2.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
 # 5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.05)], ]
+
+pdf("SD_heatmap_top_0.05_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
 
 # 10%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.1)], ]
+
+pdf("SD_heatmap_top_0.10_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 10% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
 
 # 20%%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.2)], ]
+
+pdf("SD_heatmap_top_0.20_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 20% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
