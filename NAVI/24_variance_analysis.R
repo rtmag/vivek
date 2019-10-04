@@ -1,5 +1,5 @@
 suppressMessages(library(RnBeads))
-
+library(ComplexHeatmap)
 options(scipen=999)
 library(gplots)
 library(factoextra)
@@ -19,6 +19,15 @@ beta.sd <- apply(beta,1,sd)
 # 0.5 %
 beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], ]
 
+column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm@pheno$Tumor),
+                              col = list(Type = c("Melanoma" = "darkred", "Nevi" = "darkblue", "MIS" = "grey") ) )
+
+pdf("SD_heatmap_top_0.05_cpg.pdf")
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Expression",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 0.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
 # 1%
 
 # 2.5%
