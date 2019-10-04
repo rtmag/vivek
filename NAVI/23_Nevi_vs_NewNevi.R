@@ -1,5 +1,5 @@
 suppressMessages(library(RnBeads))
-
+library(ComplexHeatmap)
 options(scipen=999)
 library(gplots)
 library(factoextra)
@@ -173,5 +173,65 @@ ix = which(info[,4] %in% hi_nevi )
 hi_nevi_bed = as.data.frame(info[ix,])
 hi_nevi_bed = cbind(hi_nevi_bed[,1],hi_nevi_bed[,2]-1,hi_nevi_bed[,2]+1,hi_nevi_bed[,3:6])
 write.table(hi_nevi_bed,"hiMeth_Nevi.bed",quote=F,col.names=F,row.names=F,sep="\t")
+###################################################################################################
+###################################################################################################
+###################################################################################################
 
+rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData.zip")
+rnb.set.norm.new=load.rnb.set("/home/rtm/vivek/navi/new_epic/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData.zip")
+
+rnb.set.nevi=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno$Tumor!="Nevi"])
+
+combined.rnb.set.norm <- combine(rnb.set.nevi, rnb.set.norm.new)
+
+combined.rnb.set.norm@pheno$Tumor <- as.character(combined.rnb.set.norm@pheno$Tumor)
+combined.rnb.set.norm@pheno$Tumor[24:31] <- "NewNevi1"
+combined.rnb.set.norm@pheno$Tumor[32:39] <- "NewNevi2"
+combined.rnb.set.norm@pheno$Tumor <- as.factor(combined.rnb.set.norm@pheno$Tumor)
+######
+beta <- meth(combined.rnb.set.norm,row.names=TRUE)
+beta.sd <- apply(beta,1,sd)
+
+clab=as.character(combined.rnb.set.norm@pheno$Tumor)
+
+# 0.5 %
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], ]
+
+column_ha = HeatmapAnnotation(Type = clab, col = list(Type = c("Nevi" = "blue", "NewNevi1" = "green", "NewNevi2" = "red") ) )
+
+pdf("NEVI_SD_heatmap_top_0.005_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 0.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+# 1%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.01)], ]
+
+pdf("NEVI_SD_heatmap_top_0.01_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 1% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+# 2.5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.025)], ]
+
+pdf("NEVI_SD_heatmap_top_0.025_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 2.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+# 5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.05)], ]
+
+pdf("NEVI_SD_heatmap_top_0.05_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
 
