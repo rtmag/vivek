@@ -33,3 +33,14 @@ TARGET_INTERVALS=MedExome_hg38_empirical_targets.interval_list \
 BAIT_INTERVALS=MedExome_hg38_capture_targets.interval_list \
 I=/home/rtm/vivek/navi/wes/bam/VM19_recalibrated.bam \
 O=VM19.hsmetrix
+
+##
+for bamfile in /home/rtm/vivek/navi/wes*/bam/*recalibrated*bam;
+do ls -lh $bamfile; 
+sampleOut=$(basename $bamfile) ;
+java -jar /home/rtm/myprograms/picard/build/libs/picard.jar CollectHsMetrics \
+TARGET_INTERVALS=MedExome_hg38_empirical_targets.interval_list \
+BAIT_INTERVALS=MedExome_hg38_capture_targets.interval_list \
+I=$bamfile \
+O=$sampleOut.hsmetrix ;
+done
