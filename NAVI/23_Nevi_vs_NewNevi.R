@@ -235,3 +235,88 @@ column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", ro
 top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
 dev.off()
 
+##################
+# Whiting groups 
+
+rnb.set.norm.newNevi2=remove.samples(rnb.set.norm.new,samples(rnb.set.norm.new)[grep("_BN",rnb.set.norm.new@pheno$Sample_ID)])
+
+tmpPheno <- rnb.set.norm.newNevi2@pheno
+nevGroup = as.character(tmpPheno$Sample_ID)
+nevGroup[grep("11-080",nevGroup)] <- "G1"
+nevGroup[grep("11-078",nevGroup)] <- "G1"
+nevGroup[grep("11-020",nevGroup)] <- "G1"
+
+nevGroup[grep("11-166",nevGroup)] <- "G2"
+nevGroup[grep("11-292",nevGroup)] <- "G2"
+nevGroup[grep("12-277",nevGroup)] <- "G2"
+
+nevGroup[grep("10-049",nevGroup)] <- "G3"
+nevGroup[grep("11-281",nevGroup)] <- "G3"
+
+
+tmpPheno <- data.frame(tmpPheno, nevGroup = nevGroup)
+rnb.set.norm.newNevi2@pheno <- tmpPheno
+
+newNevi2.diff <- rnb.execute.computeDiffMeth(rnb.set.norm.newNevi2,pheno.cols=c("nevGroup"))
+
+dmc.NNG1.vs.non <-get.table(newNevi2.diff, get.comparisons(newNevi2.diff)[1], "sites", return.data.frame=TRUE)
+dmc.NNG2.vs.non <-get.table(newNevi2.diff, get.comparisons(newNevi2.diff)[2], "sites", return.data.frame=TRUE)
+dmc.NNG3.vs.non <-get.table(newNevi2.diff, get.comparisons(newNevi2.diff)[3], "sites", return.data.frame=TRUE)
+
+table(dmc.NNG1.vs.non$diffmeth.p.adj.fdr<0.1 & abs(dmc.NNG1.vs.non$mean.diff)>.1)
+table(dmc.NNG2.vs.non$diffmeth.p.adj.fdr<0.1 & abs(dmc.NNG2.vs.non$mean.diff)>.1) #2 cpg
+table(dmc.NNG3.vs.non$diffmeth.p.adj.fdr<0.1 & abs(dmc.NNG3.vs.non$mean.diff)>.1) #10 cpg
+
+N0vnull <- which(dmc.NNG1.vs.non$diffmeth.p.adj.fdr<0.1 & abs(dmc.NNG1.vs.non$mean.diff)>.25)
+N1vnull <- which(dmc.NNG2.vs.non$diffmeth.p.adj.fdr<0.1 & abs(dmc.NNG2.vs.non$mean.diff)>.25)
+N2vnull <- which(dmc.NNG3.vs.non$diffmeth.p.adj.fdr<0.1 & abs(dmc.NNG3.vs.non$mean.diff)>.25)
+
+########################################################################################################################
+########################################################################################################################
+# G1 VS G2
+rnb.set.tmp <- remove.samples(rnb.set.norm.newNevi2,samples(rnb.set.norm.newNevi2)[rnb.set.norm.newNevi2@pheno$nevGroup=="G3"])
+nevidiff.Nevi.NN1 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
+comparison <- get.comparisons(nevidiff.Nevi.NN1)[1]
+dmc.Nevi.vs.NN1 <-get.table(nevidiff.Nevi.NN1, comparison, "sites", return.data.frame=TRUE)
+
+# G1 VS G3
+rnb.set.tmp <- remove.samples(combined.rnb.set.norm,samples(combined.rnb.set.norm)[combined.rnb.set.norm@pheno$nevGroup=="G2"])
+nevidiff.Nevi.NN2 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
+comparison <- get.comparisons(nevidiff.Nevi.NN2)[1]
+dmc.Nevi.vs.NN2 <-get.table(nevidiff.Nevi.NN2, comparison, "sites", return.data.frame=TRUE)
+
+# G2 VS G3
+rnb.set.tmp <- remove.samples(combined.rnb.set.norm,samples(combined.rnb.set.norm)[combined.rnb.set.norm@pheno$nevGroup=="G1"])
+nevidiff.NN1.NN2 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
+comparison <- get.comparisons(nevidiff.NN1.NN2)[1]
+dmc.NN1.NN2 <-get.table(nevidiff.NN1.NN2, comparison, "sites", return.data.frame=TRUE)
+
+table(dmc.Nevi.vs.NN1$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN1$mean.diff)>.25)
+table(dmc.Nevi.vs.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN2$mean.diff)>.25)
+table(dmc.NN1.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.NN1.NN2$mean.diff)>.25)
+
+N0vN1 <- which(dmc.Nevi.vs.NN1$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN1$mean.diff)>.25)
+N0vN2 <- which(dmc.Nevi.vs.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN2$mean.diff)>.25)
+N1vN2 <- which(dmc.NN1.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.NN1.NN2$mean.diff)>.25)
+########################################################################################################################
+########################################################################################################################
+
+Nvnull<-unique(c(N0vnull,N1vnull,N2vnull))
+
+length(Nvnull)
+
+meth.norm.sig = beta[Nvnull,]
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+
+png("heatmap-dmc_NewNevi2_3Groups.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+x=heatmap.2(as.matrix(meth.norm.sig),col=colors,scale="none", trace="none",
+          distfun = function(x) get_dist(x,method="pearson"),dendrogram='both',
+xlab="", ylab="",key.title="Methylation lvl",ColSideColors=clab,labRow = FALSE,labCol=FALSE)
+legend("topright",legend=c("Nevi","NewNevi1","NewNevi2"),fill=c("blue","green","red"), border=T, bty="n" )
+dev.off()
+
+
+
+
