@@ -34,7 +34,8 @@ BAIT_INTERVALS=MedExome_hg38_capture_targets.interval_list \
 I=/home/rtm/vivek/navi/wes/bam/VM19_recalibrated.bam \
 O=VM19.hsmetrix
 
-##
+##########################################################################################
+##########################################################################################
 for bamfile in /home/rtm/vivek/navi/wes*/bam/*recalibrated*bam;
 do ls -lh $bamfile; 
 sampleOut=$(basename $bamfile) ;
@@ -44,3 +45,18 @@ BAIT_INTERVALS=MedExome_hg38_capture_targets.interval_list \
 I=$bamfile \
 O=$sampleOut.hsmetrix ;
 done
+##########################################################################################
+##########################################################################################
+for bamfile in /home/rtm/vivek/navi/wes*/bam/*recalibrated*bam;
+do ls -lh $bamfile; 
+sampleOut=$(basename $bamfile) ;
+java -Xmx100g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar -T DepthOfCoverage \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -o /home/rtm/vivek/navi/WES_coverage/DepthOfCoverage/$sampleOut.DepthOfCoverage \
+   -I $bamfile \
+   -L MedExome_hg38_empirical_targets.interval_list \
+   -ct 10 ;
+done
+
+
+ 
