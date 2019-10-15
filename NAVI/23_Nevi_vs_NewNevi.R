@@ -324,15 +324,38 @@ beta.sd <- apply(nn2.beta,1,sd)
 
 
 column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm.newNevi2@pheno$nevGroup),
-                              col = list(Type = c("G1" = "red", "G2" = "blue", "G2" = "green") ) )
+                              col = list(Type = c("G1" = "red", "G2" = "blue", "G3" = "green") ) )
 
 
 # 1%
-beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.01)], ]
+beta.005<-nn2.beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.01)], ]
 
 pdf("NEVI_group2_SD_heatmap_top_0.01_cpg.pdf",width=9)
 Heatmap(beta.005,
 show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
 column_title="Top 1% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+
+dev.off()
+
+# 2.5%
+beta.005<-nn2.beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.025)], ]
+dim(beta.005)
+
+pdf("NEVI_group2_SD_heatmap_top_0.025_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 2.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+# 5%
+beta.005<-nn2.beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.05)], ]
+dim(beta.005)
+
+pdf("NEVI_group2_SD_heatmap_top_0.05_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
 top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
 dev.off()
