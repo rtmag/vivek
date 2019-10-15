@@ -319,4 +319,20 @@ dev.off()
 
 
 
+nn2.beta <- meth(rnb.set.norm.newNevi2,row.names=TRUE)
+beta.sd <- apply(nn2.beta,1,sd)
 
+
+column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm.newNevi2@pheno$nevGroup),
+                              col = list(Type = c("G1" = "red", "G2" = "blue", "G2" = "green") ) )
+
+
+# 1%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.01)], ]
+
+pdf("NEVI_group2_SD_heatmap_top_0.01_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 1% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
