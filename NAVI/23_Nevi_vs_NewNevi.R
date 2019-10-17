@@ -275,29 +275,76 @@ N2vnull <- which(dmc.NNG3.vs.non$diffmeth.p.adj.fdr<0.1 & abs(dmc.NNG3.vs.non$me
 ########################################################################################################################
 # G1 VS G2
 rnb.set.tmp <- remove.samples(rnb.set.norm.newNevi2,samples(rnb.set.norm.newNevi2)[rnb.set.norm.newNevi2@pheno$nevGroup=="G3"])
-nevidiff.Nevi.NN1 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
-comparison <- get.comparisons(nevidiff.Nevi.NN1)[1]
-dmc.Nevi.vs.NN1 <-get.table(nevidiff.Nevi.NN1, comparison, "sites", return.data.frame=TRUE)
+nevidiff.G1.G2 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
+comparison <- get.comparisons(nevidiff.G1.G2)[1]
+dmc.G1.vs.G2 <-get.table(nevidiff.G1.G2, comparison, "sites", return.data.frame=TRUE)
 
 # G1 VS G3
-rnb.set.tmp <- remove.samples(combined.rnb.set.norm,samples(combined.rnb.set.norm)[combined.rnb.set.norm@pheno$nevGroup=="G2"])
-nevidiff.Nevi.NN2 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
-comparison <- get.comparisons(nevidiff.Nevi.NN2)[1]
-dmc.Nevi.vs.NN2 <-get.table(nevidiff.Nevi.NN2, comparison, "sites", return.data.frame=TRUE)
+rnb.set.tmp <- remove.samples(rnb.set.norm.newNevi2,samples(rnb.set.norm.newNevi2)[rnb.set.norm.newNevi2@pheno$nevGroup=="G2"])
+nevidiff.G1.G3 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
+comparison <- get.comparisons(nevidiff.G1.G3)[1]
+dmc.G1.vs.G3 <-get.table(nevidiff.G1.G3, comparison, "sites", return.data.frame=TRUE)
 
 # G2 VS G3
-rnb.set.tmp <- remove.samples(combined.rnb.set.norm,samples(combined.rnb.set.norm)[combined.rnb.set.norm@pheno$nevGroup=="G1"])
-nevidiff.NN1.NN2 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
-comparison <- get.comparisons(nevidiff.NN1.NN2)[1]
-dmc.NN1.NN2 <-get.table(nevidiff.NN1.NN2, comparison, "sites", return.data.frame=TRUE)
+rnb.set.tmp <- remove.samples(rnb.set.norm.newNevi2,samples(rnb.set.norm.newNevi2)[rnb.set.norm.newNevi2@pheno$nevGroup=="G1"])
+nevidiff.G2.G3 <- rnb.execute.computeDiffMeth(rnb.set.tmp,pheno.cols=c("nevGroup"))
+comparison <- get.comparisons(nevidiff.G2.G3)[1]
+dmc.G2.vs.G3 <-get.table(nevidiff.G2.G3, comparison, "sites", return.data.frame=TRUE)
 
-table(dmc.Nevi.vs.NN1$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN1$mean.diff)>.25)
-table(dmc.Nevi.vs.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN2$mean.diff)>.25)
-table(dmc.NN1.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.NN1.NN2$mean.diff)>.25)
 
-N0vN1 <- which(dmc.Nevi.vs.NN1$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN1$mean.diff)>.25)
-N0vN2 <- which(dmc.Nevi.vs.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.Nevi.vs.NN2$mean.diff)>.25)
-N1vN2 <- which(dmc.NN1.NN2$diffmeth.p.adj.fdr<0.05 & abs(dmc.NN1.NN2$mean.diff)>.25)
+table(dmc.G1.vs.G2$diffmeth.p.adj.fdr<0.05 & abs(dmc.G1.vs.G2$mean.diff)>.25)
+table(dmc.G1.vs.G3$diffmeth.p.adj.fdr<0.05 & abs(dmc.G1.vs.G3$mean.diff)>.25)
+table(dmc.G2.vs.G3$diffmeth.p.adj.fdr<0.05 & abs(dmc.G2.vs.G3$mean.diff)>.25)
+# VOLCANO
+
+png("volcano_Nevi_G1.vs.G2.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+dmc_table<-dmc.G1.vs.G2
+plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab=expression('Log'[2]*paste(' Fold Change ')),
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+  abline(v=-.25,lty = 2,col="grey")
+  abline(v=.25,lty = 2,col="grey")
+  abline(h=-log10(0.05),lty = 2,col="grey")
+  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.25 & dmc_table$diffmeth.p.adj.fdr<0.05],
+       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.25 & dmc_table$diffmeth.p.adj.fdr<0.05],
+      col="red",pch=20)
+  legend("topright", paste("HiMeth NeviG1:",length(which(dmc_table$mean.diff>.25 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topleft", paste("HiMeth NeviG2:",length(which(dmc_table$mean.diff<(-.25) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  dev.off()
+
+png("volcano_Nevi_G1.vs.G3.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+dmc_table<-dmc.G1.vs.G3
+plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab=expression('Log'[2]*paste(' Fold Change ')),
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+  abline(v=-.25,lty = 2,col="grey")
+  abline(v=.25,lty = 2,col="grey")
+  abline(h=-log10(0.05),lty = 2,col="grey")
+  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.25 & dmc_table$diffmeth.p.adj.fdr<0.05],
+       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.25 & dmc_table$diffmeth.p.adj.fdr<0.05],
+      col="red",pch=20)
+  legend("topright", paste("HiMeth NeviG1:",length(which(dmc_table$mean.diff>.25 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topleft", paste("HiMeth NeviG3:",length(which(dmc_table$mean.diff<(-.25) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  dev.off()
+
+png("volcano_Nevi_G2.vs.G3.png",width= 3.25,
+  height= 5.25,units="in",
+  res=1200,pointsize=4)
+dmc_table<-dmc.G2.vs.G3
+plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab=expression('Log'[2]*paste(' Fold Change ')),
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+  abline(v=-.25,lty = 2,col="grey")
+  abline(v=.25,lty = 2,col="grey")
+  abline(h=-log10(0.05),lty = 2,col="grey")
+  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.25 & dmc_table$diffmeth.p.adj.fdr<0.05],
+       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.25 & dmc_table$diffmeth.p.adj.fdr<0.05],
+      col="red",pch=20)
+  legend("topright", paste("HiMeth NeviG2:",length(which(dmc_table$mean.diff>.25 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topleft", paste("HiMeth NeviG3:",length(which(dmc_table$mean.diff<(-.25) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  dev.off()
+#
 ########################################################################################################################
 ########################################################################################################################
 
