@@ -301,8 +301,8 @@ png("volcano_Nevi_G1.vs.G2.png",width= 3.25,
   height= 5.25,units="in",
   res=1200,pointsize=4)
 dmc_table<-dmc.G1.vs.G2
-plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab=expression('Log'[2]*paste(' Fold Change ')),
-              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
   abline(v=-.25,lty = 2,col="grey")
   abline(v=.25,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
@@ -317,8 +317,8 @@ png("volcano_Nevi_G1.vs.G3.png",width= 3.25,
   height= 5.25,units="in",
   res=1200,pointsize=4)
 dmc_table<-dmc.G1.vs.G3
-plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab=expression('Log'[2]*paste(' Fold Change ')),
-              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
   abline(v=-.25,lty = 2,col="grey")
   abline(v=.25,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
@@ -333,8 +333,8 @@ png("volcano_Nevi_G2.vs.G3.png",width= 3.25,
   height= 5.25,units="in",
   res=1200,pointsize=4)
 dmc_table<-dmc.G2.vs.G3
-plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab=expression('Log'[2]*paste(' Fold Change ')),
-              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20 )
+plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
   abline(v=-.25,lty = 2,col="grey")
   abline(v=.25,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
