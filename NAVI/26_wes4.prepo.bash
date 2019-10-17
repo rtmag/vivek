@@ -45,20 +45,31 @@ mv DLP-80_S26_L003.bam VM47.bam
 mv DLP-81_S27_L003.bam VM46.bam
 mv DLP-83_S28_L003.bam NORMAL_VM5_VM6.bam
 mv DLP-87_S29_L003.bam NORMAL_VM39_VM40.bam
-mv DLP-88_S30_L003.bam .bam
-
+mv DLP-88_S30_L003.bam discard/
 ############################################################################################################################
-
 # BAM SORT
-for fastqfile in /home/rtm/vivek/navi/wes4/fastq_trim/*R1*.fq.gz ;
-do echo $fastqfile; 
-fastq2=$(echo $fastqfile|perl -pe "s/R1_001_val_1/R2_001_val_2/g") ;
-samplename=$(basename $fastqfile) ;
-samplename=$(echo $samplename|perl -pe "s/_R1_001_val_1.fq.gz//g") ;
-echo $fastq2;
+for bamfile in /home/rtm/vivek/navi/wes4/bam/*bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.bam//g') ;
 echo $samplename;
-bwa mem -t 23 -T 0 -R "@RG\tID:$samplename\tLB:WES4\tPL:illumina\tPU:NULL\tSM:$samplename" \
-/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz $fastqfile $fastq2 | \
-samtools view -Shb -o /home/rtm/vivek/navi/wes4/bam/$samplename.bam - ;
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
+CREATE_INDEX=true \
+INPUT=$bamfile \
+OUTPUT=/home/rtm/vivek/navi/wes4/bam/$samplename.sort.bam \
+SORT_ORDER=coordinate \
+VALIDATION_STRINGENCY=STRICT;
+done
+############################################################################################################################
+# RMDUP
+for bamfile in /home/rtm/vivek/navi/wes3/bam/*.sort.bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.sort.bam//g') ;
+echo $samplename;
+java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
+VALIDATION_STRINGENCY=STRICT \
+CREATE_INDEX=true \
+M=$samplename.MFILE.txt \
+INPUT=$bamfile \
+OUTPUT=$samplename.rmdup.sort.bam ;
 done
 ############################################################################################################################
