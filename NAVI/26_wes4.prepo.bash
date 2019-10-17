@@ -50,7 +50,7 @@ mv DLP-88_S30_L003.bam discard/
 # BAM SORT
 for bamfile in /home/rtm/vivek/navi/wes4/bam/*bam ;
 do echo $bamfile; 
-samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.bam//g') ;
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes4\/bam\///g'|perl -pe 's/.bam//g') ;
 echo $samplename;
 java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar SortSam \
 CREATE_INDEX=true \
@@ -61,15 +61,56 @@ VALIDATION_STRINGENCY=STRICT;
 done
 ############################################################################################################################
 # RMDUP
-for bamfile in /home/rtm/vivek/navi/wes3/bam/*.sort.bam ;
+for bamfile in /home/rtm/vivek/navi/wes4/bam/*.sort.bam ;
 do echo $bamfile; 
-samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/bam\///g'|perl -pe 's/.sort.bam//g') ;
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes4\/bam\///g'|perl -pe 's/.sort.bam//g') ;
 echo $samplename;
 java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplicates \
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
-M=$samplename.MFILE.txt \
+M=/home/rtm/vivek/navi/wes4/bam/$samplename.MFILE.txt \
 INPUT=$bamfile \
-OUTPUT=$samplename.rmdup.sort.bam ;
+OUTPUT=/home/rtm/vivek/navi/wes4/bam/$samplename.rmdup.sort.bam ;
+done
+############################################################################################################################
+############################################################################################################################
+############################################################################################################################
+for bamfile in /home/rtm/vivek/navi/wes4/bam/*.rmdup.sort.bam ;
+do echo $bamfile; 
+samplename=$(echo $bamfile|perl -pe 's/\/home\/rtm\/vivek\/navi\/wes4\/bam\///g'|perl -pe 's/.rmdup.sort.bam//g') ;
+echo $samplename;
+############################# Target intervals #############################
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T RealignerTargetCreator \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-nt 20 \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-I $bamfile \
+-o /home/rtm/vivek/navi/wes4/bam/$samplename.realign_target.intervals ;
+############################# INDEL REALigner #############################
+java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T IndelRealigner \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-known /home/references/broadhg38/broad_hg38/Mills_and_1000G_gold_standard.indels.hg38.vcf \
+-targetIntervals /home/rtm/vivek/navi/wes4/bam/$samplename.realign_target.intervals \
+--noOriginalAlignmentTags \
+-I $bamfile \
+--out /home/rtm/vivek/navi/wes4/bam/$samplename.realigned.bam ;
+############################## baserecalibrator #############################
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T BaseRecalibrator \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
+-I /home/rtm/vivek/navi/wes4/bam/$samplename.realigned.bam \
+-o /home/rtm/vivek/navi/wes4/bam/$samplename.bqsr.grp ;
+############################# recalibrate #############################
+java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
+-T PrintReads \
+-nct 20 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I /home/rtm/vivek/navi/wes4/bam/$samplename.realigned.bam \
+--BQSR /home/rtm/vivek/navi/wes4/bam/$samplename.bqsr.grp \
+-o /home/rtm/vivek/navi/wes4/bam/$samplename.recalibrated.bam ;
 done
 ############################################################################################################################
