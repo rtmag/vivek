@@ -27,6 +27,28 @@ samtools view -Shb -o /home/rtm/vivek/navi/wes3/bam/$samplename.bam - ;
 done
 
 ############################################################################################################################
+#annotate bam
+mv DLP-04_S13_L003.bam NORMAL_VM37_VM38.bam
+mv DLP-05_S14_L003.bam VM38.bam
+mv DLP-07_S15_L003.bam NORMAL_VM41_VM42.bam
+mv DLP-10_S16_L003.bam NORMAL_VM3_VM4.bam
+mv DLP-15_S17_L003.bam VM40.bam
+mv DLP-16_S18_L003.bam VM39.bam
+mv DLP-20_S19_L003.bam VM5.bam
+mv DLP-23_S20_L003.bam NORMAL_VM13_VM14.bam
+mv DLP-24_S21_L003.bam VM13.bam
+mv DLP-48_S22_L003.bam VM18.bam
+mv DLP-59_S23_L003.bam VM29.bam
+mv DLP-68_S24_L003.bam NORMAL_VM17_VM18.bam
+mv DLP-76_S25_L003.bam VM21.bam
+mv DLP-80_S26_L003.bam VM47.bam
+mv DLP-81_S27_L003.bam VM46.bam
+mv DLP-83_S28_L003.bam NORMAL_VM5_VM6.bam
+mv DLP-87_S29_L003.bam NORMAL_VM39_VM40.bam
+mv DLP-88_S30_L003.bam .bam
+
+############################################################################################################################
+
 # BAM SORT
 for fastqfile in /home/rtm/vivek/navi/wes4/fastq_trim/*R1*.fq.gz ;
 do echo $fastqfile; 
