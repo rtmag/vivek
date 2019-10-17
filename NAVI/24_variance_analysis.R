@@ -91,3 +91,58 @@ show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_re
 column_title="Top 10% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
 top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
 dev.off()
+
+
+######
+# PCA
+mvalues <- M(rnb.set.norm, row.names = TRUE)
+pca <- prcomp(mvalues, center = TRUE,scale. = TRUE)
+
+track = as.character(rnb.set.norm@pheno$Tumor)
+track[track=="Melanoma"]=1
+track[track=="Nevi"]=2
+track[track=="MIS"]=3
+
+track=as.numeric(track)
+colores=c("red","blue","grey")
+clab=as.character(colores[track])
+
+sx=summary(pca)
+
+pdf("PCA_Nevi_vs_melanoma_Mvalues.pdf")
+plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
+    xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","blue","grey"), border=T, bty="n" )
+dev.off()
+
+
+meth.filtered.centered = readRDS('meth.filtered.centered.rds')
+pca <- prcomp(meth.filtered.centered, center = TRUE,scale. = TRUE)
+
+ Tumor = c("Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                     "Melanoma","MIS","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi",
+                    "Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi","Melanoma","Nevi")
+track = as.character(Tumor)
+track[track=="Melanoma"]=1
+track[track=="Nevi"]=2
+track[track=="MIS"]=3
+
+track=as.numeric(track)
+colores=c("red","blue","grey")
+clab=as.character(colores[track])
+
+sx=summary(pca)
+
+pdf("PCA_Nevi_vs_melanoma_BetaScoresCenteredByPatient.pdf")
+plot(pca$rotation[,1],pca$rotation[,2],col=clab,pch=19,
+    xlab=paste("PCA1:",round(sx$importance[2,1]*100,digits=1),"%"),ylab=paste("PCA2:",round(sx$importance[2,2]*100,digits=1),"%"))
+legend("topright",legend=c("Melanoma","Nevi","MIS"),fill=c("red","blue","grey"), border=T, bty="n" )
+dev.off()
+
+pdf("density_distribution_of_Nevi_vand_melanoma_BetaScoresCenteredByPatient.pdf")
+plot(density(meth.filtered.centered[,1]),ylim=c(0,40))
+for(i in 1:48){ lines(density(meth.filtered.centered[,i]),col=clab[i]) }
+dev.off()
