@@ -82,7 +82,17 @@ column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", ro
 top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
 dev.off()
 
-# 10%
+# 7%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.7)], ]
+
+pdf("SD_heatmap_top_0.07_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 7% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+# 10% FAIL!
 beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.1)], ]
 
 pdf("SD_heatmap_top_0.10_cpg.pdf",width=9)
