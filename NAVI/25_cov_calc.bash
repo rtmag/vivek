@@ -58,6 +58,23 @@ java -Xmx100g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar -T DepthOfCov
    -ct 10 ;
 done
 
+##########################################################################################
+##########################################################################################
+# COV wes4
+for bamfile in /home/rtm/vivek/navi/wes4/bam/*recalibrated*bam;
+do ls -lh $bamfile; 
+sampleOut=$(basename $bamfile) ;
+java -Xmx100g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar -T DepthOfCoverage \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -o /home/rtm/vivek/navi/WES_coverage/DepthOfCoverage/$sampleOut.DepthOfCoverage \
+   -I $bamfile \
+   -L MedExome_hg38_empirical_targets.interval_list \
+   -ct 10 ;
+done
+
+
+##########################################################################################
+##########################################################################################
 
  grep -P "BRAF" /home/rtm/vivek/navi/wes3/vcf_test/all_VM42.maf| \
  grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
