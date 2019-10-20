@@ -59,4 +59,18 @@ java -Xmx100g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar -T DepthOfCov
 done
 
 
+ grep -P "BRAF" /home/rtm/vivek/navi/wes3/vcf_test/all_VM42.maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82| \
+ sort -V -k 1
  
+
+ grep -P -w "BRAF" /home/rtm/vivek/navi/*/*/*maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1
+
+
+
+
