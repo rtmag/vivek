@@ -71,6 +71,52 @@ done
  perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
  perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1
 
+ grep -P -w "NF1" /home/rtm/vivek/navi/*/*/*maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+  grep -v "Intron"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1
 
+ grep -P -w "NRAS" /home/rtm/vivek/navi/*/*/*maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+  grep -v "Intron"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1
+
+ grep -P -w "CDKN2A" /home/rtm/vivek/navi/*/*/*maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+  grep -v "Intron"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1
+
+
+ grep -P -w "CDKN2A" /home/rtm/vivek/navi/*/*/*maf| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1|grep -v "RP11-145E5.5"|grep -v "Intron"
+
+
+######
+ grep -P -w "BRAF" /home/rtm/vivek/navi/*/*/*maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1|perl -pe 's/\,/\t/g'|cut -f1|sort -V |uniq
+
+
+ grep -P -w "NF1" /home/rtm/vivek/navi/*/*/*maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1|perl -pe 's/\,/\t/g'|cut -f1|sort -V |uniq
+
+ grep -P -w "NRAS" /home/rtm/vivek/navi/*/*/*maf| \
+ grep -P -i "Missense_Mutation|Nonsense_Mutation|Nonstop_Mutation|_Del|_Ins"| \
+ cut -f 1,5-10,35,37,38,41,42,80-82|perl -pe 's/\t/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes\/test\_funcotator\/all\_//g'|perl -pe 's/\.maf\:/\,/g'| \
+ perl -pe 's/\/home\/rtm\/vivek\/navi\/wes3\/vcf\_test\/all\_//g'|sort -V -k 1|perl -pe 's/\,/\t/g'|cut -f1|sort -V |uniq
 
 
