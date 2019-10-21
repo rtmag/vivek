@@ -114,3 +114,40 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -o /home/rtm/vivek/navi/wes4/bam/$samplename.recalibrated.bam ;
 done
 ############################################################################################################################
+
+
+#### MUTECT VCF ALL Variant NO NORMAL using gatk4.1.3
+for bamfile in /home/rtm/vivek/navi/wes4/bam/VM*recalibrated.bam;
+do ls -lh $bamfile; 
+name=${bamfile//\/home\/rtm\/vivek\/navi\/wes4\/bam\/} ;
+sample=${name//\.recalibrated\.bam} ;
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.3.0/gatk-package-4.1.3.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I $bamfile \
+-tumor $sample \
+-O /home/rtm/vivek/navi/wes4/vcf_gatk4.1.3/all_$sample.vcf.gz
+done
+############################################################################################################################
+#### FUNCOTATOR VCF ALL Variant NO NORMAL
+for vcf in /home/rtm/vivek/navi/wes4/vcf_gatk4.1.3/*tbi;
+do echo $vcf; 
+name=${vcf//\/home\/rtm\/vivek\/navi\/wes4\/vcf_gatk4.1.3\/} ;
+name=${name//\.vcf\.gz\.tbi} ;
+echo $name;
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar FilterMutectCalls \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-V /home/rtm/vivek/navi/wes4/vcf_gatk4.1.3/$name.vcf.gz \
+-O /home/rtm/vivek/navi/wes4/vcf_test/$name.filtered.vcf.gz ;
+java -Xmx50G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar SelectVariants \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes4/vcf_test/$name.filtered.vcf.gz \
+   -O /home/rtm/vivek/navi/wes4/vcf_test/$name.filtered.PASS.vcf.gz \
+   --exclude-filtered ;
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.0.0/gatk-package-4.1.0.0-local.jar Funcotator \
+   -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+   -V /home/rtm/vivek/navi/wes4/vcf_test/$name.filtered.PASS.vcf.gz \
+   -O /home/rtm/vivek/navi/wes4/vcf_test/$name.maf \
+   --data-sources-path /home/rtm/myprograms/funcotator_data/funcotator_dataSources.v1.6.20190124s/ \
+   --ref-version hg38 --output-file-format MAF;
+done
+#######################################################################
