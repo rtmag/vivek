@@ -406,3 +406,114 @@ show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_re
 column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
 top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
 dev.off()
+
+
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+
+
+Mutation_info = c(
+  "NA", # VM1
+  "NA", # VM2
+  "NA", # VM3
+  "NA", # VM4
+  "BRAF", # VM5
+  "BRAF", # VM6
+  "BRAF", # VM7
+  "BRAF", # VM8
+  "BRAF", # VM9
+  "BRAF", # VM10
+  "BRAF", # VM11
+  "BRAF", # VM12
+  "BRAF", # VM13
+  "BRAF", # VM14
+  "NF1", # VM15
+  "NF1", # VM16
+  "BRAF", # VM17
+  "BRAF", # VM18
+  "BRAF", # VM19
+  "BRAF", # VM20
+  "NRAS", # VM21
+  "NRAS", # VM22
+  "BRAF", # VM23
+  "BRAF", # VM24
+  "NRAS", # VM25
+  "NRAS", # VM26
+  "NA", # VM27
+  "NA", # VM28
+  "BRAF", # VM29
+  "BRAF", # VM30
+  "NRAS", # VM31
+  "NRAS", # VM32
+  "NA", # VM33
+  "NA", # VM34
+  "BRAF", # VM35
+  "BRAF", # VM36
+  "BRAF", # VM37
+  "BRAF", # VM38
+  "BRAF", # VM39
+  "BRAF", # VM40
+  "BRAF", # VM41
+  "BRAF", # VM42
+  "BRAF", # VM43
+  "BRAF", # VM44
+  "BRAF", # VM45
+  "BRAF", # VM46
+  "BRAF", # VM47
+  "BRAF") # VM48
+
+
+
+naviOnly.rnb.set.norm = rnb.set.norm
+naviOnly.rnb.set.norm@pheno <- data.frame(naviOnly.rnb.set.norm@pheno, Mutation = Mutation_info)
+rnb.set.nevi=remove.samples(naviOnly.rnb.set.norm,samples(naviOnly.rnb.set.norm)[naviOnly.rnb.set.norm@pheno$Tumor!="Nevi"])
+rnb.set.nevi.naviOnly <- remove.samples(rnb.set.nevi,samples(rnb.set.nevi)[rnb.set.nevi@pheno$Mutation=="NA"])
+
+beta <- meth(rnb.set.nevi.naviOnly,row.names=TRUE)
+beta.sd <- apply(beta,1,sd)
+
+column_ha = HeatmapAnnotation(Mutation_Type = as.character(rnb.set.nevi.naviOnly@pheno$Mutation),
+                              col = list(Mutation_Type = c("BRAF" = "blue", "NRAS" = "green", "NF1" = "purple") ) )
+
+# 0.5 %
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], ]
+dim(beta.005)
+
+pdf("NEVIonly_mutationType_SD_heatmap_top_0.005_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 0.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+# 1%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.01)], ]
+
+pdf("NEVIonly_mutationType_SD_heatmap_top_0.01_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 1% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+# 2.5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.025)], ]
+
+pdf("NEVIonly_mutationType_SD_heatmap_top_0.025_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 2.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+# 5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.05)], ]
+
+pdf("NEVIonly_mutationType_heatmap_top_0.05_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+##################
