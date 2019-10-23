@@ -38,6 +38,8 @@ beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], 
 column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm@pheno$Tumor),
                               col = list(Type = c("Melanoma" = "red", "Nevi" = "blue", "MIS" = "grey") ) )
 
+# gotoxy 11
+
 pdf("SD_heatmap_top_0.005_cpg.pdf",width=9)
 Heatmap(beta.005,
 show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
@@ -160,5 +162,169 @@ dev.off()
 #################################################################################################################
 #################################################################################################################
 #################################################################################################################
+# Lack
+# VM3,VM4,VM14,VM24,VM27,VM28,VM30
 # With mutation information
+track = as.character(rnb.set.norm@pheno$Tumor)
+
+BRAF_info = c(
+  "REF", # VM1
+  "REF", # VM2
+  "NA", # VM3
+  "NA", # VM4
+  "MUT", # VM5
+  "MUT", # VM6
+  "MUT", # VM7
+  "MUT", # VM8
+  "MUT", # VM9
+  "MUT", # VM10
+  "MUT", # VM11
+  "MUT", # VM12
+  "MUT", # VM13
+  "MUT", # VM14
+  "REF", # VM15
+  "REF", # VM16
+  "MUT", # VM17
+  "MUT", # VM18
+  "MUT", # VM19
+  "MUT", # VM20
+  "REF", # VM21
+  "REF", # VM22
+  "MUT", # VM23
+  "MUT", # VM24
+  "REF", # VM25
+  "REF", # VM26
+  "NA", # VM27
+  "NA", # VM28
+  "MUT", # VM29
+  "MUT", # VM30
+  "REF", # VM31
+  "REF", # VM32
+  "REF", # VM33
+  "REF", # VM34
+  "MUT", # VM35
+  "MUT", # VM36
+  "MUT", # VM37
+  "MUT", # VM38
+  "MUT", # VM39
+  "MUT", # VM40
+  "MUT", # VM41
+  "MUT", # VM42
+  "MUT", # VM43
+  "MUT", # VM44
+  "MUT", # VM45
+  "MUT", # VM46
+  "MUT", # VM47
+  "MUT") # VM48
+
+NRAS_info = c(
+  "REF", # VM1
+  "REF", # VM2
+  "NA", # VM3
+  "NA", # VM4
+  "REF", # VM5
+  "REF", # VM6
+  "MUT", # VM7
+  "MUT", # VM8
+  "REF", # VM9
+  "REF", # VM10
+  "REF", # VM11
+  "REF", # VM12
+  "REF", # VM13
+  "REF", # VM14
+  "REF", # VM15
+  "REF", # VM16
+  "REF", # VM17
+  "REF", # VM18
+  "REF", # VM19
+  "REF", # VM20
+  "MUT", # VM21
+  "MUT", # VM22
+  "REF", # VM23
+  "REF", # VM24
+  "MUT", # VM25
+  "MUT", # VM26
+  "NA", # VM27
+  "NA", # VM28
+  "REF", # VM29
+  "REF", # VM30
+  "MUT", # VM31
+  "MUT", # VM32
+  "REF", # VM33
+  "REF", # VM34
+  "REF", # VM35
+  "REF", # VM36
+  "REF", # VM37
+  "REF", # VM38
+  "REF", # VM39
+  "REF", # VM40
+  "REF", # VM41
+  "REF", # VM42
+  "REF", # VM43
+  "REF", # VM44
+  "REF", # VM45
+  "REF", # VM46
+  "REF", # VM47
+  "REF") # VM48
+
+NF1_info = c(
+  "REF", # VM1
+  "REF", # VM2
+  "NA", # VM3
+  "NA", # VM4
+  "REF", # VM5
+  "REF", # VM6
+  "MUT", # VM7
+  "MUT", # VM8
+  "MUT", # VM9
+  "MUT", # VM10
+  "REF", # VM11
+  "REF", # VM12
+  "REF", # VM13
+  "REF", # VM14
+  "MUT", # VM15
+  "MUT", # VM16
+  "REF", # VM17
+  "REF", # VM18
+  "REF", # VM19
+  "REF", # VM20
+  "REF", # VM21
+  "REF", # VM22
+  "MUT", # VM23
+  "MUT", # VM24
+  "REF", # VM25
+  "REF", # VM26
+  "NA", # VM27
+  "NA", # VM28
+  "REF", # VM29
+  "REF", # VM30
+  "REF", # VM31
+  "REF", # VM32
+  "REF", # VM33
+  "REF", # VM34
+  "MUT", # VM35
+  "MUT", # VM36
+  "REF", # VM37
+  "REF", # VM38
+  "REF", # VM39
+  "REF", # VM40
+  "REF", # VM41
+  "REF", # VM42
+  "MUT", # VM43
+  "MUT", # VM44
+  "REF", # VM45
+  "REF", # VM46
+  "REF", # VM47
+  "REF") # VM48
+
+
+column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm@pheno$Tumor),
+                              BRAF = BRAF_info, NRAS = NRAS_info, NF1 = NF1_info,
+                              col = list(Type = c("Melanoma" = "red", "Nevi" = "blue", "MIS" = "grey"),
+                                         BRAF = c("REF" = "black", "MUT" = "red", "NA" = "grey"),
+                                         NRAS = c("REF" = "black", "MUT" = "red", "NA" = "grey"),
+                                         NF1 = c("REF" = "black", "MUT" = "red", "NA" = "grey")
+                                        ) 
+                             )
+# go to # gotoxy 11
 
