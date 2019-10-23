@@ -156,3 +156,9 @@ pdf("density_distribution_of_Nevi_vand_melanoma_BetaScoresCenteredByPatient.pdf"
 plot(density(meth.filtered.centered[,1]),ylim=c(0,40))
 for(i in 1:48){ lines(density(meth.filtered.centered[,i]),col=clab[i]) }
 dev.off()
+
+#################################################################################################################
+#################################################################################################################
+#################################################################################################################
+# With mutation information
+
