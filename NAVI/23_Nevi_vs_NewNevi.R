@@ -197,7 +197,7 @@ clab=as.character(combined.rnb.set.norm@pheno$Tumor)
 # 0.5 %
 beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], ]
 
-column_ha = HeatmapAnnotation(Type = clab, col = list(Type = c("Nevi" = "blue", "NewNevi1" = "green", "NewNevi2" = "red") ) )
+column_ha = HeatmapAnnotation(Type = clab, col = list(Type = c("Nevi" = "blue", "NewNevi1" = "green", "NewNevi2" = "purple") ) )
 
 pdf("NEVI_SD_heatmap_top_0.005_cpg.pdf",width=9)
 Heatmap(beta.005,
