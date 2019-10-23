@@ -328,3 +328,51 @@ column_ha = HeatmapAnnotation(Type = as.character(rnb.set.norm@pheno$Tumor),
                              )
 # go to # gotoxy 11
 
+
+rnb.set.braf=remove.samples(rnb.set.norm,samples(rnb.set.norm)[BRAF_info!="MUT"])
+beta <- meth(rnb.set.braf,row.names=TRUE)
+beta.sd <- apply(beta,1,sd)
+
+column_ha = HeatmapAnnotation(Type = as.character(rnb.set.braf@pheno$Tumor),
+                              col = list(Type = c("Melanoma" = "red", "Nevi" = "blue", "MIS" = "grey") ) )
+
+# 0.5 %
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], ]
+
+pdf("SD_onlyBRAF_heatmap_top_0.005_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 0.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+
+# 1%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.01)], ]
+
+pdf("SD_onlyBRAF_heatmap_top_0.01_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 1% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+
+# 2.5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.025)], ]
+
+pdf("SD_onlyBRAF_heatmap_top_0.025_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 2.5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+# 5%
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.05)], ]
+
+pdf("SD_onlyBRAF_heatmap_top_0.05_cpg.pdf",width=9)
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="Top 5% CpGs with the highest SD", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
+####
