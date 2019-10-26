@@ -247,24 +247,6 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.
 --germline-resource /home/references/hg38_bundle/best_practice/af-only-gnomad.hg38_july_2019.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM40.uf.vcf.gz
 
-####################################### NORMAL_VM45_VM46 ##########################################  
-java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar Mutect2 \
--R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--I /home/rtm/vivek/navi/wes_normal/bam/VM45.recalibrated.bam \
--I /home/rtm/vivek/navi/wes3/bam/NORMAL_VM45_VM46.recalibrated.bam \
--tumor VM43 \
--normal DLP-073_S73 \
---germline-resource /home/references/hg38_bundle/best_practice/af-only-gnomad.hg38_july_2019.vcf.gz \
--O /home/rtm/vivek/navi/mutect2/VM39.uf.vcf.gz
-
-java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar Mutect2 \
--R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--I /home/rtm/vivek/navi/wes/bam/VM44_recalibrated.bam \
--I /home/rtm/vivek/navi/wes3/bam/NORMAL_VM45_VM46.recalibrated.bam \
--tumor VM44 \
--normal DLP-073_S73 \
---germline-resource /home/references/hg38_bundle/best_practice/af-only-gnomad.hg38_july_2019.vcf.gz \
--O /home/rtm/vivek/navi/mutect2/VM40.uf.vcf.gz
 
 #####################################################################################################################
 
@@ -336,3 +318,23 @@ java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.
 -normal DLP-070_S71 \
 --germline-resource /home/references/hg38_bundle/best_practice/af-only-gnomad.hg38_july_2019.vcf.gz \
 -O /home/rtm/vivek/navi/mutect2/VM20.uf.vcf.gz
+
+####################################### NORMAL_VM45_VM46 ##########################################  
+# DOUBLE VM46 both in WES3 and WES4
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I /home/rtm/vivek/navi/wes_normal/bam/VM45.recalibrated.bam \
+-I /home/rtm/vivek/navi/wes3/bam/NORMAL_VM45_VM46.recalibrated.bam \
+-tumor VM43 \
+-normal DLP-073_S73 \
+--germline-resource /home/references/hg38_bundle/best_practice/af-only-gnomad.hg38_july_2019.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM39.uf.vcf.gz
+
+java -Xmx200G -jar /home/rtm/myprograms/gatk-4.1.2.0/gatk-package-4.1.2.0-local.jar Mutect2 \
+-R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
+-I /home/rtm/vivek/navi/wes/bam/VM44_recalibrated.bam \
+-I /home/rtm/vivek/navi/wes3/bam/NORMAL_VM45_VM46.recalibrated.bam \
+-tumor VM44 \
+-normal DLP-073_S73 \
+--germline-resource /home/references/hg38_bundle/best_practice/af-only-gnomad.hg38_july_2019.vcf.gz \
+-O /home/rtm/vivek/navi/mutect2/VM40.uf.vcf.gz
