@@ -517,3 +517,59 @@ top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_
 dev.off()
 
 ##################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+# NEVI BRAF+NRAS IN GROUP 1 + G2 + G3
+
+Mutation_info = c(
+  "NA", # VM1
+  "NA", # VM2
+  "NA", # VM3
+  "NA", # VM4
+  "BRAF", # VM5
+  "BRAF", # VM6
+  "BRAF", # VM7
+  "BRAF", # VM8
+  "BRAF", # VM9
+  "BRAF", # VM10
+  "BRAF", # VM11
+  "BRAF", # VM12
+  "BRAF", # VM13
+  "BRAF", # VM14
+  "NF1", # VM15
+  "NF1", # VM16
+  "BRAF", # VM17
+  "BRAF", # VM18
+  "BRAF", # VM19
+  "BRAF", # VM20
+  "NRAS", # VM21
+  "NRAS", # VM22
+  "BRAF", # VM23
+  "BRAF", # VM24
+  "NRAS", # VM25
+  "NRAS", # VM26
+  "NA", # VM27
+  "NA", # VM28
+  "BRAF", # VM29
+  "BRAF", # VM30
+  "NRAS", # VM31
+  "NRAS", # VM32
+  "NA", # VM33
+  "NA", # VM34
+  "BRAF", # VM35
+  "BRAF", # VM36
+  "BRAF", # VM37
+  "BRAF", # VM38
+  "BRAF", # VM39
+  "BRAF", # VM40
+  "BRAF", # VM41
+  "BRAF", # VM42
+  "BRAF", # VM43
+  "BRAF", # VM44
+  "BRAF", # VM45
+  "BRAF", # VM46
+  "BRAF", # VM47
+  "BRAF") # VM48
+
+
