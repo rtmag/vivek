@@ -18,10 +18,11 @@ saveRDS(mut.mat,"mut.mat.RDS")
 
 mut.csum = colSums(mut.mat != "WT")
 mut.30p = mut.csum[ (mut.csum / dim(mut.mat)[1]) > .30 ]
-mut_sig = mut.mat[ , colnames(mut.mat) %in% names(mut.10p)]
-saveRDS(mut_sig,"mut_matrix_10perc.rds")
-
+mut_sig = mut.mat[ , colnames(mut.mat) %in% names(mut.30p)]
+saveRDS(mut_sig,"mut_matrix_30perc.rds")
+######################################
 library(ComplexHeatmap)
+gene_sorted = sort( colSums(mut_sig != "WT") )
 
 mx=colnames(mut_sig) %in% names(tail(gene_sorted,n=25))
 x = mut_sig[,mx]
