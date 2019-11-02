@@ -162,6 +162,9 @@ library(clusterProfiler)
 library(DOSE)
 library(enrichplot)
 library("org.Hs.eg.db")
+library(ReactomePA)
+library(reactome.db) 
+
        
 gene1.df <- bitr(as.character(gene.table1[,1]), fromType = "SYMBOL",
         toType = c("ENSEMBL", "ENTREZID"),
@@ -181,16 +184,51 @@ geneEntrez <- list(Cluster1 = gene1.df$ENTREZID,
 
 x=compareCluster(geneEntrez, fun='enrichGO',
                  OrgDb         = org.Hs.eg.db,
-                 ont           = "BP")
+                 ont           = "BP",
+       )
        
-pdf("dotplot_15.pdf",height=10,width=10)
+x@compareClusterResult$Cluster
+       
+pdf("dotplot_GOBP_def.pdf",height=10,width=10)
 dotplot(x, showCategory=15, includeAll=FALSE)
 dev.off()
        
-pdf("dotplot_10.pdf",height=10,width=10)
+pdf("dotplot_GOBP_10.pdf",height=10,width=10)
 dotplot(x, showCategory=15, includeAll=FALSE)
 dev.off()
-########################################################################################################################
+
+x=compareCluster(geneEntrez, fun="enrichPathway", organism = "human")
+x@compareClusterResult$Cluster
+
+pdf("dotplot_enrichPathway_10.pdf",height=10,width=10)
+dotplot(x, showCategory=10, includeAll=FALSE)
+dev.off()
+       
+pdf("dotplot_enrichPathway_10.pdf",height=10,width=10)
+dotplot(x, showCategory=10, includeAll=FALSE)
+dev.off()
+       
+x=compareCluster(geneEntrez, fun="groupGO", OrgDb='org.Hs.eg.db')
+x@compareClusterResult$Cluster
+
+pdf("dotplot_groupGO_10.pdf",height=10,width=10)
+dotplot(x, showCategory=10, includeAll=FALSE)
+dev.off()
+       
+x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human", qvalueCutoff = 0.1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichKEGG_10.pdf",height=10,width=10)
+dotplot(x, showCategory=10, includeAll=FALSE)
+dev.off()
+ 
+# no enrichment found
+#x=compareCluster(geneEntrez, fun="enrichDO", qvalueCutoff = 0.1)
+#x@compareClusterResult$Cluster
+#pdf("dotplot_enrichDO_10.pdf",height=10,width=10)
+#dotplot(x, showCategory=10, includeAll=FALSE)
+#dev.off()
+       
+       ########################################################################################################################
 ########################################################################################################################
 # NN0 VS NN1
 rnb.set.tmp <- remove.samples(combined.rnb.set.norm,samples(combined.rnb.set.norm)[combined.rnb.set.norm@pheno$Tumor=="NewNevi2"])
