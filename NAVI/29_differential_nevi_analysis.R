@@ -259,7 +259,7 @@ png("volcano_Nevi.vs.NewNevi1.png",width= 3.25,
   res=1200,pointsize=4)
 dmc_table<-dmc.G1.vs.G2
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
-              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,15) )
   abline(v=-.4,lty = 2,col="grey")
   abline(v=.4,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
@@ -275,7 +275,7 @@ png("volcano_Nevi.vs.NewNevi2.png",width= 3.25,
   res=1200,pointsize=4)
 dmc_table<-dmc.G1.vs.G3
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
-              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,15) )
   abline(v=-.4,lty = 2,col="grey")
   abline(v=.4,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
@@ -291,7 +291,7 @@ png("volcano_NewNevi1.vs.NewNevi2.png",width= 3.25,
   res=1200,pointsize=4)
 dmc_table<-dmc.G2.vs.G3
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
-              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
+              ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,15) )
   abline(v=-.4,lty = 2,col="grey")
   abline(v=.4,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
