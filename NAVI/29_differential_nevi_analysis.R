@@ -163,12 +163,21 @@ library(DOSE)
 library(enrichplot)
 library("org.Hs.eg.db")
        
-geneEntrez <- list(Cluster1 = as.character(gene.table1[,1]),
-    Cluster2 = as.character(gene.table2[,1]),
-    Cluster3 = as.character(gene.table3[,1]))
-
-#names(geneEntrez) <- c("Dis.H2+Myc","Pro.H2+Myc",
-#                       "Dis.H2-Myc","Pro.H2-Myc")
+gene1.df <- bitr(as.character(gene.table1[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+gene2.df <- bitr(as.character(gene.table2[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+gene3.df <- bitr(as.character(gene.table3[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+geneEntrez <- list(Cluster1 = gene1.df$ENTREZID,
+    Cluster2 = gene2.df$ENTREZID,
+    Cluster3 = gene3.df$ENTREZID)
 
 x=compareCluster(geneEntrez, fun='enrichGO',
                  OrgDb         = org.Hs.eg.db,
