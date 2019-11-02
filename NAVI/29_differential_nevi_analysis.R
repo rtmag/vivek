@@ -53,12 +53,23 @@ meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 column_ha = HeatmapAnnotation(Type = as.character(combined.rnb.set.norm@pheno$Tumor), 
                               col = list(Type = c("Nevi" = "blue", "NewNevi1" = "green", "NewNevi2" = "orange") ) )
 
-pdf("NEVI_differential_analysis_heatmap_30methdiff.pdf",width=9)
-Heatmap(meth.norm.sig,
-show_row_names = FALSE,show_column_names = TRUE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
-column_title="", column_title_side = "bottom", row_title="", row_title_side = "right",km = 3,
+set.seed(10)
+kmeans.mat<- kmeans(meth.norm.sig, 3)
+table(kmeans.mat$cluster)
+
+hmp<-Heatmap(meth.norm.sig,
+show_row_names = FALSE,show_column_names = FALSE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="", column_title_side = "bottom", row_title="", row_title_side = "right",split=kmeans.mat$cluster, #km = 3,
 top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson",col=colors)
+
+hmp = draw(hmp)
+
+lapply(row_order(hmp), function(x) length(x) )
+
+pdf("NEVI_differential_analysis_heatmap_40methdiff.pdf")
+hmp
 dev.off()
+
 
 
 ########################################################################################################################
