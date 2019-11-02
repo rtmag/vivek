@@ -69,9 +69,113 @@ lapply(row_order(hmp), function(x) length(x) )
 pdf("NEVI_differential_analysis_heatmap_40methdiff.pdf")
 hmp
 dev.off()
+#####################################################
+#main table C1
+ix = which(info[,4] %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==1] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2],tmp[,2]+1,tmp[,3:6])
+colnames(tmp)[1] <- "chr";colnames(tmp)[2] <- "start";colnames(tmp)[3] <- "end";
+write.table(tmp,"NEVI_differential_analysis_cluster1_40methdiff.txt",quote=F,col.names=F,row.names=F,sep="\t")
 
+#Pie chart C1
+tmp$UCSC_RefGene_Group[tmp$UCSC_RefGene_Group==""]<-"Intergenic"
+pietable<-table(unlist(lapply(strsplit(tmp$UCSC_RefGene_Group,";"),unique)))
+names(pietable) = paste(names(pietable)," ",round(pietable/sum(pietable)*100,digits=2),"%",sep="")
+pdf("NEVI_differential_analysis_cluster1_40methdiff_pie.pdf",width=12)
+pie(sort(pietable), main="C1",cex=2)
+dev.off()
+       
+#bed C1
+bed <- tmp[,1:3]
+rownames(bed) <- NULL
+colnames(bed) <- NULL
+bed[,2] <- bed[,2]-25
+bed[,3] <- bed[,3]+25
+write.table(bed,"NEVI_differential_analysis_cluster1_40methdiff.bed",quote=F,col.names=F,row.names=F,sep="\t")
 
+#Gene.Table C1
+gene.table1 <- sort(table(unlist(lapply(strsplit(tmp[,6],";"),unique))),decreasing=TRUE)
+gene.table1 <- as.data.frame(gene.table1)
+colnames(gene.table1) <- c("Gene","Ncpg")
+write.table(gene.table1,"NEVI_differential_analysis_cluster1_40methdiff_genesAssociated.txt",quote=F,col.names=F,row.names=F,sep="\t")
 
+#####################################################
+#main table C2
+ix = which(info[,4] %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==2] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2],tmp[,2]+1,tmp[,3:6])
+colnames(tmp)[1] <- "chr";colnames(tmp)[2] <- "start";colnames(tmp)[3] <- "end";
+write.table(tmp,"NEVI_differential_analysis_cluster2_40methdiff.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Pie chart C2
+tmp$UCSC_RefGene_Group[tmp$UCSC_RefGene_Group==""]<-"Intergenic"
+pietable<-table(unlist(lapply(strsplit(tmp$UCSC_RefGene_Group,";"),unique)))
+names(pietable) = paste(names(pietable)," ",round(pietable/sum(pietable)*100,digits=2),"%",sep="")
+pdf("NEVI_differential_analysis_cluster2_40methdiff_pie.pdf",width=12)
+pie(sort(pietable), main="C2",cex=2)
+dev.off()
+       
+#bed C2
+bed <- tmp[,1:3]
+rownames(bed) <- NULL
+colnames(bed) <- NULL
+bed[,2] <- bed[,2]-25
+bed[,3] <- bed[,3]+25
+write.table(bed,"NEVI_differential_analysis_cluster2_40methdiff.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Gene.Table C2
+gene.table2 <- sort(table(unlist(lapply(strsplit(tmp[,6],";"),unique))),decreasing=TRUE)
+gene.table2 <- as.data.frame(gene.table2)
+colnames(gene.table2) <- c("Gene","Ncpg")
+write.table(gene.table2,"NEVI_differential_analysis_cluster2_40methdiff_genesAssociated.txt",quote=F,col.names=F,row.names=F,sep="\t")
+       
+#####################################################
+#main table C3
+ix = which(info[,4] %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==3] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2],tmp[,2]+1,tmp[,3:6])
+write.table(tmp,"NEVI_differential_analysis_cluster3_40methdiff.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Pie chart C3
+tmp$UCSC_RefGene_Group[tmp$UCSC_RefGene_Group==""]<-"Intergenic"
+pietable<-table(unlist(lapply(strsplit(tmp$UCSC_RefGene_Group,";"),unique)))
+names(pietable) = paste(names(pietable)," ",round(pietable/sum(pietable)*100,digits=2),"%",sep="")
+pdf("NEVI_differential_analysis_cluster3_40methdiff_pie.pdf",width=12)
+pie(sort(pietable), main="C3",cex=2)
+dev.off()
+       
+#bed C3
+bed <- tmp[,1:3]
+rownames(bed) <- NULL
+colnames(bed) <- NULL
+bed[,2] <- bed[,2]-25
+bed[,3] <- bed[,3]+25
+write.table(tmp,"NEVI_differential_analysis_cluster3_40methdiff.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Gene.Table C3
+gene.table3 <- sort(table(unlist(lapply(strsplit(tmp[,6],";"),unique))),decreasing=TRUE)
+gene.table3 <- as.data.frame(gene.table3)
+colnames(gene.table3) <- c("Gene","Ncpg")
+write.table(gene.table3,"NEVI_differential_analysis_cluster3_40methdiff_genesAssociated.txt",quote=F,col.names=F,row.names=F,sep="\t")
+########################################################################################################################
+library(clusterProfiler)
+library(DOSE)
+library(enrichplot)
+library("org.Hs.eg.db")
+       
+geneEntrez <- list(Cluster1 = as.character(gene.table1[,1]),
+    Cluster2 = as.character(gene.table2[,1]),
+    Cluster3 = as.character(gene.table3[,1]))
+
+#names(geneEntrez) <- c("Dis.H2+Myc","Pro.H2+Myc",
+#                       "Dis.H2-Myc","Pro.H2-Myc")
+
+x=compareCluster(geneEntrez, fun='enrichGO',
+                 OrgDb         = org.Mm.eg.db,
+                 ont           = "BP")
+pdf("dotplot.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
 ########################################################################################################################
 ########################################################################################################################
 # NN0 VS NN1
