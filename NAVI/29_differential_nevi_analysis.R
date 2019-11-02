@@ -171,7 +171,7 @@ geneEntrez <- list(Cluster1 = as.character(gene.table1[,1]),
 #                       "Dis.H2-Myc","Pro.H2-Myc")
 
 x=compareCluster(geneEntrez, fun='enrichGO',
-                 OrgDb         = org.Mm.eg.db,
+                 OrgDb         = org.Hs.eg.db,
                  ont           = "BP")
 pdf("dotplot.pdf",height=10,width=10)
 dotplot(x, showCategory=15, includeAll=FALSE)
