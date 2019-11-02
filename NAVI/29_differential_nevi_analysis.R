@@ -182,7 +182,12 @@ geneEntrez <- list(Cluster1 = gene1.df$ENTREZID,
 x=compareCluster(geneEntrez, fun='enrichGO',
                  OrgDb         = org.Hs.eg.db,
                  ont           = "BP")
-pdf("dotplot.pdf",height=10,width=10)
+       
+pdf("dotplot_15.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+       
+pdf("dotplot_10.pdf",height=10,width=10)
 dotplot(x, showCategory=15, includeAll=FALSE)
 dev.off()
 ########################################################################################################################
