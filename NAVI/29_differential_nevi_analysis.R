@@ -249,9 +249,9 @@ comparison <- get.comparisons(nevidiff.G2.G3)[1]
 dmc.G2.vs.G3 <-get.table(nevidiff.G2.G3, comparison, "sites", return.data.frame=TRUE)
 
 
-table(dmc.G1.vs.G2$diffmeth.p.adj.fdr<0.05 & abs(dmc.G1.vs.G2$mean.diff)>.3)
-table(dmc.G1.vs.G3$diffmeth.p.adj.fdr<0.05 & abs(dmc.G1.vs.G3$mean.diff)>.3)
-table(dmc.G2.vs.G3$diffmeth.p.adj.fdr<0.05 & abs(dmc.G2.vs.G3$mean.diff)>.3)
+table(dmc.G1.vs.G2$diffmeth.p.adj.fdr<0.05 & abs(dmc.G1.vs.G2$mean.diff)>.4)
+table(dmc.G1.vs.G3$diffmeth.p.adj.fdr<0.05 & abs(dmc.G1.vs.G3$mean.diff)>.4)
+table(dmc.G2.vs.G3$diffmeth.p.adj.fdr<0.05 & abs(dmc.G2.vs.G3$mean.diff)>.4)
 # VOLCANO
 
 png("volcano_Nevi.vs.NewNevi1.png",width= 3.25,
@@ -260,14 +260,14 @@ png("volcano_Nevi.vs.NewNevi1.png",width= 3.25,
 dmc_table<-dmc.G1.vs.G2
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
               ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
-  abline(v=-.5,lty = 2,col="grey")
-  abline(v=.5,lty = 2,col="grey")
+  abline(v=-.4,lty = 2,col="grey")
+  abline(v=.4,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
-  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.5 & dmc_table$diffmeth.p.adj.fdr<0.05],
-       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.5 & dmc_table$diffmeth.p.adj.fdr<0.05],
+  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.4 & dmc_table$diffmeth.p.adj.fdr<0.05],
+       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.4 & dmc_table$diffmeth.p.adj.fdr<0.05],
       col="red",pch=20)
-  legend("topright", paste("HiMeth Nevi:",length(which(dmc_table$mean.diff>.5 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
-  legend("topleft", paste("HiMeth NewNevi1:",length(which(dmc_table$mean.diff<(-.5) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topright", paste("HiMeth Nevi:",length(which(dmc_table$mean.diff>.4 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topleft", paste("HiMeth NewNevi1:",length(which(dmc_table$mean.diff<(-.4) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
   dev.off()
 
 png("volcano_Nevi.vs.NewNevi2.png",width= 3.25,
@@ -276,14 +276,14 @@ png("volcano_Nevi.vs.NewNevi2.png",width= 3.25,
 dmc_table<-dmc.G1.vs.G3
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
               ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
-  abline(v=-.5,lty = 2,col="grey")
-  abline(v=.5,lty = 2,col="grey")
+  abline(v=-.4,lty = 2,col="grey")
+  abline(v=.4,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
-  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.5 & dmc_table$diffmeth.p.adj.fdr<0.05],
-       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.5 & dmc_table$diffmeth.p.adj.fdr<0.05],
+  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.4 & dmc_table$diffmeth.p.adj.fdr<0.05],
+       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.4 & dmc_table$diffmeth.p.adj.fdr<0.05],
       col="red",pch=20)
-  legend("topright", paste("HiMeth Nevi:",length(which(dmc_table$mean.diff>.5 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
-  legend("topleft", paste("HiMeth NewNevi2:",length(which(dmc_table$mean.diff<(-.5) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topright", paste("HiMeth Nevi:",length(which(dmc_table$mean.diff>.4 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topleft", paste("HiMeth NewNevi2:",length(which(dmc_table$mean.diff<(-.4) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
   dev.off()
 
 png("volcano_NewNevi1.vs.NewNevi2.png",width= 3.25,
@@ -292,14 +292,14 @@ png("volcano_NewNevi1.vs.NewNevi2.png",width= 3.25,
 dmc_table<-dmc.G2.vs.G3
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
               ylab=expression('-Log'[10]*' Q-values'),col=alpha("grey",.5),pch=20,xlim=c(-1,1),ylim=c(0,2) )
-  abline(v=-.5,lty = 2,col="grey")
-  abline(v=.5,lty = 2,col="grey")
+  abline(v=-.4,lty = 2,col="grey")
+  abline(v=.4,lty = 2,col="grey")
   abline(h=-log10(0.05),lty = 2,col="grey")
-  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.5 & dmc_table$diffmeth.p.adj.fdr<0.05],
-       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.5 & dmc_table$diffmeth.p.adj.fdr<0.05],
+  points(dmc_table$mean.diff[abs(dmc_table$mean.diff)>.4 & dmc_table$diffmeth.p.adj.fdr<0.05],
+       -log10(dmc_table$diffmeth.p.adj.fdr)[abs(dmc_table$mean.diff)>.4 & dmc_table$diffmeth.p.adj.fdr<0.05],
       col="red",pch=20)
-  legend("topright", paste("HiMeth NewNevi1:",length(which(dmc_table$mean.diff>.5 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
-  legend("topleft", paste("HiMeth NewNevi2:",length(which(dmc_table$mean.diff<(-.5) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topright", paste("HiMeth NewNevi1:",length(which(dmc_table$mean.diff>.4 & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
+  legend("topleft", paste("HiMeth NewNevi2:",length(which(dmc_table$mean.diff<(-.4) & dmc_table$diffmeth.p.adj.fdr<0.05))), bty="n") 
   dev.off()
 #
 ########################################################################################################################
