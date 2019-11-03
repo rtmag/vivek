@@ -217,8 +217,8 @@ dev.off()
        
 x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human", qvalueCutoff = 0.1)
 x@compareClusterResult$Cluster
-pdf("dotplot_enrichKEGG_10.pdf",height=10,width=10)
-dotplot(x, showCategory=10, includeAll=FALSE)
+pdf("dotplot_enrichKEGG_10.pdf",height=10,width=12)
+dotplot(x, showCategory=10, includeAll=FALSE,font.size=22)
 dev.off()
  
 # no enrichment found
@@ -255,7 +255,7 @@ table(dmc.G2.vs.G3$diffmeth.p.adj.fdr<0.05 & abs(dmc.G2.vs.G3$mean.diff)>.4)
 # VOLCANO
 
 png("volcano_Nevi.vs.NewNevi1.png",width= 3.25,
-  height= 5.25,units="in",
+  height= 3.25,units="in",
   res=1200,pointsize=4)
 dmc_table<-dmc.G1.vs.G2
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
@@ -271,7 +271,7 @@ plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value d
   dev.off()
 
 png("volcano_Nevi.vs.NewNevi2.png",width= 3.25,
-  height= 5.25,units="in",
+  height= 3.25,units="in",
   res=1200,pointsize=4)
 dmc_table<-dmc.G1.vs.G3
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
@@ -287,7 +287,7 @@ plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value d
   dev.off()
 
 png("volcano_NewNevi1.vs.NewNevi2.png",width= 3.25,
-  height= 5.25,units="in",
+  height= 3.25,units="in",
   res=1200,pointsize=4)
 dmc_table<-dmc.G2.vs.G3
 plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value difference",
