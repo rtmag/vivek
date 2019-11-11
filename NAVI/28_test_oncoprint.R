@@ -14,39 +14,72 @@ for(ix in 1:dim(mut)[1]){
 }
 
 saveRDS(mut.mat,"mut.mat.RDS")
-
-
+mut.mat <- readRDS("mut.mat.RDS")
 mut.csum = colSums(mut.mat != "WT")
-mut.30p = mut.csum[ (mut.csum / dim(mut.mat)[1]) > .30 ]
-mut_sig = mut.mat[ , colnames(mut.mat) %in% names(mut.30p)]
-saveRDS(mut_sig,"mut_matrix_30perc.rds")
-######################################
-library(ComplexHeatmap)
-gene_sorted = sort( colSums(mut_sig != "WT") )
+#mut.30p = mut.csum[ (mut.csum / dim(mut.mat)[1]) > .30 ]
+#mut_sig = mut.mat[ , colnames(mut.mat) %in% names(mut.30p)]
+#saveRDS(mut_sig,"mut_matrix_30perc.rds")
 
-mx=colnames(mut_sig) %in% names(tail(gene_sorted,n=25))
-x = mut_sig[,mx]
-x[x==1] = "MUT"
-x[x==0] = ""
+selectGene<-names(sort(mut.csum)[sort(mut.csum)>4])
+
+mx=colnames(mut.mat) %in% selectGene
+x = mut.mat[,mx]
+rownames(x) = gsub(".uf","",rownames(x))
+x[x=="WT"]=""
+x[x=="Missense_Mutation"]="Missense_Mutation"
+x[x=="Nonsense_Mutation"]="Nonsense_Mutation"
+x[x=="In_Frame_Del"]="InFrame_Del"
+x[x=="Frame_Shift_Del"]="FrameShift_Del"
+x[x=="Frame_Shift_Ins"]="FrameShift_Ins"
+x[x=="In_Frame_Ins"]=""
 
 library(ComplexHeatmap)
-col = c("MUT" = "red")
+col = c("Missense_Mutation" = "#EC2049",
+        "Nonsense_Mutation" = "#2F9599",
+        "Alterations" = "#355C7D",
+        "InFrame_Del" = "#E8B71A",
+        "FrameShift_Del" = "#9B539C",
+        "FrameShift_Ins" = "#DD5F32")
+
 alter_fun = list(
     background = function(x, y, w, h) {
         grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
             gp = gpar(fill = "#CCCCCC", col = NA))
     },
     # bug red
-    MUT = function(x, y, w, h) {
+    Missense_Mutation = function(x, y, w, h) {
         grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
-            gp = gpar(fill = col["MUT"], col = NA))
+            gp = gpar(fill = col["Missense_Mutation"], col = NA))
+    },
+    Nonsense_Mutation = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["Nonsense_Mutation"], col = NA))
+    },
+    Alterations = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["Alterations"], col = NA))
+    },
+    InFrame_Del = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["InFrame_Del"], col = NA))
+    },
+    FrameShift_Del = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["FrameShift_Del"], col = NA))
+    },
+    FrameShift_Ins = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["FrameShift_Ins"], col = NA))
     }
 )
 
-heatmap_legend_param = list(title = "Alterations", at = c( "MUT"), 
-        labels = c("Mutation"))
-pdf("oncoprint.pdf")
-oncoPrint(t(x),
+heatmap_legend_param = list(title = "Alterations", 
+                            at = c( "Missense_Mutation","Nonsense_Mutation","Alterations",
+                                      "InFrame_Del","FrameShift_Del","FrameShift_Ins"), 
+                            labels = c( "Missense Mutation","Nonsense Mutation","Alterations",
+                                      "InFrame Del","FrameShift Del","FrameShift Ins"))
+pdf("oncoprint_top54.pdf",height=20)
+oncoPrint(t(x),show_column_names = TRUE,
     alter_fun = alter_fun, col = col, 
      heatmap_legend_param = heatmap_legend_param)
 dev.off()
