@@ -311,3 +311,29 @@ tmpvec[tmpvec=="Nevi"] <- "Nevi+NewNevi2"
 tmpvec[tmpvec=="NewNevi2"] <- "Nevi+NewNevi2"
 combined.rnb.set.norm_pooled_NeviAndNewNevi2@pheno$Tumor <- as.factor(tmpvec)
 nevidiff_pooledNeviAndNewNevi2 <- rnb.execute.computeDiffMeth(combined.rnb.set.norm_pooled_NeviAndNewNevi2,pheno.cols=c("Tumor"))
+
+cpgix <- which(nevidiff_pooledNeviAndNewNevi2$diffmeth.p.adj.fdr<0.01 & abs(nevidiff_pooledNeviAndNewNevi2$mean.diff)>.40)
+
+meth.norm.sig = beta[cpgix,]
+meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
+
+column_ha = HeatmapAnnotation(Type = as.character(combined.rnb.set.norm_pooled_NeviAndNewNevi2@pheno$Tumor), 
+                              col = list(Type = c("NewNevi1" = "green", "Nevi+NewNevi2" = "orange") ) )
+
+set.seed(10)
+kmeans.mat<- kmeans(meth.norm.sig, 2)
+table(kmeans.mat$cluster)
+
+hmp<-Heatmap(meth.norm.sig,
+show_row_names = FALSE,show_column_names = FALSE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="", column_title_side = "bottom", row_title="", row_title_side = "right",split=kmeans.mat$cluster, 
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson",col=colors)
+
+hmp = draw(hmp)
+
+lapply(row_order(hmp), function(x) length(x) )
+
+pdf("NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2.pdf")
+hmp
+dev.off()
+#####################################################
