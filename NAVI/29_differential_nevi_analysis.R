@@ -312,13 +312,15 @@ tmpvec[tmpvec=="NewNevi2"] <- "Nevi+NewNevi2"
 combined.rnb.set.norm_pooled_NeviAndNewNevi2@pheno$Tumor <- as.factor(tmpvec)
 nevidiff_pooledNeviAndNewNevi2 <- rnb.execute.computeDiffMeth(combined.rnb.set.norm_pooled_NeviAndNewNevi2,pheno.cols=c("Tumor"))
 
-cpgix <- which(nevidiff_pooledNeviAndNewNevi2$diffmeth.p.adj.fdr<0.01 & abs(nevidiff_pooledNeviAndNewNevi2$mean.diff)>.40)
+cpgix_table <-get.table(nevidiff_pooledNeviAndNewNevi2, 
+                            get.comparisons(nevidiff_pooledNeviAndNewNevi2)[1], "sites", return.data.frame=TRUE)
+cpgix <- which(cpgix_table$diffmeth.p.adj.fdr<0.01 & abs(cpgix_table$mean.diff)>.40)
 
 meth.norm.sig = beta[cpgix,]
 meth.norm.sig = meth.norm.sig[complete.cases(meth.norm.sig),]
 
-column_ha = HeatmapAnnotation(Type = as.character(combined.rnb.set.norm_pooled_NeviAndNewNevi2@pheno$Tumor), 
-                              col = list(Type = c("NewNevi1" = "green", "Nevi+NewNevi2" = "orange") ) )
+column_ha = HeatmapAnnotation(Type = as.character(combined.rnb.set.norm@pheno$Tumor), 
+                              col = list(Type = c("Nevi" = "blue", "NewNevi1" = "green", "NewNevi2" = "orange") ) )
 
 set.seed(10)
 kmeans.mat<- kmeans(meth.norm.sig, 2)
@@ -337,3 +339,77 @@ pdf("NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2.pdf")
 hmp
 dev.off()
 #####################################################
+#####################################################
+#main table C1 HI NeviAndNewNevi2
+ix = which(info[,4] %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==1] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2],tmp[,2]+1,tmp[,3:6])
+colnames(tmp)[1] <- "chr";colnames(tmp)[2] <- "start";colnames(tmp)[3] <- "end";
+write.table(tmp,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HINVN2_cluster1.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Pie chart C1
+tmp$UCSC_RefGene_Group[tmp$UCSC_RefGene_Group==""]<-"Intergenic"
+pietable<-table(unlist(lapply(strsplit(tmp$UCSC_RefGene_Group,";"),unique)))
+names(pietable) = paste(names(pietable)," ",round(pietable/sum(pietable)*100,digits=2),"%",sep="")
+pdf("NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HINVN2_cluster1_pie.pdf",width=12)
+pie(sort(pietable), main="C1",cex=2)
+dev.off()
+       
+#bed C1
+bed <- tmp[,1:3]
+rownames(bed) <- NULL
+colnames(bed) <- NULL
+bed[,2] <- bed[,2]-25
+bed[,3] <- bed[,3]+25
+write.table(bed,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HINVN2_cluster1.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Gene.Table C1
+gene.table1 <- sort(table(unlist(lapply(strsplit(tmp[,6],";"),unique))),decreasing=TRUE)
+gene.table1 <- as.data.frame(gene.table1)
+colnames(gene.table1) <- c("Gene","Ncpg")
+write.table(gene.table1,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HINVN2_cluster1_genesAssociated.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+
+tmp[tmp[,6]=="",6] <- "Intergenic"
+geneList <- unlist(strsplit(tmp[,6], ";"))
+featureList <- unlist(strsplit(tmp[,7], ";"))
+tssonly<- unique(geneList[ featureList!="3'UTR" & featureList!="Body" & featureList!="Intergenic"])
+write.table(tssonly,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HINVN2_cluster1_genesAssociated_OnlyAroundTSS.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+###########################
+#main table C2 HI NewNevi1
+ix = which(info[,4] %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==2] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2],tmp[,2]+1,tmp[,3:6])
+colnames(tmp)[1] <- "chr";colnames(tmp)[2] <- "start";colnames(tmp)[3] <- "end";
+write.table(tmp,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HIN1_cluster2.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Pie chart C2
+tmp$UCSC_RefGene_Group[tmp$UCSC_RefGene_Group==""]<-"Intergenic"
+pietable<-table(unlist(lapply(strsplit(tmp$UCSC_RefGene_Group,";"),unique)))
+names(pietable) = paste(names(pietable)," ",round(pietable/sum(pietable)*100,digits=2),"%",sep="")
+pdf("NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HIN1_cluster2_pie.pdf",width=12)
+pie(sort(pietable), main="C2",cex=2)
+dev.off()
+       
+#bed C2
+bed <- tmp[,1:3]
+rownames(bed) <- NULL
+colnames(bed) <- NULL
+bed[,2] <- bed[,2]-25
+bed[,3] <- bed[,3]+25
+write.table(bed,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HIN1_cluster2.bed",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Gene.Table C2
+gene.table2 <- sort(table(unlist(lapply(strsplit(tmp[,6],";"),unique))),decreasing=TRUE)
+gene.table2 <- as.data.frame(gene.table2)
+colnames(gene.table2) <- c("Gene","Ncpg")
+write.table(gene.table2,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HIN1_cluster2_genesAssociated.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+tmp[tmp[,6]=="",6] <- "Intergenic"
+geneList <- unlist(strsplit(tmp[,6], ";"))
+featureList <- unlist(strsplit(tmp[,7], ";"))
+tssonly<- unique(geneList[ featureList!="3'UTR" & featureList!="Body" & featureList!="Intergenic"])
+write.table(tssonly,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HIN1_cluster2_genesAssociated_OnlyAroundTSS.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+       
