@@ -304,3 +304,10 @@ plot(dmc_table$mean.diff,-log10(dmc_table$diffmeth.p.adj.fdr),xlab="Beta value d
 #
 ########################################################################################################################
 ########################################################################################################################
+# POOLING NEVI AND NEWNEVI2
+combined.rnb.set.norm_pooled_NeviAndNewNevi2 <- combined.rnb.set.norm
+tmpvec <- as.character(combined.rnb.set.norm_pooled_NeviAndNewNevi2@pheno$Tumor)
+tmpvec[tmpvec=="Nevi"] <- "Nevi+NewNevi2"
+tmpvec[tmpvec=="NewNevi2"] <- "Nevi+NewNevi2"
+combined.rnb.set.norm_pooled_NeviAndNewNevi2@pheno$Tumor <- as.factor(tmpvec)
+nevidiff_pooledNeviAndNewNevi2 <- rnb.execute.computeDiffMeth(combined.rnb.set.norm_pooled_NeviAndNewNevi2,pheno.cols=c("Tumor"))
