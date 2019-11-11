@@ -411,5 +411,78 @@ geneList <- unlist(strsplit(tmp[,6], ";"))
 featureList <- unlist(strsplit(tmp[,7], ";"))
 tssonly<- unique(geneList[ featureList!="3'UTR" & featureList!="Body" & featureList!="Intergenic"])
 write.table(tssonly,"NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HIN1_cluster2_genesAssociated_OnlyAroundTSS.txt",quote=F,col.names=F,row.names=F,sep="\t")
+########################################################################################################################
+library(clusterProfiler)
+library(DOSE)
+library(enrichplot)
+library("org.Hs.eg.db")
+library(ReactomePA)
+library(reactome.db) 
 
        
+gene1.df <- bitr(as.character(gene.table1[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+gene2.df <- bitr(as.character(gene.table2[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+      
+geneEntrez <- list(Cluster1 = gene1.df$ENTREZID,
+    Cluster2 = gene2.df$ENTREZID)
+       
+tss1 <-read.table("NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HINVN2_cluster1_genesAssociated_OnlyAroundTSS.txt")
+gene1tss.df <- bitr(as.character(tss1[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+
+tss2 <-read.table("NEVI_differential_analysis_heatmap_40methdiff_pooled_NeviAndNewNevi2_HIN1_cluster2_genesAssociated_OnlyAroundTSS.txt")
+gene2tss.df <- bitr(as.character(tss2[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+geneEntrezTSS <- list(Cluster1 = gene1tss.df$ENTREZID,
+    Cluster2 = gene2tss.df$ENTREZID)
+##########################################################
+x=compareCluster(geneEntrez, fun='enrichGO',
+                 OrgDb         = org.Hs.eg.db,
+                 ont           = "BP",
+                 qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_GOBP_pooled_NeviAndNewNevi2.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+
+x=compareCluster(geneEntrez, fun="enrichPathway", organism = "human",qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichPathway_NeviAndNewNevi2.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+       
+x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human", qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichKEGG_NeviAndNewNevi2.pdf",height=10,width=12)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+##########################################################
+x=compareCluster(geneEntrezTSS, fun='enrichGO',
+                 OrgDb         = org.Hs.eg.db,
+                 ont           = "BP",
+                 qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_GOBP_pooled_NeviAndNewNevi2_tssOnly.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+
+x=compareCluster(geneEntrezTSS, fun="enrichPathway", organism = "human",qvalueCutoff = 0.1,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichPathway_NeviAndNewNevi2_tssOnly.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+       
+x=compareCluster(geneEntrezTSS, fun="enrichKEGG", organism = "human", qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichKEGG_NeviAndNewNevi2_tssOnly.pdf",height=10,width=12)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+###############
