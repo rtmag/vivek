@@ -646,3 +646,164 @@ top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_
 dev.off()
 
 ##################
+###################################
+
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+
+rnb.set.norm=load.rnb.set("/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData.zip")
+rnb.set.norm.new=load.rnb.set("/home/rtm/vivek/navi/new_epic/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData.zip")
+
+rnb.set.nevi=remove.samples(rnb.set.norm,samples(rnb.set.norm)[rnb.set.norm@pheno$Tumor!="Nevi"])
+
+combined.rnb.set.norm <- combine(rnb.set.nevi, rnb.set.norm.new)
+
+combined.rnb.set.norm@pheno$Tumor <- as.character(combined.rnb.set.norm@pheno$Tumor)
+combined.rnb.set.norm@pheno$Tumor[24:31] <- "NewNevi1"
+combined.rnb.set.norm@pheno$Tumor[32:39] <- "NewNevi2"
+combined.rnb.set.norm@pheno$Tumor <- as.factor(combined.rnb.set.norm@pheno$Tumor)
+###############################################################################################################
+beta <- meth(combined.rnb.set.norm,row.names=TRUE)
+beta.sd <- apply(beta,1,sd)
+###############################################################################################################
+clab=as.character(combined.rnb.set.norm@pheno$Tumor)
+beta.005<-beta[ order(beta.sd,decreasing=TRUE)[1:round(length(beta.sd)*0.005)], ]
+###############################################################################################################
+saveRDS(beta.005,"beta.005_nevi.rds")
+saveRDS(clab,"clab_nevi.rds")
+###############################################################################################################
+library(ComplexHeatmap)
+options(scipen=999)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+options(bitmapType="cairo")
+
+beta.005<-readRDS("beta.005_nevi.rds")
+clab<-readRDS("clab_nevi.rds")
+
+###############################################################################################################
+# 0.5 %
+column_ha = HeatmapAnnotation(Type = clab, col = list(Type = c("Nevi" = "blue", "NewNevi1" = "green", "NewNevi2" = "orange") ) )
+
+hmp<-Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = FALSE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="", column_title_side = "bottom", row_title="", row_title_side = "right", 
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson",col=colors)
+
+hmp = draw(hmp)
+
+set.seed(1)
+
+pdf("NEVI_SD_heatmap_top_0.005_cpg_redo.pdf")
+hmp
+dev.off()
+
+
+hc <- as.hclust( row_dend(hmp) )
+
+groups=cutree( hc, k=40 )
+groups40 = groups
+
+rcolor <- grDevices::colors()[grep('gr(a|e)y', grDevices::colors(), invert = T)]
+col20 <- sample(rcolor, 40)
+names(col20) <- as.character(1:40)
+
+row_ha = rowAnnotation(Signature = as.character(groups),show_annotation_name = FALSE,
+              col = list(Signature = col20) )
+
+pdf("NEVI_SD_heatmap_top_0.005_cpg_redo_rowlab_40.pdf")
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = FALSE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="", column_title_side = "bottom", row_title="", row_title_side = "right", right_annotation = row_ha,row_split =groups,
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson",col=colors)
+dev.off()
+##
+groups=cutree( hc, k=20 )
+groups20 = groups
+
+col20 <- sample(rcolor, 20)
+names(col20) <- as.character(1:20)
+
+row_ha = rowAnnotation(Signature = as.character(groups),show_annotation_name = FALSE,
+              col = list(Signature = col20) )
+
+pdf("NEVI_SD_heatmap_top_0.005_cpg_redo_rowlab_20.pdf")
+Heatmap(beta.005,
+show_row_names = FALSE,show_column_names = FALSE,name = "Methylation",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+column_title="", column_title_side = "bottom", row_title="", row_title_side = "right", right_annotation = row_ha,row_split =groups,
+top_annotation = column_ha, clustering_distance_columns = "pearson", clustering_distance_rows = "pearson",col=colors)
+dev.off()
+
+#### 36 Hi green
+#### 39 Lo green
+library(clusterProfiler)
+library(DOSE)
+library(enrichplot)
+library("org.Hs.eg.db")
+library(ReactomePA)
+library(reactome.db) 
+
+library("IlluminaHumanMethylationEPICanno.ilm10b4.hg19")
+data(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+info<-getAnnotation(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)
+
+info = info[,c(1,2,3,4,22,24)]
+
+#Gene.Table C1
+ix = which(info[,4] %in% names(groups40)[groups40==36] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2],tmp[,2]+1,tmp[,3:6])
+colnames(tmp)[1] <- "chr";colnames(tmp)[2] <- "start";colnames(tmp)[3] <- "end";
+gene.table1 <- sort(table(unlist(lapply(strsplit(tmp[,6],";"),unique))),decreasing=TRUE)
+gene.table1 <- as.data.frame(gene.table1)
+colnames(gene.table1) <- c("Gene","Ncpg")
+write.table(gene.table1,"HIGHmethGreen_genesAssociated.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+#Gene.Table C2
+ix = which(info[,4] %in% names(groups40)[groups40==39] )
+tmp = as.data.frame(info[ix,])
+tmp = cbind(tmp[,1],tmp[,2],tmp[,2]+1,tmp[,3:6])
+colnames(tmp)[1] <- "chr";colnames(tmp)[2] <- "start";colnames(tmp)[3] <- "end";
+gene.table2 <- sort(table(unlist(lapply(strsplit(tmp[,6],";"),unique))),decreasing=TRUE)
+gene.table2 <- as.data.frame(gene.table2)
+colnames(gene.table2) <- c("Gene","Ncpg")
+write.table(gene.table2,"LOWmethGreen_genesAssociated.txt",quote=F,col.names=F,row.names=F,sep="\t")
+
+
+gene1.df <- bitr(as.character(gene.table1[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+gene2.df <- bitr(as.character(gene.table2[,1]), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+      
+geneEntrez <- list(HighMeth_green = gene1.df$ENTREZID,
+    LowMeth_green = gene2.df$ENTREZID)
+
+##########################################################
+x=compareCluster(geneEntrez, fun='enrichGO',
+                 OrgDb         = org.Hs.eg.db,
+                 ont           = "BP",
+                 qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_GOBP_pooled_NEVI_VARIANCE.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+
+x=compareCluster(geneEntrez, fun="enrichPathway", organism = "human",qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichPathway_NEVI_VARIANCE.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+       
+x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human", qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichKEGG_NEVI_VARIANCE.pdf",height=10,width=12)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+##########################################################
