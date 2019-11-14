@@ -124,3 +124,74 @@ stripchart(as.data.frame((data)),vertical = TRUE,#jitter = 0.3,
 
 boxplot(data, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
 dev.off()
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+library(ComplexHeatmap)
+options(scipen=999)
+library(graphics)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+library(survival)
+library(survminer)
+library(gridExtra)
+library(grid)
+colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+
+mat<- readRDS("RNASEQbatchCorrected.rds")
+mat<-vsd
+mat<-mat[apply(mat,1,sd)!=0,]
+
+highmeth_blue <- read.table("/Users/wone/CSI/vivek/11_nov_2019/variationAnalysis_annotation/LOWmethGreen_genesAssociated.txt")
+highmeth_blue <- as.character(highmeth_blue[,1])
+lowmeth_blue <- read.table("/Users/wone/CSI/vivek/11_nov_2019/variationAnalysis_annotation/HIGHmethGreen_genesAssociated.txt")
+lowmeth_blue <- as.character(lowmeth_blue[,1])
+
+sig_lowmeth_blue <- lowmeth_blue[!lowmeth_blue %in% highmeth_blue]
+sig_lowmeth_blue <- sig_lowmeth_blue[sig_lowmeth_blue %in% rownames(mat)]
+sig_highmeth_blue<- highmeth_blue[!highmeth_blue %in% lowmeth_blue]
+sig_highmeth_blue <- sig_highmeth_blue[sig_highmeth_blue %in% rownames(mat)]
+
+rlab <- c(rep("Low Meth Nevi (blue)",length(sig_lowmeth_blue)),rep("High Meth Nevi (blue)",length(sig_highmeth_blue)))
+
+sig_mat <- rbind(mat[ rownames(mat) %in% sig_lowmeth_blue ,] , mat[ rownames(mat) %in% sig_highmeth_blue ,] )
+
+column_ha = HeatmapAnnotation(Type = as.character(design$Type),
+                              col = list(Type = c("Nevus" = "blue", "Melanoma" = "red"))
+                                      )
+                              
+row_ha = rowAnnotation(Meth = rlab, show_annotation_name = F,
+              col = list(Meth = c("Low Meth Nevi (blue)" = "darkgreen","High Meth Nevi (blue)" = "darkorange" )))
+
+pdf("methVariation_associated_RNASEQ.pdf")
+Heatmap(sig_mat,
+show_row_names = FALSE,show_column_names = FALSE,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
+column_title="", column_title_side = "bottom", row_title="Methylation Signature", row_title_side = "right",
+bottom_annotation = column_ha, right_annotation = row_ha, col=colors,
+        clustering_distance_columns = "pearson",
+        clustering_distance_rows = "pearson",row_split =rlab)
+dev.off()
+
+sig_vsd <- sig_mat
+centered_vsd = sig_vsd
+ patient_number = max(as.numeric(as.character(design$Patient)))
+for( i in 1:patient_number){
+   ix = which(design$Patient==i)
+   centered_vsd[,ix[1]] = sig_vsd[,ix[1]] - rowMeans(sig_vsd[,ix])
+   centered_vsd[,ix[2]] = sig_vsd[,ix[2]] - rowMeans(sig_vsd[,ix])
+ }
+
+centered_vsd = centered_vsd - rowMeans(centered_vsd)
+centered_vsd[centered_vsd >= 1.5] = 1.5
+centered_vsd[centered_vsd <= (-1.5)] = -1.5
+
+pdf("methVariation_associated_RNASEQ_PatientCenteredExpression.pdf")
+Heatmap(centered_vsd,
+show_row_names = FALSE,show_column_names = TRUE,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
+column_title="", column_title_side = "bottom", row_title="Methylation Signature", row_title_side = "right",
+top_annotation = column_ha, right_annotation = row_ha, col=colors,
+        clustering_distance_columns = "pearson",
+        clustering_distance_rows = "pearson",row_split =rlab)
+dev.off()
+
