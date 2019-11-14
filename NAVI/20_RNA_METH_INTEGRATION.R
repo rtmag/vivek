@@ -164,11 +164,11 @@ column_ha = HeatmapAnnotation(Type = as.character(design$Type),
 row_ha = rowAnnotation(Meth = rlab, show_annotation_name = F,
               col = list(Meth = c("Low Meth Nevi (blue)" = "darkgreen","High Meth Nevi (blue)" = "darkorange" )))
 
-pdf("methVariation_associated_RNASEQ.pdf")
+pdf("methVariation_associated_RNASEQ.pdf",width=9)
 Heatmap(sig_mat,
-show_row_names = FALSE,show_column_names = FALSE,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
+show_row_names = FALSE,show_column_names = T,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
 column_title="", column_title_side = "bottom", row_title="Methylation Signature", row_title_side = "right",
-bottom_annotation = column_ha, right_annotation = row_ha, col=colors,
+top_annotation = column_ha, right_annotation = row_ha, col=colors,
         clustering_distance_columns = "pearson",
         clustering_distance_rows = "pearson",row_split =rlab)
 dev.off()
@@ -186,7 +186,7 @@ centered_vsd = centered_vsd - rowMeans(centered_vsd)
 centered_vsd[centered_vsd >= 1.5] = 1.5
 centered_vsd[centered_vsd <= (-1.5)] = -1.5
 
-pdf("methVariation_associated_RNASEQ_PatientCenteredExpression.pdf")
+pdf("methVariation_associated_RNASEQ_PatientCenteredExpression.pdf",width=9)
 Heatmap(centered_vsd,
 show_row_names = FALSE,show_column_names = TRUE,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
 column_title="", column_title_side = "bottom", row_title="Methylation Signature", row_title_side = "right",
