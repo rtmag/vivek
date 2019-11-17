@@ -195,3 +195,20 @@ top_annotation = column_ha, right_annotation = row_ha, col=colors,
         clustering_distance_rows = "pearson",row_split =rlab)
 dev.off()
 
+#######################################################################################################################################
+vsd.sd <- apply(vsd,1,sd)
+
+vsd_sig <- vsd[vsd.sd>0,]
+
+column_ha = HeatmapAnnotation(Type = as.character(design$Type),
+                              col = list(Type = c("Nevus" = "blue", "Melanoma" = "red"))
+                                      )
+
+pdf("topvariation_40905genes_RNASEQ.pdf",width=9)
+Heatmap(vsd_sig,
+show_row_names = FALSE,show_column_names = T,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
+column_title="", column_title_side = "bottom", row_title="",
+top_annotation = column_ha, col=colors,
+        clustering_distance_columns = "pearson",
+        clustering_distance_rows = "pearson")
+dev.off()
