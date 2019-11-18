@@ -207,7 +207,7 @@ column_ha = HeatmapAnnotation(Type = as.character(design$Type),
 vsd_sig_scaled <- apply(vsd_sig, 1, scale)
 
 pdf("topvariation_40905genes_scaled_RNASEQ.pdf",width=9)
-Heatmap(vsd_sig_scaled,
+Heatmap(t(vsd_sig_scaled),
 show_row_names = FALSE,show_column_names = T,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
 column_title="", column_title_side = "bottom", row_title="",
 top_annotation = column_ha, col=colors,
