@@ -221,3 +221,100 @@ dev.off()
 ###
 
 ##
+
+sig_vsd <- vsd[which(abs(dDif_res$log2FoldChange)>=.9 & dDif_res$padj<0.05),]
+vsd_sig_scaled <- t(apply(sig_vsd, 1, scale))
+colnames(vsd_sig_scaled) <- colnames(vsd)
+
+pdf("MelVsNevi_622genes_scaled_RNASEQ.pdf",width=9)
+Heatmap(vsd_sig_scaled,
+show_row_names = FALSE,show_column_names = T,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
+column_title="", column_title_side = "bottom", row_title="",
+top_annotation = column_ha, col=colors,
+        clustering_distance_columns = "pearson",
+        clustering_distance_rows = "pearson")
+dev.off()
+###
+centered_vsd = sig_vsd
+patient_number = max(as.numeric(as.character(design$Patient)))
+for( i in 1:patient_number){
+   ix = which(design$Patient==i)
+   centered_vsd[,ix[1]] = sig_vsd[,ix[1]] - rowMeans(sig_vsd[,ix])
+   centered_vsd[,ix[2]] = sig_vsd[,ix[2]] - rowMeans(sig_vsd[,ix])
+ }
+
+centered_vsd <- t(apply(centered_vsd, 1, scale))
+colnames(centered_vsd) <- colnames(vsd)
+
+pdf("MelVsNevi_622genes_scaled_RNASEQ_centered.pdf",width=9)
+Heatmap(centered_vsd,
+show_row_names = FALSE,show_column_names = T,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
+column_title="", column_title_side = "bottom", row_title="",
+top_annotation = column_ha, col=colors,
+        clustering_distance_columns = "pearson",
+        clustering_distance_rows = "pearson")
+dev.off()
+
+################################################################################################
+################################################################################################
+library(clusterProfiler)
+library(DOSE)
+library(enrichplot)
+library("org.Hs.eg.db")
+library(ReactomePA)
+library(reactome.db) 
+
+set.seed(10)
+kmeans.mat<- kmeans(centered_vsd, 2)
+table(kmeans.mat$cluster)
+
+hmp<-Heatmap(centered_vsd,
+show_row_names = FALSE,show_column_names = T,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
+column_title="", column_title_side = "bottom", row_title="",split=kmeans.mat$cluster,
+top_annotation = column_ha, col=colors,
+        clustering_distance_columns = "pearson",
+        clustering_distance_rows = "pearson")
+
+hmp = draw(hmp)
+
+pdf("MelVsNevi_622genes_scaled_RNASEQ_centered.pdf",width=9)
+hmp
+dev.off()
+
+ix1 = rownames(centered_vsd)[rownames(centered_vsd) %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==1] ]
+ix2 = rownames(centered_vsd)[rownames(centered_vsd) %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==2] ]
+
+gene1.df <- bitr(as.character(ix1), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+gene2.df <- bitr(as.character(ix2), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+      
+geneEntrez <- list(HighMelanoma = gene1.df$ENTREZID,
+    HighNevus = gene2.df$ENTREZID)
+
+##########################################################
+x=compareCluster(geneEntrez, fun='enrichGO',
+                 OrgDb         = org.Hs.eg.db,
+                 ont           = "BP",
+                 qvalueCutoff = 0.2,pvalueCutoff = 1)
+
+x@compareClusterResult$Cluster
+pdf("dotplot_GOBP_RNASEQ_MELvsNEVI.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+
+x=compareCluster(geneEntrez, fun="enrichPathway", organism = "human",qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichPathway__RNASEQ_MELvsNEVI.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+       
+x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human", qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichKEGG__RNASEQ_MELvsNEVI.pdf",height=10,width=12)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+##########################################################
