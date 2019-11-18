@@ -67,6 +67,10 @@ dds_patient <- DESeq(dLRT)
 dLRT_vsd <- varianceStabilizingTransformation(dds_patient)
 vsd = assay(dLRT_vsd)
 
+dLRT <- DESeq(dLRT, test="LRT",full= ~ Patient + Type , reduced=~ Patient)
+dDif_res <- results(dLRT,contrast=c("Type","Melanoma","Nevus"))
+
+
 nevi_genes<-read.table("/Users/wone/CSI/vivek/nevi/mel_vs_nevi/BRAF_analysis/hi_nevi_associated_genes.txt",sep="\t",stringsAsFactors=F)
 nevi_genes <- nevi_genes[,1]
 mel_genes<-read.table("/Users/wone/CSI/vivek/nevi/mel_vs_nevi/BRAF_analysis/hi_melanoma_associated_genes.txt",sep="\t",stringsAsFactors=F)
