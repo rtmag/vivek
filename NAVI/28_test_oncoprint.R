@@ -83,3 +83,108 @@ oncoPrint(t(x),show_column_names = TRUE,
     alter_fun = alter_fun, col = col, 
      heatmap_legend_param = heatmap_legend_param)
 dev.off()
+
+
+# MCNEMAR TEST
+mut.mat <- readRDS("mut.mat.RDS")
+mut.mat <- mut.mat[order(nchar(row.names(mut.mat))),]
+mut.mat[mut.mat!="WT"] = "Alt"
+
+type <- rep(c("Melanoma","Nevi"),length=dim(mut.mat)[1])
+test_results <- 1:dim(mut.mat)[2]
+names(test_results) <- colnames(mut.mat)
+for( ix in 1:dim(mut.mat)[2] ){   
+    mydf<-data.frame( Melanoma = factor(mut.mat[type=="Melanoma",ix], levels = c("Alt", "WT") ),
+                  Nevi = factor(mut.mat[type=="Nevi",ix], levels = c("Alt", "WT")) )
+    tt = with(mydf, table(Melanoma, Nevi))
+    test_results[ix] <- mcnemar.test(tt)$p.value
+    }
+
+# ratio TEST
+ratio_results <- 1:dim(mut.mat)[2]
+names(ratio_results) <- colnames(mut.mat)
+for( ix in 1:dim(mut.mat)[2] ){   
+    mel_tab <- table(factor(mut.mat[type=="Melanoma",ix], levels = c("Alt", "WT") ))[1]
+    mel_sum <- sum(table(factor(mut.mat[type=="Melanoma",ix], levels = c("Alt", "WT") )))
+    nev_tab <- table(factor(mut.mat[type=="Nevi",ix], levels = c("Alt", "WT") ))[1]
+    nev_sum <- sum(table(factor(mut.mat[type=="Nevi",ix], levels = c("Alt", "WT") )))
+    ratio_results[ix] <- (mel_tab/mel_sum) - (nev_tab/nev_sum)
+    }
+
+###########################
+
+selectGene <- names(test_results[which(test_results<0.25)])
+selectGene <- names(ratio_results[(ratio_results>.3)])
+
+mx=colnames(mut.mat) %in% selectGene
+mut.mat <- readRDS("mut.mat.RDS")
+mut.mat <- mut.mat[order(nchar(row.names(mut.mat))),]
+x = mut.mat[,mx]
+rownames(x) = gsub(".uf","",rownames(x))
+x[x=="WT"]=""
+x[x=="Missense_Mutation"]="Missense_Mutation"
+x[x=="Nonsense_Mutation"]="Nonsense_Mutation"
+x[x=="In_Frame_Del"]="InFrame_Del"
+x[x=="Frame_Shift_Del"]="FrameShift_Del"
+x[x=="Frame_Shift_Ins"]="FrameShift_Ins"
+x[x=="In_Frame_Ins"]=""
+
+library(ComplexHeatmap)
+col = c("Missense_Mutation" = "#EC2049",
+        "Nonsense_Mutation" = "#2F9599",
+        "Alterations" = "#355C7D",
+        "InFrame_Del" = "#E8B71A",
+        "FrameShift_Del" = "#9B539C",
+        "FrameShift_Ins" = "#DD5F32")
+
+alter_fun = list(
+    background = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = "#CCCCCC", col = NA))
+    },
+    # bug red
+    Missense_Mutation = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["Missense_Mutation"], col = NA))
+    },
+    Nonsense_Mutation = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["Nonsense_Mutation"], col = NA))
+    },
+    Alterations = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["Alterations"], col = NA))
+    },
+    InFrame_Del = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["InFrame_Del"], col = NA))
+    },
+    FrameShift_Del = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["FrameShift_Del"], col = NA))
+    },
+    FrameShift_Ins = function(x, y, w, h) {
+        grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
+            gp = gpar(fill = col["FrameShift_Ins"], col = NA))
+    }
+)
+
+heatmap_legend_param = list(title = "Alterations", 
+                            at = c( "Missense_Mutation","Nonsense_Mutation","Alterations",
+                                      "InFrame_Del","FrameShift_Del","FrameShift_Ins"), 
+                            labels = c( "Missense Mutation","Nonsense Mutation","Alterations",
+                                      "InFrame Del","FrameShift Del","FrameShift Ins"))
+
+column_ha = HeatmapAnnotation(Type = as.character(type),
+                              col = list(Type = c("Nevi" = "blue", "Melanoma" = "red"))
+                                      )
+
+pdf("oncoprint_ratio33.pdf",height=5)
+oncoPrint(t(x),show_column_names = TRUE,column_split=as.character(type),
+    alter_fun = alter_fun, col = col, bottom_annotation = column_ha,
+     heatmap_legend_param = heatmap_legend_param)
+dev.off()
+
+
+
+
