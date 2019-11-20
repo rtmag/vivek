@@ -284,6 +284,9 @@ dev.off()
 ix1 = rownames(centered_vsd)[rownames(centered_vsd) %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==1] ]
 ix2 = rownames(centered_vsd)[rownames(centered_vsd) %in% names(kmeans.mat$cluster)[kmeans.mat$cluster==2] ]
 
+write.table(ix1,"High_exp_nevi_genes.txt",sep="\t",,quote=FALSE,col.names=FALSE,row.names=FALSE)
+write.table(ix2,"High_exp_melanoma_genes.txt",sep="\t",,quote=FALSE,col.names=FALSE,row.names=FALSE)
+
 gene1.df <- bitr(as.character(ix1), fromType = "SYMBOL",
         toType = c("ENSEMBL", "ENTREZID"),
         OrgDb = org.Hs.eg.db)
