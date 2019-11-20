@@ -49,12 +49,153 @@ MvsN_dmc <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor")
 
 comparison <- get.comparisons(MvsN_dmc)[1]
 dmc_table <-get.table(MvsN_dmc, comparison, "sites", return.data.frame=TRUE)
+dmc_promoter <-get.table(MvsN_dmc, comparison, "promoters", return.data.frame=TRUE)
 saveRDS(dmc_table,"dmc_MvsN_byPatient.rds")
+##################################################################
+table(dmc_promoter$comb.p.adj.fdr<=0.05 & abs(dmc_promoter$mean.mean.diff)>.25)
+ annot.promoters <- annotation(rnb.set.filtered, type="promoters")
+beta_promoters<-meth(rnb.set.filtered, type="promoters",row.names=T)
+annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff>.15,]
+
+HighMethPromoter_Melanoma_genes <- annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff>.15,]$symbol
+names(HighMethPromoter_Melanoma_genes) <- rownames(annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff>.15,])
+HighMethPromoter_Melanoma_genes<-HighMethPromoter_Melanoma_genes[!is.na(HighMethPromoter_Melanoma_genes)]
+HighMethPromoter_Nevi_genes <- annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff<(-.15),]$symbol
+names(HighMethPromoter_Nevi_genes) <- rownames(annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff<(-.15),])
+HighMethPromoter_Nevi_genes<-HighMethPromoter_Nevi_genes[!is.na(HighMethPromoter_Nevi_genes)]
+
+
+HighMethPromoter_Melanoma_genes <- annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff>.20,]$symbol
+names(HighMethPromoter_Melanoma_genes) <- rownames(annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff>.20,])
+HighMethPromoter_Melanoma_genes<-HighMethPromoter_Melanoma_genes[!is.na(HighMethPromoter_Melanoma_genes)]
+HighMethPromoter_Nevi_genes <- annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff<(-.20),]$symbol
+names(HighMethPromoter_Nevi_genes) <- rownames(annot.promoters[dmc_promoter$comb.p.adj.fdr<=0.05 & dmc_promoter$mean.mean.diff<(-.20),])
+HighMethPromoter_Nevi_genes<-HighMethPromoter_Nevi_genes[!is.na(HighMethPromoter_Nevi_genes)]
+
+################################################################################################################
+library(ComplexHeatmap)
+options(scipen=999)
+library(graphics)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+
+rlab_ix <- c(rep("HighMeth_promoter_Nevi",length(HighMethPromoter_Nevi_genes) ), rep("HighMeth_promoter_Melanoma",length(HighMethPromoter_Melanoma_genes)) )
+
+
+column_ha = HeatmapAnnotation(Type = as.character(rnb.set.filtered@pheno$Tumor),
+                              col = list(Type = c("Nevi" = "blue", "Melanoma" = "red","MIS" = "grey")) )
+     
+sig_beta_promoters <- rbind(beta_promoters[rownames(beta_promoters) %in% names(HighMethPromoter_Nevi_genes),] ,
+                      beta_promoters[rownames(beta_promoters) %in% names(HighMethPromoter_Melanoma_genes),])
+
+rownames(sig_beta_promoters) <- annot.promoters[match(rownames(sig_beta_promoters),rownames(annot.promoters) ),5]
+
+meth.norm <- sig_beta_promoters
+meth.norm.centered = meth.norm
+for(ix in 1:dim(meth.norm)[1]){ 
+           meth.norm.centered[ix,1] = meth.norm[ix,1]-mean(meth.norm[ix,1:2])
+           meth.norm.centered[ix,2] = meth.norm[ix,2]-mean(meth.norm[ix,1:2])
+           meth.norm.centered[ix,3] = meth.norm[ix,3]-mean(meth.norm[ix,3:4])
+           meth.norm.centered[ix,4] = meth.norm[ix,4]-mean(meth.norm[ix,3:4])
+           meth.norm.centered[ix,5] = meth.norm[ix,5]-mean(meth.norm[ix,5:6])
+           meth.norm.centered[ix,6] = meth.norm[ix,6]-mean(meth.norm[ix,5:6])
+           meth.norm.centered[ix,7] = meth.norm[ix,7]-mean(meth.norm[ix,7:8])
+           meth.norm.centered[ix,8] = meth.norm[ix,8]-mean(meth.norm[ix,7:8])
+           meth.norm.centered[ix,9] = meth.norm[ix,9]-mean(meth.norm[ix,9:10])
+           meth.norm.centered[ix,10] = meth.norm[ix,10]-mean(meth.norm[ix,9:10])
+           meth.norm.centered[ix,11] = meth.norm[ix,11]-mean(meth.norm[ix,11:12])
+           meth.norm.centered[ix,12] = meth.norm[ix,12]-mean(meth.norm[ix,11:12])
+           meth.norm.centered[ix,13] = meth.norm[ix,13]-mean(meth.norm[ix,13:14])
+           meth.norm.centered[ix,14] = meth.norm[ix,14]-mean(meth.norm[ix,13:14])
+           meth.norm.centered[ix,15] = meth.norm[ix,15]-mean(meth.norm[ix,15:16])
+           meth.norm.centered[ix,16] = meth.norm[ix,16]-mean(meth.norm[ix,15:16])
+           meth.norm.centered[ix,17] = meth.norm[ix,17]-mean(meth.norm[ix,17:18])
+           meth.norm.centered[ix,18] = meth.norm[ix,18]-mean(meth.norm[ix,17:18])
+           meth.norm.centered[ix,19] = meth.norm[ix,19]-mean(meth.norm[ix,19:20])
+           meth.norm.centered[ix,20] = meth.norm[ix,20]-mean(meth.norm[ix,19:20])
+           meth.norm.centered[ix,21] = meth.norm[ix,21]-mean(meth.norm[ix,21:22])
+           meth.norm.centered[ix,22] = meth.norm[ix,22]-mean(meth.norm[ix,21:22])
+           meth.norm.centered[ix,23] = meth.norm[ix,23]-mean(meth.norm[ix,23:24])
+           meth.norm.centered[ix,24] = meth.norm[ix,24]-mean(meth.norm[ix,23:24])
+           meth.norm.centered[ix,25] = meth.norm[ix,25]-mean(meth.norm[ix,25:26])
+           meth.norm.centered[ix,26] = meth.norm[ix,26]-mean(meth.norm[ix,25:26])
+           meth.norm.centered[ix,27] = meth.norm[ix,27]-mean(meth.norm[ix,27:28])
+           meth.norm.centered[ix,28] = meth.norm[ix,28]-mean(meth.norm[ix,27:28])
+           meth.norm.centered[ix,29] = meth.norm[ix,29]-mean(meth.norm[ix,29:30])
+           meth.norm.centered[ix,30] = meth.norm[ix,30]-mean(meth.norm[ix,29:30])
+           meth.norm.centered[ix,31] = meth.norm[ix,31]-mean(meth.norm[ix,31:32])
+           meth.norm.centered[ix,32] = meth.norm[ix,32]-mean(meth.norm[ix,31:32])
+           meth.norm.centered[ix,33] = meth.norm[ix,33]-mean(meth.norm[ix,33:34])
+           meth.norm.centered[ix,34] = meth.norm[ix,34]-mean(meth.norm[ix,33:34])
+           meth.norm.centered[ix,35] = meth.norm[ix,35]-mean(meth.norm[ix,35:36])
+           meth.norm.centered[ix,36] = meth.norm[ix,36]-mean(meth.norm[ix,35:36])
+           meth.norm.centered[ix,37] = meth.norm[ix,37]-mean(meth.norm[ix,37:38])
+           meth.norm.centered[ix,38] = meth.norm[ix,38]-mean(meth.norm[ix,37:38])
+           meth.norm.centered[ix,39] = meth.norm[ix,39]-mean(meth.norm[ix,39:40])
+           meth.norm.centered[ix,40] = meth.norm[ix,40]-mean(meth.norm[ix,39:40])
+           meth.norm.centered[ix,41] = meth.norm[ix,41]-mean(meth.norm[ix,41:42])
+           meth.norm.centered[ix,42] = meth.norm[ix,42]-mean(meth.norm[ix,41:42])
+           meth.norm.centered[ix,43] = meth.norm[ix,43]-mean(meth.norm[ix,43:44])
+           meth.norm.centered[ix,44] = meth.norm[ix,44]-mean(meth.norm[ix,43:44])
+           meth.norm.centered[ix,45] = meth.norm[ix,45]-mean(meth.norm[ix,45:46])
+           meth.norm.centered[ix,46] = meth.norm[ix,46]-mean(meth.norm[ix,45:46])
+           meth.norm.centered[ix,47] = meth.norm[ix,47]-mean(meth.norm[ix,47:48])
+           meth.norm.centered[ix,48] = meth.norm[ix,48]-mean(meth.norm[ix,47:48])
+}
+
+
+pdf("heatmap_mel_vs_nevi_promoter_meth.pdf",width=9,height=9)
+Heatmap(meth.norm.centered,
+show_row_names = T,show_column_names = T,name = "Methylation",row_dend_reorder = T, column_dend_reorder = T,
+column_title="", column_title_side = "bottom", row_title="", row_title_side = "right",
+top_annotation = column_ha, col=colors,
+        clustering_distance_columns = "pearson",
+        clustering_distance_rows = "pearson",split =rlab_ix)
+dev.off()
+
+
+write.table(HighMethPromoter_Nevi_genes,"High_meth_nevi_promoter.txt",sep="\t",,quote=FALSE,col.names=FALSE,row.names=FALSE)
+write.table(HighMethPromoter_Melanoma_genes,"High_meth_melanoma_promoter.txt",sep="\t",,quote=FALSE,col.names=FALSE,row.names=FALSE)
+
+gene1.df <- bitr(as.character(HighMethPromoter_Melanoma_genes), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+       
+gene2.df <- bitr(as.character(HighMethPromoter_Nevi_genes), fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+      
+geneEntrez <- list(HighMethMelanoma = gene1.df$ENTREZID,
+    HighMethNevi = gene2.df$ENTREZID)
+
+x=compareCluster(geneEntrez, fun='enrichGO',
+                 OrgDb         = org.Hs.eg.db,
+                 ont           = "BP",
+                 qvalueCutoff = 0.2,pvalueCutoff = 1)
+
+x@compareClusterResult$Cluster
+pdf("dotplot_GOBP_MethPromoter_MELvsNEVI.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+
+x=compareCluster(geneEntrez, fun="enrichPathway", organism = "human",qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichPathway_MethPromoter_MELvsNEVI.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+       
+x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human", qvalueCutoff = 0.2,pvalueCutoff = 1)
+x@compareClusterResult$Cluster
+pdf("dotplot_enrichKEGG_MethPromoter_MELvsNEVI.pdf",height=10,width=12)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+##########################################################
 ################################################################################################################
 # Removing Patient pairing
 rnb.options("columns.pairing"=NULL)
 MvsN_dmc_noPatient <- rnb.execute.computeDiffMeth(rnb.set.norm_no910,pheno.cols=c("Tumor"))
-
 comparison <- get.comparisons(MvsN_dmc_noPatient)[1]
 dmc_noPatient_table <-get.table(MvsN_dmc_noPatient, comparison, "sites", return.data.frame=TRUE)
 saveRDS(dmc_noPatient_table,"dmc_MvsN_NoPatient.rds")
