@@ -185,6 +185,22 @@ oncoPrint(t(x),show_column_names = TRUE,column_split=as.character(type),
      heatmap_legend_param = heatmap_legend_param)
 dev.off()
 
+####################################################################################################################################
+####################################################################################################################################
+####################################################################################################################################
+####################################################################################################################################
 
+mut.mat <- readRDS("mut.mat.RDS")
+mut.mat <- mut.mat[order(nchar(row.names(mut.mat))),]
+ix <- rep(1:(dim(mut.mat)[1]/2),2)
+ix <- sort(ix)
 
+for( i in min(ix):max(ix) ){
+    pat<-t(mut.mat[ix ==i ,])
+    pat_num<-gsub(".uf","",colnames(pat)[2])
+    pat_num<-as.numeric(gsub("VM","",pat_num))/2
+    write.csv(pat,paste0("patient_mutation_files/mutation_information_patient_",pat_num,".csv") )
+    pat.ci<-pat[apply(pat,1,function(x) sum(x!="WT") )>0,]
+    write.csv(pat.ci,paste0("patient_mutation_files/Altered_mutation_information_patient_",pat_num,".csv") )
+}
 
