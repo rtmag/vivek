@@ -33,13 +33,15 @@ rnb.set.filtered <- rnb.execute.snp.removal(rnb.set.filtered, snp="any")$dataset
 rnb.set.filtered <- rnb.execute.na.removal(rnb.set.filtered)$dataset
 save.rnb.set(rnb.set.filtered,path="/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData")
 #######################################################################
+rnb.set.filtered=load.rnb.set("/home/rtm/vivek/navi/EPIC_2nd_batch/RnBeads/RnBeads_normalization/rnb.set.norm.filtered.RData.zip")
+beta<-meth(rnb.set.filtered,row.names=T)
 rnb.set.norm_no910=remove.samples(rnb.set.filtered,samples(rnb.set.filtered)[9:10])
 rnb.options("columns.pairing"=c("Tumor"="Patient"))
 rnb.options("differential.variability"=FALSE)
 # Multiprocess
 num.cores <- 20
 parallel.setup(num.cores)
-diff_path = file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_report")
+#diff_path = file.path("/home/rtm/vivek/navi/EPIC_2nd_batch/RnB_Diff_report")
 
 #rnb.run.differential(rnb.set.norm_no910,diff_path)
 
