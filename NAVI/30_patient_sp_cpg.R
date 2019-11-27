@@ -18,11 +18,11 @@ Mstd.melanoma = Mstd[ , Type=="Melanoma" ]
 Dstd=(Mstd.nevi - Mstd.melanoma)^2
 Stat=apply(Dstd,1,sum)
 order.Stat=rev(order(Stat))
-chosen.cpgs=order.Stat[1:round(length(order.Stat)*.25)]
-tokeep = order.Stat[round(length(order.Stat)*.25):dim(B)[1]]
 
+ix = dim(B)[1] - round(length(order.Stat)*.25)
+chosen.cpgs=order.Stat[1:ix]
 
-beta <- B[tokeep,]
+beta <- B[chosen.cpgs,]
 beta.sd <- apply(beta,1,sd)
 
 library(ComplexHeatmap)
