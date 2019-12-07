@@ -24,13 +24,18 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 --noOriginalAlignmentTags \
 -I /home/rtm/vivek/navi/wes/bam/VM3.rmdup.sort.bam \
 --out /home/rtm/vivek/navi/wes/bam/VM3.realigned.bam ;
+###### ADD GROUP
+java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM3.realigned.bam \
+OUTPUT=/home/rtm/vivek/navi/wes/bam/VM3.realigned.addRG.bam \
+RGID=VM1 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM3 CREATE_INDEX=true
 ############################## baserecalibrator #############################
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
 -knownSites /home/references/broadhg38/broad_hg38/dbsnp_146.hg38.vcf \
--I /home/rtm/vivek/navi/wes/bam/VM3.realigned.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM3.realigned.addRG.bam \
 -o /home/rtm/vivek/navi/wes/bam/VM3.bqsr.grp ;
 ############################# recalibrate #############################
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
@@ -55,7 +60,7 @@ cat fastq/DLP-011*R2* > VM4_R2.fastq.gz &
 
 # Mapping
 bwa mem -t 23 -T 0 -R "@RG\tID:VM4\tLB:WES1\tPL:illumina\tPU:NULL\tSM:VM4" \
-/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz VM4_R1_val_1.fq.gz VM4_R2_val_2.fq.gz | \
+/home/references/broadhg38/bwa/Homo_sapiens_assembly38.fasta.gz /home/rtm/vivek/navi/wes/fastq_trim/VM4_R1_val_1.fq.gz /home/rtm/vivek/navi/wes/fastq_trim/VM4_R2_val_2.fq.gz | \
 samtools view -Shb -o /home/rtm/vivek/navi/wes/bam/VM4.bam - ;
 
 # sort
