@@ -28,7 +28,7 @@ java -Xmx200g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 java -Xmx10g -jar /home/rtm/myprograms/picard/build/libs/picard.jar AddOrReplaceReadGroups \
 INPUT=/home/rtm/vivek/navi/wes/bam/VM3.realigned.bam \
 OUTPUT=/home/rtm/vivek/navi/wes/bam/VM3.realigned.addRG.bam \
-RGID=VM1 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM3 CREATE_INDEX=true
+RGID=VM3 RGLB=WES RGPL=illumina RGPU=NULL RGSM=VM3 CREATE_INDEX=true
 ############################## baserecalibrator #############################
 java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T BaseRecalibrator \
@@ -42,7 +42,7 @@ java -Xmx10g -jar /home/rtm/myprograms/GenomeAnalysisTK_3.8.1.jar \
 -T PrintReads \
 -nct 20 \
 -R /home/references/broadhg38/broad_hg38/Homo_sapiens_assembly38.fasta \
--I /home/rtm/vivek/navi/wes/bam/VM3.realigned.bam \
+-I /home/rtm/vivek/navi/wes/bam/VM3.realigned.addRG.bam \
 --BQSR /home/rtm/vivek/navi/wes/bam/VM3.bqsr.grp \
 -o /home/rtm/vivek/navi/wes/bam/VM3.recalibrated.bam ;
 
