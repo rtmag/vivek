@@ -75,7 +75,7 @@ java -Xmx250g -jar /home/rtm/myprograms/picard/build/libs/picard.jar MarkDuplica
 VALIDATION_STRINGENCY=STRICT \
 CREATE_INDEX=true \
 M=/home/rtm/vivek/navi/wes/bam/VM4.MFILE.txt \
-INPUT=/home/rtm/vivek/navi/wes/bam/VM4_sort.bam \
+INPUT=/home/rtm/vivek/navi/wes/bam/VM4.sort.bam \
 OUTPUT=/home/rtm/vivek/navi/wes/bam/VM4.rmdup.sort.bam ;
 
 ############################# Target intervals #############################
