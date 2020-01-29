@@ -121,3 +121,31 @@ x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human", qvalueCutoff 
 pdf("dotplot_enrichKEGG_10.pdf",height=10,width=12)
 dotplot(x, showCategory=10, includeAll=FALSE,font.size=22)
 dev.off()
+
+####
+
+
+options(scipen=999)
+library(DESeq2)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+  colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(20))
+# CREST SIGNATURE
+# READ CREST GENES
+crest = read.table("~/CSI/vivek/new_rnaseq/crest/MedLowSim_SD3.txt",stringsAsFactors=F)
+
+
+##################
+# MedLowSim_SD3
+# MedHighSim_SD2.txt
+vsd = readRDS("TFAP2C_vsd.rds")
+
+x = as.character(crest[,1])
+
+sig_vsd = vsd[rownames(vsd) %in% x,]
+sig_vsd = sig_vsd[apply(sig_vsd,1,sd)!=0,]
+pdf("NCC_geneSignature_on_TFAP2C_exp_REDO.pdf",height=10,width=3.5)
+  heatmap.2(sig_vsd,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="",key.title="Gene expression",cexCol=.65,cexRow=.4,density.info="none")
+dev.off()
