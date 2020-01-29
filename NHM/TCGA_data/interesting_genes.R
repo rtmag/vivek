@@ -42,10 +42,20 @@ cna_sig_h <- cna_sig[,ix[!is.na(ix)]]
 colnames(exp_sig_h) == colnames(cna_sig_h)
 rownames(mut_sig_h) == colnames(cna_sig_h)
 rownames(mut_sig_h) == colnames(exp_sig_h)
+           
+pator <- read.table("order_patient.txt")
+pator<- as.character(pator[,1])
+pator<-gsub("-",".",pator)
+harmonized_lab <-gsub("\\.\\d\\d","",colnames(exp_sig_h))
+           
+ix <- match(pator,harmonized_lab)
+exp_sig_h <- exp_sig_h[,ix]
+mut_sig_h <- mut_sig_h[ix,]
+cna_sig_h <- cna_sig_h[,ix]
 
 # categorize
-cna_sig_h[cna_sig_h==(-2)] <- (-1)
-cna_sig_h[cna_sig_h==2] <- 1
+cna_sig_h[cna_sig_h==(-1)] <- (0)
+cna_sig_h[cna_sig_h==1] <- 0
 
 
 library(ComplexHeatmap)
@@ -72,17 +82,19 @@ column_ha = HeatmapAnnotation(CDKN2A_Mut = as.character(mut_sig_h$CDKN2A),
                                          RB1_Mut = c("0" = "white", "1" = "red"),
                                          EZH2_Mut = c("0" = "white", "1" = "red"),
                                          ARID2_Mut = c("0" = "white", "1" = "red"),
-                                         CDKN2A_CNA = c("-1" = "blue","0" = "white", "1" = "green"),
-                                         CDK4_CNA = c("-1" = "blue","0" = "white", "1" = "green"),
-                                         RB1_CNA = c("-1" = "blue","0" = "white", "1" = "green"),
-                                         EZH2_CNA = c("-1" = "blue","0" = "white", "1" = "green"),
-                                         ARID2_CNA = c("-1" = "blue","0" = "white", "1" = "green")
-                                        ))
-pdf("TCGA_SKCM_epiGenes.pdf")
-Heatmap(exp_sig,
-show_row_names = TRUE,show_column_names = FALSE,name = "Expression",row_dend_reorder = T, column_dend_reorder = T,
-column_title="SKCM Patients", column_title_side = "bottom", row_title="", row_title_side = "right",
-bottom_annotation = column_ha,
-        clustering_distance_columns = "pearson",
-        clustering_distance_rows = "pearson")
+                                         CDKN2A_CNA = c("-2" = "blue","0" = "white", "2" = "green"),
+                                         CDK4_CNA = c("-2" = "blue","0" = "white", "2" = "green"),
+                                         RB1_CNA = c("-2" = "blue","0" = "white", "2" = "green"),
+                                         EZH2_CNA = c("-2" = "blue","0" = "white", "2" = "green"),
+                                         ARID2_CNA = c("-2" = "blue","0" = "white", "2" = "green")
+                                        ),
+                             gp = gpar(col = "black",lwd=.1)
+                           )
+                                        
+                                        
+pdf("TCGA_SKCM_epiGenes.pdf",height=4)
+Heatmap(exp_sig_h,
+show_row_names = TRUE,show_column_names = FALSE,name = "Expression",
+column_title="SKCM Patients", column_title_side = "bottom",cluster_columns=F,cluster_rows=F,
+top_annotation = column_ha)
 dev.off()
