@@ -53,6 +53,7 @@ exp_sig_h <- exp_sig_h[,ix]
 mut_sig_h <- mut_sig_h[ix,]
 cna_sig_h <- cna_sig_h[,ix]
 
+exp_sig_h_r<-exp_sig_h[c(3,2,5,4,1),]
 # categorize
 cna_sig_h[cna_sig_h==(-1)] <- (0)
 cna_sig_h[cna_sig_h==1] <- 0
@@ -88,13 +89,15 @@ column_ha = HeatmapAnnotation(CDKN2A_Mut = as.character(mut_sig_h$CDKN2A),
                                          EZH2_CNA = c("-2" = "blue","0" = "white", "2" = "green"),
                                          ARID2_CNA = c("-2" = "blue","0" = "white", "2" = "green")
                                         ),
-                             gp = gpar(col = "black",lwd=.1)
+                             gp = gpar(col = "black",lwd=.0001)
                            )
                                         
                                         
-pdf("TCGA_SKCM_epiGenes.pdf",height=4)
-Heatmap(exp_sig_h,
+pdf("TCGA_SKCM_epiGenes.pdf",height=4,width=15)
+Heatmap(exp_sig_h_r,
 show_row_names = TRUE,show_column_names = FALSE,name = "Expression",
 column_title="SKCM Patients", column_title_side = "bottom",cluster_columns=F,cluster_rows=F,
 top_annotation = column_ha)
 dev.off()
+           
+           
