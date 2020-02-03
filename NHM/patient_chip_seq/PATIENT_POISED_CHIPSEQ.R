@@ -3,6 +3,7 @@ options(scipen=999)
 library(graphics)
 library(gplots)
 library(RColorBrewer)
+library(circlize)
 
 # #cluster_1:556	cluster_2:438	cluster_3:1180
 
@@ -38,16 +39,18 @@ Heatmap(fresh_k27_means, row_split = c( rep("c1",556), rep("c2",438), rep("c3",1
         cluster_columns=F,cluster_rows=F)
         
 ######################
-fresh_k27 <- read.table(pipe("tail -n +4 patient_fresh_H3K27me3_bs20.txt"),sep="\t")
+fresh_k27 <- read.table(pipe("tail -n +4 patient_fresh_H3K27me3_bs20_5k.txt"),sep="\t")
+
+col_fun = colorRamp2(c(0, 20), c("white", "orange"))
 
 pdf("fresh_k27_test.pdf")
 Heatmap(fresh_k27, row_split = c( rep("c1",556), rep("c2",438), rep("c3",1180) ) ,
         show_row_names = FALSE,show_column_names = FALSE, 
-        column_title="H3K27me3 Patients", 
+        column_title="H3K27me3 Patients", col = col_fun,
         cluster_columns=F,cluster_rows=F)
 dev.off()
 
-fresh_k4 <- read.table(pipe("tail -n +4 patient_fresh_H3K4me3_bs20.txt"),sep="\t")
+fresh_k4 <- read.table(pipe("tail -n +4 patient_fresh_H3K4me3_bs20_5k.txt"),sep="\t")
 
 pdf("fresh_k4_test.pdf")
 Heatmap(fresh_k4, row_split = c( rep("c1",556), rep("c2",438), rep("c3",1180) ) ,
