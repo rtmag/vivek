@@ -24,7 +24,7 @@ computeMatrix reference-point \
 /root/vivek/patient_chipseq/fresh/bw/GSM3934378_SKCM-M852-P008_E.bw \
 /root/vivek/patient_chipseq/fresh/bw/GSM3934385_SKCM-M857-P010_E.bw \
 -R /root/vivek/patient_chipseq/poised_kmeans_zmet_5k_3clusters.bed --referencePoint center \
---sortRegions descend -bs 20 -a 1000 -b 1000 -p max -out patient_fresh_H3K4me3_bs20.mat --outFileNameMatrix patient_fresh_H3K4me3_bs20.txt
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out patient_fresh_H3K4me3_bs20.mat --outFileNameMatrix patient_fresh_H3K4me3_bs20_5k.txt
 
 # H3K27me3 :: F
 
@@ -51,7 +51,7 @@ computeMatrix reference-point \
 /root/vivek/patient_chipseq/fresh/bw/GSM3934379_SKCM-M852-P008_F.bw \
 /root/vivek/patient_chipseq/fresh/bw/GSM3934386_SKCM-M857-P010_F.bw \
 -R /root/vivek/patient_chipseq/poised_kmeans_zmet_5k_3clusters.bed --referencePoint center \
---sortRegions descend -bs 20 -a 1000 -b 1000 -p max -out patient_fresh_H3K27me3_bs20.mat --outFileNameMatrix patient_fresh_H3K27me3_bs20.txt
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out patient_fresh_H3K27me3_bs20.mat --outFileNameMatrix patient_fresh_H3K27me3_bs20_5k.txt
 
 
 
@@ -77,7 +77,7 @@ computeMatrix reference-point \
 /root/vivek/patient_chipseq/stored/bw/GSM3934240_M-WM266_E.bw \
 /root/vivek/patient_chipseq/stored/bw/GSM3934245_M-WM793B_E.bw \
 -R /root/vivek/patient_chipseq/poised_kmeans_zmet_5k_3clusters.bed --referencePoint center \
---sortRegions descend -bs 20 -a 1000 -b 1000 -p max -out patient_stored_H3K4me3_bs20.mat --outFileNameMatrix patient_stored_H3K4me3_bs20.txt
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out patient_stored_H3K4me3_bs20.mat --outFileNameMatrix patient_stored_H3K4me3_bs20_5k.txt
 
 
 # H3K27me3 :: F
@@ -101,5 +101,8 @@ computeMatrix reference-point \
 /root/vivek/patient_chipseq/stored/bw/GSM3934241_M-WM266_F.bw \
 /root/vivek/patient_chipseq/stored/bw/GSM3934246_M-WM793B_F.bw \
 -R /root/vivek/patient_chipseq/poised_kmeans_zmet_5k_3clusters.bed --referencePoint center \
---sortRegions descend -bs 20 -a 1000 -b 1000 -p max -out patient_stored_H3K27me3_bs20.mat --outFileNameMatrix patient_stored_H3K27me3_bs20.txt
+--sortRegions descend -bs 20 -a 5000 -b 5000 -p max -out patient_stored_H3K27me3_bs20.mat --outFileNameMatrix patient_stored_H3K27me3_bs20_5k.txt
 
+####
+###
+#
