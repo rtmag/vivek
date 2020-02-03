@@ -1,3 +1,4 @@
+##### FRESH
 # H3K4me3 :: E
 
 computeMatrix reference-point \
@@ -53,4 +54,52 @@ computeMatrix reference-point \
 --sortRegions descend -bs 1000 -a 1000 -b 1000 -p max -out patient_fresh_H3K27me3.mat --outFileNameMatrix patient_fresh_H3K27me3.txt
 
 
+
+##### stored
+# H3K4me3 :: E
+
+computeMatrix reference-point \
+-S \
+/root/vivek/patient_chipseq/stored/bw/GSM3934170_M-12_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934175_M-22_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934180_M-48_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934185_M-52_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934190_M-57_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934195_M-61_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934200_M-84_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934205_M-940_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934210_M-96_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934215_M-A2058_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934220_M-G361_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934225_M-HS934_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934230_M-WM115_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934235_M-WM165_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934240_M-WM266_E.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934245_M-WM793B_E.bw \
+-R /root/vivek/patient_chipseq/poised_kmeans_zmet_5k_3clusters.bed --referencePoint center \
+--sortRegions descend -bs 1000 -a 1000 -b 1000 -p max -out patient_stored_H3K4me3.mat --outFileNameMatrix patient_stored_H3K4me3.txt
+
+
+# H3K27me3 :: F
+
+computeMatrix reference-point \
+-S \
+/root/vivek/patient_chipseq/stored/bw/GSM3934171_M-12_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934176_M-22_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934181_M-48_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934186_M-52_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934191_M-57_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934196_M-61_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934201_M-84_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934206_M-940_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934211_M-96_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934216_M-A2058_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934221_M-G361_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934226_M-HS934_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934231_M-WM115_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934236_M-WM165_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934241_M-WM266_F.bw \
+/root/vivek/patient_chipseq/stored/bw/GSM3934246_M-WM793B_F.bw \
+-R /root/vivek/patient_chipseq/poised_kmeans_zmet_5k_3clusters.bed --referencePoint center \
+--sortRegions descend -bs 1000 -a 1000 -b 1000 -p max -out patient_stored_H3K27me3.mat --outFileNameMatrix patient_stored_H3K27me3.txt
 
