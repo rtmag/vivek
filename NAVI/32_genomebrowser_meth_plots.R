@@ -22,6 +22,7 @@ rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,
                       "17","17","18","18","19","19","20","20",
                       "21","21","22","22","23","23","24","24") )
 
+rnb.set.norm@pheno = data.frame(rnb.set.norm@pheno,sample
 ############################################################################################
 # CDKN2A
 chrom <- "chr9"
@@ -40,6 +41,7 @@ dev.off()
 
 patient.grp <- as.numeric(as.character(rnb.set.norm@pheno$Patient))
 for(i in 1:max(patient.grp) ){
+  rnb.options("identifiers.column"= 1) 
   rnb.set.norm_i=remove.samples(rnb.set.norm,samples(rnb.set.norm)[patient.grp!=i])
   sample.grouping_i <- list()
   samples_i <- 1:2
@@ -59,6 +61,8 @@ for(i in 1:max(patient.grp) ){
   rnb.set.norm_pat18_nev=remove.samples(rnb.set.norm_pat18,samples(rnb.set.norm_pat18)[2])
 
   fixed.rnb.set.norm_pat18 <- combine(rnb.set.norm_pat18_mel, rnb.set.norm_pat18_nev)
+
+  rnb.options("identifiers.column"= 1) 
   sample.grouping_i <- list()
   samples_i <- 1:2
   sample.grouping_i$Melanoma <- samples_i[fixed.rnb.set.norm_pat18@pheno$Tumor=="Melanoma"]
@@ -69,3 +73,8 @@ for(i in 1:max(patient.grp) ){
   rnb.plot.locus.profile(fixed.rnb.set.norm_pat18,chrom,start,end,grps=sample.grouping_i,
                          smooth.profile="narrow",cvals.meth =c("#0031f7","#0031f7","grey","#AD0021","#AD0021") )
   dev.off()
+
+#  rnb.options("identifiers.column"= NULL) 
+
+
+
