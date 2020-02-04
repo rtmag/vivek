@@ -46,7 +46,7 @@ for(i in 1:max(patient.grp) ){
   sample.grouping_i <- list()
   samples_i <- 1:2
   sample.grouping_i$Melanoma <- samples_i[rnb.set.norm_i@pheno$Tumor=="Melanoma"]
-  sample.grouping_i$Nevi <- samples_i[rnb.set.norm_i@pheno$Tumor=="Nevi"]
+  sample.grouping_i$Nevi <- samples_i[rnb.set.norm_i@pheno$Tumor!="Melanoma"]
 
   title<-paste0("CDKN2A_NEVI_METH_SHOT_patient",i,".pdf")
   pdf(title)
