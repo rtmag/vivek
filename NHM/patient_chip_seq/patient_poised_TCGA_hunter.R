@@ -17,6 +17,9 @@ poised <- read.table("poised_kmeans_zmet_5k_3clusters.bed",sep="\t",header=FALSE
 
 poised_in_hunter <- poised[,4][poised[,4] %in% hunter]
 
+write.table(poised_in_hunter,"poised_overlap_hunterPRC2.txt",sep="\t",col.names=F,row.names=F,quote=F)
+write.csv(poised,"poised_genes_3Cluster.csv")
+
 beta <- readRDS("SKCM_beta_promoter.rds")
 
 library(clusterProfiler)
