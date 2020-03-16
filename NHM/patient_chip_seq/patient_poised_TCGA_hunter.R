@@ -17,7 +17,7 @@ poised <- read.table("poised_kmeans_zmet_5k_3clusters.bed",sep="\t",header=FALSE
 
 poised_in_hunter <- poised[,4][poised[,4] %in% hunter]
 
-beta <- readRDS("beta_promoter.rds")
+beta <- readRDS("SKCM_beta_promoter.rds")
 
 library(clusterProfiler)
 library(org.Hs.eg.db)
@@ -96,3 +96,36 @@ for(ix in 1:dim(meth.norm)[1]){
 }
 
 #######################################################################
+
+png("heatmap_TCGA_poised_in_hunter_233_genes.png",width= 2,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+heatmap.2(as.matrix(beta_poised_in_hunter),col=colors,scale="none", 
+          trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+          labRow = FALSE,labCol = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl" )
+dev.off()
+
+png("heatmap_TCGA_poised_in_hunter_233_genes_centered.png",width= 2,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+heatmap.2(as.matrix(meth.norm.centered),col=colors,scale="none", 
+          trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+          labRow = FALSE,labCol = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl" )
+dev.off()
+
+
+png("heatmap_TCGA_poised.png",width= 2,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+heatmap.2(as.matrix(beta_poised),col=colors,scale="none", 
+          trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+          labRow = FALSE,labCol = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl" )
+dev.off()
+
+png("heatmap_TCGA_poised_centered.png",width= 2,
+  height= 3.25,units="in",
+  res=1200,pointsize=4)
+heatmap.2(as.matrix(meth.norm.centered),col=colors,scale="none", 
+          trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+          labRow = FALSE,labCol = FALSE,xlab="", ylab="CpGs",key.title="Methylation lvl" )
+dev.off()
