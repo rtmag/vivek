@@ -175,3 +175,31 @@ heatmap.2(mat_vsd_poised_in_hunter_centered,col=colors,scale="row", trace="none"
 srtCol=90,
   xlab="", ylab="Poised in Hunter's PRC2 genes",key.title="Gene expression",cexCol=.65,cexRow=.2,ColSideColors=colores)
 dev.off()
+
+#######
+zebra <- read.table("ZEBRA_FISH_TO_HOMOSAPIENS_mart_export.txt",sep= "\t",header=TRUE)
+zebra<-as.character(zebra[,3])
+zebra<-zebra[zebra!=""]
+
+poised <- read.table("~/CSI/vivek/NHM_bivalent_onMeth_pathtients/poised_kmeans_zmet_5k_3clusters.bed",
+                     sep="\t",
+                     header=FALSE,stringsAsFactors=FALSE)
+
+poised_in_zebra <- poised[,4][poised[,4] %in% zebra]
+
+sig_vsd_zebra = vsd[rownames(vsd) %in% zebra,]
+sig_vsd_zebra = sig_vsd_zebra[apply(sig_vsd_zebra,1,sd)!=0,]
+
+sig_vsd_poised_in_zebra = vsd[rownames(vsd) %in% poised_in_zebra,]
+sig_vsd_poised_in_zebra = sig_vsd_poised_in_zebra[apply(sig_vsd_poised_in_zebra,1,sd)!=0,]
+
+
+pdf("NHM_expression_ZEBRAFISH_genes.pdf",width = 3)
+heatmap.2(sig_vsd_zebra,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("77 ZEBRA FISH GENES"),key.title="Gene expression",cexCol=.65,cexRow=.3,Colv=FALSE,dendrogram='row')
+dev.off()
+  
+pdf("NHM_expression_zebrafish_overlap_poised_genes.pdf",width = 3)
+heatmap.2(sig_vsd_poised_in_zebra,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="7 ZEBRA FISH OVERLAP WITH POISED GENES",key.title="Gene expression",cexCol=.65,cexRow=1,Colv=FALSE,dendrogram='row')
+dev.off()
