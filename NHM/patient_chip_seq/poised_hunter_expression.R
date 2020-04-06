@@ -403,3 +403,117 @@ pdf("patient_expression_c9_fuzzy_centered.pdf",width = 3)
 heatmap.2(centered_mat_c9,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
   xlab="", ylab="Cluster 9 genes",key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
 dev.off()
+
+
+
+
+
+
+
+png("boxplot_patient_RNA-Seq_mfuzz.png",width= 3.25,
+  height= 4,units="in",
+  res=1200,pointsize=4)
+
+par(mfrow=c(3,3))
+
+databox<-data.frame(Nevi = as.numeric(mat_c1[,colores=="blue"]),Melanoma = as.numeric(mat_c1[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 1")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric( mat_c2[,colores=="blue"]),Melanoma = as.numeric(mat_c2[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 2")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(mat_c3[,colores=="blue"]),Melanoma = as.numeric(mat_c3[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 3")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(mat_c4[,colores=="blue"]),Melanoma = as.numeric(mat_c4[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 4")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(mat_c5[,colores=="blue"]),Melanoma = as.numeric(mat_c5[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 5")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(mat_c6[,colores=="blue"]),Melanoma = as.numeric(mat_c6[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 6")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(mat_c7[,colores=="blue"]),Melanoma = as.numeric(mat_c7[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 7")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(mat_c8[,colores=="blue"]),Melanoma = as.numeric(mat_c8[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 8")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(mat_c9[,colores=="blue"]),Melanoma = as.numeric(mat_c9[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 9")#,ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+dev.off()
+
+
+
+
+
+png("boxplot_patient_RNA-Seq_mfuzz_centered.png",width= 3.25,
+  height= 4,units="in",
+  res=1200,pointsize=4)
+
+par(mfrow=c(3,3))
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c1[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c1[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 1",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c2[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c2[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 2",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c3[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c3[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 3",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c4[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c4[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 4",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c5[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c5[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 5",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c6[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c6[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 6",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c7[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c7[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 7",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c8[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c8[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 8",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+
+databox<-data.frame(Nevi = as.numeric(centered_mat_c9[,colores=="blue"]),Melanoma = as.numeric(centered_mat_c9[,colores=="red"]))
+stripchart(databox,vertical = TRUE,jitter = 0.3, ylab = expression('Log'[2]*' Normalized Tag Count RNA-Seq'),
+           method = "jitter", pch = 20, col = alpha(colour='red',alpha=.005),cex = 2,las=2,main = "Cluster 9",ylim=c(-1,1))
+boxplot(databox, add = TRUE,boxlwd = 2,las=2,outline=FALSE)
+dev.off()
