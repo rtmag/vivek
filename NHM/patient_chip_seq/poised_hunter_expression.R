@@ -203,3 +203,203 @@ pdf("NHM_expression_zebrafish_overlap_poised_genes.pdf",width = 3)
 heatmap.2(sig_vsd_poised_in_zebra,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
   xlab="", ylab="7 ZEBRA FISH OVERLAP WITH POISED GENES",key.title="Gene expression",cexCol=.65,cexRow=1,Colv=FALSE,dendrogram='row')
 dev.off()
+
+#######################################################################################################################
+# Look at crest signature in patients
+crest <- read.table("~/CSI/vivek/new_rnaseq/crest/MedLowSim_SD3.txt",stringsAsFactors=F)
+crest<-crest[,1]
+poised <- read.table("poised_kmeans_zmet_5k_3clusters.bed",sep="\t",header=FALSE,stringsAsFactors=FALSE)
+poised <- poised[,4]
+
+
+mat_vsd_crest = mat[rownames(mat) %in% crest,]
+mat_vsd_crest = mat_vsd_crest[apply(mat_vsd_crest,1,sd)!=0,]
+
+centered_mat_vsd_crest = centered_mat[rownames(centered_mat) %in% crest,]
+centered_mat_vsd_crest = centered_mat_vsd_crest[apply(centered_mat_vsd_crest,1,sd)!=0,]
+
+pdf("patient_expression_crest_genes.pdf",width = 3)
+heatmap.2(mat_vsd_crest,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Crest GENES"),key.title="Gene expression",cexCol=.65,cexRow=.1)
+dev.off()
+  
+pdf("patient_expression_crest_genes_centered.pdf",width = 3)
+heatmap.2(centered_mat_vsd_crest,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Crest GENES",key.title="Gene expression",cexCol=.65,cexRow=.1)
+dev.off()
+
+
+#######################################################################################################################
+# Look at fuzzy signature in patients
+c1<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_1_rnaseq.txt")
+c1<-c1[,1]
+c2<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_2_rnaseq.txt")
+c2<-c2[,1]
+c3<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_3_rnaseq.txt")
+c3<-c3[,1]
+c4<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_4_rnaseq.txt")
+c4<-c4[,1]
+c5<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_5_rnaseq.txt")
+c5<-c5[,1]
+c6<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_6_rnaseq.txt")
+c6<-c6[,1]
+c7<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_7_rnaseq.txt")
+c7<-c7[,1]
+c8<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_8_rnaseq.txt")
+c8<-c8[,1]
+c9<-read.table("~/CSI/vivek/new_rnaseq/deseq2/mfuzz_heatmap/ct_9_rnaseq.txt")
+c9<-c9[,1]
+
+#c1
+mat_c1 = mat[rownames(mat) %in% c1,]
+mat_c1 = mat_c1[apply(mat_c1,1,sd)!=0,]
+centered_mat_c1 = centered_mat[rownames(centered_mat) %in% c1,]
+centered_mat_c1 = centered_mat_c1[apply(centered_mat_c1,1,sd)!=0,]
+
+#c2
+mat_c2 = mat[rownames(mat) %in% c2,]
+mat_c2 = mat_c2[apply(mat_c2,1,sd)!=0,]
+centered_mat_c2 = centered_mat[rownames(centered_mat) %in% c2,]
+centered_mat_c2 = centered_mat_c2[apply(centered_mat_c2,1,sd)!=0,]
+
+#c3
+mat_c3 = mat[rownames(mat) %in% c3,]
+mat_c3 = mat_c3[apply(mat_c3,1,sd)!=0,]
+centered_mat_c3 = centered_mat[rownames(centered_mat) %in% c3,]
+centered_mat_c3 = centered_mat_c3[apply(centered_mat_c3,1,sd)!=0,]
+
+#c4
+mat_c4 = mat[rownames(mat) %in% c4,]
+mat_c4 = mat_c4[apply(mat_c4,1,sd)!=0,]
+centered_mat_c4 = centered_mat[rownames(centered_mat) %in% c4,]
+centered_mat_c4 = centered_mat_c4[apply(centered_mat_c4,1,sd)!=0,]
+
+#c5
+mat_c5 = mat[rownames(mat) %in% c5,]
+mat_c5 = mat_c5[apply(mat_c5,1,sd)!=0,]
+centered_mat_c5 = centered_mat[rownames(centered_mat) %in% c5,]
+centered_mat_c5 = centered_mat_c5[apply(centered_mat_c5,1,sd)!=0,]
+
+#c6
+mat_c6 = mat[rownames(mat) %in% c6,]
+mat_c6 = mat_c6[apply(mat_c6,1,sd)!=0,]
+centered_mat_c6 = centered_mat[rownames(centered_mat) %in% c6,]
+centered_mat_c6 = centered_mat_c6[apply(centered_mat_c6,1,sd)!=0,]
+
+#c7
+mat_c7 = mat[rownames(mat) %in% c7,]
+mat_c7 = mat_c6[apply(mat_c7,1,sd)!=0,]
+centered_mat_c7 = centered_mat[rownames(centered_mat) %in% c7,]
+centered_mat_c7 = centered_mat_c7[apply(centered_mat_c7,1,sd)!=0,]
+
+#c8
+mat_c8 = mat[rownames(mat) %in% c8,]
+mat_c8 = mat_c8[apply(mat_c8,1,sd)!=0,]
+centered_mat_c8 = centered_mat[rownames(centered_mat) %in% c8,]
+centered_mat_c8 = centered_mat_c8[apply(centered_mat_c8,1,sd)!=0,]
+
+#c9
+mat_c9 = mat[rownames(mat) %in% c9,]
+mat_c9 = mat_c9[apply(mat_c9,1,sd)!=0,]
+centered_mat_c9 = centered_mat[rownames(centered_mat) %in% c9,]
+centered_mat_c9 = centered_mat_c9[apply(centered_mat_c9,1,sd)!=0,]
+
+
+#c1
+pdf("patient_expression_c1_fuzzy.pdf",width = 3)
+heatmap.2(mat_c1,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 1 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c1_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c1,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 1 genes",key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
+
+#c2
+pdf("patient_expression_c2_fuzzy.pdf",width = 3)
+heatmap.2(mat_c2,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 2 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c2_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c2,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 2 genes",key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+
+#c3
+pdf("patient_expression_c3_fuzzy.pdf",width = 3)
+heatmap.2(mat_c3,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 3 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c3_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c3,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 3 genes",key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+
+#c4
+pdf("patient_expression_c4_fuzzy.pdf",width = 3)
+heatmap.2(mat_c4,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 4 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c4_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c4,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 4 genes",key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+
+#c5
+pdf("patient_expression_c5_fuzzy.pdf",width = 3)
+heatmap.2(mat_c5,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 5 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c5_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c5,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 5 genes",key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+
+#c6
+pdf("patient_expression_c6_fuzzy.pdf",width = 3)
+heatmap.2(mat_c6,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 6 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c6_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c6,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 6 genes",key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+
+#c7
+pdf("patient_expression_c7_fuzzy.pdf",width = 3)
+heatmap.2(mat_c7,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 7 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c7_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c7,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 7 genes",key.title="Gene expression",cexCol=.65,cexRow=.1, ColSideColors=colores)
+dev.off()
+
+#c8
+pdf("patient_expression_c8_fuzzy.pdf",width = 3)
+heatmap.2(mat_c8,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 8 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c8_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c8,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 8 genes",key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
+
+#c9
+pdf("patient_expression_c9_fuzzy.pdf",width = 3)
+heatmap.2(mat_c9,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab=paste0("Cluster 9 genes"),key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
+  
+pdf("patient_expression_c9_fuzzy_centered.pdf",width = 3)
+heatmap.2(centered_mat_c9,col=colors,scale="row", trace="none",distfun = function(x) get_dist(x,method="pearson"),srtCol=90,
+  xlab="", ylab="Cluster 9 genes",key.title="Gene expression",cexCol=.65,cexRow=.1,ColSideColors=colores)
+dev.off()
