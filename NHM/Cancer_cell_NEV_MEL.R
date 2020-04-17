@@ -214,23 +214,21 @@ legend("topright",legend=c("NB","NBC","NEV","MEL"),fill=c("red","green","blue","
 #dev.off()
 
 library(pheatmap)
-colnames(combined)[1] = "NB"
-colnames(combined)[2] = "NB"
-colnames(combined)[3] = "NB"
-colnames(combined)[4] = "NBC"
-colnames(combined)[5] = "NBC"
-colnames(combined)[6] = "NBC"
+colnames(combined)[1] = "VE"
+colnames(combined)[2] = "VE"
+colnames(combined)[3] = "VE"
+colnames(combined)[4] = "VE+KO"
+colnames(combined)[5] = "VE+KO"
+colnames(combined)[6] = "VE+KO"
 sampleDists <- get_dist(t(combined),method="pearson")
 library("RColorBrewer")
 sampleDistMatrix <- as.matrix(sampleDists)
 colnames(sampleDistMatrix) <- NULL
-pdf("DISTANCE_heatmap_NEVI_MEL_NB_NBC_pearsonDistance.pdf")
+pdf("DISTANCE_heatmap_NEVI_MEL_NB_NBC_pearsonDistance_withLabels.pdf")
   colors <- (colorRampPalette( (brewer.pal(9, "RdYlBu")) )(200))
+colnames(sampleDistMatrix) <-rownames( sampleDistMatrix)
 pheatmap(sampleDistMatrix,
          clustering_distance_rows=sampleDists,
          clustering_distance_cols=sampleDists,
-         col=colors)
+         col=colors,angle_col="90")
 dev.off()
-
-euclidean", "maximum", "manhattan", "canberra", "binary",
-          "minkowski", "pearson", "spearman" or "kendall".
